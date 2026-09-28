@@ -10,13 +10,12 @@ let editMode=false, editSnapshot=null, dirty=false;
 
 const q=id=>document.getElementById(id);
 const editParams = new URLSearchParams(window.location.search);
-const editProjectBtn = document.getElementById("editProject");
 
 if (editParams.get("edit") === "1") {
   const password = prompt("Editor password");
 
-  if (password === "ZHg685536ggw!!") {
-    editProjectBtn.style.display = "inline-flex";
+  if (password === "你的新密码") {
+    document.getElementById("editProject").style.display = "inline-flex";
   }
 }
 
