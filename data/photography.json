@@ -1,0 +1,460 @@
+{
+  "section": "observation",
+  "note": {
+    "en": "Selected photographs across the years — mostly medium and 135 format film, with some digital supplements.",
+    "zh": "跨年份摄影精选——主要为中画幅与 135 胶片，少量数码作为补充。"
+  },
+  "layout": {
+    "type": "editorial-sequence",
+    "groups": [
+      {
+        "type": "hero",
+        "images": [
+          "06.001"
+        ]
+      },
+      {
+        "type": "triptych",
+        "images": [
+          "06.002",
+          "06.003",
+          "06.019"
+        ]
+      },
+      {
+        "type": "contact-sheet",
+        "images": [
+          "06.004",
+          "06.005",
+          "06.007",
+          "06.013",
+          "06.015"
+        ]
+      },
+      {
+        "type": "isolated",
+        "images": [
+          "06.008"
+        ]
+      },
+      {
+        "type": "film-strip",
+        "images": [
+          "06.006",
+          "06.009",
+          "06.010",
+          "06.016",
+          "06.017",
+          "06.018"
+        ]
+      },
+      {
+        "type": "closing",
+        "images": [
+          "06.014"
+        ]
+      }
+    ]
+  },
+  "photos": [
+    {
+      "id": "06.001",
+      "src": "assets/photography/obs_001-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_001-640.webp",
+        "medium": "assets/photography/obs_001-1400.webp",
+        "large": "assets/photography/obs_001-2048.webp"
+      },
+      "width": 2048,
+      "height": 1499,
+      "aspect": 1.36624,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "URBAN DENSITY",
+        "zh": "城市密度"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.002",
+      "src": "assets/photography/obs_002-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_002-640.webp",
+        "medium": "assets/photography/obs_002-1400.webp",
+        "large": "assets/photography/obs_002-2048.webp"
+      },
+      "width": 2048,
+      "height": 1499,
+      "aspect": 1.36624,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "PASSAGE",
+        "zh": "巷道"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.003",
+      "src": "assets/photography/obs_003-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_003-640.webp",
+        "medium": "assets/photography/obs_003-1400.webp",
+        "large": "assets/photography/obs_003-2048.webp"
+      },
+      "width": 2048,
+      "height": 1499,
+      "aspect": 1.36624,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "FAÇADE",
+        "zh": "立面"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.004",
+      "src": "assets/photography/obs_004-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_004-640.webp",
+        "medium": "assets/photography/obs_004-1400.webp",
+        "large": "assets/photography/obs_004-2048.webp"
+      },
+      "width": 2048,
+      "height": 1358,
+      "aspect": 1.5081,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "COAST",
+        "zh": "海岸"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.005",
+      "src": "assets/photography/obs_005-1152.webp",
+      "srcset": {
+        "small": "assets/photography/obs_005-640.webp",
+        "medium": "assets/photography/obs_005-1152.webp",
+        "large": "assets/photography/obs_005-1152.webp"
+      },
+      "width": 1152,
+      "height": 2048,
+      "aspect": 0.5625,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "LOOKOUT / WEATHER",
+        "zh": "观景台 / 天气"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.006",
+      "src": "assets/photography/obs_006-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_006-640.webp",
+        "medium": "assets/photography/obs_006-1400.webp",
+        "large": "assets/photography/obs_006-2048.webp"
+      },
+      "width": 2048,
+      "height": 1358,
+      "aspect": 1.5081,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "NIGHT STORE",
+        "zh": "夜店"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.007",
+      "src": "assets/photography/obs_007-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_007-640.webp",
+        "medium": "assets/photography/obs_007-1400.webp",
+        "large": "assets/photography/obs_007-2048.webp"
+      },
+      "width": 2048,
+      "height": 1152,
+      "aspect": 1.77778,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "MIST / TERRAIN",
+        "zh": "雾地形"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.008",
+      "src": "assets/photography/obs_008-1365.webp",
+      "srcset": {
+        "small": "assets/photography/obs_008-640.webp",
+        "medium": "assets/photography/obs_008-1365.webp",
+        "large": "assets/photography/obs_008-1365.webp"
+      },
+      "width": 1365,
+      "height": 2048,
+      "aspect": 0.6665,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "MARKET",
+        "zh": "市场"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.009",
+      "src": "assets/photography/obs_009-1358.webp",
+      "srcset": {
+        "small": "assets/photography/obs_009-640.webp",
+        "medium": "assets/photography/obs_009-1358.webp",
+        "large": "assets/photography/obs_009-1358.webp"
+      },
+      "width": 1358,
+      "height": 2048,
+      "aspect": 0.66309,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "FAIRGROUND",
+        "zh": "游乐场"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.010",
+      "src": "assets/photography/obs_010-1358.webp",
+      "srcset": {
+        "small": "assets/photography/obs_010-640.webp",
+        "medium": "assets/photography/obs_010-1358.webp",
+        "large": "assets/photography/obs_010-1358.webp"
+      },
+      "width": 1358,
+      "height": 2048,
+      "aspect": 0.66309,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "AFTER RAIN",
+        "zh": "雨后"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.011",
+      "src": "assets/photography/obs_011-1365.webp",
+      "srcset": {
+        "small": "assets/photography/obs_011-640.webp",
+        "medium": "assets/photography/obs_011-1365.webp",
+        "large": "assets/photography/obs_011-1365.webp"
+      },
+      "width": 1365,
+      "height": 2048,
+      "aspect": 0.6665,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "RURAL GAZE",
+        "zh": "乡野凝视"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.012",
+      "src": "assets/photography/obs_012-1206.webp",
+      "srcset": {
+        "small": "assets/photography/obs_012-640.webp",
+        "medium": "assets/photography/obs_012-1206.webp",
+        "large": "assets/photography/obs_012-1206.webp"
+      },
+      "width": 1206,
+      "height": 1409,
+      "aspect": 0.85593,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "WINDOW LIGHT",
+        "zh": "窗景之光"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.013",
+      "src": "assets/photography/obs_013-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_013-640.webp",
+        "medium": "assets/photography/obs_013-1400.webp",
+        "large": "assets/photography/obs_013-1536.webp"
+      },
+      "width": 1536,
+      "height": 2048,
+      "aspect": 0.75,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "TIDELINE",
+        "zh": "潮线"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.014",
+      "src": "assets/photography/obs_014-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_014-640.webp",
+        "medium": "assets/photography/obs_014-1400.webp",
+        "large": "assets/photography/obs_014-1536.webp"
+      },
+      "width": 1536,
+      "height": 2048,
+      "aspect": 0.75,
+      "orientation": "portrait",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "PAUSE",
+        "zh": "停顿"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.015",
+      "src": "assets/photography/obs_015-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_015-640.webp",
+        "medium": "assets/photography/obs_015-1400.webp",
+        "large": "assets/photography/obs_015-2048.webp"
+      },
+      "width": 2048,
+      "height": 1499,
+      "aspect": 1.36624,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "MOSS / FOREST",
+        "zh": "苔藓 / 森林"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.016",
+      "src": "assets/photography/obs_016-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_016-640.webp",
+        "medium": "assets/photography/obs_016-1400.webp",
+        "large": "assets/photography/obs_016-2048.webp"
+      },
+      "width": 2048,
+      "height": 1543,
+      "aspect": 1.32728,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "CONSTRUCTION SKIN",
+        "zh": "施工表皮"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.017",
+      "src": "assets/photography/obs_017-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_017-640.webp",
+        "medium": "assets/photography/obs_017-1400.webp",
+        "large": "assets/photography/obs_017-2048.webp"
+      },
+      "width": 2048,
+      "height": 1358,
+      "aspect": 1.5081,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "FAIRGROUND / TILT",
+        "zh": "游乐场 / 倾斜"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.018",
+      "src": "assets/photography/obs_018-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_018-640.webp",
+        "medium": "assets/photography/obs_018-1400.webp",
+        "large": "assets/photography/obs_018-2048.webp"
+      },
+      "width": 2048,
+      "height": 1358,
+      "aspect": 1.5081,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "LIGHT TRACE",
+        "zh": "光轨"
+      },
+      "visibleMeta": false
+    },
+    {
+      "id": "06.019",
+      "src": "assets/photography/obs_019-1400.webp",
+      "srcset": {
+        "small": "assets/photography/obs_019-640.webp",
+        "medium": "assets/photography/obs_019-1400.webp",
+        "large": "assets/photography/obs_019-2048.webp"
+      },
+      "width": 2048,
+      "height": 1499,
+      "aspect": 1.36624,
+      "orientation": "landscape",
+      "medium": "film / digital supplement",
+      "format": "medium / 135 / digital",
+      "year": "",
+      "caption": {
+        "en": "CHINA STREET",
+        "zh": "街道"
+      },
+      "visibleMeta": false
+    }
+  ]
+}
