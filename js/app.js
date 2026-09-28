@@ -9,6 +9,16 @@ let zones=[], currentProject=0, lang=localStorage.getItem('garry_portfolio_lang'
 let editMode=false, editSnapshot=null, dirty=false;
 
 const q=id=>document.getElementById(id);
+const editParams = new URLSearchParams(window.location.search);
+const editProjectBtn = document.getElementById("editProject");
+
+if (editParams.get("edit") === "1") {
+  const password = prompt("Editor password");
+
+  if (password === "ZHg685536ggw!!") {
+    editProjectBtn.style.display = "inline-flex";
+  }
+}
 
 async function loadData(){
   const [projectsRes, photoRes] = await Promise.all([fetch('/data/projects.json'), fetch('/data/photography.json')]);
