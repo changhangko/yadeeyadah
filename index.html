@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Garry Zhang — Creative Technologist / Computational Designer portfolio">
+<title>Garry Zhang — Genome Portfolio</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+ <div class="brand">GARRY ZHANG<br><span class="muted" id="brandRole"></span></div>
+ <div class="controls"><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
+</header>
+<main id="genome" aria-label="Selected portfolio projects"></main>
+<footer><span id="footerLeft"></span><span id="footerRight"></span></footer>
+<section id="project" class="overlay" aria-hidden="true">
+ <div class="overlay-inner">
+  <div class="phead"><span id="pid"></span><button id="close"></button></div>
+  <div class="pbody">
+   <p class="eyebrow" id="pbrief"></p>
+   <h1 id="pt"></h1>
+   <p class="lede" id="pd"></p>
+   <div class="meta-grid">
+    <div class="meta-item"><span class="meta-label" id="labelRole"></span><span class="meta-value" id="prole"></span></div>
+    <div class="meta-item"><span class="meta-label" id="labelTools"></span><span class="meta-value" id="ptools"></span></div>
+    <div class="meta-item"><span class="meta-label" id="labelOutput"></span><span class="meta-value" id="poutput"></span></div>
+    <div class="meta-item"><span class="meta-label" id="labelYear"></span><span class="meta-value" id="pyear"></span></div>
+   </div>
+   <div class="story-grid">
+    <div class="story"><h2 id="storyQuestion"></h2><p id="pquestion"></p></div>
+    <div class="story"><h2 id="storyBuilt"></h2><p id="pbuilt"></p></div>
+    <div class="story"><h2 id="storyJudgement"></h2><p id="pjudgement"></p></div>
+   </div>
+   <div class="media-grid" id="pmedia"></div>
+   <div class="photo-wall-wrap" id="photoWallWrap">
+    <p class="photo-intro" id="photoNote"></p>
+    <h2 class="photo-wall-title" id="galleryTitle"></h2>
+    <div class="photo-wall" id="photoWall"></div>
+   </div>
+   <div class="taste">
+    <h2 id="tasteHeading"></h2>
+    <div class="taste-list" id="ptaste"></div>
+   </div>
+   <button class="next-project" id="nextProject"><span id="nextLabel"></span><span id="nextProjectName"></span></button>
+  </div>
+ </div>
+</section>
+<section id="indexPanel" class="overlay" aria-hidden="true">
+ <div class="overlay-inner">
+  <div class="phead"><span id="indexTitle"></span><button class="panelClose" id="indexClose"></button></div>
+  <div class="pbody">
+   <p class="index-intro" id="indexIntro"></p>
+   <div class="index-list" id="indexList"></div>
+  </div>
+ </div>
+</section>
+<section id="aboutPanel" class="overlay" aria-hidden="true">
+ <div class="overlay-inner">
+  <div class="phead"><span id="aboutTitle"></span><button class="panelClose" id="aboutClose"></button></div>
+  <div class="pbody about-grid">
+   <div class="about-copy">
+    <h1 id="aboutHero"></h1>
+    <p class="lede" id="aboutLead"></p>
+    <p id="aboutText"></p>
+   </div>
+   <aside class="about-aside" id="aboutAside"></aside>
+  </div>
+ </div>
+</section>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
