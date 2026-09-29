@@ -202,7 +202,7 @@ function transitionFlip(el,target,delay=0){
       }
       el.textContent=out;
       if(step>=max){el.textContent=target;clearInterval(timer)}
-    },100);
+    },120);
   },delay);
 }
 
