@@ -51,7 +51,7 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit');
 
 /* Private editor gate. Change this local-only deterrent password before deploying. */
-const EDITOR_PASSWORD='change-this-password';
+const EDITOR_PASSWORD='ZHg685536ggw!!';
 const editParams=new URLSearchParams(window.location.search);
 if(editParams.get('edit')==='1'){
   const password=prompt('Editor password');
