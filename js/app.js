@@ -51,17 +51,20 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit');
 
 /* Private editor gate. Change this local-only deterrent password before deploying. */
-const EDITOR_PASSWORD = '685536';
-const editParams = new URLSearchParams(window.location.search);
-const editorIndicator = document.getElementById('editorIndicator');
+const EDITOR_PASSWORD='685536';
+const editParams=new URLSearchParams(window.location.search);
 
-if (editParams.get('edit') === '1') {
+let editorUnlocked = false;
+
+if(editParams.get('edit') === '1'){
   const password = prompt('Editor password');
 
-  if (password === EDITOR_PASSWORD) {
+  if(password === EDITOR_PASSWORD){
+    editorUnlocked = true;
+
     editProjectBtn.style.display = 'inline-flex';
 
-    if (editorIndicator) {
+    if(editorIndicator){
       editorIndicator.style.display = 'inline-flex';
     }
   } else {
@@ -97,7 +100,11 @@ function openProject(i){
   const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
   if(!projectEl.classList.contains('visible'))showPanel(projectEl);
   updateEditorForProject();
-  if(editMode)makeEditable();
+
+if(editorUnlocked && !editMode){
+  enterEditMode();
+} else if(editMode){
+  makeEditable();
 }
 
 function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>openProject(+btn.dataset.project)));}
