@@ -7,6 +7,8 @@ let SERVER_PHOTO_DATA=null;
 const L="ACGT", genome=document.getElementById("genome");
 let zones=[], currentProject=0, lang=localStorage.getItem('garry_portfolio_lang')||'en';
 let editMode=false, editSnapshot=null, dirty=false;
+let armedMutation=null;
+let transitionRunning=false;
 
 const q=id=>document.getElementById(id);
 
@@ -23,39 +25,140 @@ function t(){return UI[lang]}
 function seq(n){let s="";for(let i=0;i<n;i++)s+=L[Math.random()*4|0];return s}
 function proj(i){return PROJECTS[i][lang]}
 function cells(s,mutationAt=-1,p=-1){return [...s].map((ch,i)=>`<span class="cell ${i===mutationAt?"mutation":""}" ${i===mutationAt?`data-p="${p}" tabindex="0" role="button" aria-label="Decode project ${PROJECTS[p]?.[lang]?.title||""}"`:""}>${ch}</span>`).join("")}
-function mutationRows(count,total){const top=2,bottom=Math.max(top,count-3),span=Math.max(1,bottom-top);return Array.from({length:total},(_,i)=>Math.round(top+(span*(i/Math.max(1,total-1)))));}
+function mutationRows(count,total){
+  const top=2;
+  const bottom=Math.max(top,count-3);
+  const available=[];
+  for(let r=top;r<=bottom;r++) available.push(r);
+  total=Math.min(total,available.length);
+  if(total<=1) return [available[Math.floor(available.length/2)]||top];
+  const selected=[];
+  for(let i=0;i<total;i++){
+    const index=Math.round(i*(available.length-1)/(total-1));
+    const row=available[index];
+    if(!selected.includes(row)) selected.push(row);
+  }
+  return selected;
+}
+
 function build(){
-  genome.innerHTML="";zones=[];
+  genome.innerHTML="";zones=[];armedMutation=null;
   const mobile=innerWidth<700,rowH=mobile?31:34;
   const count=Math.max(12,Math.floor((innerHeight-(mobile?142:136))/rowH));
   const chars=Math.ceil(innerWidth/(mobile?13:15))+45;
-  const positions=mutationRows(count,PROJECTS.length);let projectCursor=0;
+
+  // More discoverable mutations without adding more projects.
+  const copies=mobile?2:3;
+  const desiredMutations=PROJECTS.length*copies;
+  const totalMutations=Math.min(desiredMutations,Math.max(PROJECTS.length,count-4));
+  const positions=mutationRows(count,totalMutations);
+  const mutationMap=new Map();
+  positions.forEach((row,index)=>mutationMap.set(row,index%PROJECTS.length));
+
   for(let r=0;r<count;r++){
-    const row=document.createElement("div");row.className="row";const s=seq(chars);let mut=-1,p=-1;
-    if(projectCursor<PROJECTS.length && r===positions[projectCursor]){p=projectCursor++;mut=12+(r*11)%(Math.max(18,chars-28));row.classList.add("zone");row.dataset.p=p;}
+    const row=document.createElement("div");row.className="row";
+    const s=seq(chars);let mut=-1,p=-1;
+    if(mutationMap.has(r)){
+      p=mutationMap.get(r);
+      mut=12+(r*11)%Math.max(18,chars-28);
+      row.classList.add("zone");row.dataset.p=p;
+    }
     const track=document.createElement("div");track.className="track";track.innerHTML=cells(s,mut,p)+cells(s,-1,-1);row.appendChild(track);
-    if(p>=0){const d=document.createElement("div");d.className="decode";d.dataset.p=p;d.setAttribute("role","button");d.tabIndex=0;d.innerHTML=`<div class="line title"></div><div class="line brief"></div><div class="line meta"></div><div class="line year"></div>`;row.appendChild(d);zones.push(row);}
+    if(p>=0){
+      const d=document.createElement("div");d.className="decode";d.dataset.p=p;d.setAttribute("role","button");d.tabIndex=0;
+      d.innerHTML=`<div class="line title"></div><div class="line brief"></div><div class="line meta"></div><div class="line year"></div>`;
+      row.appendChild(d);zones.push(row);
+    }
     genome.appendChild(row);
   }
   bind();
 }
-function flipLine(el,target,delay=0){const chars="ACGT";let step=0,max=8;const timer=setInterval(()=>{step++;let out="";for(let i=0;i<target.length;i++){if(target[i]===" "){out+=" ";continue}const settle=Math.floor((i/Math.max(1,target.length))*4)+3;out+=step>=settle?target[i]:chars[Math.random()*4|0];}el.textContent=out;if(step>=max){el.textContent=target;clearInterval(timer)}},72+delay*2);}
-function activate(row){zones.forEach(z=>{if(z!==row)z.classList.remove("active")});row.classList.add("active");const p=proj(+row.dataset.p),d=row.querySelector('.decode');flipLine(d.querySelector('.title'),`${PROJECTS[+row.dataset.p].id} / ${p.title}`);flipLine(d.querySelector('.brief'),p.brief,4);flipLine(d.querySelector('.meta'),p.meta,7);flipLine(d.querySelector('.year'),p.year,10);}
-function bind(){document.querySelectorAll('.mutation').forEach(m=>{const row=m.closest('.zone');m.addEventListener('mouseenter',()=>activate(row));m.addEventListener('focus',()=>activate(row));m.addEventListener('click',e=>{e.stopPropagation();activate(row)});});zones.forEach(row=>{row.addEventListener('mouseleave',()=>row.classList.remove('active'));const d=row.querySelector('.decode');d.addEventListener('mouseenter',()=>row.classList.add('active'));d.addEventListener('click',()=>openProject(+row.dataset.p));d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(+row.dataset.p)}});});}
+
+function flipLine(el,target,delay=0){
+  const chars="ACGT";let step=0,max=8;
+  const timer=setInterval(()=>{
+    step++;let out="";
+    for(let i=0;i<target.length;i++){
+      if(target[i]===" "){out+=" ";continue}
+      const settle=Math.floor((i/Math.max(1,target.length))*4)+3;
+      out+=step>=settle?target[i]:chars[Math.random()*4|0];
+    }
+    el.textContent=out;
+    if(step>=max){el.textContent=target;clearInterval(timer)}
+  },72+delay*2);
+}
+
+function activate(row){
+  zones.forEach(z=>{if(z!==row&&!z.classList.contains('armed'))z.classList.remove("active")});
+  row.classList.add("active");
+  const p=proj(+row.dataset.p),d=row.querySelector('.decode');
+  flipLine(d.querySelector('.title'),`${PROJECTS[+row.dataset.p].id} / ${p.title}`);
+  flipLine(d.querySelector('.brief'),p.brief,4);
+  flipLine(d.querySelector('.meta'),p.meta,7);
+  flipLine(d.querySelector('.year'),p.year,10);
+}
+
+function bind(){
+  document.querySelectorAll('.mutation').forEach(m=>{
+    const row=m.closest('.zone');
+    m.addEventListener('mouseenter',()=>{if(!armedMutation)activate(row)});
+    m.addEventListener('focus',()=>{if(!armedMutation)activate(row)});
+    m.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(transitionRunning)return;
+      if(armedMutation===row){
+        const projectIndex=+row.dataset.p;
+        armedMutation=null;
+        zones.forEach(z=>z.classList.remove('armed'));
+        transitionToProject(projectIndex);
+        return;
+      }
+      armedMutation=row;
+      zones.forEach(z=>{
+        z.classList.remove('armed');
+        if(z!==row)z.classList.remove('active');
+      });
+      row.classList.add('armed');
+      activate(row);
+    });
+    m.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();m.click()}
+    });
+  });
+
+  zones.forEach(row=>{
+    row.addEventListener('mouseleave',()=>{
+      if(armedMutation!==row)row.classList.remove('active');
+    });
+    const d=row.querySelector('.decode');
+    d.addEventListener('mouseenter',()=>row.classList.add('active'));
+    d.addEventListener('click',e=>{e.stopPropagation();transitionToProject(+row.dataset.p)});
+    d.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();transitionToProject(+row.dataset.p)}
+    });
+  });
+}
 
 const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel');
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
 const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
-const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit');
+const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
-/* Private editor gate. Change this local-only deterrent password before deploying. */
+/* Private editor gate. This is a local deterrent, not secure authentication. */
 const EDITOR_PASSWORD='change-this-password';
 const editParams=new URLSearchParams(window.location.search);
+let editorUnlocked=false;
 if(editParams.get('edit')==='1'){
   const password=prompt('Editor password');
-  if(password===EDITOR_PASSWORD) editProjectBtn.style.display='inline-flex';
+  if(password===EDITOR_PASSWORD){
+    editorUnlocked=true;
+    editProjectBtn.style.display='inline-flex';
+    if(editorIndicator)editorIndicator.style.display='inline-flex';
+  }else if(password!==null){
+    alert('Incorrect password');
+  }
 }
 
 
@@ -75,6 +178,67 @@ function renderPhotoWall(){
   if(editMode){makeEditable();bindPhotoEditors();}
 }
 
+function generateTransitionGenome(){
+  const el=q('transitionGenome');
+  if(!el)return;
+  const charsNeeded=Math.ceil(window.innerWidth/8);
+  const rowsNeeded=Math.ceil(window.innerHeight/25)+4;
+  let output='';
+  for(let r=0;r<rowsNeeded;r++) output+=seq(charsNeeded)+'\n';
+  el.textContent=output;
+}
+
+function transitionFlip(el,target,delay=0){
+  if(!el)return;
+  const chars='ACGT';let step=0;const max=8;
+  el.textContent='';
+  setTimeout(()=>{
+    const timer=setInterval(()=>{
+      step++;let out='';
+      for(let i=0;i<target.length;i++){
+        if(target[i]===' '){out+=' ';continue}
+        const settle=Math.floor((i/Math.max(1,target.length))*4)+3;
+        out+=step>=settle?target[i]:chars[Math.random()*4|0];
+      }
+      el.textContent=out;
+      if(step>=max){el.textContent=target;clearInterval(timer)}
+    },42);
+  },delay);
+}
+
+function transitionToProject(i){
+  if(transitionRunning)return;
+  const overlay=q('projectTransition');
+  if(!overlay||window.matchMedia('(prefers-reduced-motion: reduce)').matches){openProject(i);return;}
+  transitionRunning=true;
+  const p=proj(i),base=PROJECTS[i];
+  generateTransitionGenome();
+  overlay.classList.remove('exit','decoding','fill');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden','false');
+  q('transitionId').textContent='';q('transitionTitle').textContent='';q('transitionBrief').textContent='';q('transitionMeta').textContent='';q('transitionYear').textContent='';
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('fill')));
+  setTimeout(()=>{
+    overlay.classList.add('decoding');
+    transitionFlip(q('transitionId'),`MUTATION ${base.id}`,0);
+    transitionFlip(q('transitionTitle'),p.title,35);
+    transitionFlip(q('transitionBrief'),p.brief,70);
+    transitionFlip(q('transitionMeta'),p.meta,105);
+    transitionFlip(q('transitionYear'),p.year,140);
+  },260);
+  setTimeout(()=>{
+    openProject(i);
+    projectEl.scrollTop=0;
+  },760);
+  setTimeout(()=>overlay.classList.add('exit'),900);
+  setTimeout(()=>{
+    overlay.classList.remove('active','fill','decoding','exit');
+    overlay.setAttribute('aria-hidden','true');
+    transitionRunning=false;
+  },1110);
+}
+
 function openProject(i){
   currentProject=i;const p=proj(i),base=PROJECTS[i];
   pid.textContent=`MUTATION ${base.id}`;pt.textContent=p.title;pd.textContent=p.desc;pbrief.textContent=p.brief;
@@ -86,10 +250,11 @@ function openProject(i){
   const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
   if(!projectEl.classList.contains('visible'))showPanel(projectEl);
   updateEditorForProject();
-  if(editMode)makeEditable();
+  if(editorUnlocked&&!editMode)enterEditMode();
+  else if(editMode)makeEditable();
 }
 
-function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>openProject(+btn.dataset.project)));}
+function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>transitionToProject(+btn.dataset.project)));}
 function renderAbout(){
   const copy=t();
   q('aboutHero').textContent=copy.aboutTitle;
@@ -249,7 +414,7 @@ function restartProfileDecode(){
 }
 
 function bindGlobal(){
-  q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>openProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
+  q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
   q('langToggle').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';localStorage.setItem('garry_portfolio_lang',lang);applyUI();});
   editProjectBtn.addEventListener('click',()=>editMode?exitEditMode(false):enterEditMode());
   q('cancelEdit').addEventListener('click',()=>exitEditMode(true));q('addMedia').addEventListener('click',addMedia);q('addTaste').addEventListener('click',addTaste);q('saveProjectsJson').addEventListener('click',saveProjectsJson);q('savePhotosJson').addEventListener('click',savePhotosJson);

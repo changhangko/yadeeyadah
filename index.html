@@ -10,7 +10,7 @@
 <body>
 <header>
  <div class="brand">GARRY ZHANG<br><span class="muted" id="brandRole"></span></div>
- <div class="controls"><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
+ <div class="controls"><span id="editorIndicator" style="display:none">[ EDITOR ON ]</span><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
 </header>
 <main id="genome" aria-label="Selected portfolio projects"></main>
 <footer><span id="footerLeft"></span><span id="footerRight"></span></footer>
@@ -105,6 +105,17 @@
   </div>
  </div>
 </section>
+
+<div id="projectTransition" aria-hidden="true">
+ <div id="transitionGenome" aria-hidden="true"></div>
+ <div id="transitionDecode">
+  <div id="transitionId"></div>
+  <div id="transitionTitle"></div>
+  <div id="transitionBrief"></div>
+  <div id="transitionMeta"></div>
+  <div id="transitionYear"></div>
+ </div>
+</div>
 <script type="module" src="/js/app.js"></script>
 </body>
 </html>

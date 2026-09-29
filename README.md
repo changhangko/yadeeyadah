@@ -103,3 +103,15 @@ The project `[ EDIT ]` button is hidden during normal visits. Open `/?edit=1` to
 `const EDITOR_PASSWORD='change-this-password';`
 
 This is only a front-end deterrent; editing still exports JSON locally and does not write to GitHub automatically.
+
+
+## V9 interaction update
+- Denser Genome mutations: desktop targets ~3 appearances per project, mobile ~2, capped by available rows.
+- Mutation interaction: first click/tap locks the decoded project preview; second click/tap on the same mutation opens the project. The decoded popup remains clickable.
+- Project entry transition: ACGT fills the viewport, then decodes the project ID/title/brief/meta/year before the project page appears. Works from Genome, Project Index, and Next Project.
+- Editor gate now shows `[ EDITOR ON ]` and automatically enters project edit mode after opening a project when unlocked.
+- Header identity updated: larger name, role uses the same foreground color.
+- Palette neutralised to remove the previous green/olive cast.
+
+Editor URL: `/?edit=1`
+Before deployment, set `EDITOR_PASSWORD` in `/js/app.js` to a new portfolio-only password. This client-side password is only a deterrent and is visible in source code.

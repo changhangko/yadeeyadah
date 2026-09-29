@@ -1,5 +1,5 @@
-:root{--bg:#050505;--fg:#f4f4ef;--dna:#555651;--line:#20201e;--soft:#8a8b84;--panel:#0b0b0b}
-body.light{--bg:#f5f4ef;--fg:#090909;--dna:#aaa9a1;--line:#d8d7d0;--soft:#686861;--panel:#fffef9}
+:root{--bg:#050505;--fg:#f2f2f2;--dna:#565656;--line:#202020;--soft:#8a8a8a;--panel:#0b0b0b}
+body.light{--bg:#f5f5f3;--fg:#111111;--dna:#a8a8a8;--line:#d8d8d8;--soft:#686868;--panel:#fff}
 *{box-sizing:border-box}
 #genome, #genome *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .mutation, .decode{-webkit-tap-highlight-color:transparent}
@@ -7,7 +7,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);c
 body{font-family:"Courier New",Courier,monospace;transition:background .3s,color .3s}
 header,footer{position:fixed;z-index:20;left:0;right:0;display:flex;justify-content:space-between;padding:22px 26px;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 header{top:0} footer{bottom:0;color:var(--dna)}
-.brand{line-height:1.65} .muted{color:var(--dna)} .controls{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.brand{line-height:1.35;font-size:16px;letter-spacing:.08em} .muted{color:inherit} .brand .muted{font-size:11px;letter-spacing:.10em} .controls{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .controls button{display:inline-flex;align-items:center;line-height:1}
 button{border:0;background:none;color:inherit;font:inherit;font-size:10px;letter-spacing:.12em;cursor:pointer;padding:0;text-transform:uppercase}
 button:hover,button:focus-visible{font-weight:bold;outline:none}
@@ -168,3 +168,34 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
 }
 
 @media(prefers-reduced-motion:reduce){.profile-genome{display:none}.profile-image{filter:grayscale(1) contrast(1.04)}}
+
+
+/* ---------- Project decode transition / denser mutation interaction V9 ---------- */
+#editorIndicator{font-size:9px;letter-spacing:.12em;color:var(--fg);white-space:nowrap}
+.zone.armed .track{animation-play-state:paused}
+.zone.armed .mutation{color:var(--fg);font-weight:700}
+.zone.armed .decode{display:block}
+
+#projectTransition{position:fixed;inset:0;z-index:9999;background:var(--bg);color:var(--fg);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
+#projectTransition.active{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
+#projectTransition.exit{opacity:0}
+#transitionGenome{position:absolute;inset:-24px;font-family:"Courier New",Courier,monospace;font-size:10px;line-height:2.9;letter-spacing:.62em;color:var(--dna);white-space:pre;overflow:hidden;opacity:0;transform:scale(1.018);transition:opacity .25s ease,transform .72s cubic-bezier(.2,.7,.1,1)}
+#projectTransition.fill #transitionGenome{opacity:.78;transform:scale(1)}
+#projectTransition.decoding #transitionGenome{opacity:.20}
+#transitionDecode{position:absolute;left:50%;top:50%;width:min(760px,calc(100vw - 48px));transform:translate(-50%,-50%);font-family:"Courier New",Courier,monospace;text-transform:uppercase;letter-spacing:.12em;opacity:0;transition:opacity .16s ease}
+#projectTransition.decoding #transitionDecode{opacity:1}
+#transitionId{font-size:10px;color:var(--soft);margin-bottom:18px}
+#transitionTitle{font-size:clamp(20px,3vw,38px);line-height:1.1;margin-bottom:15px;font-weight:700}
+#transitionBrief{font-size:11px;line-height:1.7;max-width:620px;margin-bottom:20px}
+#transitionMeta,#transitionYear{font-size:9px;line-height:1.8;color:var(--soft)}
+
+@media(max-width:700px){
+ #transitionGenome{font-size:9px;line-height:3;letter-spacing:.45em}
+ #transitionDecode{width:calc(100vw - 34px)}
+ #transitionTitle{font-size:22px}
+ #editorIndicator{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ #transitionGenome{display:none}
+ #projectTransition,#transitionDecode{transition:none}
+}
