@@ -86,3 +86,20 @@ For project `06 / OBSERVATION`, the photography note and photo captions are edit
 `Ctrl+S` / `Cmd+S` while editing also exports `projects.json`. `[ CANCEL ]` restores the content to the state from when the current edit session began.
 
 The `[ EDIT ]` button is intentionally low-opacity until hovered. Anyone can technically edit a local browser copy, but no visitor can publish changes because the editor only downloads JSON files; it has no GitHub credentials or write access.
+
+
+## About page / portrait
+
+The About page now includes a genome-decoded profile portrait and bilingual Design Concept section. The portrait file is:
+
+`/assets/profile/garry-profile.webp`
+
+Replace that file with another WebP using the same filename if you want to change the portrait without touching code.
+
+## Private edit mode
+
+The project `[ EDIT ]` button is hidden during normal visits. Open `/?edit=1` to trigger the editor prompt. Before deploying, change this line in `/js/app.js`:
+
+`const EDITOR_PASSWORD='change-this-password';`
+
+This is only a front-end deterrent; editing still exports JSON locally and does not write to GitHub automatically.

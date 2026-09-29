@@ -127,3 +127,44 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
 @media(max-width:700px){
  .project-head-actions{gap:10px}.editor-bar{margin-top:2px}.editor-status{display:block}.editor-hint{display:block;margin-top:6px;text-align:left;line-height:1.5}.editor-meta-row{display:block}.editor-meta-label{display:block;margin-bottom:6px}.editor-actions{gap:10px}.editor-actions button{font-size:8px}
 }
+
+
+/* --------------------------------
+   ABOUT / GENOME PROFILE V8
+-------------------------------- */
+#aboutPanel .pbody.about-page{max-width:1120px;margin:10vh auto 12vh}
+.about-profile-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.72fr);gap:80px;align-items:start}
+.about-profile-grid .about-copy h1{font-size:clamp(46px,6.8vw,92px);line-height:.94;margin:0 0 36px}
+.about-profile-grid .about-copy .lede{margin-bottom:28px}
+
+.profile-decode{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);background:var(--bg);margin:0;cursor:crosshair}
+.profile-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:grayscale(1) contrast(1.06);opacity:.94;transform:scale(1.002)}
+.profile-genome{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.profile-meta{position:absolute;z-index:3;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:16px;padding:12px;color:#f4f4ef;background:linear-gradient(transparent,rgba(0,0,0,.82));font-size:8px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase}
+
+.concept-section{margin-top:110px;padding-top:18px;border-top:1px solid var(--line)}
+.concept-grid{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:70px;margin-top:28px}
+.concept-grid h2{margin:0;max-width:480px;font-size:clamp(30px,4vw,58px);line-height:.98;font-weight:normal;letter-spacing:-.05em}
+.concept-copy{display:grid;gap:22px}
+.concept-copy p{margin:0;color:var(--dna);font-size:12px;line-height:1.9}
+
+.about-info{margin-top:100px;padding-top:18px;border-top:1px solid var(--line)}
+.about-info .about-aside{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:30px;padding-top:0}
+.about-info .about-block{padding:14px 22px 22px 0;border-top:0;border-right:1px solid var(--line)}
+.about-info .about-block:not(:first-child){padding-left:22px}
+.about-info .about-block:last-child{border-right:0}
+
+@media(max-width:700px){
+ #aboutPanel .pbody.about-page{margin:9vh auto 8vh}
+ .about-profile-grid{grid-template-columns:1fr;gap:46px}
+ .profile-decode{width:min(88vw,480px);margin:0 auto}
+ .concept-section{margin-top:72px}
+ .concept-grid{grid-template-columns:1fr;gap:32px}
+ .concept-grid h2{font-size:clamp(34px,12vw,52px)}
+ .about-info{margin-top:72px}
+ .about-info .about-aside{grid-template-columns:1fr 1fr}
+ .about-info .about-block,.about-info .about-block:not(:first-child){padding:14px 12px 20px 0;border-right:0;border-bottom:1px solid var(--line)}
+ .about-info .about-block:nth-last-child(-n+2){border-bottom:0}
+}
+
+@media(prefers-reduced-motion:reduce){.profile-genome{display:none}.profile-image{filter:grayscale(1) contrast(1.04)}}

@@ -72,13 +72,36 @@
 <section id="aboutPanel" class="overlay" aria-hidden="true">
  <div class="overlay-inner">
   <div class="phead"><span id="aboutTitle"></span><button class="panelClose" id="aboutClose"></button></div>
-  <div class="pbody about-grid">
-   <div class="about-copy">
-    <h1 id="aboutHero"></h1>
-    <p class="lede" id="aboutLead"></p>
-    <p id="aboutText"></p>
-   </div>
-   <aside class="about-aside" id="aboutAside"></aside>
+  <div class="pbody about-page">
+
+   <section class="about-profile-grid">
+    <div class="about-copy">
+     <p class="eyebrow" id="aboutEyebrow"></p>
+     <h1 id="aboutHero"></h1>
+     <p class="lede" id="aboutLead"></p>
+     <p id="aboutText"></p>
+    </div>
+
+    <figure class="profile-decode" id="profileDecode" aria-label="Genome-decoded portrait of Garry Zhang">
+     <img src="/assets/profile/garry-profile.webp" alt="Garry Zhang" class="profile-image" id="profileImage">
+     <canvas class="profile-genome" id="profileGenome" aria-hidden="true"></canvas>
+     <figcaption class="profile-meta"><span id="profileMetaLeft"></span><span id="profileMetaRight"></span></figcaption>
+    </figure>
+   </section>
+
+   <section class="concept-section">
+    <p class="eyebrow" id="conceptEyebrow"></p>
+    <div class="concept-grid">
+     <h2 id="conceptTitle"></h2>
+     <div class="concept-copy"><p id="conceptText1"></p><p id="conceptText2"></p></div>
+    </div>
+   </section>
+
+   <section class="about-info">
+    <p class="eyebrow" id="practiceEyebrow"></p>
+    <aside class="about-aside" id="aboutAside"></aside>
+   </section>
+
   </div>
  </div>
 </section>

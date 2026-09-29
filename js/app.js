@@ -1,4 +1,4 @@
-const UI = {"en": {"roleLine": "CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER", "about": "[ ABOUT ]", "themeLight": "[ LIGHT ]", "themeDark": "[ DARK ]", "index": "[ INDEX ]", "lang": "[ EN / 中文 ]", "footerLeft": "ACGT / SELECTED WORK", "footerRight": "MUTATION → DECODE", "close": "[ ESC / CLOSE ]", "labels": {"role": "Role", "tools": "Tools", "output": "Output", "year": "Year"}, "story": {"question": "01 / Question", "built": "02 / Built", "judgement": "03 / Judgement"}, "taste": "Taste / Decision Log", "next": "NEXT MUTATION", "indexTitle": "PROJECT INDEX", "indexIntro": "A selection of projects and studies positioned between computational design, interface thinking, AI-assisted prototyping and visual judgement. The Genome interface remains the primary navigation: each mutation is a project entry point.", "aboutTitle": "ABOUT / PRACTICE", "aboutLead": "I work at the intersection of design, tools and judgement — building systems, interfaces and visual work that translate complexity into something legible, usable and felt.", "aboutText": "My background is in computational design, but my practice increasingly sits between creative technology, AI-native prototyping, product thinking and visual editing. I am interested in how tools shape attention, and how taste can be articulated through what is kept, removed and refined.", "aboutBlocks": [["Current", "Computational Designer<br>Bates Smart / Melbourne"], ["Working with", "Claude Code · Codex · ChatGPT · HTML/CSS/JS · Python · Rhino · Grasshopper · Mapbox · Revit"], ["Interested in", "AI-native interaction · model evaluation · multimodal interfaces · visual systems · generative tools · creative technology"], ["Contact", "<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>Beijing / Melbourne"]], "galleryTitle": "Selected Frames"}, "zh": {"roleLine": "创意技术 / 计算设计", "about": "[ 关于 ]", "themeLight": "[ 浅色 ]", "themeDark": "[ 深色 ]", "index": "[ 索引 ]", "lang": "[ 中文 / EN ]", "footerLeft": "ACGT / 作品索引", "footerRight": "变异 → 解码", "close": "[ ESC / 关闭 ]", "labels": {"role": "角色", "tools": "工具", "output": "产出", "year": "年份"}, "story": {"question": "01 / 问题", "built": "02 / 构建", "judgement": "03 / 判断"}, "taste": "审美判断 / 决策记录", "next": "下一个变异", "indexTitle": "项目索引", "indexIntro": "这些项目与研究分布在计算设计、界面思维、AI 辅助原型与视觉判断之间。Genome 仍然是主要导航方式：每一个 mutation 都是一个项目入口。", "aboutTitle": "关于 / 实践", "aboutLead": "我的工作位于设计、工具与判断的交叉处——通过系统、界面与视觉表达，把复杂性转化成可理解、可使用、可感知的体验。", "aboutText": "我的背景来自计算设计，但现在的实践越来越多地处在创意技术、AI 原型、产品思维与视觉编辑之间。我关心工具如何塑造注意力，也关心“审美”如何通过保留、删除与打磨被明确表达出来。", "aboutBlocks": [["当前", "Computational Designer<br>Bates Smart / 墨尔本"], ["使用中", "Claude Code · Codex · ChatGPT · HTML/CSS/JS · Python · Rhino · Grasshopper · Mapbox · Revit"], ["关注方向", "AI 原生交互 · 模型评估 · 多模态界面 · 视觉系统 · 生成工具 · 创意技术"], ["联系", "<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>北京 / 墨尔本"]], "galleryTitle": "摄影选帧"}};
+const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","about":"[ ABOUT ]","themeLight":"[ LIGHT ]","themeDark":"[ DARK ]","index":"[ INDEX ]","lang":"[ EN / 中文 ]","footerLeft":"ACGT / SELECTED WORK","footerRight":"MUTATION → DECODE","close":"[ ESC / CLOSE ]","labels":{"role":"Role","tools":"Tools","output":"Output","year":"Year"},"story":{"question":"01 / Question","built":"02 / Built","judgement":"03 / Judgement"},"taste":"Taste / Decision Log","next":"NEXT MUTATION","indexTitle":"PROJECT INDEX","indexIntro":"A selection of projects and studies positioned between computational design, interface thinking, AI-assisted prototyping and visual judgement. The Genome interface remains the primary navigation: each mutation is a project entry point.","aboutTitle":"ABOUT / PRACTICE","aboutLead":"I work at the intersection of design, tools and judgement — building systems, interfaces and visual work that translate complexity into something legible, usable and felt.","aboutText":"My background is in computational design, but my practice increasingly sits between creative technology, AI-native prototyping, product thinking and visual editing. I am interested in how tools shape attention, and how taste can be articulated through what is kept, removed and refined.","aboutBlocks":[["Current","Computational Designer<br>Bates Smart / Melbourne"],["Working with","Claude Code · Codex · ChatGPT · HTML/CSS/JS · Python · Rhino · Grasshopper · Mapbox · Revit"],["Interested in","AI-native interaction · model evaluation · multimodal interfaces · visual systems · generative tools · creative technology"],["Contact","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>Beijing / Melbourne"]],"galleryTitle":"Selected Frames","profileEyebrow":"01 / PROFILE","profileMetaLeft":"SELF / IDENTITY","profileMetaRight":"ACGT → DECODE","conceptEyebrow":"02 / DESIGN CONCEPT","conceptTitle":"GENOME / MUTATION / DECODE","conceptText1":"This portfolio draws from the conceptual language of science fiction films such as Blade Runner, Ex Machina and Gattaca. Rather than borrowing their aesthetics directly, I am interested in the questions they share: how identity is encoded, how machines interpret humans, how systems classify individuals, and where judgement sits between data and intuition.","conceptText2":"The Genome interface translates these ideas into a navigational system. Projects appear as mutations within a field of ACGT sequences, and interaction becomes a process of decoding. The website is therefore not only a container for work, but a small speculative system about perception, identity and machine-readable judgement.","practiceEyebrow":"03 / CURRENT PRACTICE"},"zh":{"roleLine":"创意技术 / 计算设计","about":"[ 关于 ]","themeLight":"[ 浅色 ]","themeDark":"[ 深色 ]","index":"[ 索引 ]","lang":"[ 中文 / EN ]","footerLeft":"ACGT / 作品索引","footerRight":"变异 → 解码","close":"[ ESC / 关闭 ]","labels":{"role":"角色","tools":"工具","output":"产出","year":"年份"},"story":{"question":"01 / 问题","built":"02 / 构建","judgement":"03 / 判断"},"taste":"审美判断 / 决策记录","next":"下一个变异","indexTitle":"项目索引","indexIntro":"这些项目与研究分布在计算设计、界面思维、AI 辅助原型与视觉判断之间。Genome 仍然是主要导航方式：每一个 mutation 都是一个项目入口。","aboutTitle":"关于 / 实践","aboutLead":"我的工作位于设计、工具与判断的交叉处——通过系统、界面与视觉表达，把复杂性转化成可理解、可使用、可感知的体验。","aboutText":"我的背景来自计算设计，但现在的实践越来越多地处在创意技术、AI 原型、产品思维与视觉编辑之间。我关心工具如何塑造注意力，也关心“审美”如何通过保留、删除与打磨被明确表达出来。","aboutBlocks":[["当前","Computational Designer<br>Bates Smart / 墨尔本"],["使用中","Claude Code · Codex · ChatGPT · HTML/CSS/JS · Python · Rhino · Grasshopper · Mapbox · Revit"],["关注方向","AI 原生交互 · 模型评估 · 多模态界面 · 视觉系统 · 生成工具 · 创意技术"],["联系","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>北京 / 墨尔本"]],"galleryTitle":"摄影选帧","profileEyebrow":"01 / 关于我","profileMetaLeft":"自我 / 身份","profileMetaRight":"ACGT → 解码","conceptEyebrow":"02 / 设计概念","conceptTitle":"基因 / 变异 / 解码","conceptText1":"这个作品集的设计受到《银翼杀手》《机械姬》《Gattaca》等科幻电影在概念层面的影响。与其直接借用它们的视觉风格，我更关注这些作品共同讨论的问题：身份如何被编码，机器如何理解人，系统如何分类个体，以及判断如何存在于数据与直觉之间。","conceptText2":"Genome 界面把这些概念转化成一套导航系统。项目以“变异”的形式散布在 ACGT 序列中，用户通过交互逐渐完成“解码”。因此，这个网站不仅是作品的容器，也像一个关于感知、身份与机器可读判断的小型推演系统。","practiceEyebrow":"03 / 当前实践"}};
 
 let PROJECTS=[];
 let PHOTO_DATA=null;
@@ -9,15 +9,6 @@ let zones=[], currentProject=0, lang=localStorage.getItem('garry_portfolio_lang'
 let editMode=false, editSnapshot=null, dirty=false;
 
 const q=id=>document.getElementById(id);
-const editParams = new URLSearchParams(window.location.search);
-
-if (editParams.get("edit") === "1") {
-  const password = prompt("Editor password");
-
-  if (password === "你的新密码") {
-    document.getElementById("editProject").style.display = "inline-flex";
-  }
-}
 
 async function loadData(){
   const [projectsRes, photoRes] = await Promise.all([fetch('/data/projects.json'), fetch('/data/photography.json')]);
@@ -59,6 +50,15 @@ const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pme
 const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit');
 
+/* Private editor gate. Change this local-only deterrent password before deploying. */
+const EDITOR_PASSWORD='change-this-password';
+const editParams=new URLSearchParams(window.location.search);
+if(editParams.get('edit')==='1'){
+  const password=prompt('Editor password');
+  if(password===EDITOR_PASSWORD) editProjectBtn.style.display='inline-flex';
+}
+
+
 function hidePanels(){if(editMode)exitEditMode(false);[projectEl,indexPanel,aboutPanel].forEach(el=>{el.classList.remove('visible');el.setAttribute('aria-hidden','true')});document.body.style.overflow='hidden';}
 function showPanel(el){if(editMode)exitEditMode(false);[projectEl,indexPanel,aboutPanel].forEach(panel=>{panel.classList.remove('visible');panel.setAttribute('aria-hidden','true')});el.classList.add('visible');el.setAttribute('aria-hidden','false');el.scrollTop=0;}
 
@@ -90,7 +90,21 @@ function openProject(i){
 }
 
 function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>openProject(+btn.dataset.project)));}
-function renderAbout(){const copy=t();q('aboutHero').textContent=copy.aboutTitle;q('aboutLead').textContent=copy.aboutLead;q('aboutText').textContent=copy.aboutText;q('aboutAside').innerHTML=copy.aboutBlocks.map(block=>`<div class="about-block"><h2>${block[0]}</h2><p>${block[1]}</p></div>`).join('');}
+function renderAbout(){
+  const copy=t();
+  q('aboutHero').textContent=copy.aboutTitle;
+  q('aboutLead').textContent=copy.aboutLead;
+  q('aboutText').textContent=copy.aboutText;
+  q('aboutEyebrow').textContent=copy.profileEyebrow;
+  q('profileMetaLeft').textContent=copy.profileMetaLeft;
+  q('profileMetaRight').textContent=copy.profileMetaRight;
+  q('conceptEyebrow').textContent=copy.conceptEyebrow;
+  q('conceptTitle').textContent=copy.conceptTitle;
+  q('conceptText1').textContent=copy.conceptText1;
+  q('conceptText2').textContent=copy.conceptText2;
+  q('practiceEyebrow').textContent=copy.practiceEyebrow;
+  q('aboutAside').innerHTML=copy.aboutBlocks.map(block=>`<div class="about-block"><h2>${block[0]}</h2><p>${block[1]}</p></div>`).join('');
+}
 
 function applyUI(){
   const copy=t();document.documentElement.lang=lang==='en'?'en':'zh-CN';
@@ -172,8 +186,70 @@ function showToast(message){let el=q('editorToast');if(!el){el=document.createEl
 function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));}
 function escapeAttr(value=''){return escapeHtml(value).replace(/`/g,'&#96;');}
 
+
+/* ---------- About / Genome Portrait ---------- */
+let profileDecodeInitialised=false;
+let profileAnimationFrame=null;
+function initProfileDecode(){
+  const canvas=q('profileGenome'), box=q('profileDecode');
+  if(!canvas||!box||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const ctx=canvas.getContext('2d');
+  const DNA='ACGT';
+  const CELL_X=15,CELL_Y=17;
+  let cols=0,rows=0,chars=[],thresholds=[];
+  let pointerX=-999,pointerY=-999;
+  let reveal=0;
+  let lastMutation=0;
+
+  function resize(){
+    const rect=box.getBoundingClientRect();
+    if(rect.width<2||rect.height<2)return;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);
+    canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cols=Math.ceil(rect.width/CELL_X);rows=Math.ceil(rect.height/CELL_Y);
+    chars=Array.from({length:rows},()=>Array.from({length:cols},()=>DNA[Math.random()*4|0]));
+    thresholds=Array.from({length:rows},()=>Array.from({length:cols},()=>Math.random()));
+  }
+
+  function restart(){reveal=0;resize();}
+
+  function draw(ts=0){
+    const rect=box.getBoundingClientRect();
+    if(rect.width>1&&rect.height>1){
+      ctx.clearRect(0,0,rect.width,rect.height);
+      ctx.font='10px Courier New';ctx.textAlign='center';ctx.textBaseline='middle';
+      reveal+=(1-reveal)*0.018;
+      const mutate=ts-lastMutation>110;
+      if(mutate)lastMutation=ts;
+      for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+        const px=x*CELL_X+CELL_X/2,py=y*CELL_Y+CELL_Y/2;
+        const dx=px-pointerX,dy=py-pointerY,d=Math.sqrt(dx*dx+dy*dy);
+        let visibility=thresholds[y][x]>reveal?1:0;
+        if(d<88){visibility=Math.max(visibility,1-d/88);if(mutate&&Math.random()<.16)chars[y][x]=DNA[Math.random()*4|0];}
+        if(visibility>.03){ctx.fillStyle=`rgba(244,244,239,${Math.min(.82,visibility*.74)})`;ctx.fillText(chars[y][x],px,py);}
+      }
+    }
+    profileAnimationFrame=requestAnimationFrame(draw);
+  }
+
+  function point(clientX,clientY){const r=box.getBoundingClientRect();pointerX=clientX-r.left;pointerY=clientY-r.top;}
+  box.addEventListener('pointermove',e=>point(e.clientX,e.clientY));
+  box.addEventListener('pointerleave',()=>{pointerX=-999;pointerY=-999;});
+  box.addEventListener('pointerdown',e=>point(e.clientX,e.clientY));
+  window.addEventListener('resize',resize);
+  box._restartProfileDecode=restart;
+  restart();draw();profileDecodeInitialised=true;
+}
+function restartProfileDecode(){
+  if(!profileDecodeInitialised)initProfileDecode();
+  const box=q('profileDecode');
+  if(box?._restartProfileDecode)requestAnimationFrame(()=>box._restartProfileDecode());
+}
+
 function bindGlobal(){
-  q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>openProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>showPanel(aboutPanel));
+  q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>openProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
   q('langToggle').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';localStorage.setItem('garry_portfolio_lang',lang);applyUI();});
   editProjectBtn.addEventListener('click',()=>editMode?exitEditMode(false):enterEditMode());
   q('cancelEdit').addEventListener('click',()=>exitEditMode(true));q('addMedia').addEventListener('click',addMedia);q('addTaste').addEventListener('click',addTaste);q('saveProjectsJson').addEventListener('click',saveProjectsJson);q('savePhotosJson').addEventListener('click',savePhotosJson);
