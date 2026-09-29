@@ -48,7 +48,7 @@ const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
 const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
-const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit');
+const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. Change this local-only deterrent password before deploying. */
 const EDITOR_PASSWORD='685536';
@@ -90,21 +90,70 @@ function renderPhotoWall(){
 }
 
 function openProject(i){
-  currentProject=i;const p=proj(i),base=PROJECTS[i];
-  pid.textContent=`MUTATION ${base.id}`;pt.textContent=p.title;pd.textContent=p.desc;pbrief.textContent=p.brief;
-  prole.textContent=p.role;ptools.textContent=p.tools;poutput.textContent=p.output;pyear.textContent=p.year;
-  pquestion.textContent=p.question;pbuilt.textContent=p.built;pjudgement.textContent=p.judgement;
-  pmedia.innerHTML=p.media.map((m,j)=>`<div class="media" data-media-index="${j}"><button class="editor-remove remove-media" data-remove-media="${j}">[ × ]</button><span><b>${String(j+1).padStart(2,'0')}</b></span><span class="media-text" data-editable="true" data-media="${j}">${escapeHtml(m)}</span></div>`).join('');
-  ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
-  if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
-  const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
-  if(!projectEl.classList.contains('visible'))showPanel(projectEl);
+  currentProject=i;
+
+  const p=proj(i),
+        base=PROJECTS[i];
+
+  pid.textContent=`MUTATION ${base.id}`;
+  pt.textContent=p.title;
+  pd.textContent=p.desc;
+  pbrief.textContent=p.brief;
+
+  prole.textContent=p.role;
+  ptools.textContent=p.tools;
+  poutput.textContent=p.output;
+  pyear.textContent=p.year;
+
+  pquestion.textContent=p.question;
+  pbuilt.textContent=p.built;
+  pjudgement.textContent=p.judgement;
+
+  pmedia.innerHTML=p.media.map((m,j)=>`
+    <div class="media" data-media-index="${j}">
+      <button class="editor-remove remove-media" data-remove-media="${j}">[ × ]</button>
+      <span><b>${String(j+1).padStart(2,'0')}</b></span>
+      <span class="media-text" data-editable="true" data-media="${j}">
+        ${escapeHtml(m)}
+      </span>
+    </div>
+  `).join('');
+
+  ptaste.innerHTML=p.taste.map((item,j)=>`
+    <div class="taste-item" data-taste-index="${j}">
+      <button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button>
+      <span class="taste-key" data-editable="true" data-taste-key="${j}">
+        ${escapeHtml(item[0])}
+      </span>
+      <p data-editable="true" data-taste-text="${j}">
+        ${escapeHtml(item[1])}
+      </p>
+    </div>
+  `).join('');
+
+  if(base.id==='06'){
+    renderPhotoWall();
+  } else {
+    photoWallWrap.classList.remove('visible');
+    photoWall.innerHTML='';
+  }
+
+  const next=proj((i+1)%PROJECTS.length),
+        nextBase=PROJECTS[(i+1)%PROJECTS.length];
+
+  nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
+
+  if(!projectEl.classList.contains('visible')){
+    showPanel(projectEl);
+  }
+
   updateEditorForProject();
 
-if(editorUnlocked && !editMode){
-  enterEditMode();
-} else if(editMode){
-  makeEditable();
+  if(editorUnlocked && !editMode){
+    enterEditMode();
+  } else if(editMode){
+    makeEditable();
+  }
 }
 
 function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>openProject(+btn.dataset.project)));}
