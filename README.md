@@ -119,3 +119,7 @@ Before deployment, set `EDITOR_PASSWORD` in `/js/app.js` to a new portfolio-only
 
 ## Studio Library case study
 Project 07 embeds a sanitised interactive demo from `/projects/studio-library/`. The demo uses fictional portfolio-safe data and is intentionally separated from the main Genome UI so it can retain its own Bates Smart blue product identity.
+
+
+## Apple-like framed preview
+The Studio Library case study now uses a rounded product-showcase frame with persistent live interaction and hidden iframe scrollbars. The embedded demo remains at `/projects/studio-library/index.html`.
