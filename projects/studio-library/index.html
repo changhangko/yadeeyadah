@@ -282,35 +282,6 @@ body.library-home-open { overflow: hidden; }
   gap: 16px;
   align-self: end;
 }
-.home-agent {
-  width: 100%;
-  margin: 0;
-  padding: 14px;
-  border: 1px solid rgba(255,255,255,.28);
-  border-radius: 15px;
-  background: rgba(255,255,255,.1);
-  box-shadow: 0 14px 34px rgba(0,18,72,.16);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-.home-agent-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
-.home-agent-mark { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:var(--accent); background:#fff; }
-.home-agent-mark svg { width:15px; height:15px; }
-.home-agent-title { font-family:'Outfit',sans-serif; font-size:15px; font-weight:500; }
-.home-agent-status { margin-left:auto; display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.64); }
-.home-agent-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#a9efda; box-shadow:0 0 0 4px rgba(169,239,218,.12); }
-.home-agent-message { margin:0 0 10px; color:rgba(255,255,255,.78); font-size:13px; line-height:1.45; }
-.home-agent-form { display:grid; grid-template-columns:1fr 38px; gap:7px; }
-.home-agent-input { width:100%; min-width:0; height:38px; padding:0 12px; border:1px solid rgba(255,255,255,.24); border-radius:10px; outline:none; color:#fff; background:rgba(0,25,92,.25); font-family:var(--atlas); font-size:13px; }
-.home-agent-input::placeholder { color:rgba(255,255,255,.5); }
-.home-agent-input:focus { border-color:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.1); }
-.home-agent-send { width:38px; height:38px; border:0; border-radius:10px; display:grid; place-items:center; cursor:pointer; color:var(--accent); background:#fff; transition:transform .2s ease,background .2s ease; }
-.home-agent-send:hover { transform:translateY(-2px); background:#eef4ff; }
-.home-agent-send svg { width:17px; height:17px; }
-.home-agent-prompts { display:flex; gap:6px; flex-wrap:nowrap; margin-top:8px; padding-bottom:2px; overflow-x:auto; scrollbar-width:none; }
-.home-agent-prompts::-webkit-scrollbar { display:none; }
-.home-agent-prompt { flex:0 0 auto; padding:6px 9px; border:1px solid rgba(255,255,255,.18); border-radius:999px; color:rgba(255,255,255,.76); background:rgba(255,255,255,.05); font-family:var(--atlas); font-size:11px; cursor:pointer; }
-.home-agent-prompt:hover { color:#fff; background:rgba(255,255,255,.12); }
 .library-options {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1368,9 +1339,6 @@ body.secret-model-mode .btn-card-dl {
   .library-home-intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 30px; }
   .library-home-intro h1 { font-size: clamp(43px, 15vw, 68px); }
   .library-home-intro p { font-size: 14px; }
-  .home-agent { margin-bottom:24px; padding:14px; }
-  .home-agent-message { margin:0 0 12px; }
-  .home-agent-status { display:none; }
   .library-options { grid-template-columns: 1fr; }
   .library-option { min-height: 240px; }
   .library-home-foot { flex-direction: column; }
@@ -1436,28 +1404,6 @@ body.secret-model-mode .btn-card-dl {
       <h1>Design knowledge,<br>ready to use.</h1>
       <p>A public portfolio demonstration of an internal design-knowledge interface. All resource records, standards and file references shown here are fictionalised.</p>
     </div>
-    <section class="home-agent" aria-label="Bates Smart AI assistant">
-      <div class="home-agent-head">
-        <span class="home-agent-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><path d="M8 14a4 4 0 1 1 8 0c0 1.7-.8 2.5-1.7 3.4-.5.5-.8 1-.8 1.6h-3c0-.6-.3-1.1-.8-1.6C8.8 16.5 8 15.7 8 14Z"/><path d="M10.5 22h3"/></svg>
-        </span>
-        <span class="home-agent-title">Bates Smart AI</span>
-        <span class="home-agent-status">Assistant preview</span>
-      </div>
-      <p class="home-agent-message" id="home-agent-message">Ask about architecture, planning, design guidance or information held in the studio libraries.</p>
-      <form class="home-agent-form" id="home-agent-form">
-        <input class="home-agent-input" id="home-agent-input" type="text" autocomplete="off" aria-label="Ask Bates Smart AI" placeholder="Ask a question about architecture, planning or the library...">
-        <button class="home-agent-send" type="submit" aria-label="Send question">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg>
-        </button>
-      </form>
-      <div class="home-agent-prompts" aria-label="Suggested questions">
-        <button class="home-agent-prompt" type="button">Find a city model</button>
-        <button class="home-agent-prompt" type="button">Compare material options</button>
-        <button class="home-agent-prompt" type="button">Planning controls checklist</button>
-        <button class="home-agent-prompt" type="button">Facade design guidance</button>
-      </div>
-    </section>
     <div class="library-options" aria-label="Available libraries">
       <a class="library-option" href="#/city-models" onclick="enterLibrary('city'); return false;">
         <span class="library-option-top">
@@ -1933,49 +1879,6 @@ function applyLibraryRoute() {
   if (section) enterLibrary(section, false);
   else showLibraryHome(false);
 }
-
-// Cover-page AI interface. Set window.BATES_AI_ENDPOINT to connect a secure backend.
-const homeAgentForm = document.getElementById('home-agent-form');
-const homeAgentInput = document.getElementById('home-agent-input');
-const homeAgentMessage = document.getElementById('home-agent-message');
-
-document.querySelectorAll('.home-agent-prompt').forEach(button => {
-  button.addEventListener('click', () => {
-    homeAgentInput.value = button.textContent.trim();
-    homeAgentInput.focus();
-  });
-});
-
-homeAgentForm.addEventListener('submit', async event => {
-  event.preventDefault();
-  const question = homeAgentInput.value.trim();
-  if (!question) return;
-  const endpoint = window.BATES_AI_ENDPOINT || '';
-  if (!endpoint) {
-    homeAgentMessage.textContent = 'Demo mode: this assistant illustrates conversational access to the same library. Live internal search is intentionally disabled in the public portfolio build.';
-    return;
-  }
-  homeAgentMessage.textContent = 'Thinking...';
-  homeAgentInput.disabled = true;
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ message: question, context: 'Bates Smart Library cover page' })
-    });
-    if (!response.ok) throw new Error(`Assistant request failed: ${response.status}`);
-    const result = await response.json();
-    homeAgentMessage.textContent = result.answer || result.message || 'No response was returned.';
-    homeAgentInput.value = '';
-  } catch (error) {
-    homeAgentMessage.textContent = 'The assistant is temporarily unavailable. Please try again later.';
-    console.error(error);
-  } finally {
-    homeAgentInput.disabled = false;
-    homeAgentInput.focus();
-  }
-});
 
 // Colour standards extracted from the supplied InDesign template and Colour Standards PDF.
 const colourPalettes = {
