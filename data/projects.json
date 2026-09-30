@@ -400,5 +400,64 @@
         ]
       ]
     }
+  },
+  {
+    "id": "07",
+    "en": {
+      "title": "STUDIO LIBRARY",
+      "brief": "DESIGN KNOWLEDGE / INTERNAL TOOLING",
+      "meta": "PRODUCT / INFORMATION ARCHITECTURE / AI INTERFACE",
+      "year": "2026",
+      "role": "CONCEPT / UX / PROTOTYPING",
+      "tools": "HTML / CSS / JS / MAPS / AI-ASSISTED PROTOTYPING",
+      "output": "INTERACTIVE KNOWLEDGE SYSTEM",
+      "desc": "A working interface concept for bringing fragmented studio resources — city models, materials, facade guidance and colour references — into one coherent design knowledge system.",
+      "question": "How can studio knowledge become easier to find, understand and use without exposing the complexity of where every resource is stored?",
+      "built": "I organised recurring design resources into four clear entry points and prototyped a searchable, map-aware interface with a conversational assistant layer. The embedded portfolio version below uses fictional demonstration data while preserving the interaction and information architecture.",
+      "judgement": "The interface deliberately prioritises a few high-confidence paths over a large directory. The aim is to make the next useful action obvious: browse a resource, search by context, or ask the system directly.",
+      "media": [],
+      "taste": [
+        [
+          "KEEP",
+          "Four high-confidence entry points that match how designers actually look for resources."
+        ],
+        [
+          "REMOVE",
+          "Internal folder structures, network paths and implementation details from the public-facing experience."
+        ],
+        [
+          "TEST",
+          "Whether browsing, spatial search or conversational retrieval becomes the fastest path for different tasks."
+        ]
+      ]
+    },
+    "zh": {
+      "title": "STUDIO LIBRARY",
+      "brief": "设计知识 / 内部工具",
+      "meta": "产品 / 信息架构 / AI 界面",
+      "year": "2026",
+      "role": "概念 / UX / 原型",
+      "tools": "HTML / CSS / JS / 地图 / AI 辅助原型",
+      "output": "交互式知识系统",
+      "desc": "一个把分散的工作室资源——城市模型、材质、立面设计指南与色彩参考——重新组织成统一设计知识系统的可交互原型。",
+      "question": "如何让工作室知识更容易被找到、理解和使用，同时不把复杂的内部存储结构直接暴露给设计师？",
+      "built": "我把高频设计资源整理成四个清晰入口，并原型化了搜索、地图与对话式助手等交互。下方嵌入的作品集版本使用虚构演示数据，但保留真实的信息架构和交互逻辑。",
+      "judgement": "这个界面刻意选择少量高置信度路径，而不是展示庞大的目录。目标是让下一步动作足够明确：浏览资源、按空间位置搜索，或直接向系统提问。",
+      "media": [],
+      "taste": [
+        [
+          "保留",
+          "四个与设计师真实查找习惯对应的高置信度入口。"
+        ],
+        [
+          "去除",
+          "内部文件夹结构、网络路径与实现细节。"
+        ],
+        [
+          "测试",
+          "面对不同任务时，浏览、空间搜索和对话式检索哪一种路径最快。"
+        ]
+      ]
+    }
   }
 ]

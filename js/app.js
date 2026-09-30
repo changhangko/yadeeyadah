@@ -143,7 +143,7 @@ const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
-const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall');
+const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
@@ -202,7 +202,7 @@ function transitionFlip(el,target,delay=0){
       }
       el.textContent=out;
       if(step>=max){el.textContent=target;clearInterval(timer)}
-    },120);
+    },42);
   },delay);
 }
 
@@ -220,29 +220,23 @@ function transitionToProject(i){
 
   requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('fill')));
   setTimeout(()=>{
-  overlay.classList.add('decoding');
-
-  transitionFlip(q('transitionId'),`MUTATION ${base.id}`,0);
-  transitionFlip(q('transitionTitle'),p.title,70);
-  transitionFlip(q('transitionBrief'),p.brief,140);
-  transitionFlip(q('transitionMeta'),p.meta,210);
-  transitionFlip(q('transitionYear'),p.year,280);
-},420);
-
-setTimeout(()=>{
-  openProject(i);
-  projectEl.scrollTop=0;
-},1250);
-
-setTimeout(()=>{
-  overlay.classList.add('exit');
-},1500);
-
-setTimeout(()=>{
-  overlay.classList.remove('active','fill','decoding','exit');
-  overlay.setAttribute('aria-hidden','true');
-  transitionRunning=false;
-},1800);
+    overlay.classList.add('decoding');
+    transitionFlip(q('transitionId'),`MUTATION ${base.id}`,0);
+    transitionFlip(q('transitionTitle'),p.title,35);
+    transitionFlip(q('transitionBrief'),p.brief,70);
+    transitionFlip(q('transitionMeta'),p.meta,105);
+    transitionFlip(q('transitionYear'),p.year,140);
+  },260);
+  setTimeout(()=>{
+    openProject(i);
+    projectEl.scrollTop=0;
+  },760);
+  setTimeout(()=>overlay.classList.add('exit'),900);
+  setTimeout(()=>{
+    overlay.classList.remove('active','fill','decoding','exit');
+    overlay.setAttribute('aria-hidden','true');
+    transitionRunning=false;
+  },1110);
 }
 
 function openProject(i){
@@ -253,6 +247,14 @@ function openProject(i){
   pmedia.innerHTML=p.media.map((m,j)=>`<div class="media" data-media-index="${j}"><button class="editor-remove remove-media" data-remove-media="${j}">[ × ]</button><span><b>${String(j+1).padStart(2,'0')}</b></span><span class="media-text" data-editable="true" data-media="${j}">${escapeHtml(m)}</span></div>`).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
   if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  const hasEmbeddedLibrary=base.id==='07';
+  if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
+  pmedia.style.display=hasEmbeddedLibrary?'none':'';
+  if(hasEmbeddedLibrary&&studioLibraryFrame){
+    // Reload the demo when the case study is reopened so its blue home screen is always the entry state.
+    const src=studioLibraryFrame.getAttribute('src');
+    studioLibraryFrame.setAttribute('src',src);
+  }
   const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
   if(!projectEl.classList.contains('visible'))showPanel(projectEl);
   updateEditorForProject();

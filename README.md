@@ -115,3 +115,7 @@ This is only a front-end deterrent; editing still exports JSON locally and does 
 
 Editor URL: `/?edit=1`
 Before deployment, set `EDITOR_PASSWORD` in `/js/app.js` to a new portfolio-only password. This client-side password is only a deterrent and is visible in source code.
+
+
+## Studio Library case study
+Project 07 embeds a sanitised interactive demo from `/projects/studio-library/`. The demo uses fictional portfolio-safe data and is intentionally separated from the main Genome UI so it can retain its own Bates Smart blue product identity.

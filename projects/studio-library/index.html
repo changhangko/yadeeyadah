@@ -1,0 +1,3749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bates Smart Library — Portfolio Demo</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+<!-- Fonts -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap');
+
+/* Public portfolio build: admin controls and editing surfaces are disabled. */
+.admin-only,#map-admin-panel,#admin-overlay{display:none!important}
+</style>
+
+<!-- Leaflet Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Optional Mapbox GL basemap for custom Bates Smart map styling -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+<script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
+
+<!-- Leaflet Draw for admin polygon editing -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+<style>
+:root {
+  --bg:       #f5f3f3;
+  --bg2:      #ffffff;
+  --bg3:      #ece9e9;
+  --surface:  #e8e5e5;
+  --surface2: #dedad9;
+  --border:   rgba(0,44,145,0.1);
+  --border2:  rgba(0,44,145,0.2);
+  --accent:   #002c91;
+  --accent2:  #0041cc;
+  --amber:    #c47d00;
+  --purple:   #6b3fa0;
+  --red:      #cc2200;
+  --green:    #008a68;
+  --text:     #0a1628;
+  --text2:    #3d4f6e;
+  --text3:    #8090aa;
+  --head:     'Outfit', sans-serif;
+  --atlas:    'Atlas Grotesk', 'AtlasGrotesk', 'Helvetica Neue', Arial, sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.library-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 9px;
+  background: rgba(255,255,255,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+.library-tab {
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 15px;
+  background: transparent;
+  color: rgba(255,255,255,.68);
+  font-family: var(--atlas);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.library-tab:hover { color: #fff; background: rgba(255,255,255,.08); }
+.library-tab:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.library-tab.active {
+  color: var(--accent);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,16,64,.18);
+}
+.library-section[hidden] { display: none !important; }
+
+/* Material Library — uses the same visual system as the City Model Library */
+#materials-library { padding-bottom: 48px; }
+.materials-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.materials-toolbar {
+  padding: 22px 42px 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.materials-intro h2 { font-size: 22px; margin-bottom: 5px; }
+.materials-intro p { color: var(--text3); font-size: 12px; line-height: 1.6; }
+.materials-summary {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(120px,1fr));
+  gap:10px;
+  padding: 0 42px 16px;
+}
+.material-metric {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+}
+.material-metric span { font-family:var(--mono); font-size:9px; letter-spacing:.08em; color:var(--text3); }
+.material-metric strong { display:block; font-size:24px; margin-top:6px; }
+.material-filterbar {
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) 170px 150px 155px;
+  gap:9px;
+  padding: 0 42px 16px;
+}
+.material-field {
+  width:100%;
+  padding:10px 13px;
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  border-radius:8px;
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  font-size:12px;
+  outline:none;
+}
+.material-field:focus { border-color:var(--accent); }
+.material-status-pills { display:flex; gap:7px; padding:0 42px 14px; flex-wrap:wrap; }
+.materials-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:16px;
+  padding:0 42px;
+}
+.material-card {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.material-card:hover { transform:translateY(-3px); border-color:var(--border2); box-shadow:0 12px 30px rgba(0,44,145,.08); }
+.material-preview {
+  aspect-ratio:1/1;
+  position:relative;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.22),rgba(0,0,0,.08)),
+    var(--material-colour,#bbb);
+  border-bottom:1px solid var(--border);
+}
+.material-preview::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.2),transparent 44%);
+}
+.material-status {
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  z-index:1;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(0,0,0,.08);
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:600;
+}
+.material-status.mapped { color:var(--green); }
+.material-status.unmapped { color:var(--amber); }
+.material-card-body { padding:13px; }
+.material-id { font-family:var(--mono); font-size:9px; letter-spacing:.06em; color:var(--text3); }
+.material-name { font-size:15px; font-weight:700; line-height:1.3; margin:6px 0 5px; }
+.material-meta { min-height:30px; color:var(--text2); font-size:12px; }
+.material-aliases { display:flex; gap:5px; flex-wrap:wrap; margin-top:9px; min-height:22px; }
+.material-chip { padding:3px 7px; border:1px solid var(--border); border-radius:999px; color:var(--text3); font-size:11px; }
+.material-card-actions { display:flex; gap:7px; padding:0 13px 13px; }
+.material-card-actions .btn { flex:1; justify-content:center; }
+.materials-actions .btn:not(.btn-primary):not(.btn-green),
+.material-card-actions .btn {
+  color: var(--accent);
+  border-color: var(--border2);
+  background: var(--bg2);
+}
+.materials-actions .btn:not(.btn-primary):not(.btn-green):hover,
+.material-card-actions .btn:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.materials-empty { grid-column:1/-1; padding:52px; border:1px dashed var(--border2); border-radius:14px; text-align:center; color:var(--text3); }
+.material-dialog { border:0; padding:0; width:620px; max-width:calc(100% - 30px); border-radius:18px; background:var(--bg2); color:var(--text); box-shadow:0 30px 90px rgba(0,0,0,.3); }
+.material-dialog::backdrop { background:rgba(5,7,11,.72); backdrop-filter:blur(6px); }
+.material-dialog-head { display:flex; justify-content:space-between; align-items:center; padding:20px 22px; border-bottom:1px solid var(--border); }
+.material-dialog-head h3 { font-size:18px; }
+.material-dialog-body { padding:20px 22px; }
+.material-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.material-form-group label { display:block; margin-bottom:6px; color:var(--text3); font-family:var(--mono); font-size:9px; text-transform:uppercase; }
+.material-form-full { grid-column:1/-1; }
+.material-dialog-foot { display:flex; justify-content:flex-end; gap:8px; padding:16px 22px; border-top:1px solid var(--border); }
+body.admin-mode .library-tabs { background:rgba(14,28,48,.86); border-color:rgba(160,185,235,.24); }
+body.admin-mode .material-card, body.admin-mode .material-metric, body.admin-mode .material-field, body.admin-mode .material-dialog { background:rgba(12,24,40,.92); border-color:rgba(160,185,235,.18); color:var(--text); }
+
+/* Library home */
+#cover-page {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  color: #fff;
+  background:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    #002c91;
+  background-size: 72px 72px;
+  transition: opacity .45s ease, visibility .45s ease;
+}
+#cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+body.library-home-open { overflow: hidden; }
+.library-home-shell {
+  width: min(1440px, 100%);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 34px 48px 46px;
+  display: flex;
+  flex-direction: column;
+}
+.library-home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 42px;
+}
+.library-home-logo { width: 205px; height: 34px; object-fit: contain; object-position: left center; }
+.library-home-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.62);
+}
+.library-home-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr);
+  gap: 42px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.library-home-intro h1 {
+  max-width: 850px;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(46px, 6.3vw, 92px);
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: .92;
+}
+.library-home-intro p {
+  max-width: 430px;
+  color: rgba(255,255,255,.72);
+  font-size: 16px;
+  line-height: 1.65;
+}
+.library-home-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: end;
+}
+.home-agent {
+  width: 100%;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 15px;
+  background: rgba(255,255,255,.1);
+  box-shadow: 0 14px 34px rgba(0,18,72,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.home-agent-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.home-agent-mark { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:var(--accent); background:#fff; }
+.home-agent-mark svg { width:15px; height:15px; }
+.home-agent-title { font-family:'Outfit',sans-serif; font-size:15px; font-weight:500; }
+.home-agent-status { margin-left:auto; display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.64); }
+.home-agent-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#a9efda; box-shadow:0 0 0 4px rgba(169,239,218,.12); }
+.home-agent-message { margin:0 0 10px; color:rgba(255,255,255,.78); font-size:13px; line-height:1.45; }
+.home-agent-form { display:grid; grid-template-columns:1fr 38px; gap:7px; }
+.home-agent-input { width:100%; min-width:0; height:38px; padding:0 12px; border:1px solid rgba(255,255,255,.24); border-radius:10px; outline:none; color:#fff; background:rgba(0,25,92,.25); font-family:var(--atlas); font-size:13px; }
+.home-agent-input::placeholder { color:rgba(255,255,255,.5); }
+.home-agent-input:focus { border-color:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.1); }
+.home-agent-send { width:38px; height:38px; border:0; border-radius:10px; display:grid; place-items:center; cursor:pointer; color:var(--accent); background:#fff; transition:transform .2s ease,background .2s ease; }
+.home-agent-send:hover { transform:translateY(-2px); background:#eef4ff; }
+.home-agent-send svg { width:17px; height:17px; }
+.home-agent-prompts { display:flex; gap:6px; flex-wrap:nowrap; margin-top:8px; padding-bottom:2px; overflow-x:auto; scrollbar-width:none; }
+.home-agent-prompts::-webkit-scrollbar { display:none; }
+.home-agent-prompt { flex:0 0 auto; padding:6px 9px; border:1px solid rgba(255,255,255,.18); border-radius:999px; color:rgba(255,255,255,.76); background:rgba(255,255,255,.05); font-family:var(--atlas); font-size:11px; cursor:pointer; }
+.home-agent-prompt:hover { color:#fff; background:rgba(255,255,255,.12); }
+.library-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: auto;
+}
+.library-option {
+  --tile-lift: 0px;
+  --tile-rx: 0deg;
+  --tile-ry: 0deg;
+  min-height: 292px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 18px;
+  color: #fff;
+  background: rgba(255,255,255,.075);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transform: perspective(900px) translateY(var(--tile-lift)) rotateX(var(--tile-rx)) rotateY(var(--tile-ry));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .26s cubic-bezier(.2,.72,.24,1), background .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.library-option:hover,
+.library-option:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: var(--accent);
+  box-shadow: 0 18px 42px rgba(0,17,68,.24);
+  outline: none;
+}
+.library-option:focus-visible { --tile-lift: -4px; outline: 2px solid #fff; outline-offset: 3px; }
+.library-option-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.library-option-index {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.58);
+}
+.library-option:hover .library-option-index,
+.library-option:focus-visible .library-option-index { color: rgba(0,44,145,.55); }
+.library-option-icon {
+  width: 46px;
+  height: 46px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.library-option-icon svg { width: 21px; height: 21px; }
+.library-option-copy { margin-top: auto; }
+.library-option h2 { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 500; letter-spacing: -.025em; }
+.library-option p { margin-top: 10px; max-width: 340px; color: rgba(255,255,255,.66); font-size: 14px; line-height: 1.55; }
+.library-option:hover p,
+.library-option:focus-visible p { color: rgba(0,44,145,.68); }
+.library-option-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.library-option:hover .library-option-action,
+.library-option:focus-visible .library-option-action { border-color: rgba(0,44,145,.16); }
+.library-home-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 24px;
+  color: rgba(255,255,255,.46);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.library-home-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.library-home-button svg { width: 18px; height: 18px; }
+
+/* Colour palette library */
+#palette-library { padding: 28px 42px 64px; }
+.palette-head { display:flex; justify-content:space-between; gap:28px; align-items:end; margin-bottom:25px; }
+.palette-head h2 { margin-top:8px; font-size:clamp(30px,4vw,52px); line-height:1; letter-spacing:-.035em; }
+.palette-head p { max-width:600px; color:var(--text2); font-size:13px; line-height:1.6; }
+.palette-eyebrow { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+.palette-tabs { display:flex; gap:7px; margin-bottom:22px; }
+.palette-tab { padding:9px 14px; border:1px solid var(--border2); border-radius:999px; color:var(--text2); background:var(--bg2); font:500 11px var(--atlas); cursor:pointer; }
+.palette-tab.active { color:#fff; border-color:var(--accent); background:var(--accent); }
+.palette-source { margin:28px 0 12px; color:var(--text3); font:9px var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.palette-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:13px; }
+.colour-tile { min-height:210px; padding:0; overflow:hidden; border:1px solid var(--border); border-radius:14px; background:var(--bg2); text-align:left; cursor:pointer; transition:transform .2s ease,box-shadow .2s ease; }
+.colour-tile:hover,.colour-tile:focus-visible { transform:translateY(-4px); box-shadow:0 15px 34px rgba(0,44,145,.12); outline:none; }
+.colour-chip { display:block; height:132px; background:var(--tile-colour); border-bottom:1px solid rgba(0,0,0,.06); }
+.colour-info { display:block; padding:13px; }
+.colour-number { display:block; margin-bottom:5px; color:var(--text3); font:9px var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.colour-name { display:block; font:600 14px var(--atlas); color:var(--text); }
+.colour-hex { display:block; margin-top:7px; color:var(--text2); font:10px var(--mono); }
+.colour-detail { position:fixed; inset:0; z-index:12000; display:grid; place-items:center; padding:28px; color:var(--detail-ink,#fff); background:var(--detail-colour,#002c91); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .28s ease,visibility .28s ease,background .28s ease; }
+.colour-detail.open { opacity:1; visibility:visible; pointer-events:auto; }
+.colour-detail-close { position:absolute; top:28px; right:30px; width:44px; height:44px; border:1px solid currentColor; border-radius:50%; color:inherit; background:transparent; font-size:25px; cursor:pointer; }
+.colour-detail-inner { width:min(880px,100%); }
+.colour-detail-kicker { font:10px var(--mono); letter-spacing:.12em; text-transform:uppercase; opacity:.62; }
+.colour-detail h3 { margin:10px 0 8px; font:500 clamp(44px,8vw,92px)/.95 'Outfit',sans-serif; letter-spacing:-.05em; }
+.colour-detail-use { max-width:680px; font-size:15px; line-height:1.6; opacity:.72; }
+.colour-codes { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:34px; }
+.colour-code { padding:16px; border:1px solid currentColor; border-radius:12px; color:inherit; background:transparent; text-align:left; cursor:pointer; }
+.colour-code span { display:block; font:9px var(--mono); letter-spacing:.1em; text-transform:uppercase; opacity:.62; }
+.colour-code strong { display:block; margin-top:8px; font:500 14px var(--mono); }
+.colour-code:hover { background:rgba(255,255,255,.13); }
+.colour-copy-note { margin-top:12px; font:9px var(--mono); letter-spacing:.06em; text-transform:uppercase; opacity:.55; }
+
+/* Facade design library */
+#facade-library { padding: 28px 42px 64px; }
+.facade-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap: 24px;
+  padding: 38px;
+  border-radius: 18px;
+  color: #fff;
+  background: #122237;
+  overflow: hidden;
+  position: relative;
+}
+.facade-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 40%;
+  opacity: .45;
+  background: repeating-linear-gradient(90deg, transparent 0 31px, rgba(255,255,255,.16) 31px 32px), repeating-linear-gradient(0deg, transparent 0 47px, rgba(255,255,255,.12) 47px 48px);
+}
+.facade-hero-copy { position: relative; z-index: 1; }
+.facade-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #8eadff; }
+.facade-hero h2 { margin-top: 12px; max-width: 670px; font-family: 'Outfit', sans-serif; font-size: clamp(32px, 4vw, 56px); font-weight: 500; letter-spacing: -.04em; line-height: 1; }
+.facade-hero p { margin-top: 18px; max-width: 570px; color: rgba(255,255,255,.7); font-size: 14px; line-height: 1.65; }
+.facade-hero-meta { align-self: end; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.facade-hero-meta div { padding: 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 10px; background: rgba(5,12,22,.28); }
+.facade-hero-meta span { display: block; color: rgba(255,255,255,.48); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.facade-hero-meta strong { display: block; margin-top: 7px; font-size: 14px; font-weight: 500; }
+.facade-section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin: 34px 0 15px; }
+.facade-section-head h3 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 600; }
+.facade-section-head p { color: var(--text3); font-size: 12px; }
+.facade-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.facade-card { min-height: 220px; padding: 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg2); display: flex; flex-direction: column; }
+.facade-card:hover { border-color: var(--border2); box-shadow: 0 14px 32px rgba(0,44,145,.07); }
+.facade-card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.facade-card-type { font-family: var(--mono); color: var(--accent); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.facade-card-mark { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--bg3); color: var(--accent); font-family: var(--mono); font-size: 10px; }
+.facade-card h4 { margin-top: 36px; font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 600; }
+.facade-card p { margin: 8px 0 20px; color: var(--text2); font-size: 12px; line-height: 1.6; }
+.facade-card-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.facade-card-tags span { padding: 5px 8px; border-radius: 999px; background: var(--bg3); color: var(--text3); font-family: var(--mono); font-size: 9px; }
+
+/* Admin */
+.admin-only { display: none !important; }
+body.admin-mode .admin-only { display: flex !important; }
+body.admin-mode .logo-text { color: #ffffff; }
+body.admin-mode #map-admin-panel { display: block !important; }
+body:not(.admin-mode) .leaflet-draw { display: none !important; }
+
+/* Admin Dark Mode */
+body.admin-mode {
+  --bg:       #07111f;
+  --bg2:      #0c1828;
+  --bg3:      #101f33;
+  --surface:  #13243a;
+  --surface2: #1b304c;
+  --border:   rgba(160,185,235,0.14);
+  --border2:  rgba(160,185,235,0.28);
+  --text:     #f4f7fb;
+  --text2:    #c7d4ea;
+  --text3:    #8193b4;
+  background:
+    radial-gradient(circle at top left, rgba(0,44,145,0.24), transparent 36%),
+    linear-gradient(180deg, #07111f 0%, #091321 100%);
+  color: var(--text);
+}
+
+body.admin-mode header {
+  background: rgba(3,18,48,0.96);
+  border-color: rgba(255,255,255,0.16);
+}
+
+body.admin-mode .toolbar,
+body.admin-mode .stats-bar {
+  color: var(--text2);
+}
+
+body.admin-mode .search-input,
+body.admin-mode .select-box,
+body.admin-mode .view-toggle,
+body.admin-mode .form-input,
+body.admin-mode .form-select,
+body.admin-mode .form-textarea {
+  background: rgba(14,28,48,0.86);
+  border-color: rgba(160,185,235,0.24);
+  color: var(--text);
+}
+
+body.admin-mode .search-input::placeholder,
+body.admin-mode .form-input::placeholder,
+body.admin-mode .form-textarea::placeholder {
+  color: rgba(199,212,234,0.55);
+}
+
+body.admin-mode .pill {
+  background: rgba(14,28,48,0.42);
+  border-color: rgba(160,185,235,0.24);
+  color: var(--text3);
+}
+
+body.admin-mode .pill.active,
+body.admin-mode .view-btn.active {
+  background: #6a8fff;
+  border-color: #6a8fff;
+  color: #ffffff;
+}
+
+body.admin-mode .view-btn {
+  color: var(--text3);
+}
+
+body.admin-mode .card {
+  background: rgba(12,24,40,0.76);
+  border-color: rgba(160,185,235,0.18);
+}
+
+body.admin-mode .card:hover {
+  border-color: rgba(160,185,235,0.38);
+}
+
+body.admin-mode .card-thumb {
+  background: #101f33;
+}
+
+body.admin-mode .card-name,
+body.admin-mode .modal-title,
+body.admin-mode .map-search-title,
+body.admin-mode .admin-panel-title,
+body.admin-mode .map-result-name {
+  color: var(--text);
+}
+
+body.admin-mode .card-desc,
+body.admin-mode .modal-desc,
+body.admin-mode .map-empty,
+body.admin-mode .admin-mini-row button {
+  color: var(--text2);
+}
+
+body.admin-mode .card-city,
+body.admin-mode .stat,
+body.admin-mode .modal-subtitle,
+body.admin-mode .map-hint,
+body.admin-mode .result-heading,
+body.admin-mode .map-result-meta,
+body.admin-mode .form-label,
+body.admin-mode .drop-hint,
+body.admin-mode .admin-panel-text {
+  color: var(--text3);
+}
+
+body.admin-mode .card-footer,
+body.admin-mode .modal-footer,
+body.admin-mode .map-results {
+  border-color: rgba(160,185,235,0.16);
+}
+
+body.admin-mode .modal,
+body.admin-mode .map-search-panel,
+body.admin-mode #map-admin-panel {
+  background: rgba(12,24,40,0.94);
+  border-color: rgba(160,185,235,0.22);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.36);
+  color: var(--text);
+}
+
+body.admin-mode .modal-overlay {
+  background: rgba(2,8,18,0.88);
+}
+
+body.admin-mode .modal-hero,
+body.admin-mode .path-box,
+body.admin-mode .drop-zone,
+body.admin-mode .map-result-card,
+body.admin-mode .address-suggestions {
+  background: rgba(16,31,51,0.96);
+  border-color: rgba(160,185,235,0.18);
+  color: var(--text2);
+}
+
+body.admin-mode .address-suggestion-item {
+  color: var(--text2);
+  border-bottom-color: rgba(160,185,235,0.12);
+}
+
+body.admin-mode .address-suggestion-item:hover {
+  background: rgba(106,143,255,0.16);
+  color: var(--text);
+}
+
+body.admin-mode .btn-card-icon:hover,
+body.admin-mode .admin-mini-row button:hover {
+  background: rgba(160,185,235,0.12);
+}
+
+body.admin-mode .btn,
+body.admin-mode .modal-close {
+  border-color: rgba(255,255,255,0.24);
+  color: rgba(255,255,255,0.84);
+}
+
+body.admin-mode .btn:hover,
+body.admin-mode .modal-close:hover {
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+}
+
+body.admin-mode .toast {
+  background: #6a8fff;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 14px;
+  z-index: 1000;
+  width: calc(100% - 72px);
+  margin: 14px 36px 0;
+  background: rgba(0,44,145,0.94);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 16px;
+  padding: 0 24px;
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto auto;
+  align-items: center;
+  column-gap: clamp(28px, 3.2vw, 56px);
+  box-shadow: 0 10px 30px rgba(0,25,82,.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: var(--atlas);
+}
+.logo { min-width: 0; display: flex; align-items: center; }
+.logo-badge {
+  width: 176px;
+  height: 28px;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: right center;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.logo-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--atlas);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  color: #ffffff;
+}
+.header-end { display: flex; align-items: center; gap: 22px; }
+.header-right { display: flex; align-items: center; gap: 10px; }
+.btn {
+  padding: 8px 16px;
+  border-radius: 7px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.btn:hover { background: rgba(255,255,255,0.15); color: #ffffff; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: white; }
+.btn-primary:hover { background: #6a8fff; border-color: #6a8fff; color: white; }
+.btn-green { background: rgba(0, 212, 160, 0.2); color: #00d4a0; border-color: #00d4a0; }
+.btn-green:hover { background: rgba(0, 212, 160, 0.32); color: #ffffff; }
+
+/* Toolbar */
+.toolbar {
+  padding: 24px 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.toolbar-left { display: flex; align-items: center; gap: 10px; flex: 1; flex-wrap: wrap; }
+.search-wrap { position: relative; flex: 1; max-width: 320px; min-width: 220px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.search-input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  background: #ffffff;
+  border: 1px solid rgba(0,44,145,0.2);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.search-input:focus { border-color: var(--accent); }
+.filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.pill.active { background: var(--accent); border-color: var(--accent); color: white; }
+.select-box {
+  padding: 8px 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
+}
+.view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  background: var(--bg2);
+}
+.view-btn {
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  padding: 7px 12px;
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.view-btn.active { background: var(--accent); color: white; }
+
+/* Stats and Grid */
+.stats-bar { padding: 16px 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.stat { font-family: var(--mono); font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 6px; }
+.stat-dot { width: 6px; height: 6px; border-radius: 50%; }
+.grid { padding: 0 40px 60px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.card {
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+.card.intro-bump {
+  animation: cardBumpSpread 1250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--intro-delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+
+@keyframes cardBumpSpread {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.94);
+    filter: blur(6px);
+  }
+  38% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.018);
+    filter: blur(0);
+  }
+  68% {
+    transform: translateY(2px) scale(0.996);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.card-thumb { height: 200px; background: var(--bg3); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.card:hover .thumb-img { transform: scale(1.03); }
+.thumb-no-img { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 100%; color: var(--text3); }
+.thumb-no-img .no-img-icon { font-size: 40px; opacity: 0.25; }
+.thumb-year, .thumb-format, .thumb-size {
+  position: absolute;
+  background: rgba(0,0,0,0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #ffffff;
+  z-index: 2;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+.thumb-year { top: 10px; left: 10px; }
+.thumb-format { top: 10px; right: 10px; color: var(--surface2); backdrop-filter: blur(6px); }
+.thumb-size { bottom: 10px; left: 10px; color: var(--surface2); }
+.thumb-coverage { bottom: 10px; right: 10px; color: white; background: rgba(0,44,145,0.78); }
+.thumb-type-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 2; }
+.card-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+.card-type { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+.type-dot { width: 6px; height: 6px; border-radius: 50%; }
+.card-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.35; margin-bottom: 4px; }
+.card-city { font-size: 12px; color: var(--text3); margin-bottom: 10px; font-family: var(--mono); display:flex; align-items:center; gap:5px; }
+.card-desc { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-footer { display: flex; gap: 8px; padding-top: 14px; border-top: 1px solid var(--border); }
+.btn-card-dl { flex: 1; padding: 9px 0; border-radius: 7px; background: var(--accent); border: none; color: white; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.15s; }
+.btn-card-dl:hover { background: #6a8fff; }
+.btn-card-icon { padding: 9px 11px; border-radius: 7px; border: 1px solid var(--border2); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; color: var(--text2); }
+.btn-card-icon:hover { background: var(--surface2); color: var(--text); }
+.btn-edit:hover { background: rgba(0,44,145,0.08); color: var(--accent); border-color: var(--accent); }
+.btn-del:hover { background: rgba(204,34,0,0.06); color: var(--red); border-color: var(--red); }
+
+/* Map View */
+#map-view { display: none; padding: 0 40px 60px; }
+.map-shell {
+  position: relative;
+  height: calc(100vh - 178px);
+  min-height: 560px;
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--bg2);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.08);
+}
+#map { width: 100%; height: 100%; z-index: 1; }
+.map-search-panel {
+  position: absolute;
+  top: 18px;
+  left: 64px;
+  z-index: 500;
+  width: 360px;
+  max-width: calc(100% - 36px);
+  background: rgba(255,255,255,0.94);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+  backdrop-filter: blur(10px);
+}
+.map-search-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.map-search-row { display: flex; gap: 8px; position: relative; }
+.map-search-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  outline: none;
+}
+.map-search-row button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+.address-suggestions {
+  display: none;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 72px;
+  z-index: 700;
+  background: rgba(255,255,255,0.98);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.address-suggestions.open { display: block; }
+.address-suggestion-item {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text2);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0,44,145,0.08);
+}
+.address-suggestion-item:last-child { border-bottom: none; }
+.address-suggestion-item:hover {
+  background: rgba(0,44,145,0.07);
+  color: var(--text);
+}
+.address-suggestion-empty {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text3);
+}
+.map-hint {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.55;
+  color: var(--text3);
+}
+.map-results {
+  margin-top: 12px;
+  display: none;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.map-results.open { display: block; }
+.result-heading {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.map-result-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background: var(--bg2);
+  margin-bottom: 8px;
+}
+.map-result-card:hover { border-color: var(--accent); }
+.map-result-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.map-result-meta { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.map-empty { font-size: 12px; color: var(--text2); line-height: 1.6; }
+#map-admin-panel {
+  display: none;
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 500;
+  width: 340px;
+  max-width: calc(100% - 36px);
+  background: rgba(255,255,255,0.95);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+  backdrop-filter: blur(10px);
+}
+.admin-panel-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.admin-panel-text { font-family: var(--mono); font-size: 10px; color: var(--text3); line-height: 1.55; margin: 8px 0 12px; }
+.admin-mini-row { display: flex; gap: 8px; margin-top: 10px; }
+.admin-mini-row button {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text2);
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+.admin-mini-row button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.admin-mini-row button.danger { color: var(--red); border-color: rgba(204,34,0,0.25); }
+.hatched-coverage {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0,44,145,0.20) 0,
+    rgba(0,44,145,0.20) 6px,
+    rgba(0,44,145,0.04) 6px,
+    rgba(0,44,145,0.04) 12px
+  );
+}
+
+/* Spatial data download workspace */
+#spatial-download-view { display: none; padding: 0 40px 60px; }
+.spatial-shell {
+  height: calc(100vh - 154px);
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  background: var(--bg2);
+  box-shadow: 0 18px 60px rgba(0,0,0,.08);
+}
+.spatial-panel {
+  z-index: 2;
+  overflow-y: auto;
+  padding: 24px 22px;
+  border-right: 1px solid var(--border);
+  background: rgba(255,255,255,.97);
+}
+.spatial-panel-head { padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.spatial-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: .11em; color: var(--accent); text-transform: uppercase; }
+.spatial-panel h2 { margin-top: 8px; font-family: var(--atlas); font-size: 25px; font-weight: 500; letter-spacing: -.035em; }
+.spatial-panel-head p { margin-top: 9px; color: var(--text2); font-size: 12px; line-height: 1.55; }
+.spatial-step { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.spatial-step-title { display: flex; align-items: center; gap: 9px; margin-bottom: 13px; font-family: var(--atlas); font-size: 14px; font-weight: 600; }
+.spatial-step-number { width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--accent); font-family: var(--mono); font-size: 9px; }
+.spatial-layer-list { display: grid; gap: 8px; }
+.spatial-layer {
+  display: grid;
+  grid-template-columns: 18px 10px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #fff;
+  cursor: pointer;
+}
+.spatial-layer:hover { border-color: var(--border2); }
+.spatial-layer input { accent-color: var(--accent); }
+.spatial-layer-swatch { width: 8px; height: 8px; border-radius: 50%; background: var(--layer-colour); box-shadow: 0 0 0 3px color-mix(in srgb, var(--layer-colour) 16%, transparent); }
+.spatial-layer-name { font-family: var(--atlas); font-size: 12px; color: var(--text); }
+.spatial-layer-state { font-family: var(--mono); font-size: 8px; letter-spacing: .04em; color: var(--text3); text-transform: uppercase; }
+.spatial-layer-state.loading { color: var(--amber); }
+.spatial-layer-state.ready { color: var(--green); }
+.spatial-draw-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.spatial-tool-btn {
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text2);
+  background: #fff;
+  font-family: var(--atlas);
+  font-size: 12px;
+  cursor: pointer;
+}
+.spatial-tool-btn:hover { border-color: var(--accent); color: var(--accent); }
+.spatial-tool-btn.secondary { grid-column: 1 / -1; min-height: 34px; color: var(--text3); }
+.spatial-selection-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.spatial-metric { padding: 10px; border-radius: 8px; background: var(--bg3); }
+.spatial-metric span { display: block; font-family: var(--mono); font-size: 8px; color: var(--text3); letter-spacing: .06em; text-transform: uppercase; }
+.spatial-metric strong { display: block; margin-top: 5px; font-family: var(--atlas); font-size: 15px; font-weight: 500; }
+.spatial-format { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.spatial-format label { position: relative; }
+.spatial-format input { position: absolute; opacity: 0; pointer-events: none; }
+.spatial-format span { display: block; padding: 10px; border: 1px solid var(--border2); border-radius: 8px; text-align: center; color: var(--text2); font-family: var(--atlas); font-size: 12px; cursor: pointer; }
+.spatial-format input:checked + span { border-color: var(--accent); background: rgba(0,44,145,.07); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.spatial-export-btn { width: 100%; margin-top: 10px; padding: 12px 14px; border: 0; border-radius: 8px; color: #fff; background: var(--accent); font-family: var(--atlas); font-size: 13px; font-weight: 600; cursor: pointer; }
+.spatial-export-btn:disabled { cursor: not-allowed; opacity: .38; }
+.spatial-export-note { margin-top: 9px; color: var(--text3); font-size: 10px; line-height: 1.5; }
+.spatial-map-stage { position: relative; min-width: 0; background: #e9edf3; }
+#spatial-map { position: absolute; inset: 0; z-index: 1; }
+#spatial-3d-view { position: absolute; inset: 0; z-index: 2; display: none; background: radial-gradient(circle at 50% 20%, #f8fbff 0%, #dce5f0 70%, #cbd6e4 100%); }
+#spatial-3d-map { position: absolute; inset: 0; }
+.spatial-view-toggle { position: absolute; z-index: 520; top: 18px; right: 18px; display: inline-flex; gap: 3px; padding: 4px; border: 1px solid rgba(0,44,145,.16); border-radius: 9px; background: rgba(255,255,255,.94); box-shadow: 0 8px 24px rgba(0,25,82,.12); }
+.spatial-view-toggle button { border: 0; border-radius: 6px; padding: 8px 11px; color: var(--text3); background: transparent; font-family: var(--atlas); font-size: 11px; cursor: pointer; }
+.spatial-view-toggle button.active { color: #fff; background: var(--accent); }
+.spatial-3d-hint { position: absolute; z-index: 3; left: 18px; bottom: 18px; padding: 8px 10px; border: 1px solid rgba(0,44,145,.12); border-radius: 7px; color: var(--text3); background: rgba(255,255,255,.85); font-family: var(--mono); font-size: 9px; letter-spacing: .04em; }
+.spatial-3d-loading { position: absolute; z-index: 4; left: 50%; top: 50%; transform: translate(-50%,-50%); padding: 9px 14px; border: 1px solid rgba(0,44,145,.12); border-radius: 8px; color: var(--text2); background: rgba(255,255,255,.92); font-family: var(--atlas); font-size: 12px; box-shadow: 0 8px 24px rgba(0,25,82,.1); }
+.spatial-map-stage.spatial-mode-3d .spatial-keyboard-hint { display: none; }
+.spatial-map-toolbar { position:absolute; z-index:530; top:18px; left:18px; display:flex; gap:7px; }
+.spatial-map-toolbar button { border:0; border-radius:18px; padding:10px 14px; color:var(--text2); background:rgba(255,255,255,.95); box-shadow:0 8px 22px rgba(0,25,82,.16); font-family:var(--atlas); font-size:11px; font-weight:600; cursor:pointer; }
+.spatial-map-toolbar button.primary { color:#fff; background:var(--accent); }
+.spatial-map-rail { position:absolute; z-index:520; top:74px; left:18px; width:184px; max-height:calc(100% - 126px); overflow:auto; padding:13px 10px; border:1px solid rgba(0,44,145,.12); border-radius:10px; background:rgba(255,255,255,.94); box-shadow:0 10px 28px rgba(0,25,82,.14); }
+.spatial-map-rail-title { margin:0 4px 11px; color:var(--text3); font:10px var(--mono); letter-spacing:.08em; }
+.spatial-map-rail-section { margin:13px 4px 7px; color:var(--text3); font:9px var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.spatial-map-rail label { display:flex; align-items:center; gap:8px; min-height:31px; padding:5px 6px; border-radius:6px; color:var(--text); font:11px var(--atlas); cursor:pointer; }
+.spatial-map-rail label:hover { background:rgba(0,44,145,.06); }
+.spatial-map-rail input { accent-color:var(--accent); }
+.spatial-map-legend { margin-top:10px; padding:8px 6px 2px; border-top:1px solid var(--border); color:var(--text3); font:9px var(--mono); line-height:1.7; }
+.spatial-map-legend i { display:inline-block; width:8px; height:8px; margin-right:5px; border-radius:2px; }
+.spatial-keyboard-hint { position:absolute; z-index:530; top:0; left:0; right:0; min-height:24px; padding:5px 12px; color:var(--text2); background:rgba(255,255,255,.78); font:11px var(--atlas); text-align:center; pointer-events:none; }
+.spatial-map-title {
+  position: absolute;
+  z-index: 500;
+  top: 18px;
+  left: 58px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  border: 1px solid rgba(0,44,145,.14);
+  border-radius: 9px;
+  color: var(--text);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 8px 24px rgba(0,25,82,.12);
+  backdrop-filter: blur(10px);
+  font-family: var(--atlas);
+  font-size: 12px;
+}
+.spatial-live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(0,138,104,.12); }
+.spatial-map-message { position: absolute; z-index: 500; right: 18px; bottom: 18px; max-width: 320px; padding: 10px 12px; border-radius: 9px; color: var(--text2); background: rgba(255,255,255,.94); border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,25,82,.1); font-size: 10px; line-height: 1.45; }
+.spatial-source-note { padding-top: 15px; color: var(--text3); font-family: var(--mono); font-size: 8px; line-height: 1.55; }
+
+/* Modals */
+.modal-overlay { position: fixed; inset: 0; background: rgba(5,7,11,0.88); backdrop-filter: blur(8px); z-index: 3000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--bg2); border: 1px solid var(--border2); border-radius: 18px; width: 760px; max-width: 95vw; max-height: 92vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 40px 120px rgba(0,0,0,0.7); transform: translateY(12px); transition: transform 0.2s; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-hero { height: 280px; position: relative; overflow: hidden; background: var(--bg3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.modal-hero-img { width: 100%; height: 100%; object-fit: cover; }
+.modal-hero-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+.modal-header { padding: 22px 26px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.modal-title { font-size: 20px; font-weight: 700; color: var(--text); }
+.modal-subtitle { font-size: 12px; color: var(--text3); margin-top: 4px; font-family: var(--mono); }
+.modal-close { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border2); background: transparent; color: var(--text2); font-size: 18px; cursor: pointer; display: grid; place-items: center; flex-shrink: 0; }
+.modal-body { padding: 20px 26px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 20px; }
+.modal-desc { font-size: 13px; color: var(--text2); line-height: 1.75; }
+.path-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 10px 14px; font-family: var(--mono); font-size: 11px; color: var(--text3); word-break: break-all; display: flex; align-items: center; gap: 10px; user-select: all; }
+.modal-footer { padding: 16px 26px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; flex-shrink: 0; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 7px; text-transform: uppercase; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 10px 13px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-textarea { resize: vertical; min-height: 72px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.drop-zone { border: 2px dashed var(--border2); border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; background: var(--bg2); }
+.drop-zone:hover { border-color: var(--accent); background: rgba(79,127,255,0.04); }
+.drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.drop-text { font-size: 12px; color: var(--text2); margin-top: 8px; font-weight: 500;}
+.drop-hint { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 4px; }
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(60px); background: var(--accent2); color: white; padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 600; z-index: 4000; transition: transform 0.25s ease; pointer-events: none; }
+.toast.show { transform: translateX(-50%) translateY(0); }
+.tc-building { color: var(--accent); }
+.tc-terrain { color: var(--amber); }
+.tc-combined { color: var(--purple); }
+.dc-building { background: var(--accent); }
+.dc-terrain { background: var(--amber); }
+.dc-combined { background: var(--purple); }
+
+
+/* Secret Neon Model Easter Egg */
+
+body.secret-model-mode {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,0,180,0.32), transparent 28%),
+    radial-gradient(circle at 82% 24%, rgba(0,255,255,0.28), transparent 30%),
+    radial-gradient(circle at 50% 92%, rgba(134,255,0,0.24), transparent 34%),
+    linear-gradient(135deg, #07001c 0%, #001c46 48%, #260035 100%);
+  color: #ffffff;
+  animation: secretNeonPulse 5s ease-in-out infinite alternate;
+}
+
+body.secret-model-mode header {
+  background: linear-gradient(90deg, rgba(0,44,145,0.92), rgba(155,0,255,0.72), rgba(0,240,255,0.58));
+  border-color: rgba(255,255,255,0.34);
+  box-shadow: 0 0 28px rgba(0,240,255,0.24), inset 0 0 18px rgba(255,255,255,0.08);
+}
+
+body.secret-model-mode .card,
+body.secret-model-mode .toolbar,
+body.secret-model-mode .stats-bar,
+body.secret-model-mode .map-shell {
+  filter: saturate(1.4);
+}
+
+body.secret-model-mode .card {
+  background: rgba(10,12,36,0.70);
+  border-color: rgba(0,240,255,0.38);
+  box-shadow: 0 0 24px rgba(0,240,255,0.12), inset 0 0 16px rgba(255,0,180,0.05);
+}
+
+body.secret-model-mode .card-name,
+body.secret-model-mode .logo-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0,240,255,0.38);
+}
+
+body.secret-model-mode .card-desc,
+body.secret-model-mode .card-city,
+body.secret-model-mode .stat {
+  color: rgba(235,245,255,0.82);
+}
+
+body.secret-model-mode .pill.active,
+body.secret-model-mode .view-btn.active,
+body.secret-model-mode .btn-card-dl {
+  background: linear-gradient(90deg, #002c91, #9b00ff, #00eaff);
+  box-shadow: 0 0 18px rgba(0,234,255,0.28);
+}
+
+.secret-model-tab {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  width: 48px !important;
+  height: 8px !important;
+  border-radius: 8px 8px 0 0 !important;
+  background: #002c91 !important;
+  border: none !important;
+  transform: translateX(-50%) translateY(0);
+  z-index: 99999 !important;
+  cursor: grab;
+  box-shadow: none !important;
+  touch-action: none;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.secret-model-tab::before,
+.secret-model-tab::after {
+  content: none !important;
+}
+
+.secret-model-tab:hover {
+  width: 48px !important;
+  height: 8px !important;
+  background: #002c91 !important;
+}
+
+.secret-model-tab.dragging {
+  cursor: grabbing;
+  transition: none;
+  background: #002c91 !important;
+}
+
+.secret-model-tab.unlocked {
+  pointer-events: none;
+  opacity: 0 !important;
+  transition: none;
+}
+
+
+
+
+.secret-model-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(0,240,255,0.10), transparent 30%),
+    rgba(4,0,18,0.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.secret-model-popup.show {
+  display: flex;
+  animation: secretPopupFade 4.4s ease both;
+}
+
+.secret-model-message {
+  max-width: min(760px, calc(100vw - 48px));
+  padding: 34px 42px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(0,44,145,0.88), rgba(155,0,255,0.72), rgba(0,240,255,0.52));
+  border: 1px solid rgba(255,255,255,0.42);
+  color: #ffffff;
+  font-family: 'Atlas Grotesk', 'Outfit', sans-serif;
+  font-size: clamp(28px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  text-align: center;
+  text-shadow: 0 0 18px rgba(0,240,255,0.55);
+  box-shadow:
+    0 0 44px rgba(0,240,255,0.34),
+    0 0 90px rgba(255,0,180,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.42);
+  transform: scale(0.92);
+}
+
+.secret-model-popup.show .secret-model-message {
+  animation: secretMessagePop 4.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes secretNeonPulse {
+  0% { filter: hue-rotate(0deg) saturate(1); }
+  100% { filter: hue-rotate(18deg) saturate(1.18); }
+}
+
+@keyframes secretPopupFade {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  78% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes secretMessagePop {
+  0% { opacity: 0; transform: translateY(28px) scale(0.86); }
+  16% { opacity: 1; transform: translateY(0) scale(1.02); }
+  30% { transform: translateY(0) scale(1); }
+  78% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-18px) scale(0.96); }
+}
+
+@media (max-width: 1080px) {
+  header { grid-template-columns: 44px auto auto; column-gap: 24px; }
+  .logo-text { display: none; }
+  .library-home-button { width: 36px; height: 36px; justify-content: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; }
+  .header-end { gap: 12px; }
+  .spatial-shell { grid-template-columns: 320px minmax(0, 1fr); }
+  .library-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .library-home-shell { padding: 24px 18px 30px; }
+  .library-home-topbar { padding-bottom: 34px; }
+  .library-home-logo { width: 158px; }
+  .library-home-kicker { display: none; }
+  .library-home-intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 30px; }
+  .library-home-intro h1 { font-size: clamp(43px, 15vw, 68px); }
+  .library-home-intro p { font-size: 14px; }
+  .home-agent { margin-bottom:24px; padding:14px; }
+  .home-agent-message { margin:0 0 12px; }
+  .home-agent-status { display:none; }
+  .library-options { grid-template-columns: 1fr; }
+  .library-option { min-height: 240px; }
+  .library-home-foot { flex-direction: column; }
+  #palette-library { padding: 20px 18px 48px; }
+  .palette-hero { padding: 25px; }
+  .palette-head { display:block; }
+  .palette-head p { margin-top:14px; }
+  .palette-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .colour-tile { min-height:180px; }
+  .colour-chip { height:110px; }
+  .colour-codes { grid-template-columns:1fr; }
+  header {
+    width: calc(100% - 36px);
+    margin: 12px 18px 0;
+    padding: 11px 14px 12px;
+    border-radius: 16px;
+    grid-template-columns: 1fr auto;
+    row-gap: 11px;
+    column-gap: 18px;
+  }
+  .logo-badge { width: 136px; height: 24px; }
+  .logo-text { font-size: 15px; }
+  .toolbar, .stats-bar, .grid, #map-view, #spatial-download-view { padding-left: 18px; padding-right: 18px; }
+  .map-shell { height: 70vh; }
+  #map-admin-panel { left: 18px; right: auto; top: auto; bottom: 18px; width: calc(100% - 36px); }
+  .map-search-panel { width: calc(100% - 36px); }
+  .header-end { justify-self: end; }
+  .library-tabs { grid-column: 1 / -1; grid-row: 2; width:100%; }
+  .library-tab { flex:1; }
+  .materials-toolbar, .materials-summary, .material-filterbar, .material-status-pills, .materials-grid { padding-left:18px; padding-right:18px; }
+  .materials-summary { grid-template-columns:1fr 1fr; }
+  .material-filterbar { grid-template-columns:1fr 1fr; }
+  .material-filterbar .material-search { grid-column:1/-1; }
+  .material-form-grid { grid-template-columns:1fr; }
+  .material-form-full { grid-column:auto; }
+  #facade-library { padding: 20px 18px 48px; }
+  .facade-hero { grid-template-columns: 1fr; padding: 26px 22px; }
+  .facade-hero-meta { margin-top: 26px; }
+  .facade-grid { grid-template-columns: 1fr; }
+  .facade-section-head { align-items: flex-start; flex-direction: column; }
+  .spatial-shell { height: auto; min-height: 0; grid-template-columns: 1fr; overflow: visible; }
+  .spatial-panel { border-right: 0; border-bottom: 1px solid var(--border); }
+  .spatial-map-stage { min-height: 68vh; }
+  .spatial-map-title { left: 52px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cover-page">
+  <main class="library-home-shell">
+    <div class="library-home-topbar">
+      <img class="library-home-logo" src="images/Bates Smart Logo.png" alt="Bates Smart">
+      <span class="library-home-kicker">Portfolio demo / fictional content</span>
+    </div>
+    <div class="library-home-intro">
+      <h1>Design knowledge,<br>ready to use.</h1>
+      <p>A public portfolio demonstration of an internal design-knowledge interface. All resource records, standards and file references shown here are fictionalised.</p>
+    </div>
+    <section class="home-agent" aria-label="Bates Smart AI assistant">
+      <div class="home-agent-head">
+        <span class="home-agent-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><path d="M8 14a4 4 0 1 1 8 0c0 1.7-.8 2.5-1.7 3.4-.5.5-.8 1-.8 1.6h-3c0-.6-.3-1.1-.8-1.6C8.8 16.5 8 15.7 8 14Z"/><path d="M10.5 22h3"/></svg>
+        </span>
+        <span class="home-agent-title">Bates Smart AI</span>
+        <span class="home-agent-status">Assistant preview</span>
+      </div>
+      <p class="home-agent-message" id="home-agent-message">Ask about architecture, planning, design guidance or information held in the studio libraries.</p>
+      <form class="home-agent-form" id="home-agent-form">
+        <input class="home-agent-input" id="home-agent-input" type="text" autocomplete="off" aria-label="Ask Bates Smart AI" placeholder="Ask a question about architecture, planning or the library...">
+        <button class="home-agent-send" type="submit" aria-label="Send question">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg>
+        </button>
+      </form>
+      <div class="home-agent-prompts" aria-label="Suggested questions">
+        <button class="home-agent-prompt" type="button">Find a city model</button>
+        <button class="home-agent-prompt" type="button">Compare material options</button>
+        <button class="home-agent-prompt" type="button">Planning controls checklist</button>
+        <button class="home-agent-prompt" type="button">Facade design guidance</button>
+      </div>
+    </section>
+    <div class="library-options" aria-label="Available libraries">
+      <a class="library-option" href="#/city-models" onclick="enterLibrary('city'); return false;">
+        <span class="library-option-top">
+          <span class="library-option-index">LIB / 01</span>
+          <span class="library-option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20V9l5-3v14M8 20V3l7 3v14M15 20v-9l6 2v7M1.5 20.5h21"/></svg>
+          </span>
+        </span>
+        <span class="library-option-copy">
+          <h2>City Models</h2>
+          <p>Search studio-ready terrain, building and combined 3D models by city or coverage area.</p>
+          <span class="library-option-action"><span>Open library</span><span aria-hidden="true">&rarr;</span></span>
+        </span>
+      </a>
+      <a class="library-option" href="#/enscape-materials" onclick="enterLibrary('materials'); return false;">
+        <span class="library-option-top">
+          <span class="library-option-index">LIB / 02</span>
+          <span class="library-option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg>
+          </span>
+        </span>
+        <span class="library-option-copy">
+          <h2>Enscape Materials</h2>
+          <p>Find canonical material names, finish codes and application aliases for consistent visualisation.</p>
+          <span class="library-option-action"><span>Open library</span><span aria-hidden="true">&rarr;</span></span>
+        </span>
+      </a>
+      <a class="library-option" href="#/facade-design" onclick="enterLibrary('facade'); return false;">
+        <span class="library-option-top">
+          <span class="library-option-index">LIB / 03</span>
+          <span class="library-option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 3h16v18H4zM4 9h16M4 15h16M10 3v18M16 3v18"/></svg>
+          </span>
+        </span>
+        <span class="library-option-copy">
+          <h2>Facade Design</h2>
+          <p>Browse envelope typologies, detailing guidance and performance checkpoints for early design.</p>
+          <span class="library-option-action"><span>Open library</span><span aria-hidden="true">&rarr;</span></span>
+        </span>
+      </a>
+      <a class="library-option" href="#/colour-palette" onclick="enterLibrary('palette'); return false;">
+        <span class="library-option-top">
+          <span class="library-option-index">LIB / 04</span>
+          <span class="library-option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="8" r="1.25"/><circle cx="15" cy="8" r="1.25"/><circle cx="7.5" cy="13" r="1.25"/><circle cx="13" cy="15.5" r="1.25"/><path d="M18.8 13.2c-1.9-.7-3.7.7-3.2 2.5.4 1.5-.7 2.8-2.2 2.8"/></svg>
+          </span>
+        </span>
+        <span class="library-option-copy">
+          <h2>Colour Palette</h2>
+          <p>Browse curated studio colour families, project palettes and verified digital colour values.</p>
+          <span class="library-option-action"><span>Open library</span><span aria-hidden="true">&rarr;</span></span>
+        </span>
+      </a>
+    </div>
+    <div class="library-home-foot"><span>Interface prototype / professional practice</span><span>Fictional demo content · proprietary data omitted</span></div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="materials-data.js"></script>
+
+<header>
+  <div class="logo">
+    <button class="library-home-button" type="button" onclick="showLibraryHome()" aria-label="Back to library home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m10 17-5-5 5-5M5 12h14"/></svg>
+      <span class="logo-text" id="library-title">City Model Library</span>
+    </button>
+  </div>
+  <nav class="library-tabs" aria-label="Library sections">
+    <button class="library-tab active" id="city-library-tab" onclick="switchLibrary('city')">City Models</button>
+    <button class="library-tab" id="materials-library-tab" onclick="switchLibrary('materials')">Enscape Materials</button>
+    <button class="library-tab" id="facade-library-tab" onclick="switchLibrary('facade')">Facade Design</button>
+    <button class="library-tab" id="palette-library-tab" onclick="switchLibrary('palette')">Colour Palette</button>
+  </nav>
+  <div class="header-end">
+    <div class="header-right admin-only" id="city-admin-actions">
+      <button class="btn btn-green" onclick="downloadDataJS()">💾 Save data.js</button>
+      <button class="btn btn-primary" onclick="openAdmin()">Upload Model</button>
+    </div>
+    <img class="logo-badge" src="images/Bates Smart Logo.png" alt="Bates Smart Logo" title="Bates Smart" />
+  </div>
+</header>
+
+<div class="toolbar library-section city-library-section">
+  <div class="toolbar-left">
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#8090aa" stroke-width="1.5" stroke-linecap="round"><circle cx="5.5" cy="5.5" r="4"/><line x1="8.5" y1="8.5" x2="13" y2="13"/></svg>
+      <input class="search-input" id="search" placeholder="Search models, descriptions..." oninput="applyFilters()" />
+    </div>
+    <select class="select-box" id="city-filter" onchange="applyFilters()">
+      <option value="all">📍 All Cities</option>
+    </select>
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all" onclick="setFilter('all',this)">All Types</button>
+      <button class="pill" data-filter="terrain" onclick="setFilter('terrain',this)">Terrain</button>
+      <button class="pill" data-filter="building" onclick="setFilter('building',this)">Building</button>
+      <button class="pill" data-filter="combined" onclick="setFilter('combined',this)">Combined</button>
+    </div>
+  </div>
+  <div class="view-toggle">
+    <button class="view-btn active" id="grid-view-btn" onclick="setView('grid')">Grid</button>
+    <button class="view-btn" id="map-view-btn" onclick="setView('map')">Map</button>
+    <button class="view-btn" id="data-view-btn" onclick="setView('data')">Data Download</button>
+  </div>
+  <select class="select-box sort-select" onchange="applyFilters()">
+    <option value="name">Sort: Name A-Z</option>
+    <option value="size">Sort: Size</option>
+  </select>
+</div>
+
+<div class="stats-bar library-section city-library-section" id="stats-bar"></div>
+<div class="grid library-section city-library-section" id="grid"></div>
+
+<div id="map-view" class="library-section city-library-section">
+  <div class="map-shell">
+    <div id="map"></div>
+
+    <div class="map-search-panel">
+      <div class="map-search-title">Check model coverage by address</div>
+      <div class="map-search-row">
+        <input id="address-search" placeholder="e.g. 1 Nicholson St, Melbourne" autocomplete="off" oninput="handleAddressInput()" onfocus="showAddressSuggestionsIfAny()" onkeydown="handleAddressKeydown(event)" />
+        <button onclick="geocodeAddress()">Search</button>
+        <div class="address-suggestions" id="address-suggestions"></div>
+      </div>
+      <div class="map-hint">Search an address to see whether it lands inside one of the highlighted model coverage areas. Click a coverage area to open the model.</div>
+      <div class="map-results" id="map-results"></div>
+    </div>
+
+    <div id="map-admin-panel">
+      <div class="admin-panel-title">Admin coverage editor</div>
+      <select class="form-select" id="coverage-model-select" onchange="selectCoverageModel()"></select>
+      <div class="admin-panel-text">
+        Select a model, then use the map draw tools to trace its approximate model area. Drawn polygons are stored as GeoJSON in data.js when you click Save data.js.
+      </div>
+      <div class="admin-mini-row">
+        <button class="primary" onclick="focusSelectedCoverage()">Zoom to Area</button>
+        <button class="danger" onclick="clearSelectedCoverage()">Clear Area</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="spatial-download-view" class="library-section city-library-section">
+  <div class="spatial-shell">
+    <aside class="spatial-panel">
+      <div class="spatial-panel-head">
+        <div class="spatial-eyebrow">Melbourne spatial library</div>
+        <h2>Select an area.<br>Build your context.</h2>
+        <p>Choose the information you need, draw a study area and export only the intersecting geometry.</p>
+      </div>
+
+      <section class="spatial-step">
+        <div class="spatial-step-title"><span class="spatial-step-number">1</span>Choose map layers</div>
+        <div class="spatial-layer-list">
+          <label class="spatial-layer">
+            <input type="checkbox" data-spatial-layer="development" checked>
+            <span class="spatial-layer-swatch" style="--layer-colour:#db3a34"></span>
+            <span class="spatial-layer-name">Development Activity Model</span>
+            <span class="spatial-layer-state" id="spatial-state-development">Waiting</span>
+          </label>
+          <label class="spatial-layer">
+            <input type="checkbox" data-spatial-layer="context" checked>
+            <span class="spatial-layer-swatch" style="--layer-colour:#315fba"></span>
+            <span class="spatial-layer-name">Melbourne context buildings</span>
+            <span class="spatial-layer-state" id="spatial-state-context">Waiting</span>
+          </label>
+          <label class="spatial-layer">
+            <input type="checkbox" data-spatial-layer="cadastre" checked>
+            <span class="spatial-layer-swatch" style="--layer-colour:#7251b5"></span>
+            <span class="spatial-layer-name">Cadastral boundaries</span>
+            <span class="spatial-layer-state" id="spatial-state-cadastre">Waiting</span>
+          </label>
+          <label class="spatial-layer">
+            <input type="checkbox" data-spatial-layer="topography">
+            <span class="spatial-layer-swatch" style="--layer-colour:#b27a32"></span>
+            <span class="spatial-layer-name">Topography contours</span>
+            <span class="spatial-layer-state" id="spatial-state-topography">Off</span>
+          </label>
+        </div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:7px 10px;color:var(--text3);font:10px var(--mono);">
+          <span><i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ef8b2c;margin-right:4px"></i>Proposed</span>
+          <span><i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#3267c7;margin-right:4px"></i>Approved</span>
+          <span><i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#8a56c7;margin-right:4px"></i>Under construction</span>
+          <span><i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#2f9b68;margin-right:4px"></i>Completed</span>
+        </div>
+      </section>
+
+      <section class="spatial-step">
+        <div class="spatial-step-title"><span class="spatial-step-number">2</span>Draw the study area</div>
+        <div class="spatial-draw-actions">
+          <button class="spatial-tool-btn" type="button" onclick="startSpatialSelection('rectangle')">Rectangle</button>
+          <button class="spatial-tool-btn" type="button" onclick="startSpatialSelection('polygon')">Polygon</button>
+          <button class="spatial-tool-btn secondary" type="button" onclick="clearSpatialSelection()">Clear selection</button>
+        </div>
+        <div class="spatial-selection-summary">
+          <div class="spatial-metric"><span>Area</span><strong id="spatial-area">—</strong></div>
+          <div class="spatial-metric"><span>Geometry</span><strong id="spatial-count">0</strong></div>
+        </div>
+      </section>
+
+      <section class="spatial-step">
+        <div class="spatial-step-title"><span class="spatial-step-number">3</span>Download geometry</div>
+        <div class="spatial-format">
+          <label><input type="radio" name="spatial-format" value="3dm" checked><span>Rhino .3DM</span></label>
+          <label><input type="radio" name="spatial-format" value="dwg"><span>AutoCAD .DWG</span></label>
+        </div>
+        <button class="spatial-export-btn" id="spatial-export-btn" type="button" onclick="exportSpatialSelection()" disabled>Download selected data</button>
+        <p class="spatial-export-note" id="spatial-export-note">3D context uses recorded base/top elevations. 3DM includes capped solids; layers separate source and Development Activity status. DWG uses the configured studio CAD export service.</p>
+      </section>
+
+      <p class="spatial-source-note">Sources: City of Melbourne Open Data and Vicmap Elevation. Development massing is indicative and should be verified before project use.</p>
+    </aside>
+    <div class="spatial-map-stage">
+      <div id="spatial-map"></div>
+      <div id="spatial-3d-view" aria-label="3D context preview"><div id="spatial-3d-map"></div><div class="spatial-3d-hint">Drag to pan · Right-drag to rotate &amp; tilt · Scroll to zoom</div><div class="spatial-3d-loading" id="spatial-3d-loading" hidden>Loading 3D preview…</div></div>
+      <div class="spatial-keyboard-hint">Keyboard: focus the map, use arrows to pan and +/- to zoom. Press Enter to mark the centre.</div>
+      <div class="spatial-map-toolbar"><button type="button" onclick="resetSpatial3dView()">● Reset view</button><button type="button" class="primary" onclick="setSpatialViewMode('2d')">Flat view</button></div>
+      <aside class="spatial-map-rail" aria-label="Map layers"><div class="spatial-map-rail-title">MAP LAYERS</div><div class="spatial-map-rail-section">Selection</div><label><input type="checkbox" checked onchange="toggleSpatialQuickLayer('cadastre', this.checked)"> Property boundaries</label><label><input type="checkbox" onchange="toggleSpatialQuickLayer('cadastre', this.checked)"> Assemble lots</label><div class="spatial-map-rail-section">Buildings</div><label><input type="checkbox" checked onchange="toggleSpatialQuickLayer('development', this.checked)"> Development 3D</label><label><input type="checkbox" checked onchange="toggleSpatialQuickLayer('context', this.checked)"> Context buildings</label><div class="spatial-map-rail-section">Terrain</div><label><input type="checkbox" onchange="toggleSpatialQuickLayer('topography', this.checked)"> Topography</label><div class="spatial-map-legend"><span><i style="background:#ef8b2c"></i>Proposed</span><br><span><i style="background:#3267c7"></i>Approved</span><br><span><i style="background:#8a56c7"></i>Under construction</span><br><span><i style="background:#2f9b68"></i>Completed</span></div></aside>
+      <div class="spatial-view-toggle" role="group" aria-label="Map view mode"><button type="button" id="spatial-2d-btn" class="active" onclick="setSpatialViewMode('2d')">2D map</button><button type="button" id="spatial-3d-btn" onclick="setSpatialViewMode('3d')">3D context</button></div>
+      <div class="spatial-map-title"><span class="spatial-live-dot"></span><span>Melbourne context data</span></div>
+      <div class="spatial-map-message" id="spatial-map-message">Pan to your site, then draw a rectangle or polygon to load and select geometry.</div>
+    </div>
+  </div>
+</div>
+
+<section id="materials-library" class="library-section" hidden>
+  <div class="materials-toolbar">
+    <div class="materials-intro">
+      <h2>Enscape Material Library</h2>
+      <p>Canonical Bates Smart materials, project finish codes and Enscape aliases in one searchable registry.</p>
+    </div>
+    <div class="materials-actions">
+      <button class="btn" id="material-import-btn">Import JSON</button>
+      <button class="btn" id="material-export-btn">Export JSON</button>
+      <button class="btn btn-green" id="material-save-data-btn">Save materials-data.js</button>
+      <button class="btn btn-primary" id="material-add-btn">Add Material</button>
+      <input type="file" id="material-file-input" accept=".json,application/json" hidden>
+    </div>
+  </div>
+  <div class="materials-summary">
+    <div class="material-metric"><span>TOTAL MATERIALS</span><strong id="material-total">0</strong></div>
+    <div class="material-metric"><span>MAPPED</span><strong id="material-mapped">0</strong></div>
+    <div class="material-metric"><span>UNMAPPED</span><strong id="material-unmapped">0</strong></div>
+    <div class="material-metric"><span>POTENTIAL DUPLICATES</span><strong id="material-dupes">0</strong></div>
+  </div>
+  <div class="material-filterbar">
+    <input class="material-field material-search" id="material-search" placeholder="Search material, alias, ID or finish code...">
+    <select class="material-field" id="material-category-filter"><option value="">All categories</option></select>
+    <select class="material-field" id="material-source-filter"><option value="">All sources</option><option>Library</option><option>Revit</option><option>Rhino</option><option>Enscape</option></select>
+    <select class="material-field" id="material-sort"><option value="name">Sort: Name</option><option value="category">Sort: Category</option><option value="status">Sort: Mapping</option></select>
+  </div>
+  <div class="material-status-pills">
+    <button class="pill active" data-material-status="all">All Materials</button>
+    <button class="pill" data-material-status="mapped">Mapped</button>
+    <button class="pill" data-material-status="unmapped">Unmapped</button>
+  </div>
+  <div class="materials-grid" id="materials-grid"></div>
+</section>
+
+<section id="facade-library" class="library-section" hidden>
+  <div class="facade-hero">
+    <div class="facade-hero-copy">
+      <span class="facade-eyebrow">Facade Design Library</span>
+      <h2>Envelope thinking from concept to detail.</h2>
+      <p>A practical index of facade systems, design considerations and review prompts to support early project decisions and more consistent documentation.</p>
+    </div>
+    <div class="facade-hero-meta" aria-label="Library scope">
+      <div><span>Focus</span><strong>Early design</strong></div>
+      <div><span>Content</span><strong>Systems + guides</strong></div>
+      <div><span>Audience</span><strong>Project teams</strong></div>
+      <div><span>Maintained by</span><strong>Design Technology</strong></div>
+    </div>
+  </div>
+  <div class="facade-section-head">
+    <h3>Design resources</h3>
+    <p>Key reference areas for developing and reviewing facade concepts.</p>
+  </div>
+  <div class="facade-grid">
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">System library</span><span class="facade-card-mark">01</span></div>
+      <h4>Curtain wall systems</h4>
+      <p>Principles for unitised and stick systems, module planning, spandrels, slab-edge zones and interfaces.</p>
+      <div class="facade-card-tags"><span>Glazing</span><span>Modules</span><span>Interfaces</span></div>
+    </article>
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">System library</span><span class="facade-card-mark">02</span></div>
+      <h4>Precast &amp; masonry</h4>
+      <p>Reference considerations for panelisation, joints, support strategies, tolerances and repeatable details.</p>
+      <div class="facade-card-tags"><span>Precast</span><span>Brick</span><span>Joints</span></div>
+    </article>
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">System library</span><span class="facade-card-mark">03</span></div>
+      <h4>Cladding &amp; screens</h4>
+      <p>Planning guidance for rainscreens, folded panels, perforated screens, subframes and feature elements.</p>
+      <div class="facade-card-tags"><span>Metal</span><span>Rainscreen</span><span>Screening</span></div>
+    </article>
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">Design guide</span><span class="facade-card-mark">04</span></div>
+      <h4>Performance checkpoints</h4>
+      <p>Early prompts for weatherproofing, thermal continuity, solar control, acoustics, fire and maintenance.</p>
+      <div class="facade-card-tags"><span>Thermal</span><span>Water</span><span>Fire</span></div>
+    </article>
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">Design guide</span><span class="facade-card-mark">05</span></div>
+      <h4>Pattern &amp; proportion</h4>
+      <p>Methods for testing facade rhythm, solid-to-void balance, repetition, depth and material transitions.</p>
+      <div class="facade-card-tags"><span>Rhythm</span><span>Depth</span><span>Composition</span></div>
+    </article>
+    <article class="facade-card">
+      <div class="facade-card-top"><span class="facade-card-type">Review guide</span><span class="facade-card-mark">06</span></div>
+      <h4>Detailing review</h4>
+      <p>A structured checklist for corners, bases, parapets, openings, balconies and transitions between systems.</p>
+      <div class="facade-card-tags"><span>Checklist</span><span>Details</span><span>Coordination</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="palette-library" class="library-section" hidden>
+  <div class="palette-head">
+    <div><span class="palette-eyebrow">Colour Palette Library</span><h2>Studio colours,<br>ready to copy.</h2></div>
+    <p>A fictionalised colour system used to demonstrate how studio standards could be indexed, previewed and copied. Select a tile to inspect HEX, RGB or CMYK values.</p>
+  </div>
+  <div class="palette-tabs" role="tablist" aria-label="Colour categories">
+    <button class="palette-tab active" type="button" data-palette-category="general">General</button>
+    <button class="palette-tab" type="button" data-palette-category="apartment">Apartment Planning</button>
+  </div>
+  <div class="palette-source" id="palette-source"></div>
+  <div class="palette-grid" id="palette-grid"></div>
+</section>
+
+<div class="colour-detail" id="colour-detail" role="dialog" aria-modal="true" aria-labelledby="colour-detail-name">
+  <button class="colour-detail-close" id="colour-detail-close" type="button" aria-label="Close colour">&times;</button>
+  <div class="colour-detail-inner">
+    <div class="colour-detail-kicker" id="colour-detail-kicker"></div>
+    <h3 id="colour-detail-name"></h3>
+    <p class="colour-detail-use" id="colour-detail-use"></p>
+    <div class="colour-codes">
+      <button class="colour-code" type="button" data-copy-code="hex"><span>HEX</span><strong id="colour-detail-hex"></strong></button>
+      <button class="colour-code" type="button" data-copy-code="rgb"><span>RGB</span><strong id="colour-detail-rgb"></strong></button>
+      <button class="colour-code" type="button" data-copy-code="cmyk"><span>CMYK</span><strong id="colour-detail-cmyk"></strong></button>
+    </div>
+    <div class="colour-copy-note" id="colour-copy-note">Select any value to copy</div>
+  </div>
+</div>
+
+<dialog class="material-dialog" id="material-editor">
+  <form id="material-form">
+    <div class="material-dialog-head"><h3 id="material-editor-title">Add Material</h3><button class="modal-close" type="button" id="material-editor-close">×</button></div>
+    <div class="material-dialog-body">
+      <input type="hidden" id="material-edit-index">
+      <div class="material-form-grid">
+        <div class="material-form-group"><label>Canonical Name</label><input class="material-field" id="material-name" required></div>
+        <div class="material-form-group"><label>Bates Material ID</label><input class="material-field" id="material-id" placeholder="Auto-generated if blank"></div>
+        <div class="material-form-group"><label>Category</label><input class="material-field" id="material-category"></div>
+        <div class="material-form-group"><label>Project Finish Code</label><input class="material-field" id="material-finish" placeholder="FL-003"></div>
+        <div class="material-form-group"><label>Source</label><select class="material-field" id="material-source"><option>Library</option><option>Revit</option><option>Rhino</option><option>Enscape</option></select></div>
+        <div class="material-form-group"><label>Preview Colour</label><input class="material-field" id="material-colour" type="color" value="#b9a48a"></div>
+        <div class="material-form-group material-form-full"><label>Aliases (comma separated)</label><input class="material-field" id="material-aliases"></div>
+        <div class="material-form-group material-form-full"><label>Notes / Manufacturer / Product</label><input class="material-field" id="material-notes"></div>
+      </div>
+    </div>
+    <div class="material-dialog-foot"><button class="btn" type="button" id="material-editor-cancel">Cancel</button><button class="btn btn-primary" type="submit">Save Material</button></div>
+  </form>
+</dialog>
+
+<dialog class="material-dialog" id="material-mapper">
+  <div class="material-dialog-head"><h3>Map Material</h3><button class="modal-close" type="button" id="material-mapper-close">×</button></div>
+  <div class="material-dialog-body">
+    <p id="material-map-name" style="font-weight:700;margin-top:0"></p>
+    <div class="material-form-group"><label>Map to Bates Material</label><select class="material-field" id="material-map-target"></select></div>
+    <p style="font-size:11px;color:var(--text3);margin-top:12px">The original source name is retained as an alias.</p>
+  </div>
+  <div class="material-dialog-foot"><button class="btn" type="button" id="material-mapper-cancel">Cancel</button><button class="btn btn-primary" type="button" id="material-map-confirm">Map Material</button></div>
+</dialog>
+
+<div class="modal-overlay" id="preview-overlay" onclick="closeModal(event, 'preview-overlay')">
+  <div class="modal">
+    <div class="modal-hero" id="modal-hero"></div>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-subtitle" id="modal-subtitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect('preview-overlay')">×</button>
+    </div>
+    <div class="modal-body" id="modal-body-content"></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModalDirect('preview-overlay')">Close</button>
+      <button class="btn btn-primary" id="modal-dl-btn">Download</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="admin-overlay" onclick="closeModal(event, 'admin-overlay')">
+  <div class="modal" style="width:620px; max-height:95vh;">
+    <div class="modal-header">
+      <div><div class="modal-title" id="admin-modal-title">Add Model</div><div class="modal-subtitle">Saves to browser memory until Data Export</div></div>
+      <button class="modal-close" onclick="closeModalDirect('admin-overlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="f-id" />
+      <div class="form-group"><label class="form-label">Model Name</label><input class="form-input" id="f-name" placeholder="e.g. Sydney CBD Tower" /></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Type</label><select class="form-select" id="f-type"><option value="building">Building</option><option value="terrain">Terrain</option><option value="combined">Combined</option></select></div>
+        <div class="form-group"><label class="form-label">City</label><input class="form-input" id="f-city" placeholder="e.g. Sydney, NSW" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="f-desc" placeholder="Details about this model..."></textarea></div>
+      <div class="form-group">
+        <label class="form-label">Preview Image</label>
+        <div class="drop-zone">
+          <input type="file" accept="image/*" onchange="processImage(this)" />
+          <div class="drop-text">📸 Drop image from your images folder</div>
+          <div class="drop-hint">Must be saved in the images folder next to this file first.</div>
+        </div>
+        <div id="img-preview-wrap" style="display:none; margin-top:10px; position:relative; border-radius:8px; overflow:hidden;">
+          <img id="f-thumbnail-img" style="width:100%; height:140px; object-fit:cover; display:block;" />
+          <button onclick="clearImage()" style="position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.6); color:white; border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:11px;">Remove</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Model File Auto-Read Metadata</label>
+        <div class="drop-zone" style="padding:15px; background:rgba(0,212,160,0.05); border-color:rgba(0,212,160,0.3);">
+          <input type="file" accept=".obj,.fbx,.gltf,.glb,.ifc,.rvt,.skp,.zip,.3dm,.dwg,.dxf" onchange="processFileMeta(this)" />
+          <div class="drop-text" style="color:#008a68;">📦 Drop actual 3D file here</div>
+          <div class="drop-hint">Reads size and format only. Move the file to the shared drive manually.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Year Generated</label><input class="form-input" id="f-year" placeholder="e.g. 2024" type="number" /></div>
+        <div class="form-group"><label class="form-label">Format</label><input class="form-input" id="f-format" placeholder=".GLB" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Size</label><input class="form-input" id="f-size" placeholder="150 MB" /></div>
+        <div class="form-group"><label class="form-label">Shared Network Path</label><input class="form-input" id="f-path" placeholder="Z:\Shared\Models\project\model.glb" /></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn" onclick="closeModalDirect('admin-overlay')">Cancel</button><button class="btn btn-primary" onclick="submitModel()">Save to Library</button></div>
+  </div>
+</div>
+
+<div class="secret-model-tab" id="secret-model-tab" title="Drag up"></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LIBRARY_ROUTES = {
+  city: 'city-models',
+  materials: 'enscape-materials',
+  facade: 'facade-design',
+  palette: 'colour-palette'
+};
+
+function enterLibrary(section = 'city', updateRoute = true) {
+  document.getElementById('cover-page').classList.add('hidden');
+  switchLibrary(section, updateRoute);
+
+  if (section === 'city' && !hasPlayedIntroAnimation) {
+    hasPlayedIntroAnimation = true;
+    setTimeout(() => requestAnimationFrame(() => triggerGridIntroAnimation()), 260);
+  }
+
+  if (section === 'city' && currentView === 'map') setTimeout(() => map && map.invalidateSize(), 250);
+}
+
+function showLibraryHome(updateRoute = true) {
+  document.getElementById('cover-page').classList.remove('hidden');
+  if (updateRoute && window.location.hash) history.pushState(null, '', window.location.pathname + window.location.search);
+}
+
+function applyLibraryRoute() {
+  const route = window.location.hash.replace(/^#\/?/, '');
+  const section = Object.keys(LIBRARY_ROUTES).find(key => LIBRARY_ROUTES[key] === route);
+  if (section) enterLibrary(section, false);
+  else showLibraryHome(false);
+}
+
+// Cover-page AI interface. Set window.BATES_AI_ENDPOINT to connect a secure backend.
+const homeAgentForm = document.getElementById('home-agent-form');
+const homeAgentInput = document.getElementById('home-agent-input');
+const homeAgentMessage = document.getElementById('home-agent-message');
+
+document.querySelectorAll('.home-agent-prompt').forEach(button => {
+  button.addEventListener('click', () => {
+    homeAgentInput.value = button.textContent.trim();
+    homeAgentInput.focus();
+  });
+});
+
+homeAgentForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const question = homeAgentInput.value.trim();
+  if (!question) return;
+  const endpoint = window.BATES_AI_ENDPOINT || '';
+  if (!endpoint) {
+    homeAgentMessage.textContent = 'Demo mode: this assistant illustrates conversational access to the same library. Live internal search is intentionally disabled in the public portfolio build.';
+    return;
+  }
+  homeAgentMessage.textContent = 'Thinking...';
+  homeAgentInput.disabled = true;
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ message: question, context: 'Bates Smart Library cover page' })
+    });
+    if (!response.ok) throw new Error(`Assistant request failed: ${response.status}`);
+    const result = await response.json();
+    homeAgentMessage.textContent = result.answer || result.message || 'No response was returned.';
+    homeAgentInput.value = '';
+  } catch (error) {
+    homeAgentMessage.textContent = 'The assistant is temporarily unavailable. Please try again later.';
+    console.error(error);
+  } finally {
+    homeAgentInput.disabled = false;
+    homeAgentInput.focus();
+  }
+});
+
+// Colour standards extracted from the supplied InDesign template and Colour Standards PDF.
+const colourPalettes = {
+  general: {
+    source: 'Portfolio demo palette — fictional values for public presentation',
+    colours: [
+      ['SYSTEM BLUE','#1847A3','Primary interface accent'],
+      ['MIDNIGHT','#172235','Dark interface surface'],
+      ['CHALK','#F2F1EC','Warm neutral background'],
+      ['SLATE','#5F6978','Secondary text and diagrams'],
+      ['MOSS','#66735D','Landscape and environmental diagrams'],
+      ['CLAY','#B86B57','Material and facade studies'],
+      ['SAND','#D5C5A5','Warm material reference'],
+      ['SIGNAL RED','#DF4C48','Warnings and review notes'],
+      ['SKY','#9FC8E8','Water and context diagrams'],
+      ['LILAC','#9A86C8','Comparative studies'],
+      ['AMBER','#D6A244','Highlights and pending states'],
+      ['GRAPHITE','#292B2F','Core neutral']
+    ].map((c,i)=>({id:`DEMO-${String(i+1).padStart(2,'0')}`,name:c[0],hex:c[1],use:c[2]}))
+  },
+  apartment: {
+    source: 'Portfolio demo planning palette — fictional values',
+    colours: [
+      ['01 WORKPLACE','#DCEEFF','Workplace / commercial'],
+      ['02 RESIDENTIAL','#F3E5CF','Residential'],
+      ['03 HOTEL','#F2D7D1','Hotel / short stay'],
+      ['04 RETAIL','#F6D39B','Retail / active frontage'],
+      ['05 LANDSCAPE','#CFE1BD','Landscape / planting'],
+      ['06 SERVICES','#D7D7D7','Services / back of house'],
+      ['07 CONTEXT','#ECECE7','Existing context'],
+      ['08 WATER','#B9D2E8','Water'],
+      ['09 CIRCULATION','#D8C7E9','Vertical / horizontal circulation'],
+      ['10 SOLAR','#F7E67A','Solar / environmental studies']
+    ].map((c,i)=>({id:`PLAN-${String(i+1).padStart(2,'0')}`,name:c[0],hex:c[1],use:c[2]}))
+  }
+};
+let activePaletteCategory = 'general';
+let activeColour = null;
+
+function hexToRgb(hex) { const v=hex.replace('#',''); return [parseInt(v.slice(0,2),16),parseInt(v.slice(2,4),16),parseInt(v.slice(4,6),16)]; }
+function rgbToCmyk([r,g,b]) {
+  const rr=r/255,gg=g/255,bb=b/255,k=1-Math.max(rr,gg,bb);
+  if(k>=.999) return [0,0,0,100];
+  return [Math.round((1-rr-k)/(1-k)*100),Math.round((1-gg-k)/(1-k)*100),Math.round((1-bb-k)/(1-k)*100),Math.round(k*100)];
+}
+function colourInk([r,g,b]) { return ((r*299+g*587+b*114)/1000)>158 ? '#152033' : '#ffffff'; }
+function renderPalette() {
+  const palette=colourPalettes[activePaletteCategory];
+  document.getElementById('palette-source').textContent=palette.source;
+  document.getElementById('palette-grid').innerHTML=palette.colours.map((colour,index)=>`
+    <button class="colour-tile" type="button" style="--tile-colour:${colour.hex}" onclick="openColourDetail('${activePaletteCategory}',${index})">
+      <span class="colour-chip"></span><span class="colour-info"><span class="colour-number">${colour.id}</span><span class="colour-name">${colour.name}</span><span class="colour-hex">${colour.hex}</span></span>
+    </button>`).join('');
+}
+function openColourDetail(category,index) {
+  activeColour=colourPalettes[category].colours[index];
+  const rgb=hexToRgb(activeColour.hex),cmyk=rgbToCmyk(rgb),detail=document.getElementById('colour-detail');
+  detail.style.setProperty('--detail-colour',activeColour.hex); detail.style.setProperty('--detail-ink',colourInk(rgb));
+  document.getElementById('colour-detail-kicker').textContent=`${category==='general'?'General':'Apartment Planning'} / ${activeColour.id}`;
+  document.getElementById('colour-detail-name').textContent=activeColour.name;
+  document.getElementById('colour-detail-use').textContent=activeColour.use;
+  document.getElementById('colour-detail-hex').textContent=activeColour.hex;
+  document.getElementById('colour-detail-rgb').textContent=`${rgb[0]}, ${rgb[1]}, ${rgb[2]}`;
+  document.getElementById('colour-detail-cmyk').textContent=`${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]}`;
+  document.getElementById('colour-copy-note').textContent='Select any value to copy';
+  detail.classList.add('open'); document.getElementById('colour-detail-close').focus();
+}
+function closeColourDetail(){ document.getElementById('colour-detail').classList.remove('open'); }
+async function copyColourCode(type){
+  if(!activeColour)return; const rgb=hexToRgb(activeColour.hex),cmyk=rgbToCmyk(rgb);
+  const value=type==='hex'?activeColour.hex:type==='rgb'?`rgb(${rgb.join(', ')})`:`cmyk(${cmyk.join(', ')})`;
+  try{await navigator.clipboard.writeText(value);}catch(_){const a=document.createElement('textarea');a.value=value;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}
+  document.getElementById('colour-copy-note').textContent=`Copied ${value}`;
+}
+document.querySelectorAll('.palette-tab').forEach(tab=>tab.addEventListener('click',()=>{activePaletteCategory=tab.dataset.paletteCategory;document.querySelectorAll('.palette-tab').forEach(t=>t.classList.toggle('active',t===tab));renderPalette();}));
+document.getElementById('colour-detail-close').addEventListener('click',closeColourDetail);
+document.getElementById('colour-detail').addEventListener('click',event=>{if(event.target.id==='colour-detail')closeColourDetail();});
+document.querySelectorAll('[data-copy-code]').forEach(button=>button.addEventListener('click',()=>copyColourCode(button.dataset.copyCode)));
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeColourDetail();});
+
+const TYPE_ICONS = { building:'🏢', terrain:'🗻', combined:'🏙' };
+const TYPE_COLORS = { building:'#002c91', terrain:'#c47d00', combined:'#6b3fa0' };
+
+let models = (typeof libraryData !== 'undefined') ? libraryData.models : [];
+let nextId = models.length > 0 ? Math.max(...models.map(m => m.id)) + 1 : 1;
+let activeFilter = 'all';
+let currentView = 'grid';
+let currentThumbnailPath = '';
+let currentFilteredModels = [];
+let hasPlayedIntroAnimation = false;
+
+let map;
+let coverageLayer;
+let drawnItems;
+let drawControl;
+let searchMarker;
+let selectedCoverageModelId = null;
+
+let spatialMap;
+let spatialSelectionGroup;
+let spatialSelectionLayer = null;
+let spatialMoveTimer = null;
+let spatialLoadVersion = 0;
+const spatialLayerGroups = {};
+const spatialLayerFeatures = {};
+let spatialViewMode = '2d';
+let spatial3d = null;
+const SPATIAL_API_ROOT = 'https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets';
+const SPATIAL_LAYERS = {
+  development: {
+    name: 'Development Activity Model',
+    dataset: 'development-activity-model-footprints',
+    geometryField: 'json_geometry',
+    colour: '#db3a34',
+    fillOpacity: 0.28,
+    baseField: 'base_ahd',
+    topField: 'bldhgt_ahd'
+  },
+  context: {
+    name: 'Melbourne Context Buildings',
+    dataset: '2023-building-footprints',
+    geometryField: 'geo_shape',
+    colour: '#315fba',
+    fillOpacity: 0.18,
+    baseField: 'structure_min_elevation',
+    topField: 'structure_max_elevation'
+  },
+  cadastre: {
+    name: 'Cadastral Boundaries',
+    dataset: 'property-boundaries',
+    geometryField: 'json_geometry',
+    colour: '#7251b5',
+    fillOpacity: 0.04
+  },
+  topography: {
+    name: 'Topography Contours',
+    colour: '#b27a32',
+    fillOpacity: 0,
+    arcgis: 'https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/ArcGIS/rest/services/Vicmap_Elevation_METRO_1_to_5_metre/FeatureServer/1/query'
+  }
+};
+const SPATIAL_EXPORT_LAYERS = {
+  development_proposed: { name: 'Development Activity Model :: Proposed', colour: '#ef8b2c' },
+  development_approved: { name: 'Development Activity Model :: Approved', colour: '#3267c7' },
+  development_under_construction: { name: 'Development Activity Model :: Under Construction', colour: '#8a56c7' },
+  development_completed: { name: 'Development Activity Model :: Completed', colour: '#2f9b68' },
+  context: { name: 'Melbourne Context Buildings', colour: '#5d7fae' },
+  cadastre: { name: 'Cadastral Boundaries', colour: '#7251b5' },
+  topography: { name: 'Topography Contours', colour: '#b27a32' },
+  selection: { name: 'Study Area Selection', colour: '#002c91' }
+};
+function normalizeDevelopmentStatus(value) {
+  const status = String(value || '').trim().toUpperCase();
+  if (status.includes('UNDER') || status.includes('CONSTRUCTION')) return 'under_construction';
+  if (status.includes('COMPLETE')) return 'completed';
+  if (status.includes('APPROV')) return 'approved';
+  return 'proposed';
+}
+function spatialExportLayerKey(item) {
+  return item.key === 'development' ? `development_${normalizeDevelopmentStatus(item.feature?.properties?.status)}` : item.key;
+}
+function spatialExportLayer(item) { return SPATIAL_EXPORT_LAYERS[spatialExportLayerKey(item)] || SPATIAL_EXPORT_LAYERS[item.key] || SPATIAL_EXPORT_LAYERS.context; }
+let addressSuggestionTimer = null;
+let addressSuggestions = [];
+let activeSuggestionIndex = -1;
+let secretModelUnlocked = false;
+
+function adminLogin() {
+  if (document.body.classList.contains('admin-mode')) {
+    document.body.classList.remove('admin-mode');
+    removeDrawTools();
+    if (drawnItems) drawnItems.clearLayers();
+    showToast('Logged Out');
+    return;
+  }
+  const password = null;
+  if (false) {
+    document.body.classList.add('admin-mode');
+    showToast('Admin Tools Unlocked');
+    if (map) {
+      initDrawTools();
+      renderCoverageModelSelect();
+    }
+  } else if (password) {
+    alert('Incorrect password');
+  }
+}
+
+function setView(view) {
+  currentView = view;
+  document.getElementById('grid-view-btn').classList.toggle('active', view === 'grid');
+  document.getElementById('map-view-btn').classList.toggle('active', view === 'map');
+  document.getElementById('data-view-btn').classList.toggle('active', view === 'data');
+  document.getElementById('grid').style.display = view === 'grid' ? 'grid' : 'none';
+  document.getElementById('map-view').style.display = view === 'map' ? 'block' : 'none';
+  document.getElementById('spatial-download-view').style.display = view === 'data' ? 'block' : 'none';
+  document.getElementById('stats-bar').style.display = view === 'grid' ? 'flex' : 'none';
+  document.querySelector('.toolbar-left').style.display = view === 'data' ? 'none' : 'flex';
+  document.querySelector('.sort-select').style.display = view === 'data' ? 'none' : '';
+  if (view === 'map') {
+    initMap();
+    setTimeout(() => {
+      map.invalidateSize();
+      renderCoverageLayers();
+      renderCoverageModelSelect();
+    }, 120);
+  } else if (view === 'data') {
+    initSpatialMap();
+    setTimeout(() => spatialMap && spatialMap.invalidateSize(), 120);
+  }
+}
+
+function updateCityDropdown() {
+  const select = document.getElementById('city-filter');
+  const currentVal = select.value;
+  const cities = [...new Set(models.map(m => (m.city || '').trim()).filter(Boolean))].sort();
+  select.innerHTML = '<option value="all">📍 All Cities</option>' + cities.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  if (cities.includes(currentVal)) select.value = currentVal;
+}
+
+function getFilteredModels() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const cityFilter = document.getElementById('city-filter').value;
+  const sort = document.querySelector('.sort-select').value;
+  let list = models.filter(m => {
+    if (activeFilter !== 'all' && m.type !== activeFilter) return false;
+    if (cityFilter !== 'all' && m.city !== cityFilter) return false;
+    if (q) {
+      const hay = `${m.name} ${m.city} ${m.type} ${m.year || ''} ${m.description || ''}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  list.sort((a,b) => {
+    if (sort === 'name') return a.name.localeCompare(b.name);
+    if (sort === 'size') return parseFloat(b.size) - parseFloat(a.size);
+    return 0;
+  });
+  return list;
+}
+
+function applyFilters() {
+  currentFilteredModels = getFilteredModels();
+  renderGrid(currentFilteredModels);
+  renderStats(currentFilteredModels);
+  if (map) renderCoverageLayers();
+}
+
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll('.pill').forEach(p => p.className = 'pill' + (p.dataset.filter === f ? ' active' : ''));
+  applyFilters();
+}
+
+function renderStats(list) {
+  const byType = {};
+  list.forEach(m => { byType[m.type] = (byType[m.type] || 0) + 1; });
+  const coverageCount = list.filter(hasCoverage).length;
+  let html = `<div class="stat"><strong>${list.length}</strong> models</div>`;
+  html += `<div class="stat"><strong>${coverageCount}</strong> mapped areas</div>`;
+  Object.entries(byType).forEach(([t,n]) => {
+    html += `<div class="stat"><div class="stat-dot" style="background:${TYPE_COLORS[t]}"></div><strong>${n}</strong> ${t}</div>`;
+  });
+  document.getElementById('stats-bar').innerHTML = html;
+}
+
+function triggerGridIntroAnimation() {
+  const cards = document.querySelectorAll('#grid .card');
+  cards.forEach((card, index) => {
+    card.classList.remove('intro-bump');
+    card.style.animation = 'none';
+    card.style.setProperty('--intro-delay', `${Math.min(index * 120, 960)}ms`);
+    void card.offsetHeight;
+    card.style.animation = '';
+    card.classList.add('intro-bump');
+  });
+}
+
+function renderGrid(list) {
+  const grid = document.getElementById('grid');
+  if (!list.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">No models match criteria.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map((m, index) => {
+    const thumbHtml = m.thumbnail ? `<img class="thumb-img" src="${escapeHtml(m.thumbnail)}" alt="Thumbnail">` : `<div class="thumb-no-img"><div class="no-img-icon">${TYPE_ICONS[m.type] || '📦'}</div></div>`;
+    const yearBadge = m.year ? `<div class="thumb-year">Year ${escapeHtml(m.year)}</div>` : '';
+    const introClass = hasPlayedIntroAnimation ? ' intro-bump' : '';
+    const introDelay = hasPlayedIntroAnimation ? ` style="--intro-delay:${Math.min(index * 120, 960)}ms"` : '';
+    return `
+      <div class="card${introClass}"${introDelay} onclick="openDetail(${m.id})">
+        <div class="card-thumb">
+          ${thumbHtml}
+          ${yearBadge}
+          <div class="thumb-format">${escapeHtml(m.format || '-')}</div>
+          <div class="thumb-size">${escapeHtml(m.size || '-')}</div>
+          <div class="thumb-type-bar" style="background:${TYPE_COLORS[m.type] || TYPE_COLORS.urban}"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-type tc-${escapeHtml(m.type)}"><div class="type-dot dc-${escapeHtml(m.type)}"></div>${escapeHtml((m.type || '').toUpperCase())}</div>
+          <div class="card-name">${escapeHtml(m.name)}</div>
+          <div class="card-city">📍 ${escapeHtml(m.city || 'Unknown City')}</div>
+          <div class="card-desc">${escapeHtml(m.description || '')}</div>
+          <div class="card-footer">
+            <button class="btn-card-dl" onclick="event.stopPropagation();downloadModel(${m.id})">Download</button>
+            <button class="btn-card-icon btn-edit admin-only" onclick="event.stopPropagation();openAdmin(${m.id})" title="Edit">✏️</button>
+            <button class="btn-card-icon btn-del admin-only" onclick="event.stopPropagation();deleteModel(${m.id})" title="Delete">🗑</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function downloadModel(id) {
+  const m = models.find(x => x.id === id);
+  showToast(m ? `Demo asset omitted: ${m.name}` : 'Demo asset omitted in portfolio build.');
+}
+
+function closeModalDirect(id) { document.getElementById(id).classList.remove('open'); }
+function closeModal(e, id) { if (e.target.id === id) closeModalDirect(id); }
+
+function openDetail(id) {
+  const m = models.find(x => x.id === id);
+  if (!m) return;
+  const hero = document.getElementById('modal-hero');
+  if (m.thumbnail) {
+    hero.innerHTML = `<img class="modal-hero-img" src="${escapeHtml(m.thumbnail)}"><div class="modal-hero-bar" style="background:${TYPE_COLORS[m.type] || TYPE_COLORS.urban}"></div>`;
+  } else {
+    hero.innerHTML = `<div style="font-size:60px;opacity:0.2">${TYPE_ICONS[m.type] || '📦'}</div><div class="modal-hero-bar" style="background:${TYPE_COLORS[m.type] || TYPE_COLORS.urban}"></div>`;
+  }
+  document.getElementById('modal-title').textContent = m.name;
+  const subtitleYear = m.year ? ` · Year ${m.year}` : '';
+  const subtitleCoverage = hasCoverage(m) ? ' · Mapped Coverage' : ' · No Coverage Area';
+  document.getElementById('modal-subtitle').textContent = `${m.city} · ${m.type} · ${m.format}${subtitleYear}${subtitleCoverage}`;
+  document.getElementById('modal-dl-btn').onclick = () => downloadModel(id);
+  document.getElementById('modal-body-content').innerHTML = `
+    <div class="modal-desc">${escapeHtml(m.description || '')}</div>
+    <div style="margin-top:10px;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:6px;">DEMO FILE REFERENCE</div>
+      <div class="path-box"><span style="flex:1">${escapeHtml(m.path || 'None')}</span>
+      ${m.path ? `<button onclick="navigator.clipboard.writeText('${escapeJs(m.path)}').then(()=>showToast('Path copied'))" style="cursor:pointer;padding:4px 10px;border-radius:4px;border:1px solid var(--border2);background:var(--bg2);">Copy</button>` : ''}
+      </div>
+    </div>`;
+  document.getElementById('preview-overlay').classList.add('open');
+}
+
+function openAdmin(editId = null) {
+  const modal = document.getElementById('admin-overlay');
+  clearImage();
+  if (editId) {
+    const m = models.find(x => x.id === editId);
+    document.getElementById('admin-modal-title').textContent = 'Edit Model';
+    document.getElementById('f-id').value = m.id;
+    document.getElementById('f-name').value = m.name;
+    document.getElementById('f-type').value = m.type;
+    document.getElementById('f-city').value = m.city;
+    document.getElementById('f-year').value = m.year || '';
+    document.getElementById('f-desc').value = m.description || '';
+    document.getElementById('f-format').value = m.format;
+    document.getElementById('f-size').value = m.size;
+    document.getElementById('f-path').value = m.path;
+    if (m.thumbnail) {
+      currentThumbnailPath = m.thumbnail;
+      document.getElementById('f-thumbnail-img').src = m.thumbnail;
+      document.getElementById('img-preview-wrap').style.display = 'block';
+    }
+  } else {
+    document.getElementById('admin-modal-title').textContent = 'Add Model';
+    document.getElementById('f-id').value = '';
+    ['f-name','f-city','f-year','f-desc','f-format','f-size','f-path'].forEach(id => document.getElementById(id).value = '');
+  }
+  modal.classList.add('open');
+}
+
+function processFileMeta(input) {
+  if (!input.files[0]) return;
+  const f = input.files[0];
+  document.getElementById('f-format').value = '.' + f.name.split('.').pop().toUpperCase();
+  document.getElementById('f-size').value = (f.size / (1024 * 1024)).toFixed(1) + ' MB';
+  if (!document.getElementById('f-path').value) document.getElementById('f-path').value = f.name;
+  showToast('Metadata Extracted');
+}
+
+function processImage(input) {
+  if (!input.files[0]) return;
+  const fileName = input.files[0].name;
+  currentThumbnailPath = 'images/' + fileName;
+  const tempUrl = URL.createObjectURL(input.files[0]);
+  document.getElementById('f-thumbnail-img').src = tempUrl;
+  document.getElementById('img-preview-wrap').style.display = 'block';
+  showToast('Linked to: ' + currentThumbnailPath);
+}
+
+function clearImage() {
+  currentThumbnailPath = '';
+  document.getElementById('img-preview-wrap').style.display = 'none';
+}
+
+function submitModel() {
+  const idStr = document.getElementById('f-id').value;
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) return alert('Name required');
+  const existing = idStr ? models.find(x => x.id === parseInt(idStr)) : null;
+  const modelData = {
+    id: idStr ? parseInt(idStr) : nextId++,
+    name: name,
+    city: document.getElementById('f-city').value || 'Unknown City',
+    type: document.getElementById('f-type').value,
+    year: document.getElementById('f-year').value.trim(),
+    format: document.getElementById('f-format').value || '.GLB',
+    size: document.getElementById('f-size').value || '-',
+    path: document.getElementById('f-path').value,
+    description: document.getElementById('f-desc').value,
+    thumbnail: currentThumbnailPath,
+    coverage: existing ? existing.coverage : null
+  };
+  if (idStr) {
+    const idx = models.findIndex(x => x.id === parseInt(idStr));
+    models[idx] = modelData;
+  } else {
+    models.push(modelData);
+  }
+  updateCityDropdown();
+  renderCoverageModelSelect();
+  applyFilters();
+  closeModalDirect('admin-overlay');
+  showToast('Saved. Click Save data.js to export changes.');
+}
+
+function deleteModel(id) {
+  if (confirm('Remove this model from the library?')) {
+    models = models.filter(x => x.id !== id);
+    updateCityDropdown();
+    renderCoverageModelSelect();
+    applyFilters();
+    showToast('Model removed. Click Save data.js to export changes.');
+  }
+}
+
+/* Map functions */
+function initMap() {
+  if (map) return;
+  map = L.map('map', { zoomControl: true }).setView([-25.2744, 133.7751], 4);
+
+  // Custom Bates Smart inspired basemap.
+  // Option A: use Mapbox for full visual control. Add your Mapbox token below.
+  const MAPBOX_TOKEN = '';
+
+  if (MAPBOX_TOKEN && typeof L.mapboxGL !== 'undefined') {
+    const batesSmartMapStyle = {
+      version: 8,
+      glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
+      sources: {
+        composite: {
+          type: 'vector',
+          url: 'mapbox://mapbox.mapbox-streets-v8'
+        }
+      },
+      layers: [
+        { id: 'background', type: 'background', paint: { 'background-color': '#f5f3ef' } },
+        { id: 'land', type: 'fill', source: 'composite', 'source-layer': 'landuse', paint: { 'fill-color': '#f5f3ef', 'fill-opacity': 0.65 } },
+        { id: 'parks', type: 'fill', source: 'composite', 'source-layer': 'landuse', filter: ['in', ['get', 'class'], ['literal', ['park', 'wood', 'grass']]], paint: { 'fill-color': '#ede9df', 'fill-opacity': 0.75 } },
+        { id: 'water', type: 'fill', source: 'composite', 'source-layer': 'water', paint: { 'fill-color': '#e6e0d6' } },
+        { id: 'roads-minor', type: 'line', source: 'composite', 'source-layer': 'road', filter: ['in', ['get', 'class'], ['literal', ['street', 'street_limited', 'service', 'track']]], paint: { 'line-color': '#002c91', 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.35, 14, 0.8, 18, 2.2], 'line-opacity': 0.38 } },
+        { id: 'roads-major', type: 'line', source: 'composite', 'source-layer': 'road', filter: ['in', ['get', 'class'], ['literal', ['primary', 'secondary', 'tertiary', 'motorway', 'trunk']]], paint: { 'line-color': '#002c91', 'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.7, 12, 1.4, 16, 3.6], 'line-opacity': 0.72 } },
+        { id: 'rail', type: 'line', source: 'composite', 'source-layer': 'road', filter: ['==', ['get', 'class'], 'rail'], paint: { 'line-color': '#3d4f6e', 'line-width': 0.6, 'line-opacity': 0.28 } },
+        { id: 'place-labels', type: 'symbol', source: 'composite', 'source-layer': 'place_label', minzoom: 4, layout: { 'text-field': ['get', 'name'], 'text-font': ['Open Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 4, 11, 10, 15] }, paint: { 'text-color': '#002c91', 'text-halo-color': '#f5f3ef', 'text-halo-width': 1.5, 'text-opacity': 0.78 } },
+        { id: 'road-labels', type: 'symbol', source: 'composite', 'source-layer': 'road', minzoom: 13, filter: ['in', ['get', 'class'], ['literal', ['primary', 'secondary', 'tertiary']]], layout: { 'symbol-placement': 'line', 'text-field': ['get', 'name'], 'text-font': ['Open Sans Regular'], 'text-size': 10 }, paint: { 'text-color': '#002c91', 'text-halo-color': '#f5f3ef', 'text-halo-width': 1, 'text-opacity': 0.55 } }
+      ]
+    };
+
+    L.mapboxGL({ accessToken: MAPBOX_TOKEN, style: batesSmartMapStyle }).addTo(map);
+  } else {
+    // Public no-key fallback basemap suitable for embedded applications.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 16,
+      maxZoom: 20,
+      attribution: 'Tiles &copy; Esri'
+    }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 16,
+      maxZoom: 20,
+      attribution: ''
+    }).addTo(map);
+  }
+  coverageLayer = L.featureGroup().addTo(map);
+  drawnItems = new L.FeatureGroup().addTo(map);
+  renderCoverageLayers();
+  if (document.body.classList.contains('admin-mode')) initDrawTools();
+  else removeDrawTools();
+}
+
+function removeDrawTools() {
+  if (map && drawControl) {
+    map.removeControl(drawControl);
+    drawControl = null;
+  }
+}
+
+function initDrawTools() {
+  if (!map || drawControl) return;
+  drawControl = new L.Control.Draw({
+    draw: {
+      polygon: { allowIntersection: false, showArea: true },
+      rectangle: true,
+      polyline: false,
+      circle: false,
+      circlemarker: false,
+      marker: false
+    },
+    edit: { featureGroup: drawnItems, remove: true }
+  });
+  map.addControl(drawControl);
+
+  map.on(L.Draw.Event.CREATED, function(event) {
+    const selected = getSelectedCoverageModel();
+    if (!selected) {
+      showToast('Select a model before drawing coverage.');
+      return;
+    }
+    drawnItems.clearLayers();
+    drawnItems.addLayer(event.layer);
+    selected.coverage = event.layer.toGeoJSON().geometry;
+    renderCoverageLayers();
+    showToast('Coverage traced. Click Save data.js to export.');
+  });
+
+  map.on(L.Draw.Event.EDITED, function(event) {
+    const selected = getSelectedCoverageModel();
+    if (!selected) return;
+    event.layers.eachLayer(layer => { selected.coverage = layer.toGeoJSON().geometry; });
+    renderCoverageLayers();
+    showToast('Coverage edited. Click Save data.js to export.');
+  });
+
+  map.on(L.Draw.Event.DELETED, function() {
+    const selected = getSelectedCoverageModel();
+    if (!selected) return;
+    selected.coverage = null;
+    renderCoverageLayers();
+    showToast('Coverage cleared. Click Save data.js to export.');
+  });
+}
+
+function renderCoverageLayers() {
+  if (!coverageLayer) return;
+  coverageLayer.clearLayers();
+  const visibleIds = new Set(currentFilteredModels.map(m => m.id));
+  models.forEach(m => {
+    if (!hasCoverage(m) || !visibleIds.has(m.id)) return;
+    const layer = L.geoJSON(m.coverage, {
+      style: {
+        color: TYPE_COLORS[m.type] || TYPE_COLORS.urban,
+        weight: 2,
+        opacity: 0.9,
+        fillColor: TYPE_COLORS[m.type] || TYPE_COLORS.urban,
+        fillOpacity: 0.18,
+        dashArray: '6 6'
+      }
+    });
+    layer.eachLayer(l => {
+      l.on('click', () => openDetail(m.id));
+      l.bindTooltip(m.name, { sticky: true });
+    });
+    coverageLayer.addLayer(layer);
+  });
+}
+
+function renderCoverageModelSelect() {
+  const select = document.getElementById('coverage-model-select');
+  if (!select) return;
+  select.innerHTML = models.map(m => `<option value="${m.id}">${escapeHtml(m.name)}${hasCoverage(m) ? ' · mapped' : ''}</option>`).join('');
+  if (selectedCoverageModelId && models.some(m => m.id === selectedCoverageModelId)) {
+    select.value = selectedCoverageModelId;
+  } else if (models.length) {
+    selectedCoverageModelId = models[0].id;
+    select.value = selectedCoverageModelId;
+  }
+  selectCoverageModel(false);
+}
+
+function selectCoverageModel(zoom = true) {
+  const select = document.getElementById('coverage-model-select');
+  if (!select || !map) return;
+  selectedCoverageModelId = parseInt(select.value);
+  drawnItems.clearLayers();
+  const m = getSelectedCoverageModel();
+  if (m && hasCoverage(m)) {
+    const editable = L.geoJSON(m.coverage, {
+      style: { color: TYPE_COLORS[m.type] || TYPE_COLORS.urban, weight: 2, fillOpacity: 0.1 }
+    });
+    editable.eachLayer(layer => drawnItems.addLayer(layer));
+    if (zoom) focusSelectedCoverage();
+  }
+}
+
+function getSelectedCoverageModel() {
+  return models.find(m => m.id === selectedCoverageModelId);
+}
+
+function focusSelectedCoverage() {
+  if (!map) return;
+  const m = getSelectedCoverageModel();
+  if (!m || !hasCoverage(m)) {
+    showToast('No coverage area for selected model yet.');
+    return;
+  }
+  const layer = L.geoJSON(m.coverage);
+  map.fitBounds(layer.getBounds(), { padding: [40, 40] });
+}
+
+function clearSelectedCoverage() {
+  const m = getSelectedCoverageModel();
+  if (!m) return;
+  if (!confirm('Clear the coverage area for this model?')) return;
+  m.coverage = null;
+  drawnItems.clearLayers();
+  renderCoverageLayers();
+  renderCoverageModelSelect();
+  applyFilters();
+  showToast('Coverage cleared. Click Save data.js to export.');
+}
+
+/* Melbourne spatial data workspace */
+function getActiveSpatialLayerKeys() {
+  return [...document.querySelectorAll('[data-spatial-layer]:checked')].map(input => input.dataset.spatialLayer);
+}
+
+function setSpatialLayerState(key, label, state = '') {
+  const element = document.getElementById(`spatial-state-${key}`);
+  if (!element) return;
+  element.textContent = label;
+  element.className = `spatial-layer-state ${state}`.trim();
+}
+
+function initSpatialMap() {
+  if (spatialMap) return;
+
+  spatialMap = L.map('spatial-map', { zoomControl: true, preferCanvas: true }).setView([-37.8136, 144.9631], 15);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    maxNativeZoom: 16,
+    maxZoom: 20,
+    attribution: 'Tiles &copy; Esri'
+  }).addTo(spatialMap);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxNativeZoom: 16,
+    maxZoom: 20,
+    attribution: ''
+  }).addTo(spatialMap);
+
+  Object.keys(SPATIAL_LAYERS).forEach(key => {
+    spatialLayerGroups[key] = L.featureGroup().addTo(spatialMap);
+    spatialLayerFeatures[key] = [];
+  });
+  spatialSelectionGroup = L.featureGroup().addTo(spatialMap);
+
+  spatialMap.on(L.Draw.Event.CREATED, event => {
+    spatialSelectionGroup.clearLayers();
+    spatialSelectionLayer = event.layer;
+    event.layer.setStyle({ color: '#002c91', weight: 2, fillColor: '#002c91', fillOpacity: .08, dashArray: '7 5' });
+    spatialSelectionGroup.addLayer(event.layer);
+    if (spatial3d) spatial3d.fitted = false;
+    updateSpatialSelectionSummary();
+    refreshSpatialData(true);
+  });
+
+  spatialMap.on('moveend', () => {
+    if (spatialSelectionLayer) return;
+    clearTimeout(spatialMoveTimer);
+    spatialMoveTimer = setTimeout(() => refreshSpatialData(false), 280);
+  });
+
+  document.querySelectorAll('[data-spatial-layer]').forEach(input => {
+    input.addEventListener('change', () => {
+      const key = input.dataset.spatialLayer;
+      if (!input.checked) {
+        spatialLayerGroups[key].clearLayers();
+        spatialLayerFeatures[key] = [];
+        setSpatialLayerState(key, 'Off');
+        updateSpatialSelectionSummary();
+      } else {
+        refreshSpatialData(Boolean(spatialSelectionLayer));
+      }
+    });
+  });
+
+  refreshSpatialData(false);
+}
+
+function startSpatialSelection(type) {
+  initSpatialMap();
+  const options = { shapeOptions: { color: '#002c91', weight: 2, fillColor: '#002c91', fillOpacity: .08, dashArray: '7 5' } };
+  const drawer = type === 'polygon'
+    ? new L.Draw.Polygon(spatialMap, { ...options, allowIntersection: false, showArea: true })
+    : new L.Draw.Rectangle(spatialMap, { ...options, showArea: true });
+  drawer.enable();
+  document.getElementById('spatial-map-message').textContent = type === 'polygon'
+    ? 'Click around the study area, then click the first point to finish.'
+    : 'Drag across the map to define the study area.';
+}
+
+function clearSpatialSelection() {
+  if (!spatialMap) return;
+  spatialSelectionGroup.clearLayers();
+  spatialSelectionLayer = null;
+  if (spatial3d) spatial3d.fitted = false;
+  document.getElementById('spatial-area').textContent = '—';
+  document.getElementById('spatial-count').textContent = '0';
+  document.getElementById('spatial-export-btn').disabled = true;
+  document.getElementById('spatial-map-message').textContent = 'Pan to your site, then draw a rectangle or polygon to load and select geometry.';
+  refreshSpatialData(false);
+}
+
+function spatialQueryContext() {
+  const bounds = spatialSelectionLayer ? spatialSelectionLayer.getBounds() : spatialMap.getBounds();
+  const center = bounds.getCenter();
+  const radius = Math.min(Math.max(spatialMap.distance(center, bounds.getNorthEast()), 500), 3500);
+  return { bounds, center, radius, full: Boolean(spatialSelectionLayer) };
+}
+
+async function fetchOpendataSpatialLayer(key, context) {
+  const config = SPATIAL_LAYERS[key];
+  const where = `within_distance(geo_point_2d, geom'POINT(${context.center.lng} ${context.center.lat})', ${Math.ceil(context.radius)}m)`;
+  if (context.full) {
+    const exportUrl = `${SPATIAL_API_ROOT}/${config.dataset}/exports/geojson?where=${encodeURIComponent(where)}`;
+    const exportResponse = await fetch(exportUrl);
+    if (!exportResponse.ok) throw new Error(`City of Melbourne API returned ${exportResponse.status}`);
+    return (await exportResponse.json()).features || [];
+  }
+  const baseUrl = `${SPATIAL_API_ROOT}/${config.dataset}/records?limit=100&where=${encodeURIComponent(where)}`;
+  const firstResponse = await fetch(baseUrl);
+  if (!firstResponse.ok) throw new Error(`City of Melbourne API returned ${firstResponse.status}`);
+  const firstPage = await firstResponse.json();
+  const pageCount = Math.min(Math.ceil((firstPage.total_count || 0) / 100), 5);
+  const pages = [firstPage.results || []];
+
+  if (pageCount > 1) {
+    const pending = [];
+    for (let page = 1; page < pageCount; page += 1) {
+      pending.push(fetch(`${baseUrl}&offset=${page * 100}`).then(response => {
+        if (!response.ok) throw new Error(`City of Melbourne API returned ${response.status}`);
+        return response.json();
+      }));
+    }
+    const extraPages = await Promise.all(pending);
+    extraPages.forEach(page => pages.push(page.results || []));
+  }
+
+  return pages.flat().map(record => {
+    const sourceGeometry = record[config.geometryField];
+    const geometry = sourceGeometry?.geometry || (sourceGeometry?.type === 'Feature' ? sourceGeometry.geometry : sourceGeometry);
+    if (!geometry) return null;
+    const properties = { ...record };
+    delete properties[config.geometryField];
+    return { type: 'Feature', geometry, properties };
+  }).filter(Boolean);
+}
+
+async function fetchTopographySpatialLayer(context) {
+  const bbox = [context.bounds.getWest(), context.bounds.getSouth(), context.bounds.getEast(), context.bounds.getNorth()].join(',');
+  const featureParams = new URLSearchParams({
+    where: '1=1',
+    geometry: bbox,
+    geometryType: 'esriGeometryEnvelope',
+    inSR: '4326',
+    spatialRel: 'esriSpatialRelIntersects',
+    outFields: '*',
+    returnGeometry: 'true',
+    outSR: '4326',
+    f: 'json'
+  });
+  const response = await fetch(`${SPATIAL_LAYERS.topography.arcgis}?${featureParams}`);
+  if (!response.ok) throw new Error(`Vicmap API returned ${response.status}`);
+  const result = await response.json();
+  if (result.error) throw new Error(result.error.message || 'Vicmap API returned an error');
+  return (result.features || []).map(feature => ({
+    type: 'Feature',
+    properties: feature.attributes || {},
+    geometry: {
+      type: feature.geometry?.paths?.length > 1 ? 'MultiLineString' : 'LineString',
+      coordinates: feature.geometry?.paths?.length > 1 ? feature.geometry.paths : (feature.geometry?.paths?.[0] || [])
+    }
+  }));
+}
+
+async function refreshSpatialData(forSelection = false) {
+  if (!spatialMap) return;
+  const loadVersion = ++spatialLoadVersion;
+  const context = spatialQueryContext();
+  const activeKeys = getActiveSpatialLayerKeys();
+  document.getElementById('spatial-map-message').textContent = forSelection
+    ? 'Loading official geometry for the selected area…'
+    : 'Loading a preview around the current map extent…';
+
+  await Promise.all(activeKeys.map(async key => {
+    setSpatialLayerState(key, 'Loading', 'loading');
+    try {
+      const features = key === 'topography'
+        ? await fetchTopographySpatialLayer(context)
+        : await fetchOpendataSpatialLayer(key, context);
+      if (loadVersion !== spatialLoadVersion) return;
+      spatialLayerFeatures[key] = features;
+      renderSpatialLayer(key);
+      setSpatialLayerState(key, `${features.length} loaded`, 'ready');
+    } catch (error) {
+      if (loadVersion !== spatialLoadVersion) return;
+      spatialLayerFeatures[key] = [];
+      spatialLayerGroups[key].clearLayers();
+      setSpatialLayerState(key, 'Unavailable');
+      console.warn(`Unable to load ${key} layer`, error);
+    }
+  }));
+
+  if (loadVersion !== spatialLoadVersion) return;
+  updateSpatialSelectionSummary();
+  const selectedCount = getSelectedSpatialFeatures().length;
+  document.getElementById('spatial-map-message').textContent = spatialSelectionLayer
+    ? `${selectedCount.toLocaleString()} geometries intersect the study area. Review the active layers, then download.`
+    : 'Draw a rectangle or polygon to select the exact study area for export.';
+}
+
+function spatialFeatureIntersectsSelection(feature) {
+  if (!spatialSelectionLayer) return true;
+  try {
+    const featureBounds = L.geoJSON(feature).getBounds();
+    if (!featureBounds.intersects(spatialSelectionLayer.getBounds())) return false;
+    const selectionGeometry = spatialSelectionLayer.toGeoJSON().geometry;
+    const selectionRing = selectionGeometry.coordinates?.[0] || [];
+    const pointInRing = (point, ring) => {
+      let inside = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = ring[i][0], yi = ring[i][1];
+        const xj = ring[j][0], yj = ring[j][1];
+        const intersects = ((yi > point[1]) !== (yj > point[1])) &&
+          (point[0] < (xj - xi) * (point[1] - yi) / ((yj - yi) || Number.EPSILON) + xi);
+        if (intersects) inside = !inside;
+      }
+      return inside;
+    };
+    const points = [];
+    const collectCoordinates = coordinates => {
+      if (!Array.isArray(coordinates)) return;
+      if (typeof coordinates[0] === 'number' && typeof coordinates[1] === 'number') {
+        points.push([coordinates[0], coordinates[1]]);
+        return;
+      }
+      coordinates.forEach(collectCoordinates);
+    };
+    collectCoordinates(feature.geometry.coordinates);
+    if (points.some(point => pointInRing(point, selectionRing))) return true;
+    if (feature.geometry.type.includes('LineString')) return true;
+    const featureRings = feature.geometry.type === 'Polygon'
+      ? feature.geometry.coordinates
+      : feature.geometry.type === 'MultiPolygon' ? feature.geometry.coordinates.flat() : [];
+    return featureRings.some(ring => selectionRing[0] && pointInRing(selectionRing[0], ring));
+  } catch (error) {
+    return false;
+  }
+}
+
+function renderSpatialLayer(key) {
+  const group = spatialLayerGroups[key];
+  const config = SPATIAL_LAYERS[key];
+  group.clearLayers();
+  const layer = L.geoJSON({ type: 'FeatureCollection', features: spatialLayerFeatures[key] || [] }, {
+    style: feature => {
+      const selected = spatialFeatureIntersectsSelection(feature);
+      const featureColour = key === 'development' ? spatialExportLayer({ key, feature }).colour : config.colour;
+      return {
+        color: featureColour,
+        weight: key === 'topography' ? 1 : selected ? 1.7 : 1,
+        opacity: selected ? .95 : .38,
+        fillColor: featureColour,
+        fillOpacity: selected ? config.fillOpacity : Math.min(config.fillOpacity, .035)
+      };
+    },
+    onEachFeature: (feature, featureLayer) => {
+      const properties = feature.properties || {};
+      const title = properties.address || properties.status || properties.structure_id || properties.property_id || config.name;
+      const detail = properties.status || properties.footprint_type || (properties.polyarea ? `${properties.polyarea} m²` : '');
+      featureLayer.bindTooltip(`<strong>${escapeHtml(title)}</strong>${detail ? `<br>${escapeHtml(detail)}` : ''}`, { sticky: true });
+    }
+  });
+  group.addLayer(layer);
+}
+
+function getSelectedSpatialFeatures() {
+  if (!spatialSelectionLayer) return [];
+  return getActiveSpatialLayerKeys().flatMap(key => (spatialLayerFeatures[key] || [])
+    .filter(spatialFeatureIntersectsSelection)
+    .map(feature => ({ key, feature })));
+}
+
+function updateSpatialSelectionSummary() {
+  if (!spatialSelectionLayer) return;
+  const latLngs = spatialSelectionLayer.getLatLngs();
+  const outerRing = Array.isArray(latLngs[0]) ? latLngs[0] : latLngs;
+  const area = L.GeometryUtil.geodesicArea(outerRing);
+  document.getElementById('spatial-area').textContent = area >= 1000000
+    ? `${(area / 1000000).toFixed(2)} km²`
+    : `${Math.round(area).toLocaleString()} m²`;
+  const selectedCount = getSelectedSpatialFeatures().length;
+  document.getElementById('spatial-count').textContent = selectedCount.toLocaleString();
+  document.getElementById('spatial-export-btn').disabled = selectedCount === 0;
+  getActiveSpatialLayerKeys().forEach(renderSpatialLayer);
+  if (spatialViewMode === '3d') renderSpatial3d();
+}
+
+let mapLibrePromise = null;
+function loadMapLibre() {
+  if (mapLibrePromise) return mapLibrePromise;
+  mapLibrePromise = new Promise((resolve, reject) => {
+    if (window.maplibregl) return resolve(window.maplibregl);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css';
+    document.head.appendChild(link);
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js';
+    script.onload = () => resolve(window.maplibregl);
+    script.onerror = () => reject(new Error('Unable to load the 3D map engine.'));
+    document.head.appendChild(script);
+  });
+  return mapLibrePromise;
+}
+function setSpatialViewMode(mode) {
+  spatialViewMode = mode;
+  document.getElementById('spatial-map').style.display = mode === '2d' ? 'block' : 'none';
+  document.getElementById('spatial-3d-view').style.display = mode === '3d' ? 'block' : 'none';
+  document.querySelector('.spatial-map-stage')?.classList.toggle('spatial-mode-3d', mode === '3d');
+  document.getElementById('spatial-2d-btn').classList.toggle('active', mode === '2d');
+  document.getElementById('spatial-3d-btn').classList.toggle('active', mode === '3d');
+  if (mode === '3d') { renderSpatial3d(); if (spatial3d?.map) setTimeout(() => spatial3d.map.resize(), 60); }
+  else if (spatialMap) setTimeout(() => spatialMap.invalidateSize(), 60);
+}
+function resetSpatial3dView() {
+  if (spatial3d) spatial3d.fitted = false;
+  setSpatialViewMode('3d');
+}
+function toggleSpatialQuickLayer(key, checked) {
+  const source = document.querySelector(`[data-spatial-layer="${key}"]`);
+  if (source && source.checked !== checked) source.click();
+}
+const SPATIAL_3D_LAYER_KEYS = ['development', 'context', 'cadastre', 'topography'];
+function spatialFeatureCollection(items) {
+  return {
+    type: 'FeatureCollection',
+    features: items.map(item => {
+      const meta = spatialExportLayer(item);
+      const elev = spatialFeatureElevations(item);
+      const top = Math.max(elev.base + 2, elev.top ?? elev.base + 4);
+      return { ...item.feature, properties: { ...item.feature.properties, _colour: meta.colour, _base: elev.base, _top: top } };
+    })
+  };
+}
+function spatial3dItems() {
+  const selectedItems = getSelectedSpatialFeatures();
+  return selectedItems.length ? selectedItems : getActiveSpatialLayerKeys().flatMap(key => (spatialLayerFeatures[key] || []).map(feature => ({ key, feature })));
+}
+function updateSpatial3dData() {
+  if (!spatial3d || !spatial3d.ready) return;
+  const { map } = spatial3d;
+  const byKey = { development: [], context: [], cadastre: [], topography: [] };
+  spatial3dItems().forEach(item => { if (byKey[item.key]) byKey[item.key].push(item); });
+  SPATIAL_3D_LAYER_KEYS.forEach(key => { map.getSource('spatial-src-' + key)?.setData(spatialFeatureCollection(byKey[key])); });
+  map.getSource('spatial-src-selection')?.setData(spatialSelectionLayer ? spatialSelectionLayer.toGeoJSON() : { type: 'FeatureCollection', features: [] });
+  if (!spatial3d.fitted) {
+    const bounds = spatialSelectionLayer ? spatialSelectionLayer.getBounds() : (spatialMap ? spatialMap.getBounds() : null);
+    if (bounds && bounds.isValid()) {
+      map.fitBounds([[bounds.getWest(), bounds.getSouth()], [bounds.getEast(), bounds.getNorth()]], { padding: 60, pitch: 55, bearing: 0, duration: 0 });
+    }
+    spatial3d.fitted = true;
+  }
+}
+async function renderSpatial3d() {
+  const container = document.getElementById('spatial-3d-view');
+  const mapEl = document.getElementById('spatial-3d-map');
+  const loading = document.getElementById('spatial-3d-loading');
+  if (!container || !mapEl || spatialViewMode !== '3d') return;
+  if (spatial3d) { updateSpatial3dData(); return; }
+  spatial3d = { map: null, ready: false, fitted: false };
+  if (loading) { loading.hidden = false; loading.textContent = 'Loading 3D preview…'; }
+  let maplibregl;
+  try {
+    maplibregl = await loadMapLibre();
+  } catch (err) {
+    spatial3d = null;
+    if (loading) { loading.hidden = false; loading.textContent = 'Unable to load the 3D map engine.'; }
+    return;
+  }
+  const origin = spatialSelectionLayer ? spatialProjectionOrigin() : { lon: spatialMap.getCenter().lng, lat: spatialMap.getCenter().lat };
+  const map = new maplibregl.Map({
+    container: mapEl,
+    style: 'https://tiles.openfreemap.org/styles/liberty',
+    center: [origin.lon, origin.lat],
+    zoom: 15.5,
+    pitch: 55,
+    bearing: 0,
+    antialias: true
+  });
+  spatial3d.map = map;
+  map.on('error', event => console.warn('Spatial 3D map error', event?.error));
+  map.on('load', () => {
+    spatial3d.ready = true;
+    if (loading) loading.hidden = true;
+    [...SPATIAL_3D_LAYER_KEYS, 'selection'].forEach(key => {
+      map.addSource('spatial-src-' + key, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    });
+    map.addLayer({ id: 'spatial-layer-context-fill', type: 'fill-extrusion', source: 'spatial-src-context', paint: { 'fill-extrusion-color': ['get', '_colour'], 'fill-extrusion-base': ['get', '_base'], 'fill-extrusion-height': ['get', '_top'], 'fill-extrusion-opacity': .38 } });
+    map.addLayer({ id: 'spatial-layer-development-fill', type: 'fill-extrusion', source: 'spatial-src-development', paint: { 'fill-extrusion-color': ['get', '_colour'], 'fill-extrusion-base': ['get', '_base'], 'fill-extrusion-height': ['get', '_top'], 'fill-extrusion-opacity': .94 } });
+    map.addLayer({ id: 'spatial-layer-cadastre-line', type: 'line', source: 'spatial-src-cadastre', paint: { 'line-color': SPATIAL_LAYERS.cadastre.colour, 'line-width': 1, 'line-opacity': .6 } });
+    map.addLayer({ id: 'spatial-layer-topography-line', type: 'line', source: 'spatial-src-topography', paint: { 'line-color': SPATIAL_LAYERS.topography.colour, 'line-width': 1.2, 'line-opacity': .85 } });
+    map.addLayer({ id: 'spatial-layer-selection-line', type: 'line', source: 'spatial-src-selection', paint: { 'line-color': '#002c91', 'line-width': 2, 'line-dasharray': [2, 1.4] } });
+    updateSpatial3dData();
+  });
+  if (window.ResizeObserver) new ResizeObserver(() => { if (spatialViewMode === '3d') map.resize(); }).observe(container);
+}
+
+function spatialGeometryParts(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === 'LineString') return [geometry.coordinates];
+  if (geometry.type === 'MultiLineString' || geometry.type === 'Polygon') return geometry.coordinates;
+  if (geometry.type === 'MultiPolygon') return geometry.coordinates.flat();
+  return [];
+}
+
+function spatialProjectionOrigin() {
+  const center = spatialSelectionLayer.getBounds().getCenter();
+  return { lon: center.lng, lat: center.lat };
+}
+
+function projectSpatialCoordinate(coordinate, origin, elevation = 0) {
+  const latitudeRadians = origin.lat * Math.PI / 180;
+  return [
+    (Number(coordinate[0]) - origin.lon) * 111320 * Math.cos(latitudeRadians),
+    (Number(coordinate[1]) - origin.lat) * 110540,
+    Number.isFinite(Number(coordinate[2])) ? Number(coordinate[2]) : Number(elevation) || 0
+  ];
+}
+
+function spatialFeatureElevations(item) {
+  const config = SPATIAL_LAYERS[item.key];
+  const properties = item.feature.properties || {};
+  const base = Number(properties[config.baseField]) || Number(properties.elevation) || Number(properties.ELEVATION) || Number(properties.altitude) || 0;
+  const top = Number(properties[config.topField]);
+  return { base, top: Number.isFinite(top) && top !== base ? top : null };
+}
+
+let rhinoModulePromise = null;
+function loadRhinoModule() {
+  if (rhinoModulePromise) return rhinoModulePromise;
+  rhinoModulePromise = new Promise((resolve, reject) => {
+    const initialise = () => window.rhino3dm().then(resolve).catch(reject);
+    if (window.rhino3dm) {
+      initialise();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/rhino3dm@8.32.0/rhino3dm.min.js';
+    script.onload = initialise;
+    script.onerror = () => reject(new Error('Unable to load the 3DM exporter.'));
+    document.head.appendChild(script);
+  });
+  return rhinoModulePromise;
+}
+
+function downloadSpatialBlob(filename, blob) {
+  const anchor = document.createElement('a');
+  anchor.href = URL.createObjectURL(blob);
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(anchor.href), 1500);
+}
+
+async function exportSpatial3dm(items) {
+  const rhino = await loadRhinoModule();
+  const document3dm = new rhino.File3dm();
+  const origin = spatialProjectionOrigin();
+  const layerKeys = [...new Set(items.map(spatialExportLayerKey)), 'selection'];
+  const layerIndices = {};
+  layerKeys.forEach((key, index) => {
+    const meta = SPATIAL_EXPORT_LAYERS[key]; const layer = new rhino.Layer();
+    layer.name = meta?.name || key; layer.color = { r: 0, g: 44, b: 145, a: 255 };
+    document3dm.layers().add(layer); layerIndices[key] = index;
+  });
+  items.forEach(item => {
+    const config = SPATIAL_LAYERS[item.key]; const exportLayer = spatialExportLayer(item); const exportKey = spatialExportLayerKey(item);
+    const elevations = spatialFeatureElevations(item);
+    spatialGeometryParts(item.feature.geometry).forEach(part => {
+      if (!Array.isArray(part) || part.length < 2) return;
+      const closed = item.feature.geometry.type.includes('Polygon');
+      const pointsFor = elevation => {
+        const points = part.map(coordinate => projectSpatialCoordinate(coordinate, origin, elevation));
+        const first = points[0];
+        const last = points[points.length - 1];
+        if (closed && first && last && (first[0] !== last[0] || first[1] !== last[1] || first[2] !== last[2])) points.push([...first]);
+        return points;
+      };
+      const attributes = new rhino.ObjectAttributes(); attributes.name = exportLayer.name; attributes.layerIndex = layerIndices[exportKey];
+      if (attributes.setUserString) attributes.setUserString('BatesSmartSource', config.name);
+      if (attributes.setUserString) attributes.setUserString('BatesSmartStatus', item.key === 'development' ? normalizeDevelopmentStatus(item.feature.properties?.status) : 'n/a');
+      if (closed && elevations.top !== null) {
+        const curve = new rhino.PolylineCurve(pointsFor(elevations.base));
+        const extrusion = rhino.Extrusion.create(curve, Math.max(0.1, elevations.top - elevations.base), true);
+        if (extrusion) document3dm.objects().add(extrusion, attributes);
+      } else {
+        document3dm.objects().addCurve(new rhino.PolylineCurve(pointsFor(elevations.base)), attributes);
+      }
+    });
+  });
+
+  const selectionPoints = spatialSelectionLayer.getLatLngs()[0].map(point => projectSpatialCoordinate([point.lng, point.lat], origin, 0));
+  if (selectionPoints.length) selectionPoints.push([...selectionPoints[0]]);
+  const selectionAttributes = new rhino.ObjectAttributes();
+  selectionAttributes.name = SPATIAL_EXPORT_LAYERS.selection.name; selectionAttributes.layerIndex = layerIndices.selection;
+  document3dm.objects().addCurve(new rhino.PolylineCurve(selectionPoints), selectionAttributes);
+  const bytes = document3dm.toByteArray();
+  downloadSpatialBlob('BatesSmart_Melbourne_Context.3dm', new Blob([bytes], { type: 'application/octet-stream' }));
+}
+
+function exportSpatialDxf(items) {
+  const origin = spatialProjectionOrigin();
+  const entities = [];
+  const addPolyline = (points, layerName, closed) => {
+    entities.push('0', 'POLYLINE', '8', layerName, '66', '1', '70', closed ? '1' : '0');
+    points.forEach(point => entities.push('0', 'VERTEX', '8', layerName, '10', point[0].toFixed(3), '20', point[1].toFixed(3), '30', point[2].toFixed(3)));
+    entities.push('0', 'SEQEND');
+  };
+  const addFace = (a, b, c, d, layerName) => {
+    entities.push('0', '3DFACE', '8', layerName, '10', a[0].toFixed(3), '20', a[1].toFixed(3), '30', a[2].toFixed(3), '11', b[0].toFixed(3), '21', b[1].toFixed(3), '31', b[2].toFixed(3), '12', c[0].toFixed(3), '22', c[1].toFixed(3), '32', c[2].toFixed(3), '13', d[0].toFixed(3), '23', d[1].toFixed(3), '33', d[2].toFixed(3));
+  };
+
+  items.forEach(item => {
+    const layerName = spatialExportLayer(item).name.toUpperCase().replace(/[^A-Z0-9]+/g, '_').slice(0, 30);
+    const elevations = spatialFeatureElevations(item);
+    spatialGeometryParts(item.feature.geometry).forEach(part => {
+      if (!Array.isArray(part) || part.length < 2) return;
+      const closed = item.feature.geometry.type.includes('Polygon');
+      const basePoints = part.map(coordinate => projectSpatialCoordinate(coordinate, origin, elevations.base));
+      addPolyline(basePoints, layerName, closed);
+      if (elevations.top !== null) {
+        const topPoints = part.map(coordinate => projectSpatialCoordinate(coordinate, origin, elevations.top));
+        addPolyline(topPoints, layerName, closed);
+        if (closed) {
+          for (let i = 0; i < basePoints.length - 1; i += 1) addFace(basePoints[i], basePoints[i + 1], topPoints[i + 1], topPoints[i], layerName);
+          for (let i = 1; i < topPoints.length - 2; i += 1) addFace(topPoints[0], topPoints[i], topPoints[i + 1], topPoints[i + 1], layerName);
+        }
+      }
+    });
+  });
+
+  const dxf = ['0', 'SECTION', '2', 'HEADER', '9', '$INSUNITS', '70', '6', '0', 'ENDSEC', '0', 'SECTION', '2', 'ENTITIES', ...entities, '0', 'ENDSEC', '0', 'EOF'].join('\r\n');
+  downloadSpatialBlob('BatesSmart_Melbourne_Context_DWG-ready.dxf', new Blob([dxf], { type: 'application/dxf' }));
+}
+
+async function exportSpatialDwg(items) {
+  const endpoint = window.BATES_CAD_EXPORT_ENDPOINT;
+  if (!endpoint) {
+    exportSpatialDxf(items);
+    showToast('DWG service is not connected. Downloaded a DWG-ready DXF instead.');
+    return;
+  }
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      format: 'dwg',
+      coordinateSystem: 'local_metres',
+      origin: spatialProjectionOrigin(),
+      features: items.map(item => ({ ...item.feature, properties: { ...item.feature.properties, bates_layer: spatialExportLayer(item).name, bates_source: SPATIAL_LAYERS[item.key].name, bates_status: item.key === 'development' ? normalizeDevelopmentStatus(item.feature.properties?.status) : null, base_elevation: spatialFeatureElevations(item).base, top_elevation: spatialFeatureElevations(item).top } }))
+    })
+  });
+  if (!response.ok) throw new Error(`CAD export service returned ${response.status}`);
+  downloadSpatialBlob('BatesSmart_Melbourne_Context.dwg', await response.blob());
+}
+
+async function exportSpatialSelection() {
+  const items = getSelectedSpatialFeatures();
+  if (!items.length) {
+    showToast('Draw an area with available geometry before downloading.');
+    return;
+  }
+  const button = document.getElementById('spatial-export-btn');
+  const format = document.querySelector('input[name="spatial-format"]:checked').value;
+  button.disabled = true;
+  button.textContent = 'Preparing geometry…';
+  try {
+    if (format === '3dm') await exportSpatial3dm(items);
+    else await exportSpatialDwg(items);
+    if (format === '3dm' || window.BATES_CAD_EXPORT_ENDPOINT) showToast(`${items.length.toLocaleString()} selected geometries downloaded.`);
+  } catch (error) {
+    console.error(error);
+    showToast(`Export failed: ${error.message}`);
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Download selected data';
+  }
+}
+
+function handleAddressInput() {
+  clearTimeout(addressSuggestionTimer);
+  const query = document.getElementById('address-search').value.trim();
+  activeSuggestionIndex = -1;
+
+  if (query.length < 3) {
+    hideAddressSuggestions();
+    return;
+  }
+
+  addressSuggestionTimer = setTimeout(() => fetchAddressSuggestions(query), 280);
+}
+
+function handleAddressKeydown(event) {
+  const box = document.getElementById('address-suggestions');
+  const isOpen = box.classList.contains('open');
+
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    if (isOpen && activeSuggestionIndex >= 0 && addressSuggestions[activeSuggestionIndex]) {
+      selectAddressSuggestion(activeSuggestionIndex);
+    } else {
+      geocodeAddress();
+    }
+  }
+
+  if (!isOpen) return;
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, addressSuggestions.length - 1);
+    renderAddressSuggestions();
+  }
+
+  if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, 0);
+    renderAddressSuggestions();
+  }
+
+  if (event.key === 'Escape') {
+    hideAddressSuggestions();
+  }
+}
+
+async function fetchAddressSuggestions(query) {
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=au&addressdetails=1&limit=5`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    addressSuggestions = await res.json();
+    activeSuggestionIndex = -1;
+    renderAddressSuggestions();
+  } catch (err) {
+    console.error(err);
+    addressSuggestions = [];
+    renderAddressSuggestions('Address suggestions unavailable.');
+  }
+}
+
+function renderAddressSuggestions(message = null) {
+  const box = document.getElementById('address-suggestions');
+  if (!box) return;
+
+  if (message) {
+    box.innerHTML = `<div class="address-suggestion-empty">${escapeHtml(message)}</div>`;
+    box.classList.add('open');
+    return;
+  }
+
+  if (!addressSuggestions.length) {
+    hideAddressSuggestions();
+    return;
+  }
+
+  box.innerHTML = addressSuggestions.map((item, index) => `
+    <div class="address-suggestion-item" style="${index === activeSuggestionIndex ? 'background:rgba(0,44,145,0.07);color:var(--text);' : ''}" onclick="selectAddressSuggestion(${index})">
+      ${escapeHtml(item.display_name)}
+    </div>
+  `).join('');
+  box.classList.add('open');
+}
+
+function showAddressSuggestionsIfAny() {
+  if (addressSuggestions.length) renderAddressSuggestions();
+}
+
+function hideAddressSuggestions() {
+  const box = document.getElementById('address-suggestions');
+  if (box) box.classList.remove('open');
+}
+
+function selectAddressSuggestion(index) {
+  const item = addressSuggestions[index];
+  if (!item) return;
+  document.getElementById('address-search').value = item.display_name;
+  hideAddressSuggestions();
+  zoomToAddressResult(item);
+}
+
+async function geocodeAddress() {
+  const query = document.getElementById('address-search').value.trim();
+  if (!query) return;
+  hideAddressSuggestions();
+  showToast('Searching address...');
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=au&addressdetails=1&limit=1`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    const results = await res.json();
+    if (!results.length) {
+      renderMapResults([], 'No address result found. Try a more specific address.');
+      return;
+    }
+    zoomToAddressResult(results[0]);
+  } catch (err) {
+    console.error(err);
+    renderMapResults([], 'Address search failed. Check internet access or try again.');
+  }
+}
+
+function zoomToAddressResult(result) {
+  if (!map || !result) return;
+  const lat = parseFloat(result.lat);
+  const lng = parseFloat(result.lon);
+  const point = L.latLng(lat, lng);
+  if (searchMarker) map.removeLayer(searchMarker);
+  searchMarker = L.marker(point).addTo(map).bindPopup(result.display_name).openPopup();
+  map.setView(point, 16);
+  const matches = findCoverageMatches(point);
+  renderMapResults(matches, matches.length ? null : 'This address does not appear to sit inside a mapped model coverage area yet.');
+}
+
+function findCoverageMatches(point) {
+  const visibleIds = new Set(currentFilteredModels.map(m => m.id));
+  return models.filter(m => {
+    if (!hasCoverage(m) || !visibleIds.has(m.id)) return false;
+    return geometryContainsLatLng(m.coverage, point);
+  });
+}
+
+function geometryContainsLatLng(geometry, latlng) {
+  if (!geometry) return false;
+  if (geometry.type === 'Polygon') {
+    return polygonContainsLatLng(geometry.coordinates, latlng);
+  }
+  if (geometry.type === 'MultiPolygon') {
+    return geometry.coordinates.some(coords => polygonContainsLatLng(coords, latlng));
+  }
+  return false;
+}
+
+function polygonContainsLatLng(rings, latlng) {
+  if (!rings || !rings.length) return false;
+  const point = [latlng.lng, latlng.lat];
+  const inOuter = pointInRing(point, rings[0]);
+  if (!inOuter) return false;
+  const inHole = rings.slice(1).some(ring => pointInRing(point, ring));
+  return !inHole;
+}
+
+function pointInRing(point, ring) {
+  const x = point[0], y = point[1];
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0], yi = ring[i][1];
+    const xj = ring[j][0], yj = ring[j][1];
+    const intersect = ((yi > y) !== (yj > y)) &&
+      (x < (xj - xi) * (y - yi) / ((yj - yi) || 0.0000001) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function renderMapResults(matches, message) {
+  const box = document.getElementById('map-results');
+  box.classList.add('open');
+  if (message) {
+    box.innerHTML = `<div class="result-heading">Coverage Result</div><div class="map-empty">${escapeHtml(message)}</div>`;
+    return;
+  }
+  box.innerHTML = `<div class="result-heading">Available model coverage</div>` + matches.map(m => `
+    <div class="map-result-card" onclick="openDetail(${m.id})">
+      <div class="map-result-name">${escapeHtml(m.name)}</div>
+      <div class="map-result-meta">${escapeHtml(m.city)} · ${escapeHtml(m.format)} · ${escapeHtml(m.size)}</div>
+    </div>
+  `).join('');
+}
+
+function hasCoverage(m) {
+  return !!(m && m.coverage && m.coverage.coordinates && m.coverage.coordinates.length);
+}
+
+function downloadDataJS() {
+  const code = `const libraryData = {\n  "models": ${JSON.stringify(models, null, 2)}\n};`;
+  const blob = new Blob([code], { type: 'text/javascript' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.js';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('Downloaded. Move this file into your folder to overwrite the old one.');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function escapeJs(value) {
+  return String(value ?? '')
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '');
+}
+
+// Unified Bates Smart Library navigation
+let activeLibrary = 'city';
+
+function switchLibrary(section, updateRoute = true) {
+  if (!LIBRARY_ROUTES[section]) return;
+  activeLibrary = section;
+  const isCity = section === 'city';
+  const isMaterials = section === 'materials';
+  const isFacade = section === 'facade';
+  const isPalette = section === 'palette';
+  document.querySelectorAll('.city-library-section').forEach(el => { el.hidden = !isCity; });
+  document.getElementById('materials-library').hidden = !isMaterials;
+  document.getElementById('facade-library').hidden = !isFacade;
+  document.getElementById('palette-library').hidden = !isPalette;
+  document.getElementById('city-library-tab').classList.toggle('active', isCity);
+  document.getElementById('materials-library-tab').classList.toggle('active', isMaterials);
+  document.getElementById('facade-library-tab').classList.toggle('active', isFacade);
+  document.getElementById('palette-library-tab').classList.toggle('active', isPalette);
+  document.getElementById('library-title').textContent = isCity ? 'City Model Library' : isMaterials ? 'Enscape Material Library' : isFacade ? 'Facade Design Library' : 'Colour Palette Library';
+  const cityAdminActions = document.getElementById('city-admin-actions');
+  if (cityAdminActions) cityAdminActions.style.display = isCity ? '' : 'none';
+
+  if (isCity) {
+    setView(currentView);
+  } else if (isMaterials) {
+    renderMaterials();
+  } else if (isPalette) {
+    renderPalette();
+  }
+
+  if (updateRoute) {
+    const nextHash = `#/${LIBRARY_ROUTES[section]}`;
+    if (window.location.hash !== nextHash) history.pushState(null, '', nextHash);
+  }
+}
+
+// Material library state and controls
+const materialState = {
+  status: 'all',
+  mapIndex: null,
+  materials: (typeof materialLibraryData !== 'undefined' && Array.isArray(materialLibraryData.materials))
+    ? JSON.parse(JSON.stringify(materialLibraryData.materials))
+    : []
+};
+
+function materialNormalise(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function materialSimilarity(a, b) {
+  const aTokens = new Set(materialNormalise(a).split(/\s+/).filter(Boolean));
+  const bTokens = new Set(materialNormalise(b).split(/\s+/).filter(Boolean));
+  if (!aTokens.size || !bTokens.size) return 0;
+  let hits = 0;
+  aTokens.forEach(token => { if (bTokens.has(token)) hits += 1; });
+  return hits / Math.max(aTokens.size, bTokens.size);
+}
+
+function nextMaterialId() {
+  const numbers = materialState.materials.map(m => Number((m.id || '').match(/\d+/)?.[0] || 0));
+  return `MAT-${String(Math.max(0, ...numbers) + 1).padStart(6, '0')}`;
+}
+
+function materialDuplicateCount() {
+  let count = 0;
+  for (let i = 0; i < materialState.materials.length; i += 1) {
+    for (let j = i + 1; j < materialState.materials.length; j += 1) {
+      if (materialSimilarity(materialState.materials[i].name, materialState.materials[j].name) >= 0.75) count += 1;
+    }
+  }
+  return count;
+}
+
+function refreshMaterialCategories() {
+  const select = document.getElementById('material-category-filter');
+  const current = select.value;
+  const categories = [...new Set(materialState.materials.map(m => m.category).filter(Boolean))].sort();
+  select.innerHTML = '<option value="">All categories</option>' + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  if (categories.includes(current)) select.value = current;
+}
+
+function getFilteredMaterials() {
+  const query = materialNormalise(document.getElementById('material-search').value);
+  const category = document.getElementById('material-category-filter').value;
+  const source = document.getElementById('material-source-filter').value;
+  const sort = document.getElementById('material-sort').value;
+  const list = materialState.materials.filter(material => {
+    if (materialState.status === 'mapped' && !material.mapped) return false;
+    if (materialState.status === 'unmapped' && material.mapped) return false;
+    if (category && material.category !== category) return false;
+    if (source && material.source !== source) return false;
+    const haystack = materialNormalise([material.id, material.name, material.category, material.finish, material.source, ...(material.aliases || []), material.notes].join(' '));
+    return !query || haystack.includes(query);
+  });
+  list.sort((a, b) => {
+    if (sort === 'category') return (a.category || '').localeCompare(b.category || '');
+    if (sort === 'status') return Number(b.mapped) - Number(a.mapped);
+    return (a.name || '').localeCompare(b.name || '');
+  });
+  return list;
+}
+
+function renderMaterials() {
+  refreshMaterialCategories();
+  const materials = getFilteredMaterials();
+  const total = materialState.materials.length;
+  const mapped = materialState.materials.filter(m => m.mapped).length;
+  document.getElementById('material-total').textContent = total;
+  document.getElementById('material-mapped').textContent = mapped;
+  document.getElementById('material-unmapped').textContent = total - mapped;
+  document.getElementById('material-dupes').textContent = materialDuplicateCount();
+
+  const grid = document.getElementById('materials-grid');
+  if (!materials.length) {
+    grid.innerHTML = '<div class="materials-empty">No materials match the current filters.</div>';
+    return;
+  }
+
+  grid.innerHTML = materials.map(material => {
+    const index = materialState.materials.indexOf(material);
+    return `
+      <article class="material-card">
+        <div class="material-preview" style="--material-colour:${escapeHtml(material.color || '#b7bbc2')}">
+          <span class="material-status ${material.mapped ? 'mapped' : 'unmapped'}">${material.mapped ? 'MAPPED' : 'UNMAPPED'}</span>
+        </div>
+        <div class="material-card-body">
+          <div class="material-id">${escapeHtml(material.id || 'UNREGISTERED')} · ${escapeHtml(material.source || 'Library')}</div>
+          <div class="material-name">${escapeHtml(material.name || 'Unnamed Material')}</div>
+          <div class="material-meta">${escapeHtml(material.category || 'Uncategorised')}${material.finish ? ` · ${escapeHtml(material.finish)}` : ''}</div>
+          <div class="material-aliases">${(material.aliases || []).slice(0, 3).map(alias => `<span class="material-chip">${escapeHtml(alias)}</span>`).join('')}</div>
+        </div>
+        <div class="material-card-actions">
+          ${material.mapped ? `<button class="btn" onclick="openMaterialEditor(${index})">Edit</button>` : `<button class="btn" onclick="openMaterialMapper(${index})">Map</button>`}
+          <button class="btn" onclick="removeMaterial(${index})">Remove</button>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+function openMaterialEditor(index = null) {
+  const isNew = index === null;
+  const material = isNew ? { id:'', name:'', category:'', finish:'', source:'Library', color:'#b9a48a', aliases:[], notes:'' } : materialState.materials[index];
+  document.getElementById('material-edit-index').value = isNew ? '' : index;
+  document.getElementById('material-editor-title').textContent = isNew ? 'Add Material' : 'Edit Material';
+  document.getElementById('material-name').value = material.name || '';
+  document.getElementById('material-id').value = material.id || '';
+  document.getElementById('material-category').value = material.category || '';
+  document.getElementById('material-finish').value = material.finish || '';
+  document.getElementById('material-source').value = material.source || 'Library';
+  document.getElementById('material-colour').value = material.color || '#b9a48a';
+  document.getElementById('material-aliases').value = (material.aliases || []).join(', ');
+  document.getElementById('material-notes').value = material.notes || '';
+  document.getElementById('material-editor').showModal();
+}
+
+function openMaterialMapper(index) {
+  materialState.mapIndex = index;
+  const material = materialState.materials[index];
+  const targets = materialState.materials.filter(m => m.mapped && m.source === 'Library' && m.id);
+  document.getElementById('material-map-name').textContent = material.name;
+  document.getElementById('material-map-target').innerHTML = targets.map(m => `<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} — ${escapeHtml(m.name)}</option>`).join('');
+  document.getElementById('material-mapper').showModal();
+}
+
+function removeMaterial(index) {
+  const material = materialState.materials[index];
+  if (!material || !confirm(`Remove ${material.name} from the material library?`)) return;
+  materialState.materials.splice(index, 1);
+  renderMaterials();
+  showToast('Material removed.');
+}
+
+function downloadMaterialDataJS() {
+  const code = `const materialLibraryData = ${JSON.stringify({ schema:'BatesMaterialLibrary/0.2', materials:materialState.materials }, null, 2)};`;
+  downloadTextFile('materials-data.js', code, 'text/javascript');
+  showToast('materials-data.js downloaded. Replace the existing file in your GitHub folder.');
+}
+
+function exportMaterialJSON() {
+  const payload = JSON.stringify({ schema:'BatesMaterialLibrary/0.2', exportedAt:new Date().toISOString(), materials:materialState.materials }, null, 2);
+  downloadTextFile('BatesMaterialLibrary.json', payload, 'application/json');
+  showToast('Material library exported.');
+}
+
+function downloadTextFile(filename, content, type) {
+  const blob = new Blob([content], { type });
+  const anchor = document.createElement('a');
+  anchor.href = URL.createObjectURL(blob);
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(anchor.href), 1000);
+}
+
+function initialiseMaterialLibrary() {
+  document.getElementById('material-search').addEventListener('input', renderMaterials);
+  ['material-category-filter', 'material-source-filter', 'material-sort'].forEach(id => document.getElementById(id).addEventListener('change', renderMaterials));
+  document.querySelectorAll('[data-material-status]').forEach(button => button.addEventListener('click', () => {
+    materialState.status = button.dataset.materialStatus;
+    document.querySelectorAll('[data-material-status]').forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    renderMaterials();
+  }));
+  document.getElementById('material-add-btn').addEventListener('click', () => openMaterialEditor());
+  document.getElementById('material-export-btn').addEventListener('click', exportMaterialJSON);
+  document.getElementById('material-save-data-btn').addEventListener('click', downloadMaterialDataJS);
+  document.getElementById('material-import-btn').addEventListener('click', () => document.getElementById('material-file-input').click());
+  document.getElementById('material-editor-close').addEventListener('click', () => document.getElementById('material-editor').close());
+  document.getElementById('material-editor-cancel').addEventListener('click', () => document.getElementById('material-editor').close());
+  document.getElementById('material-mapper-close').addEventListener('click', () => document.getElementById('material-mapper').close());
+  document.getElementById('material-mapper-cancel').addEventListener('click', () => document.getElementById('material-mapper').close());
+
+  document.getElementById('material-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const rawIndex = document.getElementById('material-edit-index').value;
+    const index = rawIndex === '' ? null : Number(rawIndex);
+    const material = {
+      id: document.getElementById('material-id').value.trim() || nextMaterialId(),
+      name: document.getElementById('material-name').value.trim(),
+      category: document.getElementById('material-category').value.trim() || 'Uncategorised',
+      finish: document.getElementById('material-finish').value.trim(),
+      source: document.getElementById('material-source').value,
+      color: document.getElementById('material-colour').value,
+      mapped: true,
+      aliases: document.getElementById('material-aliases').value.split(',').map(value => value.trim()).filter(Boolean),
+      notes: document.getElementById('material-notes').value.trim()
+    };
+    if (index === null) materialState.materials.push(material); else materialState.materials[index] = material;
+    document.getElementById('material-editor').close();
+    renderMaterials();
+    showToast(index === null ? 'Material added.' : 'Material updated.');
+  });
+
+  document.getElementById('material-map-confirm').addEventListener('click', () => {
+    const source = materialState.materials[materialState.mapIndex];
+    const target = materialState.materials.find(m => m.id === document.getElementById('material-map-target').value && m.source === 'Library');
+    if (!source || !target) return;
+    const sourceName = source.name;
+    source.id = target.id;
+    source.name = target.name;
+    source.category = target.category;
+    source.finish = target.finish || source.finish;
+    source.mapped = true;
+    source.aliases = [...new Set([...(source.aliases || []), sourceName])];
+    document.getElementById('material-mapper').close();
+    renderMaterials();
+    showToast(`${sourceName} mapped to ${target.id}.`);
+  });
+
+  document.getElementById('material-file-input').addEventListener('change', async event => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text());
+      const materials = Array.isArray(parsed) ? parsed : parsed.materials;
+      if (!Array.isArray(materials)) throw new Error('The JSON file must contain a materials array.');
+      materialState.materials = materials;
+      renderMaterials();
+      showToast(`${materials.length} materials imported.`);
+    } catch (error) {
+      showToast(`Import failed: ${error.message}`);
+    }
+    event.target.value = '';
+  });
+
+  renderMaterials();
+}
+
+function initSecretModelUnlock() {
+  const tab = document.getElementById('secret-model-tab');
+  if (!tab) return;
+
+  let isDragging = false;
+  let startY = 0;
+  let currentPull = 0;
+  const unlockDistance = 120;
+
+  const unlockSecretModel = () => {
+    if (secretModelUnlocked) return;
+    secretModelUnlocked = true;
+    document.body.classList.add('secret-model-mode');
+    tab.classList.add('unlocked');
+
+  };
+
+  const getPointerY = (event) => {
+    if (event.touches && event.touches.length) return event.touches[0].clientY;
+    return event.clientY;
+  };
+
+  const startDrag = (event) => {
+    if (secretModelUnlocked) return;
+    isDragging = true;
+    startY = getPointerY(event);
+    currentPull = 0;
+    tab.classList.add('dragging');
+    event.preventDefault();
+  };
+
+  const moveDrag = (event) => {
+    if (!isDragging || secretModelUnlocked) return;
+    const y = getPointerY(event);
+    currentPull = Math.max(0, startY - y);
+    const easedPull = Math.min(currentPull, 150);
+    tab.style.transform = `translateX(-50%) translateY(-${easedPull}px)`;
+    tab.style.width = `${Math.min(72 + currentPull * 0.45, 136)}px`;
+    tab.style.height = `${Math.min(18 + currentPull * 0.12, 34)}px`;
+
+    if (currentPull >= unlockDistance) {
+      endDrag();
+      unlockSecretModel();
+    }
+    event.preventDefault();
+  };
+
+  const endDrag = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    tab.classList.remove('dragging');
+
+    if (!secretModelUnlocked) {
+      tab.style.transform = 'translateX(-50%) translateY(0)';
+      tab.style.width = '';
+      tab.style.height = '';
+    }
+  };
+
+  tab.addEventListener('mousedown', startDrag);
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('mouseup', endDrag);
+
+  tab.addEventListener('touchstart', startDrag, { passive: false });
+  window.addEventListener('touchmove', moveDrag, { passive: false });
+  window.addEventListener('touchend', endDrag);
+
+  tab.addEventListener('dblclick', unlockSecretModel);
+}
+
+updateCityDropdown();
+applyFilters();
+initSecretModelUnlock();
+initialiseMaterialLibrary();
+window.addEventListener('popstate', applyLibraryRoute);
+window.addEventListener('hashchange', applyLibraryRoute);
+applyLibraryRoute();
+</script>
+</body>
+</html>
