@@ -371,11 +371,19 @@ function renderAbout(){
   q('aboutAside').innerHTML=copy.aboutBlocks.map(block=>`<div class="about-block"><h2>${block[0]}</h2><p>${block[1]}</p></div>`).join('');
 }
 
+
+function applyStudioCaseCopy(){
+  document.querySelectorAll('.studio-i18n').forEach(el=>{
+    const value=lang==='zh'?el.dataset.zh:el.dataset.en;
+    if(value)el.textContent=value;
+  });
+}
+
 function applyUI(){
   const copy=t();document.documentElement.lang=lang==='en'?'en':'zh-CN';
   q('brandRole').textContent=copy.roleLine;q('about').textContent=copy.about;q('theme').textContent=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;q('index').textContent=copy.index;q('langToggle').textContent=copy.lang;q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
-  renderAbout();buildIndex();build();
+  renderAbout();applyStudioCaseCopy();buildIndex();build();
   if(projectEl.classList.contains('visible'))openProject(currentProject);
   updateEditorLabels();
 }

@@ -406,56 +406,56 @@
     "en": {
       "title": "STUDIO LIBRARY",
       "brief": "DESIGN KNOWLEDGE / INTERNAL TOOLING",
-      "meta": "PRODUCT / INFORMATION ARCHITECTURE / AI INTERFACE",
+      "meta": "PRODUCT / INFORMATION ARCHITECTURE / FRONT-END",
       "year": "2026",
-      "role": "CONCEPT / UX / PROTOTYPING",
+      "role": "CONCEPT / INFORMATION ARCHITECTURE / UX / PROTOTYPING",
       "tools": "HTML / CSS / JS / MAPS / AI-ASSISTED PROTOTYPING",
       "output": "INTERACTIVE KNOWLEDGE SYSTEM",
-      "desc": "A working interface concept for bringing fragmented studio resources — city models, materials, facade guidance and colour references — into one coherent design knowledge system.",
-      "question": "How can studio knowledge become easier to find, understand and use without exposing the complexity of where every resource is stored?",
-      "built": "I organised recurring design resources into four clear entry points and prototyped a searchable, map-aware interface with a conversational assistant layer. The embedded portfolio version below uses fictional demonstration data while preserving the interaction and information architecture.",
-      "judgement": "The interface deliberately prioritises a few high-confidence paths over a large directory. The aim is to make the next useful action obvious: browse a resource, search by context, or ask the system directly.",
+      "desc": "A redesign of the studio knowledge entry point: moving recurring design resources from fragmented technology pages and tool-led navigation into one coherent, task-oriented interface.",
+      "question": "The knowledge already existed across Insite pages, software guides and specialist resources. How could the entry point be redesigned so a designer can find what they need without first knowing where the studio stores it?",
+      "built": "I reviewed the existing Technology navigation and knowledge pages, consolidated recurring resources into four high-confidence categories, and built a searchable, map-aware web prototype. The public portfolio version preserves the information architecture and interaction logic while replacing proprietary content with fictional demonstration data.",
+      "judgement": "The key decision was to stop exposing internal structure. I reduced a long list of tool and page names into a small number of resource-led paths — prioritising the user’s design intent over the way information happens to be stored.",
       "media": [],
       "taste": [
         [
           "KEEP",
-          "Four high-confidence entry points that match how designers actually look for resources."
+          "Four high-confidence entry points that match recurring design tasks and make the next useful action obvious."
         ],
         [
           "REMOVE",
-          "Internal folder structures, network paths and implementation details from the public-facing experience."
+          "Long tool directories, internal folder logic and implementation details that force users to understand the system before using it."
         ],
         [
           "TEST",
-          "Whether browsing, spatial search or conversational retrieval becomes the fastest path for different tasks."
+          "How search, spatial browsing and progressively disclosed detail can reduce the time between a design question and the resource needed to answer it."
         ]
       ]
     },
     "zh": {
       "title": "STUDIO LIBRARY",
       "brief": "设计知识 / 内部工具",
-      "meta": "产品 / 信息架构 / AI 界面",
+      "meta": "产品 / 信息架构 / 前端",
       "year": "2026",
-      "role": "概念 / UX / 原型",
-      "tools": "HTML / CSS / JS / 地图 / AI 辅助原型",
+      "role": "概念 / 信息架构 / UX / 原型开发",
+      "tools": "HTML / CSS / JS / 地图 / AI 辅助原型开发",
       "output": "交互式知识系统",
-      "desc": "一个把分散的工作室资源——城市模型、材质、立面设计指南与色彩参考——重新组织成统一设计知识系统的可交互原型。",
-      "question": "如何让工作室知识更容易被找到、理解和使用，同时不把复杂的内部存储结构直接暴露给设计师？",
-      "built": "我把高频设计资源整理成四个清晰入口，并原型化了搜索、地图与对话式助手等交互。下方嵌入的作品集版本使用虚构演示数据，但保留真实的信息架构和交互逻辑。",
-      "judgement": "这个界面刻意选择少量高置信度路径，而不是展示庞大的目录。目标是让下一步动作足够明确：浏览资源、按空间位置搜索，或直接向系统提问。",
+      "desc": "重新设计事务所设计知识的入口：把分散在 Technology 页面与软件导航中的高频资源，整合为一个以任务为导向的统一界面。",
+      "question": "原有知识已经存在于 Insite 页面、软件指南与各类专业资源中。如何重新设计入口，让设计师不需要先知道资料被存在哪里，也能快速找到自己需要的内容？",
+      "built": "我梳理了原有的 Technology 导航与知识页面，把高频设计资源整合为四个高置信度类别，并搭建了支持搜索与地图浏览的网页原型。公开作品集版本保留原始信息架构与交互逻辑，同时以虚构示例数据替代内部专有内容。",
+      "judgement": "最关键的判断，是停止把内部组织结构直接暴露给用户。我把长列表式的软件与页面入口压缩为少量以资源和任务为中心的路径，让“设计师想做什么”优先于“文件实际上被放在哪里”。",
       "media": [],
       "taste": [
         [
           "保留",
-          "四个与设计师真实查找习惯对应的高置信度入口。"
+          "四个对应高频设计任务的明确入口，让下一步操作不需要解释就能被理解。"
         ],
         [
-          "去除",
-          "内部文件夹结构、网络路径与实现细节。"
+          "移除",
+          "长列表式工具目录、内部文件夹逻辑，以及要求用户先理解系统实现方式的细节。"
         ],
         [
           "测试",
-          "面对不同任务时，浏览、空间搜索和对话式检索哪一种路径最快。"
+          "搜索、空间浏览与渐进式信息展示，能否缩短从“提出设计问题”到“找到可用资源”的路径。"
         ]
       ]
     }
