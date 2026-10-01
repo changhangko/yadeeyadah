@@ -15,6 +15,46 @@ let mutationInteracted=false;
 
 const q=id=>document.getElementById(id);
 
+/* ---------- Reader text size ---------- */
+const TEXT_SCALE_DEFAULT=1.2;
+const TEXT_SCALE_MIN=.9;
+const TEXT_SCALE_MAX=1.5;
+let textScale=Number.parseFloat(localStorage.getItem('garry_portfolio_text_scale'));
+if(!Number.isFinite(textScale))textScale=TEXT_SCALE_DEFAULT;
+textScale=Math.min(TEXT_SCALE_MAX,Math.max(TEXT_SCALE_MIN,textScale));
+
+function applyTextScale(){
+  textScale=Math.round(textScale*10)/10;
+  document.documentElement.style.setProperty('--content-scale',String(textScale));
+  const rootStyle=document.documentElement.style;
+  rootStyle.setProperty('--content-9',`${(9*textScale).toFixed(1)}px`);
+  rootStyle.setProperty('--content-10',`${(10*textScale).toFixed(1)}px`);
+  rootStyle.setProperty('--content-12',`${(12*textScale).toFixed(1)}px`);
+  rootStyle.setProperty('--content-14',`${(14*textScale).toFixed(1)}px`);
+  rootStyle.setProperty('--content-18',`${(18*textScale).toFixed(1)}px`);
+  document.querySelectorAll('.text-size-value').forEach(el=>{
+    el.textContent=`${Math.round(textScale*100)}%`;
+  });
+  document.querySelectorAll('[data-text-delta]').forEach(btn=>{
+    const delta=Number.parseFloat(btn.dataset.textDelta)||0;
+    btn.disabled=(delta<0&&textScale<=TEXT_SCALE_MIN+.001)||(delta>0&&textScale>=TEXT_SCALE_MAX-.001);
+  });
+  localStorage.setItem('garry_portfolio_text_scale',String(textScale));
+}
+
+function bindTextScaleControls(){
+  document.querySelectorAll('[data-text-delta]').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const delta=Number.parseFloat(btn.dataset.textDelta)||0;
+      textScale=Math.min(TEXT_SCALE_MAX,Math.max(TEXT_SCALE_MIN,textScale+delta));
+      applyTextScale();
+    });
+  });
+  applyTextScale();
+}
+
+
 async function loadData(){
   const [projectsRes, photoRes] = await Promise.all([fetch('/data/projects.json'), fetch('/data/photography.json')]);
   if(!projectsRes.ok || !photoRes.ok) throw new Error('Portfolio data failed to load.');
@@ -474,6 +514,7 @@ function restartProfileDecode(){
 }
 
 function bindGlobal(){
+  bindTextScaleControls();
   q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
   q('langToggle').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';localStorage.setItem('garry_portfolio_lang',lang);applyUI();});
   editProjectBtn.addEventListener('click',()=>editMode?exitEditMode(false):enterEditMode());

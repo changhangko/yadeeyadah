@@ -10,22 +10,30 @@
 <body>
 <header>
  <div class="brand">GARRY ZHANG<br><span class="muted" id="brandRole"></span></div>
- <div class="controls"><span id="editorIndicator" style="display:none">[ EDITOR ON ]</span><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
+ <div class="controls"><span class="text-size-control" aria-label="Text size">
+ <button class="text-size-btn" data-text-delta="-0.1" aria-label="Decrease text size">A−</button>
+ <span class="text-size-value" aria-live="polite">120%</span>
+ <button class="text-size-btn" data-text-delta="0.1" aria-label="Increase text size">A+</button>
+</span><span id="editorIndicator" style="display:none">[ EDITOR ON ]</span><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
 </header>
 <main id="genome" aria-label="Selected portfolio projects"></main>
+
 <div id="interactionHint" class="interaction-hint" aria-hidden="true">
  <div class="interaction-hint-inner">
   <div class="interaction-hint-kicker" id="interactionHintKicker">MUTATION → PROJECT</div>
   <div class="interaction-hint-line" id="interactionHintLine"></div>
  </div>
 </div>
-
 <footer><span id="footerLeft"></span><span id="footerRight"></span></footer>
 <section id="project" class="overlay" aria-hidden="true">
  <div class="overlay-inner">
   <div class="phead">
    <span id="pid"></span>
-   <div class="project-head-actions"><button id="editProject" style="display:none">[ EDIT ]</button><button id="close"></button></div>
+   <div class="project-head-actions"><span class="text-size-control text-size-control-project" aria-label="Text size">
+ <button class="text-size-btn" data-text-delta="-0.1" aria-label="Decrease text size">A−</button>
+ <span class="text-size-value" aria-live="polite">120%</span>
+ <button class="text-size-btn" data-text-delta="0.1" aria-label="Increase text size">A+</button>
+</span><button id="editProject" style="display:none">[ EDIT ]</button><button id="close"></button></div>
   </div>
   <div class="editor-bar" id="editorBar" aria-hidden="true">
    <div class="editor-status"><span id="editorStatus">EDIT MODE</span><span class="editor-hint" id="editorHint">CLICK TEXT TO EDIT · CHANGES ARE LOCAL UNTIL EXPORTED</span></div>
