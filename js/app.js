@@ -273,7 +273,7 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProj
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
-const EDITOR_PASSWORD='change-this-password';
+const EDITOR_PASSWORD='685536';
 const editParams=new URLSearchParams(window.location.search);
 let editorUnlocked=false;
 if(editParams.get('edit')==='1'){
