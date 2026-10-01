@@ -9,6 +9,9 @@ let zones=[], currentProject=0, lang=localStorage.getItem('garry_portfolio_lang'
 let editMode=false, editSnapshot=null, dirty=false;
 let armedMutation=null;
 let transitionRunning=false;
+let interactionHintTimer=null;
+let interactionHintShown=false;
+let mutationInteracted=false;
 
 const q=id=>document.getElementById(id);
 
@@ -39,6 +42,53 @@ function mutationRows(count,total){
     if(!selected.includes(row)) selected.push(row);
   }
   return selected;
+}
+
+function interactionHintCopy(){
+  const dark=!document.body.classList.contains('light');
+  if(lang==='zh') return {kicker:'变异 → 项目',line:dark?'点击白色基因突变进入项目':'点击黑色基因突变进入项目'};
+  return {kicker:'MUTATION → PROJECT',line:dark?'CLICK A WHITE MUTATION TO ENTER A PROJECT':'CLICK A BLACK MUTATION TO ENTER A PROJECT'};
+}
+function scrambleHintLine(el,target){
+  const chars='ACGT';let step=0,max=9;clearInterval(el._hintFlipTimer);
+  el._hintFlipTimer=setInterval(()=>{
+    step++;let out='';
+    for(let i=0;i<target.length;i++){
+      const ch=target[i];
+      if(ch===' '||ch==='→'||ch==='/'||ch==='·'){out+=ch;continue}
+      const settle=3+Math.floor((i/Math.max(1,target.length))*5);
+      out+=step>=settle?ch:chars[Math.random()*4|0];
+    }
+    el.textContent=out;
+    if(step>=max){el.textContent=target;clearInterval(el._hintFlipTimer)}
+  },56);
+}
+function showInteractionHint(){
+  if(interactionHintShown||mutationInteracted||transitionRunning||document.querySelector('.overlay.visible'))return;
+  const hint=q('interactionHint');if(!hint)return;
+  const copy=interactionHintCopy();
+  q('interactionHintKicker').textContent=copy.kicker;
+  scrambleHintLine(q('interactionHintLine'),copy.line);
+  hint.classList.remove('flipping-out');
+  hint.classList.add('visible','flipping-in');
+  hint.setAttribute('aria-hidden','false');
+  interactionHintShown=true;
+  setTimeout(()=>hint.classList.remove('flipping-in'),700);
+}
+function hideInteractionHint(){
+  clearTimeout(interactionHintTimer);
+  const hint=q('interactionHint');
+  if(!hint||!hint.classList.contains('visible'))return;
+  hint.classList.remove('flipping-in');
+  hint.classList.add('flipping-out');
+  hint.setAttribute('aria-hidden','true');
+  setTimeout(()=>hint.classList.remove('visible','flipping-out'),340);
+}
+function registerMutationInteraction(){mutationInteracted=true;hideInteractionHint()}
+function scheduleInteractionHint(){
+  clearTimeout(interactionHintTimer);
+  if(interactionHintShown||mutationInteracted)return;
+  interactionHintTimer=setTimeout(showInteractionHint,5000);
 }
 
 function build(){
@@ -72,6 +122,7 @@ function build(){
     genome.appendChild(row);
   }
   bind();
+  scheduleInteractionHint();
 }
 
 function flipLine(el,target,delay=0){
@@ -101,10 +152,11 @@ function activate(row){
 function bind(){
   document.querySelectorAll('.mutation').forEach(m=>{
     const row=m.closest('.zone');
-    m.addEventListener('mouseenter',()=>{if(!armedMutation)activate(row)});
-    m.addEventListener('focus',()=>{if(!armedMutation)activate(row)});
+    m.addEventListener('mouseenter',()=>{registerMutationInteraction();if(!armedMutation)activate(row)});
+    m.addEventListener('focus',()=>{registerMutationInteraction();if(!armedMutation)activate(row)});
     m.addEventListener('click',e=>{
       e.stopPropagation();
+      registerMutationInteraction();
       if(transitionRunning)return;
       if(armedMutation===row){
         const projectIndex=+row.dataset.p;
@@ -131,8 +183,8 @@ function bind(){
       if(armedMutation!==row)row.classList.remove('active');
     });
     const d=row.querySelector('.decode');
-    d.addEventListener('mouseenter',()=>row.classList.add('active'));
-    d.addEventListener('click',e=>{e.stopPropagation();transitionToProject(+row.dataset.p)});
+    d.addEventListener('mouseenter',()=>{registerMutationInteraction();row.classList.add('active')});
+    d.addEventListener('click',e=>{e.stopPropagation();registerMutationInteraction();transitionToProject(+row.dataset.p)});
     d.addEventListener('keydown',e=>{
       if(e.key==='Enter'||e.key===' '){e.preventDefault();transitionToProject(+row.dataset.p)}
     });

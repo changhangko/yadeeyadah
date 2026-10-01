@@ -25,6 +25,23 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
 .zone.active .decode{display:block}
 .decode .line{height:21px;white-space:pre;overflow:hidden}
 .decode .title{font-weight:700}
+
+/* ---------- Homepage inactivity hint ---------- */
+.interaction-hint{position:fixed;left:50%;top:50%;z-index:18;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 48px));pointer-events:none;opacity:0;visibility:hidden;perspective:900px}
+.interaction-hint.visible{opacity:1;visibility:visible}
+.interaction-hint-inner{display:flex;flex-direction:column;align-items:center;gap:8px}
+.interaction-hint-kicker,.interaction-hint-line{width:max-content;max-width:100%;text-align:center;text-transform:uppercase;font-family:"Courier New",Courier,monospace;transform-origin:50% 50%;backface-visibility:hidden}
+.interaction-hint-kicker{padding:5px 8px 6px;background:var(--fg);color:var(--bg);font-size:10px;line-height:1;font-weight:700;letter-spacing:.14em}
+.interaction-hint-line{padding:6px 9px 7px;background:var(--bg);color:var(--fg);border:1px solid var(--fg);font-size:11px;line-height:1.25;font-weight:700;letter-spacing:.11em}
+.interaction-hint.flipping-in .interaction-hint-kicker,.interaction-hint.flipping-in .interaction-hint-line{animation:interactionHintFlipIn .52s cubic-bezier(.2,.72,.2,1) both}
+.interaction-hint.flipping-in .interaction-hint-line{animation-delay:.08s}
+.interaction-hint.flipping-out .interaction-hint-kicker,.interaction-hint.flipping-out .interaction-hint-line{animation:interactionHintFlipOut .28s cubic-bezier(.45,0,.8,.2) both}
+.interaction-hint.flipping-out .interaction-hint-line{animation-delay:.03s}
+@keyframes interactionHintFlipIn{0%{transform:rotateX(92deg);opacity:0}48%{transform:rotateX(-12deg);opacity:1}72%{transform:rotateX(5deg)}100%{transform:rotateX(0);opacity:1}}
+@keyframes interactionHintFlipOut{from{transform:rotateX(0);opacity:1}to{transform:rotateX(-88deg);opacity:0}}
+@media(max-width:700px){.interaction-hint{width:calc(100vw - 32px)}.interaction-hint-kicker{font-size:9px}.interaction-hint-line{font-size:9px;letter-spacing:.09em}}
+@media(prefers-reduced-motion:reduce){.interaction-hint.flipping-in .interaction-hint-kicker,.interaction-hint.flipping-in .interaction-hint-line,.interaction-hint.flipping-out .interaction-hint-kicker,.interaction-hint.flipping-out .interaction-hint-line{animation:none}}
+
 .overlay{position:fixed;z-index:50;inset:0;background:var(--bg);display:none;overflow:auto}
 .overlay.visible{display:block}
 .overlay-inner{min-height:100%;padding:25px}
