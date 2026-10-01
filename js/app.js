@@ -269,7 +269,7 @@ const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
-const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame');
+const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
@@ -373,9 +373,11 @@ function openProject(i){
   pmedia.innerHTML=p.media.map((m,j)=>`<div class="media" data-media-index="${j}"><button class="editor-remove remove-media" data-remove-media="${j}">[ × ]</button><span><b>${String(j+1).padStart(2,'0')}</b></span><span class="media-text" data-editable="true" data-media="${j}">${escapeHtml(m)}</span></div>`).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
   if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  const hasArchitecture=base.id==='05';
   const hasEmbeddedLibrary=base.id==='07';
+  if(architectureProject){architectureProject.hidden=!hasArchitecture;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
-  pmedia.style.display=hasEmbeddedLibrary?'none':'';
+  pmedia.style.display=(hasArchitecture||hasEmbeddedLibrary)?'none':'';
   if(hasEmbeddedLibrary&&studioLibraryFrame){
     // Reload the demo when the case study is reopened so its blue home screen is always the entry state.
     const src=studioLibraryFrame.getAttribute('src');
@@ -407,7 +409,7 @@ function renderAbout(){
 
 
 function applyStudioCaseCopy(){
-  document.querySelectorAll('.studio-i18n').forEach(el=>{
+  document.querySelectorAll('.studio-i18n, .arch-i18n').forEach(el=>{
     const value=lang==='zh'?el.dataset.zh:el.dataset.en;
     if(value)el.textContent=value;
   });

@@ -123,3 +123,11 @@ Project 07 embeds a sanitised interactive demo from `/projects/studio-library/`.
 
 ## Apple-like framed preview
 The Studio Library case study now uses a rounded product-showcase frame with persistent live interaction and hidden iframe scrollbars. The embedded demo remains at `/projects/studio-library/index.html`.
+
+## SPACE / Selected Architecture
+Project 05 has been rebuilt as a single architectural-design case study:
+- 60 Denmark Street — primary case study
+- Iglu Arden — short facade / feasibility study
+- 87 Queensbridge / OSK — short tower-form competition study
+
+Portfolio image assets are curated crops extracted from the supplied project PDFs. Original submission PDFs are not included in this deployable package.

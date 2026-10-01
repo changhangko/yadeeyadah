@@ -270,66 +270,58 @@
   {
     "id": "05",
     "en": {
-      "title": "SPATIAL SYSTEMS",
-      "brief": "PARAMETRIC DESIGN WORKFLOWS",
-      "meta": "RHINO / GRASSHOPPER / PYTHON / REVIT",
-      "year": "2024–26",
-      "role": "COMPUTATIONAL DESIGN / AUTOMATION",
-      "tools": "RHINO / GRASSHOPPER / PYTHON / REVIT",
-      "output": "REUSABLE DESIGN SYSTEMS",
-      "desc": "Computational systems that connect design intent, geometry, data and BIM — turning repeated modelling or analysis into reusable workflows rather than one-off scripts.",
-      "question": "How can a computational workflow stay flexible enough for design exploration while becoming reliable enough for a wider team to use?",
-      "built": "Parametric workflows for modelling, feasibility, data processing and Rhino–Revit coordination. The emphasis is on reusable logic and readable inputs, so the tool supports design decisions instead of becoming another specialist dependency.",
-      "judgement": "A good computational tool exposes the decisions that matter and hides the complexity that does not. I treat parameter count, naming and failure states as design choices, not engineering clean-up.",
-      "media": [
-        "PARAMETRIC SYSTEM",
-        "DESIGN SPACE / VARIATION",
-        "RHINO ↔ REVIT / WORKFLOW"
-      ],
+      "title": "SPACE",
+      "brief": "ARCHITECTURAL DESIGN / SELECTED PROFESSIONAL WORK",
+      "meta": "MASTERPLANNING / FEASIBILITY / COMPETITION / COMPUTATIONAL ANALYSIS",
+      "year": "2024–25",
+      "role": "DESIGN / COMPUTATIONAL ANALYSIS / VISUAL COMMUNICATION",
+      "tools": "RHINO / GRASSHOPPER / LADYBUG / REVIT / ENSCAPE",
+      "output": "ARCHITECTURAL DESIGN / BID + COMPETITION PACKAGES",
+      "desc": "Selected professional architecture work focused on the decisions behind form: solar access, public realm, street scale, façade expression, views and environmental performance.",
+      "question": "How can architectural form respond to yield and technical constraints without losing spatial quality, identity and human scale?",
+      "built": "The project brings together three professional studies. 60 Denmark Street is presented as the main case study, using massing, solar analysis, physical modelling and public-realm design. Iglu Arden and 87 Queensbridge extend the same design thinking into façade systems and high-rise form.",
+      "judgement": "I am most interested in design moves that have visible consequences. A change in orientation, proportion or geometry should improve something tangible — daylight, views, public space, efficiency or the experience of the street — rather than exist as form for its own sake.",
+      "media": [],
       "taste": [
         [
           "KEEP",
-          "A small number of parameters with visible consequences."
+          "Design moves with measurable spatial consequences: better light, views, public realm or efficiency."
         ],
         [
           "REMOVE",
-          "Controls that are technically possible but produce no meaningful design choice."
+          "Formal complexity that cannot explain what it improves."
         ],
         [
           "TEST",
-          "Whether another designer can understand the system without opening the script."
+          "Bring computational feedback earlier into massing so performance and architectural judgement evolve together."
         ]
       ]
     },
     "zh": {
-      "title": "空间系统",
-      "brief": "参数化设计工作流",
-      "meta": "RHINO / GRASSHOPPER / PYTHON / REVIT",
-      "year": "2024–26",
-      "role": "计算设计 / 自动化",
-      "tools": "RHINO / GRASSHOPPER / PYTHON / REVIT",
-      "output": "可复用设计系统",
-      "desc": "连接设计意图、几何、数据与 BIM 的计算系统——把重复建模或分析转化为可复用的工作流，而不是一次性脚本。",
-      "question": "一个计算工作流怎样既能保留设计探索的弹性，又足够稳定到可以让更广泛的团队使用？",
-      "built": "参数化工作流覆盖建模、可行性研究、数据处理以及 Rhino–Revit 协同。重点在于可复用逻辑与可读输入，让工具服务于设计判断，而不是变成新的专业依赖。",
-      "judgement": "好的计算工具会暴露真正重要的决策，同时隐藏不必要的复杂度。我把参数数量、命名方式与失败状态都当成设计选择，而不是单纯的工程收尾。",
-      "media": [
-        "参数系统",
-        "设计空间 / 变化",
-        "RHINO ↔ REVIT / 工作流"
-      ],
+      "title": "空间",
+      "brief": "建筑设计 / 专业项目精选",
+      "meta": "总体规划 / 可行性研究 / 竞赛 / 计算分析",
+      "year": "2024–25",
+      "role": "设计 / 计算分析 / 视觉表达",
+      "tools": "RHINO / GRASSHOPPER / LADYBUG / REVIT / ENSCAPE",
+      "output": "建筑设计 / 投标 + 竞赛方案",
+      "desc": "精选专业建筑项目，重点不是最终造型本身，而是造型背后的判断：日照、公共空间、街道尺度、立面表达、景观视野与环境性能。",
+      "question": "建筑形式如何在产出与技术约束之间取得平衡，同时保留空间品质、识别性与人的尺度？",
+      "built": "该项目整合三个专业案例。60 Denmark Street 作为主案例，通过体量、日照分析、实体模型与公共空间设计展开；Iglu Arden 与 87 Queensbridge 则将相同的设计思维延伸到立面系统和高层建筑形体。",
+      "judgement": "我更关注会产生清晰后果的设计动作。朝向、比例或几何的变化应该真正改善日照、视野、公共空间、效率或街道体验，而不是为了形式本身而增加复杂度。",
+      "media": [],
       "taste": [
         [
           "保留",
-          "少量但后果清晰可见的参数。"
+          "能够带来可衡量空间结果的设计动作：更好的日照、视野、公共空间或效率。"
         ],
         [
-          "去除",
-          "技术上存在但并不产生真实设计选择的控制项。"
+          "移除",
+          "无法说明其具体价值的形式复杂度。"
         ],
         [
           "测试",
-          "另一个设计师能否在不打开脚本的情况下理解这个系统。"
+          "让计算反馈更早进入体量设计，使性能判断与建筑判断同步演化。"
         ]
       ]
     }
