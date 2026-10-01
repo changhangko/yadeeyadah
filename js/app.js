@@ -5,7 +5,8 @@ let PHOTO_DATA=null;
 let SERVER_PROJECTS=[];
 let SERVER_PHOTO_DATA=null;
 const L="ACGT", genome=document.getElementById("genome");
-let zones=[], currentProject=0, lang=localStorage.getItem('garry_portfolio_lang')||'en';
+const LANG_STORAGE_KEY='garry_portfolio_lang_v2';
+let zones=[], currentProject=0, lang=localStorage.getItem(LANG_STORAGE_KEY)||'zh';
 let editMode=false, editSnapshot=null, dirty=false;
 let armedMutation=null;
 let transitionRunning=false;
@@ -126,6 +127,18 @@ function decodeInteractionHint(){
   flipLine(q('interactionHintBrief'),copy.brief,3);
   flipLine(q('interactionHintMeta'),copy.meta,6);
   flipLine(q('interactionHintTail'),copy.tail,9);
+}
+
+function flickInteractionHintLanguage(){
+  const hint=q('interactionHint');
+  if(!hint||!hint.classList.contains('visible'))return;
+  const copy=interactionHintCopy();
+
+  /* Language changes stay in-place and mechanically re-decode, airport-board style. */
+  flipLine(q('interactionHintTitle'),copy.title,0);
+  flipLine(q('interactionHintBrief'),copy.brief,4);
+  flipLine(q('interactionHintMeta'),copy.meta,7);
+  flipLine(q('interactionHintTail'),copy.tail,10);
 }
 
 function showInteractionHint(){
@@ -316,19 +329,19 @@ function generateTransitionGenome(){
 
 function transitionFlip(el,target,delay=0){
   if(!el)return;
-  const chars='ACGT';let step=0;const max=8;
+  const chars='ACGT';let step=0;const max=11;
   el.textContent='';
   setTimeout(()=>{
     const timer=setInterval(()=>{
       step++;let out='';
       for(let i=0;i<target.length;i++){
         if(target[i]===' '){out+=' ';continue}
-        const settle=Math.floor((i/Math.max(1,target.length))*4)+3;
+        const settle=Math.floor((i/Math.max(1,target.length))*6)+4;
         out+=step>=settle?target[i]:chars[Math.random()*4|0];
       }
       el.textContent=out;
       if(step>=max){el.textContent=target;clearInterval(timer)}
-    },42);
+    },58);
   },delay);
 }
 
@@ -348,21 +361,21 @@ function transitionToProject(i){
   setTimeout(()=>{
     overlay.classList.add('decoding');
     transitionFlip(q('transitionId'),`MUTATION ${base.id}`,0);
-    transitionFlip(q('transitionTitle'),p.title,35);
-    transitionFlip(q('transitionBrief'),p.brief,70);
-    transitionFlip(q('transitionMeta'),p.meta,105);
-    transitionFlip(q('transitionYear'),p.year,140);
-  },260);
+    transitionFlip(q('transitionTitle'),p.title,70);
+    transitionFlip(q('transitionBrief'),p.brief,140);
+    transitionFlip(q('transitionMeta'),p.meta,210);
+    transitionFlip(q('transitionYear'),p.year,280);
+  },420);
   setTimeout(()=>{
     openProject(i);
     projectEl.scrollTop=0;
-  },760);
-  setTimeout(()=>overlay.classList.add('exit'),900);
+  },1450);
+  setTimeout(()=>overlay.classList.add('exit'),1660);
   setTimeout(()=>{
     overlay.classList.remove('active','fill','decoding','exit');
     overlay.setAttribute('aria-hidden','true');
     transitionRunning=false;
-  },1110);
+  },1980);
 }
 
 function openProject(i){
@@ -417,7 +430,7 @@ function applyStudioCaseCopy(){
 
 function applyUI(){
   const copy=t();document.documentElement.lang=lang==='en'?'en':'zh-CN';
-  q('brandRole').textContent=copy.roleLine;q('about').textContent=copy.about;q('theme').textContent=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;q('index').textContent=copy.index;q('langToggle').textContent=copy.lang;q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
+  q('brandRole').textContent=UI.en.roleLine;q('about').textContent=copy.about;q('theme').textContent=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;q('index').textContent=copy.index;q('langToggle').textContent=copy.lang;q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
   renderAbout();applyStudioCaseCopy();buildIndex();build();
   if(projectEl.classList.contains('visible'))openProject(currentProject);
@@ -560,7 +573,13 @@ function restartProfileDecode(){
 function bindGlobal(){
   bindTextScaleControls();
   q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
-  q('langToggle').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';localStorage.setItem('garry_portfolio_lang',lang);applyUI();});
+  q('langToggle').addEventListener('click',()=>{
+    lang=lang==='en'?'zh':'en';
+    localStorage.setItem(LANG_STORAGE_KEY,lang);
+    const hintWasVisible=interactionHintShown&&q('interactionHint')?.classList.contains('visible');
+    applyUI();
+    if(hintWasVisible)requestAnimationFrame(()=>flickInteractionHintLanguage());
+  });
   editProjectBtn.addEventListener('click',()=>editMode?exitEditMode(false):enterEditMode());
   q('cancelEdit').addEventListener('click',()=>exitEditMode(true));q('addMedia').addEventListener('click',addMedia);q('addTaste').addEventListener('click',addTaste);q('saveProjectsJson').addEventListener('click',saveProjectsJson);q('savePhotosJson').addEventListener('click',savePhotosJson);
   addEventListener('keydown',e=>{if(e.key==='Escape'){if(editMode){exitEditMode(false);}else{hidePanels();}}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editMode){e.preventDefault();saveProjectsJson();}});

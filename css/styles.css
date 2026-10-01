@@ -1,5 +1,5 @@
 :root{--bg:#050505;--fg:#f2f2f2;--dna:#565656;--line:#202020;--soft:#8a8a8a;--panel:#0b0b0b;--content-scale:1.2;--content-9:10.8px;--content-10:12px;--content-12:14.4px;--content-14:16.8px;--content-18:21.6px}
-body.light{--bg:#f5f5f3;--fg:#111111;--dna:#a8a8a8;--line:#d8d8d8;--soft:#686868;--panel:#fff}
+body.light{--bg:#f5f5f3;--fg:#000000;--dna:#000000;--line:#cfcfcb;--soft:#000000;--panel:#fff}
 *{box-sizing:border-box}
 #genome, #genome *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .mutation, .decode{-webkit-tap-highlight-color:transparent}
@@ -23,12 +23,17 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
   letter-spacing:.08em;
 }
 .text-size-btn{
-  min-width:23px;
+  display:inline-flex;
+  align-items:baseline;
+  justify-content:center;
+  min-width:18px;
   padding:2px 0;
   color:var(--fg);
-  font-size:10px;
-  letter-spacing:.02em;
+  letter-spacing:0;
+  line-height:1;
 }
+.text-size-small{font-size:8px}
+.text-size-large{font-size:14px;font-weight:600}
 .text-size-btn:disabled{opacity:.28;cursor:default;font-weight:normal}
 .text-size-value{
   min-width:34px;
@@ -253,7 +258,7 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
 .zone.armed .mutation{color:var(--fg);font-weight:700}
 .zone.armed .decode{display:block}
 
-#projectTransition{position:fixed;inset:0;z-index:9999;background:var(--bg);color:var(--fg);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
+#projectTransition{position:fixed;inset:0;z-index:9999;background:var(--bg);color:var(--fg);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .30s ease,visibility 0s linear .30s}
 #projectTransition.active{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
 #projectTransition.exit{opacity:0}
 #transitionGenome{position:absolute;inset:-24px;font-family:"Courier New",Courier,monospace;font-size:10px;line-height:2.9;letter-spacing:.62em;color:var(--dna);white-space:pre;overflow:hidden;opacity:0;transform:scale(1.018);transition:opacity .25s ease,transform .72s cubic-bezier(.2,.7,.1,1)}
