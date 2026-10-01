@@ -86,45 +86,79 @@ function mutationRows(count,total){
 
 function interactionHintCopy(){
   const dark=!document.body.classList.contains('light');
-  if(lang==='zh') return {kicker:'变异 → 项目',line:dark?'点击白色基因突变进入项目':'点击黑色基因突变进入项目'};
-  return {kicker:'MUTATION → PROJECT',line:dark?'CLICK A WHITE MUTATION TO ENTER A PROJECT':'CLICK A BLACK MUTATION TO ENTER A PROJECT'};
+  if(lang==='zh'){
+    return {
+      title:'MUTATION / PROJECT ENTRY',
+      brief:dark?'点击白色基因突变进入项目':'点击黑色基因突变进入项目',
+      meta:'高亮碱基 = 项目入口',
+      tail:'CLICK / TAP TO OPEN'
+    };
+  }
+  return {
+    title:'MUTATION / PROJECT ENTRY',
+    brief:dark?'CLICK A WHITE MUTATION TO ENTER A PROJECT':'CLICK A BLACK MUTATION TO ENTER A PROJECT',
+    meta:'HIGHLIGHTED BASE = PROJECT ENTRY',
+    tail:'CLICK / TAP TO OPEN'
+  };
 }
-function scrambleHintLine(el,target){
-  const chars='ACGT';let step=0,max=9;clearInterval(el._hintFlipTimer);
-  el._hintFlipTimer=setInterval(()=>{
-    step++;let out='';
-    for(let i=0;i<target.length;i++){
-      const ch=target[i];
-      if(ch===' '||ch==='→'||ch==='/'||ch==='·'){out+=ch;continue}
-      const settle=3+Math.floor((i/Math.max(1,target.length))*5);
-      out+=step>=settle?ch:chars[Math.random()*4|0];
-    }
-    el.textContent=out;
-    if(step>=max){el.textContent=target;clearInterval(el._hintFlipTimer)}
-  },56);
+
+function hintNoise(length){
+  let out='';
+  for(let i=0;i<length;i++)out+='ACGT'[Math.random()*4|0];
+  return out;
 }
+
+function seedInteractionHint(){
+  [
+    ['interactionHintTitle',24],
+    ['interactionHintBrief',44],
+    ['interactionHintMeta',36],
+    ['interactionHintTail',22]
+  ].forEach(([id,n])=>{
+    const el=q(id);
+    if(el)el.textContent=hintNoise(n);
+  });
+}
+
+function decodeInteractionHint(){
+  const copy=interactionHintCopy();
+  flipLine(q('interactionHintTitle'),copy.title,0);
+  flipLine(q('interactionHintBrief'),copy.brief,3);
+  flipLine(q('interactionHintMeta'),copy.meta,6);
+  flipLine(q('interactionHintTail'),copy.tail,9);
+}
+
 function showInteractionHint(){
   if(interactionHintShown||mutationInteracted||transitionRunning||document.querySelector('.overlay.visible'))return;
-  const hint=q('interactionHint');if(!hint)return;
-  const copy=interactionHintCopy();
-  q('interactionHintKicker').textContent=copy.kicker;
-  scrambleHintLine(q('interactionHintLine'),copy.line);
-  hint.classList.remove('flipping-out');
-  hint.classList.add('visible','flipping-in');
+  const hint=q('interactionHint');
+  if(!hint)return;
+
+  seedInteractionHint();
+  hint.classList.remove('out');
+  hint.classList.add('visible');
   hint.setAttribute('aria-hidden','false');
   interactionHintShown=true;
-  setTimeout(()=>hint.classList.remove('flipping-in'),700);
+
+  /* Let the viewer register the ACGT block first, then decode it like a project popup. */
+  setTimeout(()=>{
+    if(hint.classList.contains('visible'))decodeInteractionHint();
+  },240);
 }
+
 function hideInteractionHint(){
   clearTimeout(interactionHintTimer);
   const hint=q('interactionHint');
   if(!hint||!hint.classList.contains('visible'))return;
-  hint.classList.remove('flipping-in');
-  hint.classList.add('flipping-out');
+  hint.classList.add('out');
   hint.setAttribute('aria-hidden','true');
-  setTimeout(()=>hint.classList.remove('visible','flipping-out'),340);
+  setTimeout(()=>hint.classList.remove('visible','out'),240);
 }
-function registerMutationInteraction(){mutationInteracted=true;hideInteractionHint()}
+
+function registerMutationInteraction(){
+  mutationInteracted=true;
+  hideInteractionHint();
+}
+
 function scheduleInteractionHint(){
   clearTimeout(interactionHintTimer);
   if(interactionHintShown||mutationInteracted)return;
