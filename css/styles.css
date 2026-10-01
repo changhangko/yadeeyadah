@@ -588,3 +588,119 @@ body.light .embedded-project-shell{background:linear-gradient(180deg,#e8e8e6 0%,
 .embedded-caption{display:flex;justify-content:space-between;gap:20px;padding:14px 10px 0;color:var(--dna);font-size:var(--content-9);line-height:1.5;letter-spacing:.11em;text-transform:uppercase}
 @media(max-width:900px){.studio-before-nav,.studio-before-overview{width:100%;margin-left:0;margin-right:0}.studio-before-overview{margin-top:42px}.studio-intervention-copy{grid-template-columns:1fr;row-gap:16px}.studio-intervention-copy h3,.studio-intervention-copy p{grid-column:1;margin-left:0}.studio-intervention-copy h3{margin-top:0}}
 @media(max-width:700px){.embedded-project{width:calc(100vw - 24px);margin:72px 0 80px 50%}.studio-case-intro{margin-bottom:64px;padding:0 8px;text-align:left}.studio-case-intro h2{font-size:48px}.studio-case-lede{margin-left:0}.studio-case-meta{justify-content:flex-start;flex-direction:column;gap:7px}.studio-section-head{grid-template-columns:32px minmax(0,1fr);gap:12px;margin-bottom:28px}.studio-section-head h3{font-size:29px}.studio-before-card figcaption{flex-direction:column;gap:4px}.studio-image-frame{border-radius:14px}.studio-intervention{margin:82px 0;padding:46px 0 52px}.studio-intervention-copy h3{font-size:42px}.studio-principles{grid-template-columns:1fr;gap:28px;margin-top:46px}.embedded-project-shell{padding:6px;border-radius:22px}.embedded-project-toolbar{height:42px;padding:0 10px}.embedded-project-toolbar>span{display:none}.embedded-toolbar-actions{width:100%;justify-content:flex-end}.embedded-project-frame{height:70vh;min-height:540px;border-radius:17px}.embedded-caption{flex-direction:column;gap:4px;padding:12px 8px 0}}
+
+
+/* ---------- Editor / replaceable project images ---------- */
+.image-edit-toast{
+  position:fixed;
+  z-index:12000;
+  left:50%;
+  bottom:28px;
+  transform:translate(-50%,10px);
+  max-width:min(680px,calc(100vw - 30px));
+  padding:10px 13px;
+  border:1px solid var(--line);
+  background:var(--fg);
+  color:var(--bg);
+  font-size:9px;
+  line-height:1.55;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.image-edit-toast.visible{opacity:1;transform:translate(-50%,0)}
+
+.editing img[data-edit-image],
+.editing .media-image[data-edit-image]{
+  cursor:pointer;
+  outline:1px dashed color-mix(in srgb,var(--fg) 55%,transparent);
+  outline-offset:-1px;
+  transition:opacity .18s ease,filter .18s ease;
+}
+.editing img[data-edit-image]:hover,
+.editing .media-image[data-edit-image]:hover{
+  opacity:.72;
+  filter:contrast(.86);
+}
+.editor-image-action{
+  display:none;
+  position:absolute;
+  z-index:8;
+  top:10px;
+  right:10px;
+  padding:6px 8px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  color:var(--fg);
+  font-size:8px;
+  line-height:1;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  pointer-events:none;
+}
+.editing figure:has(img[data-edit-image]),
+.editing .media:has(.media-image[data-edit-image]){
+  position:relative;
+}
+.editing figure:has(img[data-edit-image]) .editor-image-action,
+.editing .media:has(.media-image[data-edit-image]) .editor-image-action{
+  display:block;
+}
+.media.has-image{
+  min-height:46vh;
+  position:relative;
+  overflow:hidden;
+  padding:0;
+  align-items:stretch;
+  background:var(--panel);
+}
+.media.has-image .media-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.media.has-image .media-index{
+  position:absolute;
+  z-index:3;
+  left:14px;
+  top:14px;
+  padding:4px 6px;
+  background:var(--bg);
+  color:var(--fg);
+}
+.media.has-image .media-text{
+  position:absolute;
+  z-index:3;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  max-width:70%;
+  padding:7px 9px;
+  background:var(--bg);
+  color:var(--fg);
+}
+.media-image-empty{
+  position:absolute;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed var(--line);
+  color:var(--soft);
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.editing .media:not(.has-image) .media-image-empty{display:flex}
+.editing .media:not(.has-image){position:relative;min-height:35vh}
+.editing .media:not(.has-image) .media-image-empty{cursor:pointer;pointer-events:auto}
+.editing .media:not(.has-image) .media-text{position:relative;z-index:2;align-self:flex-end}
+@media(max-width:700px){
+  .image-edit-toast{bottom:16px}
+  .editor-image-action{top:7px;right:7px}
+  .media.has-image{min-height:38vh}
+}
