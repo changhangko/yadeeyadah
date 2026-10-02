@@ -147,3 +147,14 @@ SYSTEM replaces its generic media/image placeholder grid with four animated pane
 
 ## v11 tweak
 In SYSTEM > OUTPUT, the dots now fade out immediately as the text blocks appear, so the transition resolves cleanly into the two final labels.
+
+
+
+## v13 — All five category animations
+The five top-level sections now share one animation grammar while telling different stories:
+- SPACE: constraints → field → massing → spatial result
+- SYSTEM: dispersed information → grouping → structure → usable systems
+- CODE: inputs → dependencies → rules → tool/interface
+- OBSERVATION: fragments → selection → sequence → trace
+- RESEARCH: data → pattern → model → comparison/decision
+Generic image-placeholder blocks are hidden for these category intros. Real evidence remains below where available: architecture cases, Studio Library prototype, and photography.

@@ -1,5 +1,5 @@
 :root{--bg:#050505;--fg:#f2f2f2;--dna:#565656;--line:#202020;--soft:#8a8a8a;--panel:#0b0b0b;--content-scale:1.2;--content-9:10.8px;--content-10:12px;--content-12:14.4px;--content-14:16.8px;--content-18:21.6px}
-body.light{--bg:#f5f5f3;--fg:#111111;--dna:#a8a8a8;--line:#d8d8d8;--soft:#686868;--panel:#fff}
+body.light{--bg:#f5f5f3;--fg:#111111;--dna:#8f8f8a;--line:#d2d2ce;--soft:#565652;--panel:#fff}
 
 /* Light theme: preserve the original grey hierarchy; only bold/emphasised text is pure black. */
 body.light strong,
@@ -965,4 +965,39 @@ body.light .system-animation-card{background:#f5f5f3}
  .system-animation-grid{grid-template-columns:1fr}
  .system-animation-card{min-height:390px}
  .system-animation-canvas{min-height:290px}
+}
+
+
+/* v12: slightly darker secondary text in light mode */
+body.light .system-animation-meta,
+body.light .system-animation-caption,
+body.light .system-animation-kicker,
+body.light .system-animation-head p,
+body.light .arch-kicker,
+body.light .arch-meta,
+body.light .arch-chapter-head p,
+body.light .arch-subproject-copy p,
+body.light .arch-credit p,
+body.light .studio-before-card figcaption,
+body.light .studio-section-head p,
+body.light .studio-intervention-copy p,
+body.light .studio-principle p,
+body.light .photo-cap,
+body.light .media,
+body.light .index-meta,
+body.light .index-year{
+  color:#62625e;
+}
+
+
+/* ---------- v13 / shared animation grammar ---------- */
+.method-animation-project .system-animation-card{min-height:430px}
+.method-animation-project .system-animation-canvas{min-height:330px}
+.method-animation-project .system-animation-caption strong{
+  display:block;
+  margin-bottom:5px;
+  color:var(--fg);
+  font-weight:400;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }

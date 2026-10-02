@@ -291,7 +291,7 @@ const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
-const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame'),systemAnimationProject=q('systemAnimationProject');
+const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame'),systemAnimationProject=q('systemAnimationProject'),methodAnimationProject=q('methodAnimationProject'),methodAnimationGrid=q('methodAnimationGrid');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
@@ -807,6 +807,224 @@ function applySystemAnimationLanguage(){
  systemAnimationProject.querySelectorAll('[data-en][data-zh]').forEach(el=>{el.textContent=lang==='zh'?el.dataset.zh:el.dataset.en});
 }
 
+
+/* ---------- Shared category animation grammar ---------- */
+let methodAnimationFrame=0;
+let methodAnimationStart=performance.now();
+let activeMethodCategory='';
+
+const METHOD_ANIMATION_COPY={
+  space:{
+    en:{
+      kicker:'SPACE / SPATIAL SYNTHESIS',
+      title:'Constraints become spatial decisions.',
+      intro:'The same visual grammar describes architectural judgement: scattered constraints become fields, fields become massing, and massing resolves into public space and built form.',
+      cards:[
+        ['01 / CONSTRAINTS','SITE + SOLAR + ACCESS','Boundary, sunlight, movement and program begin as separate forces.'],
+        ['02 / FIELD','RELATION + PRESSURE','The forces begin to influence one another and create a directional field.'],
+        ['03 / MASSING','FORM + ORIENTATION','The field is translated into proportion, orientation and building mass.'],
+        ['04 / RESULT','SPACE + BUILT FORM','The final arrangement creates a legible relationship between building, street and open space.']
+      ]
+    },
+    zh:{
+      kicker:'空间 / 空间综合',
+      title:'约束逐渐转化为空间判断。',
+      intro:'同一套视觉语法也可以描述建筑判断：分散的条件形成作用场，作用场形成体量，体量最终转化为公共空间与建筑形体。',
+      cards:[
+        ['01 / 约束','场地 + 日照 + 流线','边界、日照、流线与功能需求最初是彼此分离的力量。'],
+        ['02 / 场','关系 + 压力','不同条件开始相互影响，逐渐形成具有方向性的作用场。'],
+        ['03 / 体量','形体 + 朝向','作用场被翻译成比例、朝向与建筑体量。'],
+        ['04 / 结果','空间 + 建成形态','最终形成建筑、街道与开放空间之间清晰的空间关系。']
+      ]
+    }
+  },
+  code:{
+    en:{
+      kicker:'CODE / COMPUTATIONAL LOGIC',
+      title:'Inputs become relationships, rules and tools.',
+      intro:'Computation is shown as a legible chain rather than a black box: parameters enter, relationships connect, rules organise behaviour, and an interface or reusable tool emerges.',
+      cards:[
+        ['01 / INPUT','PARAMETERS + EVENTS','Geometry, values, user actions and design intent enter as separate inputs.'],
+        ['02 / CONNECT','DEPENDENCIES','Inputs become connected through explicit relationships and dependencies.'],
+        ['03 / RULES','LOGIC + ITERATION','Rules organise the network into a repeatable computational workflow.'],
+        ['04 / OUTPUT','TOOL + INTERFACE','The logic resolves into something reusable: a script, workflow, interface or prototype.']
+      ]
+    },
+    zh:{
+      kicker:'代码 / 计算逻辑',
+      title:'输入逐渐变成关系、规则与工具。',
+      intro:'这里把计算过程保持为可读链条，而不是黑箱：参数进入，关系被连接，规则组织行为，最终形成界面或可复用工具。',
+      cards:[
+        ['01 / 输入','参数 + 事件','几何、数值、用户操作与设计意图作为独立输入进入系统。'],
+        ['02 / 连接','依赖关系','不同输入通过明确的关系与依赖被连接起来。'],
+        ['03 / 规则','逻辑 + 迭代','规则把网络组织成可重复执行的计算工作流。'],
+        ['04 / 输出','工具 + 界面','逻辑最终变成可复用的脚本、工作流、界面或交互原型。']
+      ]
+    }
+  },
+  observation:{
+    en:{
+      kicker:'OBSERVATION / VISUAL EDITING',
+      title:'Fragments become an authored sequence.',
+      intro:'Photography uses the same organising logic more quietly: many fragments are observed, fewer are selected, the selection is sequenced, and a visual trace remains.',
+      cards:[
+        ['01 / FRAGMENTS','ATTENTION','Many ordinary moments coexist without hierarchy.'],
+        ['02 / SELECT','KEEP / REMOVE','Some frames remain while technically clean but redundant ones disappear.'],
+        ['03 / SEQUENCE','RHYTHM + ASSOCIATION','Selected frames are arranged by visual association rather than chronology.'],
+        ['04 / TRACE','MEMORY + READING','The sequence leaves a reading that no single image could carry alone.']
+      ]
+    },
+    zh:{
+      kicker:'观察 / 视觉编辑',
+      title:'碎片逐渐形成具有作者判断的序列。',
+      intro:'摄影使用同样的组织逻辑，但动作更安静：大量碎片被观察，少量画面被保留，选择被重新排序，最终留下视觉痕迹。',
+      cards:[
+        ['01 / 碎片','注意力','大量普通瞬间同时存在，还没有明确层级。'],
+        ['02 / 选择','保留 / 去除','少量画面被保留，技术完整但表达重复的画面逐渐消失。'],
+        ['03 / 序列','节奏 + 联想','被选中的画面按照视觉关联而不是时间顺序重新排列。'],
+        ['04 / 痕迹','记忆 + 阅读','最终序列形成单张图像无法独立承担的观看含义。']
+      ]
+    }
+  },
+  research:{
+    en:{
+      kicker:'RESEARCH / DECISION SUPPORT',
+      title:'Data becomes a field for comparison.',
+      intro:'Research turns raw observations into evidence: data is collected, patterns become visible, a model structures the relationships, and alternatives can be compared before a planning decision is made.',
+      cards:[
+        ['01 / DATA','OBSERVATIONS + VARIABLES','Planning variables begin as many individual observations.'],
+        ['02 / PATTERN','RELATION + SIGNAL','Patterns emerge as the observations are compared and grouped.'],
+        ['03 / MODEL','LEARNED RELATIONSHIPS','A model encodes the relationships so alternative conditions can be tested.'],
+        ['04 / DECISION','COMPARE + JUDGE','Outputs remain alternatives to compare — not a single automatic answer.']
+      ]
+    },
+    zh:{
+      kicker:'研究 / 决策支持',
+      title:'数据逐渐变成可比较的判断场。',
+      intro:'研究把原始观察转化为证据：数据被收集，模式变得可见，模型组织变量之间的关系，最终让规划方案在决策前可以被比较。',
+      cards:[
+        ['01 / 数据','观察 + 变量','规划变量最初表现为大量独立观察。'],
+        ['02 / 模式','关系 + 信号','随着观察被比较与分组，隐藏模式逐渐显现。'],
+        ['03 / 模型','学习到的关系','模型把变量关系编码下来，使不同条件可以被重复测试。'],
+        ['04 / 决策','比较 + 判断','最终结果仍然是可供比较的备选，而不是自动生成的唯一答案。']
+      ]
+    }
+  }
+};
+
+function buildMethodAnimation(category){
+  activeMethodCategory=category;
+  const copy=METHOD_ANIMATION_COPY[category]?.[lang]||METHOD_ANIMATION_COPY[category]?.en;
+  if(!copy||!methodAnimationProject)return;
+  q('methodAnimationKicker').textContent=copy.kicker;
+  q('methodAnimationTitle').textContent=copy.title;
+  q('methodAnimationIntro').textContent=copy.intro;
+  methodAnimationGrid.innerHTML=copy.cards.map((c,i)=>`
+    <article class="system-animation-card" data-method-stage="${i}">
+      <div class="system-animation-meta"><span>${escapeHtml(c[0])}</span><span>${escapeHtml(c[1])}</span></div>
+      <canvas class="system-animation-canvas" aria-hidden="true"></canvas>
+      <div class="system-animation-caption">${escapeHtml(c[2])}</div>
+    </article>`).join('');
+}
+function drawMethodPanel(canvas,category,stage,time){
+  const {ctx,w,h}=fitSystemCanvas(canvas),p=systemAnimationPalette();
+  ctx.clearRect(0,0,w,h);
+  const cycle=(time%7600)/7600;
+  const t=easeSystem(Math.min(1,Math.max(0,(cycle-.05)/.72)));
+  const count=40;
+
+  if(category==='space'){
+    if(stage===0){
+      for(let i=0;i<count;i++){const s=systemPointSeed(i,w,h);drawSystemDot(ctx,s.x,s.y,s.r,p.soft,.45)}
+      ctx.strokeStyle=p.line;ctx.strokeRect(w*.18,h*.18,w*.64,h*.64);
+      drawSystemLine(ctx,w*.12,h*.7,w*.88,h*.32,p.soft,.35);
+      drawSystemLabel(ctx,'SUN',w*.72,h*.13,p);drawSystemLabel(ctx,'ACCESS',w*.12,h*.78,p);
+    }else if(stage===1){
+      const cx=w*.5,cy=h*.5;
+      for(let i=0;i<count;i++){
+        const s=systemPointSeed(i,w,h),ang=Math.atan2(cy-s.y,cx-s.x),len=18+hashSystem(i)*30;
+        drawSystemLine(ctx,s.x,s.y,s.x+Math.cos(ang)*len,s.y+Math.sin(ang)*len,p.soft,.25+.3*t);
+        drawSystemDot(ctx,s.x,s.y,1.2,p.fg,.42);
+      }
+    }else if(stage===2){
+      const blocks=[[-.28,.06,.18,.46],[0,-.08,.2,.62],[.27,.03,.17,.5]];
+      blocks.forEach((b,i)=>{
+        const bw=w*b[2],bh=h*b[3]*t,x=w*(.5+b[0])-bw/2,y=h*.78-bh;
+        ctx.strokeStyle=p.line;ctx.strokeRect(x,y,bw,bh);
+        ctx.globalAlpha=.06+.12*t;ctx.fillStyle=p.fg;ctx.fillRect(x,y,bw,bh);ctx.globalAlpha=1;
+      });
+      drawSystemLine(ctx,w*.12,h*.8,w*.88,h*.8,p.soft,.35);
+    }else{
+      const a=Math.min(1,t*1.4);
+      const blocks=[{x:.18,w:.19,h:.52},{x:.63,w:.2,h:.48}];
+      blocks.forEach(b=>{ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.strokeRect(w*b.x,h*(.76-b.h),w*b.w,h*b.h)});
+      ctx.globalAlpha=a*.55;ctx.fillStyle=p.soft;ctx.fillRect(w*.41,h*.48,w*.15,h*.28);ctx.globalAlpha=1;
+      drawSystemLabel(ctx,'PUBLIC SPACE',w*.405,h*.44,p);
+    } return;
+  }
+
+  if(category==='code'){
+    const nodes=Array.from({length:18},(_,i)=>({x:w*(.1+hashSystem(i*2)*.8),y:h*(.16+hashSystem(i*2+1)*.68)}));
+    if(stage===0){
+      nodes.forEach((n,i)=>{drawSystemDot(ctx,n.x,n.y,2,p.fg,.55);if(i%4===0)drawSystemLabel(ctx,['X','Y','R','T','USER'][i%5],n.x+8,n.y,p)});
+    }else if(stage===1){
+      nodes.forEach((n,i)=>{drawSystemDot(ctx,n.x,n.y,2,p.fg,.62);if(i>0&&i%3!==0)drawSystemLine(ctx,n.x,n.y,nodes[i-1].x,nodes[i-1].y,p.soft,.18+.34*t)});
+    }else if(stage===2){
+      const cols=5,rows=4;
+      nodes.forEach((n,i)=>{const tx=w*(.14+(i%cols)*.18),ty=h*(.2+Math.floor(i/cols)*.18);const x=lerpSystem(n.x,tx,t),y=lerpSystem(n.y,ty,t);drawSystemDot(ctx,x,y,2,p.fg,.65);if(i%cols)drawSystemLine(ctx,x,y,w*(.14+((i-1)%cols)*.18),y,p.soft,.3*t)});
+    }else{
+      const cards=[['SCRIPT',.18],['WORKFLOW',.42],['INTERFACE',.66]];
+      cards.forEach(([label,x])=>{ctx.strokeStyle=p.line;ctx.strokeRect(w*x,h*.36,w*.17,h*.24);ctx.textAlign='center';ctx.fillStyle=p.fg;ctx.font='10px "Courier New",monospace';ctx.fillText(label,w*(x+.085),h*.49)});
+      ctx.textAlign='start';
+    } return;
+  }
+
+  if(category==='observation'){
+    const frames=Array.from({length:16},(_,i)=>({x:w*(.08+hashSystem(i*4)*.78),y:h*(.12+hashSystem(i*4+1)*.7),ww:28+hashSystem(i*4+2)*34,hh:24+hashSystem(i*4+3)*42}));
+    if(stage===0){
+      frames.forEach((f,i)=>{ctx.globalAlpha=.22+.35*hashSystem(i);ctx.strokeStyle=p.soft;ctx.strokeRect(f.x,f.y,f.ww,f.hh);ctx.globalAlpha=1});
+    }else if(stage===1){
+      frames.forEach((f,i)=>{const keep=i%3===0||i===7;ctx.globalAlpha=keep?(.35+.55*t):(.45*(1-t));ctx.strokeStyle=keep?p.fg:p.soft;ctx.strokeRect(f.x,f.y,f.ww,f.hh);ctx.globalAlpha=1});
+    }else if(stage===2){
+      frames.slice(0,8).forEach((f,i)=>{const tx=w*(.09+i*.105),ty=h*.45,tw=w*.082,th=h*.28;const x=lerpSystem(f.x,tx,t),y=lerpSystem(f.y,ty,t);ctx.strokeStyle=p.line;ctx.strokeRect(x,y,tw,th)});
+      drawSystemLine(ctx,w*.08,h*.78,w*.92,h*.78,p.soft,.3);
+    }else{
+      const labels=['DENSITY','DISTANCE','OBJECT','LIGHT','TRACE'];
+      drawSystemLine(ctx,w*.1,h*.52,w*.9,h*.52,p.soft,.3);
+      labels.forEach((label,i)=>{const x=w*(.12+i*.19);drawSystemDot(ctx,x,h*.52,2.2,p.fg,.7);drawSystemLabel(ctx,label,x-18,h*.61,p)});
+    } return;
+  }
+
+  if(category==='research'){
+    const pts=Array.from({length:44},(_,i)=>({x:w*(.08+hashSystem(i*2)*.84),y:h*(.12+hashSystem(i*2+1)*.74)}));
+    if(stage===0){
+      pts.forEach((n,i)=>drawSystemDot(ctx,n.x,n.y,1.4,p.soft,.4+.25*hashSystem(i)));
+      drawSystemLine(ctx,w*.1,h*.82,w*.9,h*.82,p.line,.35);drawSystemLine(ctx,w*.1,h*.82,w*.1,h*.15,p.line,.35);
+    }else if(stage===1){
+      pts.forEach((n,i)=>{const group=i%3,cx=w*(.27+group*.24),cy=h*(.34+(group%2)*.28);const x=lerpSystem(n.x,cx+(hashSystem(i+60)-.5)*70,t),y=lerpSystem(n.y,cy+(hashSystem(i+90)-.5)*60,t);drawSystemDot(ctx,x,y,1.5,p.fg,.5)});
+    }else if(stage===2){
+      const layers=[[.18,5],[.43,4],[.68,3],[.86,2]],all=[];
+      layers.forEach(([x,n],li)=>{for(let i=0;i<n;i++){const y=.2+(i/(Math.max(1,n-1)))*.6;all.push({li,x:w*x,y:h*y});drawSystemDot(ctx,w*x,h*y,2,p.fg,.65)}});
+      all.forEach(a=>all.filter(b=>b.li===a.li+1).forEach(b=>drawSystemLine(ctx,a.x,a.y,b.x,b.y,p.soft,.12+.22*t)));
+    }else{
+      const labels=['A','B','C'];
+      labels.forEach((label,i)=>{const x=w*(.16+i*.27);ctx.strokeStyle=p.line;ctx.strokeRect(x,h*.36,w*.18,h*.26);ctx.textAlign='center';ctx.fillStyle=p.fg;ctx.font='700 12px "Courier New",monospace';ctx.fillText(`OPTION ${label}`,x+w*.09,h*.48);ctx.fillStyle=p.soft;ctx.font='8px "Courier New",monospace';ctx.fillText(i===1?'COMPARE':'ALTERNATIVE',x+w*.09,h*.54)});
+      ctx.textAlign='start';
+    }
+  }
+}
+function renderMethodAnimations(now=performance.now()){
+  methodAnimationFrame=0;if(!methodAnimationProject||methodAnimationProject.hidden||!activeMethodCategory)return;
+  methodAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{
+    const canvas=card.querySelector('canvas');
+    if(canvas)drawMethodPanel(canvas,activeMethodCategory,+card.dataset.methodStage,now-methodAnimationStart);
+  });
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)methodAnimationFrame=requestAnimationFrame(renderMethodAnimations);
+}
+function restartMethodAnimations(){
+  cancelAnimationFrame(methodAnimationFrame);methodAnimationStart=performance.now();requestAnimationFrame(renderMethodAnimations);
+}
+
 function openProject(i){
   currentProject=i;const p=proj(i),base=PROJECTS[i];
   pid.textContent=`MUTATION ${base.id}`;pt.textContent=p.title;pd.textContent=p.desc;pbrief.textContent=p.brief;
@@ -829,12 +1047,15 @@ function openProject(i){
   if(base.categoryKey==='observation')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
   const hasArchitecture=base.categoryKey==='space';
   const hasSystemAnimation=base.categoryKey==='system';
+  const hasMethodAnimation=['space','code','observation','research'].includes(base.categoryKey);
   const hasEmbeddedLibrary=base.categoryKey==='system';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
+  if(methodAnimationProject){methodAnimationProject.hidden=!hasMethodAnimation;}
   if(systemAnimationProject){systemAnimationProject.hidden=!hasSystemAnimation;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
-  pmedia.style.display=(hasArchitecture||hasSystemAnimation)?'none':'';
+  pmedia.style.display=(hasArchitecture||hasSystemAnimation||hasMethodAnimation)?'none':'';
   if(hasSystemAnimation){applySystemAnimationLanguage();restartSystemAnimations();}else{cancelAnimationFrame(systemAnimationFrame);}
+  if(hasMethodAnimation){buildMethodAnimation(base.categoryKey);restartMethodAnimations();}else{cancelAnimationFrame(methodAnimationFrame);}
   if(hasEmbeddedLibrary&&studioLibraryFrame){
     // Reload the demo when the case study is reopened so its blue home screen is always the entry state.
     const src=studioLibraryFrame.getAttribute('src');
@@ -888,7 +1109,7 @@ function applyUI(){
   q('projectIndex').textContent=copy.index;
   q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
-  renderAbout();applyStudioCaseCopy();applySystemAnimationLanguage();buildIndex();build();applyAllImageLayouts(document);
+  renderAbout();applyStudioCaseCopy();applySystemAnimationLanguage();if(methodAnimationProject&&!methodAnimationProject.hidden&&PROJECTS[currentProject])buildMethodAnimation(PROJECTS[currentProject].categoryKey);buildIndex();build();applyAllImageLayouts(document);
   if(projectEl.classList.contains('visible'))openProject(currentProject);
   updateEditorLabels();
 }
