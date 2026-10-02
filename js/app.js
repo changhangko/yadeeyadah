@@ -779,12 +779,15 @@ function drawSystemPanel(canvas,stage,time){
  }
  if(stage==='reveal'){
    const t=easeSystem(Math.min(1,Math.max(0,(cycle-.05)/.58))),left={x:w*.28,y:h*.5},right={x:w*.72,y:h*.5};
+   const blockEnter=Math.min(1,Math.max(0,(t-.42)/.12));
+   const dotFade=1-blockEnter;
    for(let i=0;i<count;i++){
      const s=systemPointSeed(i,w,h),target=i%2?right:left,ang=i*2.15,rad=14+(i%10)*2.2;
-     const x=lerpSystem(s.x,target.x+Math.cos(ang)*rad,t),y=lerpSystem(s.y,target.y+Math.sin(ang)*rad*.6,t);drawSystemDot(ctx,x,y,1.5,p.fg,.3+.5*t);
+     const x=lerpSystem(s.x,target.x+Math.cos(ang)*rad,t),y=lerpSystem(s.y,target.y+Math.sin(ang)*rad*.6,t);
+     drawSystemDot(ctx,x,y,1.5,p.fg,Math.max(0,.3+.5*t)*dotFade);
    }
    if(t>.42){
-     const a=Math.min(1,(t-.42)/.45),bw=w*.28,bh=64;ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.lineWidth=1;
+     const a=Math.min(1,(t-.42)/.28),bw=w*.28,bh=64;ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.lineWidth=1;
      [left,right].forEach(c=>ctx.strokeRect(c.x-bw/2,c.y-bh/2,bw,bh));
      ctx.fillStyle=p.fg;ctx.font='700 12px "Courier New", monospace';ctx.textAlign='center';
      ctx.fillText('CITY DATA',left.x,left.y-3);ctx.fillText('STUDIO LIBRARY',right.x,right.y-3);

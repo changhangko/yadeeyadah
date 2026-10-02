@@ -143,3 +143,7 @@ Top-level navigation and Index are now exactly: SPACE / SYSTEM / CODE / OBSERVAT
 
 ## v10 — SYSTEM narrative animation prototype
 SYSTEM replaces its generic media/image placeholder grid with four animated panels: DISPERSED → DETECT → STRUCTURE → OUTPUT. The embedded Studio Library prototype remains below as real evidence.
+
+
+## v11 tweak
+In SYSTEM > OUTPUT, the dots now fade out immediately as the text blocks appear, so the transition resolves cleanly into the two final labels.
