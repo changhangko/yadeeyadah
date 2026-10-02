@@ -841,3 +841,68 @@ body.light .image-layout-panel{
     row-gap:7px;
   }
 }
+
+
+/* ---------- Reliable in-page editor login ---------- */
+.editor-login{
+  position:fixed;
+  inset:0;
+  z-index:30000;
+  display:none;
+  place-items:center;
+  padding:24px;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.editor-login.visible{display:grid}
+.editor-login-card{
+  width:min(420px,100%);
+  padding:22px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  box-shadow:0 28px 90px rgba(0,0,0,.28);
+}
+.editor-login-meta{
+  margin-bottom:26px;
+  color:var(--soft);
+  font-size:9px;
+  letter-spacing:.14em;
+}
+.editor-login-title{
+  margin-bottom:18px;
+  color:var(--fg);
+  font-size:20px;
+  line-height:1;
+  letter-spacing:.06em;
+}
+.editor-login-input{
+  width:100%;
+  padding:12px 0;
+  border:0;
+  border-bottom:1px solid var(--line);
+  outline:0;
+  background:transparent;
+  color:var(--fg);
+  font:inherit;
+  font-size:14px;
+  letter-spacing:.12em;
+}
+.editor-login-input::placeholder{color:var(--soft)}
+.editor-login-error{
+  min-height:28px;
+  padding-top:9px;
+  color:var(--fg);
+  font-size:9px;
+  letter-spacing:.10em;
+}
+.editor-login-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:14px;
+  margin-top:8px;
+}
+.editor-login-actions button{
+  font-size:9px;
+  letter-spacing:.10em;
+}

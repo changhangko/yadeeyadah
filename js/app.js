@@ -298,14 +298,37 @@ const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmet
 const EDITOR_PASSWORD='685536';
 const editParams=new URLSearchParams(window.location.search);
 let editorUnlocked=false;
-if(editParams.get('edit')==='1'){
-  const password=prompt('Editor password');
-  if(password===EDITOR_PASSWORD){
+
+function showEditorLogin(){
+  const modal=q('editorLogin');
+  const input=q('editorPasswordInput');
+  const error=q('editorLoginError');
+  if(!modal||!input)return;
+  error.textContent='';
+  input.value='';
+  modal.classList.add('visible');
+  modal.setAttribute('aria-hidden','false');
+  requestAnimationFrame(()=>input.focus());
+}
+function hideEditorLogin(){
+  const modal=q('editorLogin');
+  if(!modal)return;
+  modal.classList.remove('visible');
+  modal.setAttribute('aria-hidden','true');
+}
+function submitEditorLogin(){
+  const input=q('editorPasswordInput');
+  const error=q('editorLoginError');
+  if(!input)return;
+  if(input.value===EDITOR_PASSWORD){
     editorUnlocked=true;
     editProjectBtn.style.display='inline-flex';
     if(editorIndicator)editorIndicator.style.display='inline-flex';
-  }else if(password!==null){
-    alert('Incorrect password');
+    hideEditorLogin();
+    if(projectEl.classList.contains('visible')&&!editMode)enterEditMode();
+  }else{
+    error.textContent=lang==='zh'?'密码错误':'INCORRECT PASSWORD';
+    input.select();
   }
 }
 
@@ -844,6 +867,17 @@ function openPortfolioAbout(){showPanel(aboutPanel);requestAnimationFrame(restar
 
 function bindGlobal(){
   bindTextScaleControls();
+  q('editorLoginSubmit')?.addEventListener('click',submitEditorLogin);
+  q('editorLoginCancel')?.addEventListener('click',()=>{
+    hideEditorLogin();
+    const url=new URL(window.location.href);
+    url.searchParams.delete('edit');
+    history.replaceState({},'',url.pathname+url.search+url.hash);
+  });
+  q('editorPasswordInput')?.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();submitEditorLogin();}
+    if(e.key==='Escape'){e.preventDefault();hideEditorLogin();}
+  });
   q('portfolioImagePicker').addEventListener('change',e=>handlePickedPortfolioImage(e.target.files?.[0]));
   q('imageSizeRange').addEventListener('input',e=>{if(selectedImageTarget?.element)setImageLayoutWidth(selectedImageTarget.element,e.target.value);});
   q('imageSizeReset').addEventListener('click',()=>{if(selectedImageTarget?.element)setImageLayoutWidth(selectedImageTarget.element,100);});
@@ -874,4 +908,12 @@ function bindGlobal(){
   let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,150)});
 }
 
-try{await loadData();bindGlobal();applyUI();}catch(err){console.error(err);document.body.innerHTML='<pre style="padding:24px;color:white;background:#050505">Portfolio data failed to load. Serve this folder over HTTP (for example Vercel or a local development server).</pre>';}
+try{
+  await loadData();
+  bindGlobal();
+  applyUI();
+  if(editParams.get('edit')==='1')showEditorLogin();
+}catch(err){
+  console.error(err);
+  document.body.innerHTML='<pre style="padding:24px;color:white;background:#050505">Portfolio data failed to load. Serve this folder over HTTP (for example Vercel or a local development server).</pre>';
+}

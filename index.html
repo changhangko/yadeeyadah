@@ -17,6 +17,20 @@
  <button class="text-size-btn" data-text-delta="0.1" aria-label="Increase text size">+</button>
 </span><span id="editorIndicator" style="display:none">[ EDITOR ON ]</span><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
 </header>
+
+<div id="editorLogin" class="editor-login" aria-hidden="true">
+ <div class="editor-login-card" role="dialog" aria-modal="true" aria-labelledby="editorLoginTitle">
+  <div class="editor-login-meta">PRIVATE / EDIT MODE</div>
+  <div id="editorLoginTitle" class="editor-login-title">EDITOR ACCESS</div>
+  <input id="editorPasswordInput" class="editor-login-input" type="password" inputmode="numeric" autocomplete="current-password" placeholder="PASSWORD" aria-label="Editor password">
+  <div id="editorLoginError" class="editor-login-error" aria-live="polite"></div>
+  <div class="editor-login-actions">
+   <button id="editorLoginCancel" type="button">[ CANCEL ]</button>
+   <button id="editorLoginSubmit" type="button">[ ENTER ]</button>
+  </div>
+ </div>
+</div>
+
 <main id="genome" aria-label="Selected portfolio projects"></main>
 
 <div id="interactionHint" class="interaction-hint" aria-hidden="true">
