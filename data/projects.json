@@ -1,306 +1,19 @@
 [
   {
     "id": "01",
-    "en": {
-      "title": "MACHINE VISION",
-      "brief": "HUMAN × MACHINE × MEMORY",
-      "meta": "AI / IMAGE / CODE",
-      "year": "2026",
-      "role": "CONCEPT / ART DIRECTION / PROTOTYPE",
-      "tools": "AI MODELS / CODE / IMAGE",
-      "output": "VISUAL STUDY / INTERACTION",
-      "desc": "A visual investigation into how one scene changes when it is read by a human, a machine, memory and dream — using the gaps between those readings as the material of the project.",
-      "question": "Can perception itself become an interface? Instead of treating AI vision as a neutral reading of an image, the project compares multiple ways of seeing and makes their disagreements visible.",
-      "built": "A repeatable visual system that moves from ordinary source imagery into spatial structure, segmentation, fragments, probability and semantic transformation. The output is edited as a contact-sheet-like sequence rather than a single hero image.",
-      "judgement": "The key decision was restraint. The images needed to stay recognisable enough to compare, but unresolved enough to make the viewer notice how each system edits reality. Too literal became illustration; too abstract lost the test.",
-      "media": [
-        "CONTACT SHEET / PERCEPTION STUDIES",
-        "SOURCE → MACHINE / MEMORY / DREAM",
-        "VISUAL GRAMMAR / ITERATION"
-      ],
-      "taste": [
-        [
-          "KEEP",
-          "Comparison visible at a glance; one visual grammar across different modes of perception."
-        ],
-        [
-          "REMOVE",
-          "Decorative AI texture that does not reveal anything about how the image is being interpreted."
-        ],
-        [
-          "TEST",
-          "How little information can remain before recognition collapses — and whether that threshold differs by mode."
-        ]
-      ]
-    },
-    "zh": {
-      "title": "机器视觉",
-      "brief": "人类 × 机器 × 记忆",
-      "meta": "AI / 图像 / 代码",
-      "year": "2026",
-      "role": "概念 / 视觉方向 / 原型",
-      "tools": "AI 模型 / 代码 / 图像",
-      "output": "视觉研究 / 交互",
-      "desc": "一个关于“看见”本身的视觉研究：同一场景被人、机器、记忆与梦境读取时会发生怎样的偏移，而这些偏移本身就是作品材料。",
-      "question": "感知本身能不能成为界面？这个项目不把 AI 视觉当成中性的识别工具，而是把不同观看方式之间的错位直接呈现出来。",
-      "built": "我建立了一套可重复的视觉系统，把普通图像逐步转译成空间结构、分割、碎片、概率与语义变形。最终输出更像一张接触表，而不是单张英雄图。",
-      "judgement": "最关键的判断是克制。图像必须保留足够可识别性，方便比较；同时又要保留不确定性，让观看者意识到每一种系统都在改写现实。太具象会变成插画，太抽象又失去测试意义。",
-      "media": [
-        "接触表 / 感知研究",
-        "源图 → 机器 / 记忆 / 梦境",
-        "视觉语法 / 迭代"
-      ],
-      "taste": [
-        [
-          "保留",
-          "一眼就能看出比较关系；不同感知模式共享同一套视觉语法。"
-        ],
-        [
-          "去除",
-          "不能解释“如何被理解”的装饰性 AI 纹理。"
-        ],
-        [
-          "测试",
-          "信息最少保留到什么程度时识别会崩塌，以及不同模式的阈值是否不同。"
-        ]
-      ]
-    },
-    "mediaImages": [
-      null,
-      null,
-      null
-    ]
-  },
-  {
-    "id": "02",
-    "en": {
-      "title": "CITY AS DATA",
-      "brief": "MELBOURNE CITY MODEL",
-      "meta": "RHINO / GRASSHOPPER / MAPBOX / WEB",
-      "year": "2025",
-      "role": "DESIGN / DEVELOPMENT / DATA",
-      "tools": "RHINO / GRASSHOPPER / MAPBOX / JS",
-      "output": "INTERACTIVE CITY TOOL",
-      "desc": "A spatial-data workflow and web interface that turns a complex Melbourne city model into something designers can browse, interrogate and use for storytelling.",
-      "question": "City models are powerful but often trapped inside specialist software. How can the same information become legible to architects, project teams and clients without flattening the spatial complexity?",
-      "built": "A workflow connecting spatial geometry, urban data and browser-based interaction. Project and city information is organised into a navigable web experience, with visualisation and dashboard logic used to surface useful patterns.",
-      "judgement": "The interface only works when information density is controlled. I prioritised spatial orientation and progressive disclosure over showing every available dataset at once — turning technical depth into a sequence of understandable decisions.",
-      "media": [
-        "INTERACTIVE MAP / CITY MODEL",
-        "DATA LAYER / STORYTELLING",
-        "WORKFLOW / RHINO → WEB"
-      ],
-      "taste": [
-        [
-          "KEEP",
-          "Spatial context visible while data changes, so the user never loses where they are."
-        ],
-        [
-          "REMOVE",
-          "Dashboard elements that repeat information already obvious in the model."
-        ],
-        [
-          "TEST",
-          "Which data deserves to be persistent, and which should appear only at the moment it becomes useful."
-        ]
-      ]
-    },
-    "zh": {
-      "title": "城市即数据",
-      "brief": "墨尔本城市模型",
-      "meta": "RHINO / GRASSHOPPER / MAPBOX / WEB",
-      "year": "2025",
-      "role": "设计 / 开发 / 数据",
-      "tools": "RHINO / GRASSHOPPER / MAPBOX / JS",
-      "output": "交互式城市工具",
-      "desc": "一个将复杂墨尔本城市模型转化为可浏览、可分析、可叙事的空间数据工作流与网页界面。",
-      "question": "城市模型很强大，但常常被困在专业软件里。怎样在不扁平化空间复杂度的前提下，让建筑师、项目团队与客户都能真正使用同一套信息？",
-      "built": "我搭建了连接空间几何、城市数据与浏览器交互的工作流，把项目与城市信息组织成可导航的网页体验，并通过可视化与 dashboard 逻辑让模式更容易被看见。",
-      "judgement": "这种界面只有在信息密度被控制住时才成立。我优先考虑空间定位感与渐进式信息展开，而不是一次性展示所有数据，把技术深度转化为容易理解的决策序列。",
-      "media": [
-        "交互地图 / 城市模型",
-        "数据层 / 叙事",
-        "工作流 / RHINO → WEB"
-      ],
-      "taste": [
-        [
-          "保留",
-          "数据变化时仍保持空间上下文，让用户始终知道自己身在何处。"
-        ],
-        [
-          "去除",
-          "重复模型中已显而易见信息的 dashboard 元素。"
-        ],
-        [
-          "测试",
-          "哪些数据应该持续可见，哪些应该只在真正有用的时刻出现。"
-        ]
-      ]
-    },
-    "mediaImages": [
-      null,
-      null,
-      null
-    ]
-  },
-  {
-    "id": "03",
-    "en": {
-      "title": "RHINO TABS",
-      "brief": "INTERNAL TOOL AS INTERFACE",
-      "meta": "PRODUCT / UX / DESIGN SYSTEM",
-      "year": "2025–26",
-      "role": "PRODUCT THINKING / UX / BUILD",
-      "tools": "RHINO / SCRIPTING / UI SYSTEMS",
-      "output": "INTERNAL DESIGN TOOL",
-      "desc": "An internal interface that brings studio standards, modelling tools, material libraries, city resources and Nearmap access into one coherent working surface.",
-      "question": "A studio can have excellent digital resources and still make them hard to use. What happens if the problem is treated as interface design rather than documentation?",
-      "built": "Rhino Tabs consolidates recurring resources and workflows into a shared tool. The system was shaped through conversations with designers from different backgrounds and iterated around actual friction in day-to-day work.",
-      "judgement": "The value is not the number of features. It is whether the right action is obvious at the right moment. I reduced hierarchy, renamed ambiguous functions and grouped tools by user intent rather than by how they were technically implemented.",
-      "media": [
-        "TOOL / WORKSPACE",
-        "INFORMATION ARCHITECTURE",
-        "USER FEEDBACK / ITERATION"
-      ],
-      "taste": [
-        [
-          "KEEP",
-          "Actions described in the language designers already use in the studio."
-        ],
-        [
-          "REMOVE",
-          "Technical categories that expose implementation details but do not help the user decide."
-        ],
-        [
-          "TEST",
-          "Whether a first-time user can find a resource without being told where it lives."
-        ]
-      ]
-    },
-    "zh": {
-      "title": "RHINO TABS",
-      "brief": "把内部工具当成界面来设计",
-      "meta": "产品 / UX / 设计系统",
-      "year": "2025–26",
-      "role": "产品思考 / UX / 搭建",
-      "tools": "RHINO / 脚本 / UI 系统",
-      "output": "内部设计工具",
-      "desc": "一个把工作室标准、建模工具、材质库、城市资源与 Nearmap 入口整合到同一工作界面中的内部工具。",
-      "question": "一个工作室即使拥有很好的数字资源，也可能依然很难使用。如果把这个问题当成“界面设计”而不是“文档归档”来处理，会发生什么？",
-      "built": "Rhino Tabs 把高频资源与工作流整合成共享工具。系统通过与不同背景设计师的沟通逐步成型，并围绕真实工作摩擦点持续迭代。",
-      "judgement": "价值不在于功能数量，而在于用户是否能在正确时刻看见正确动作。我压缩层级、重命名模糊功能，并按用户意图而非技术实现方式来组织工具。",
-      "media": [
-        "工具 / 工作界面",
-        "信息架构",
-        "用户反馈 / 迭代"
-      ],
-      "taste": [
-        [
-          "保留",
-          "使用工作室设计师本来就在使用的语言来描述动作。"
-        ],
-        [
-          "去除",
-          "暴露实现细节却不能帮助用户决策的技术分类。"
-        ],
-        [
-          "测试",
-          "第一次使用的人能否在没有提示的情况下找到资源。"
-        ]
-      ]
-    },
-    "mediaImages": [
-      null,
-      null,
-      null
-    ]
-  },
-  {
-    "id": "04",
-    "en": {
-      "title": "AI PROTOTYPING",
-      "brief": "AGENTS AS CREATIVE COLLABORATORS",
-      "meta": "CLAUDE CODE / CODEX / CHATGPT / WEB",
-      "year": "2025–26",
-      "role": "DIRECTION / PROMPTING / BUILD / EDIT",
-      "tools": "CLAUDE CODE / CODEX / HTML / CSS / JS",
-      "output": "RAPID INTERACTIVE PROTOTYPES",
-      "desc": "A continuing practice of building interfaces with coding agents: using models for speed and range, then repeatedly editing the output until the interaction, typography and behaviour feel intentional.",
-      "question": "Coding agents can produce a functioning interface very quickly. The harder question is: how do you stop at something coherent rather than something merely complete?",
-      "built": "I use Claude Code, Codex and ChatGPT to generate, refactor and test interactive prototypes, then direct the next iteration through concrete visual and behavioural critique. The process moves between prompt, browser, code and judgement rather than treating one prompt as the product.",
-      "judgement": "My role is the filter. I look for generic motion, accidental hierarchy, over-sensitive interaction and visual effects that distract from the idea. I keep the model’s speed, but remove the model’s tendency to over-design.",
-      "media": [
-        "LIVE PROTOTYPE / INTERACTION",
-        "PROMPT → OUTPUT → CRITIQUE",
-        "ITERATION / BEFORE → AFTER"
-      ],
-      "taste": [
-        [
-          "KEEP",
-          "Interactions that explain the concept through behaviour rather than adding decoration."
-        ],
-        [
-          "REMOVE",
-          "Animation that exists because the model can make it, not because the interface needs it."
-        ],
-        [
-          "TEST",
-          "Whether the same idea still feels strong after effects, gradients and unnecessary copy are stripped away."
-        ]
-      ]
-    },
-    "zh": {
-      "title": "AI 原型实践",
-      "brief": "把 Agent 当作创意协作者",
-      "meta": "CLAUDE CODE / CODEX / CHATGPT / WEB",
-      "year": "2025–26",
-      "role": "方向 / 提示 / 搭建 / 编辑",
-      "tools": "CLAUDE CODE / CODEX / HTML / CSS / JS",
-      "output": "快速交互原型",
-      "desc": "持续用 coding agents 搭建界面：利用模型的速度与广度生成原型，再通过反复编辑，让交互、字体与行为真正变得有意图。",
-      "question": "Coding agent 很快就能生成一个“能运行”的界面。更难的问题是：怎样让它停在一个 coherent 的状态，而不是只是做完而已？",
-      "built": "我用 Claude Code、Codex 与 ChatGPT 来生成、重构和测试交互原型，再用具体的视觉与行为批评来指导下一轮迭代。过程在 prompt、浏览器、代码与判断之间来回切换，而不是把一次 prompt 当成最终产品。",
-      "judgement": "我的角色是过滤器。我会识别过于通用的动效、意外的层级、过度敏感的交互，以及会分散概念注意力的视觉效果。我保留模型的速度，但去掉模型“过度设计”的倾向。",
-      "media": [
-        "实时原型 / 交互",
-        "PROMPT → 输出 → 批评",
-        "迭代 / 前后对比"
-      ],
-      "taste": [
-        [
-          "保留",
-          "通过行为解释概念，而不是只增加装饰的交互。"
-        ],
-        [
-          "去除",
-          "只是因为模型会做就被加上的动画，而不是界面真正需要的动画。"
-        ],
-        [
-          "测试",
-          "在去掉特效、渐变和多余文案之后，这个想法是否依然成立。"
-        ]
-      ]
-    },
-    "mediaImages": [
-      null,
-      null,
-      null
-    ]
-  },
-  {
-    "id": "05",
+    "categoryKey": "space",
     "en": {
       "title": "SPACE",
-      "brief": "ARCHITECTURAL DESIGN / SELECTED PROFESSIONAL WORK",
-      "meta": "MASTERPLANNING / FEASIBILITY / COMPETITION / COMPUTATIONAL ANALYSIS",
-      "year": "2024–25",
+      "brief": "ARCHITECTURAL DESIGN",
+      "meta": "ARCHITECTURE / SPACE / ENVIRONMENTAL JUDGEMENT",
+      "year": "2024–26",
       "role": "DESIGN / COMPUTATIONAL ANALYSIS / VISUAL COMMUNICATION",
       "tools": "RHINO / GRASSHOPPER / LADYBUG / REVIT / ENSCAPE",
-      "output": "ARCHITECTURAL DESIGN / BID + COMPETITION PACKAGES",
+      "output": "ARCHITECTURAL DESIGN / BID + COMPETITION WORK",
       "desc": "Selected professional architecture work focused on the decisions behind form: solar access, public realm, street scale, façade expression, views and environmental performance.",
       "question": "How can architectural form respond to yield and technical constraints without losing spatial quality, identity and human scale?",
-      "built": "The project brings together three professional studies. 60 Denmark Street is presented as the main case study, using massing, solar analysis, physical modelling and public-realm design. Iglu Arden and 87 Queensbridge extend the same design thinking into façade systems and high-rise form.",
-      "judgement": "I am most interested in design moves that have visible consequences. A change in orientation, proportion or geometry should improve something tangible — daylight, views, public space, efficiency or the experience of the street — rather than exist as form for its own sake.",
+      "built": "This section brings together 60 Denmark Street, Iglu Arden and 87 Queensbridge / OSK. The emphasis is on massing, solar analysis, public realm, façade systems and tower-form decisions rather than on presenting raw submission pages.",
+      "judgement": "I am most interested in design moves that have visible consequences. A change in orientation, proportion or geometry should improve something tangible — daylight, views, public space, efficiency or the experience of the street.",
       "media": [],
       "taste": [
         [
@@ -319,16 +32,16 @@
     },
     "zh": {
       "title": "空间",
-      "brief": "建筑设计 / 专业项目精选",
-      "meta": "总体规划 / 可行性研究 / 竞赛 / 计算分析",
-      "year": "2024–25",
+      "brief": "建筑设计",
+      "meta": "建筑 / 空间 / 环境判断",
+      "year": "2024–26",
       "role": "设计 / 计算分析 / 视觉表达",
       "tools": "RHINO / GRASSHOPPER / LADYBUG / REVIT / ENSCAPE",
-      "output": "建筑设计 / 投标 + 竞赛方案",
+      "output": "建筑设计 / 投标 + 竞赛",
       "desc": "精选专业建筑项目，重点不是最终造型本身，而是造型背后的判断：日照、公共空间、街道尺度、立面表达、景观视野与环境性能。",
       "question": "建筑形式如何在产出与技术约束之间取得平衡，同时保留空间品质、识别性与人的尺度？",
-      "built": "该项目整合三个专业案例。60 Denmark Street 作为主案例，通过体量、日照分析、实体模型与公共空间设计展开；Iglu Arden 与 87 Queensbridge 则将相同的设计思维延伸到立面系统和高层建筑形体。",
-      "judgement": "我更关注会产生清晰后果的设计动作。朝向、比例或几何的变化应该真正改善日照、视野、公共空间、效率或街道体验，而不是为了形式本身而增加复杂度。",
+      "built": "这一部分整合 60 Denmark Street、Iglu Arden 与 87 Queensbridge / OSK。重点展示体量、日照分析、公共空间、立面系统与高层形体判断，而不是直接堆叠原始汇报页面。",
+      "judgement": "我更关注会产生清晰后果的设计动作。朝向、比例或几何的变化应该真正改善日照、视野、公共空间、效率或街道体验。",
       "media": [],
       "taste": [
         [
@@ -337,33 +50,188 @@
         ],
         [
           "移除",
-          "无法说明其具体价值的形式复杂度。"
+          "无法说明具体价值的形式复杂度。"
         ],
         [
           "测试",
           "让计算反馈更早进入体量设计，使性能判断与建筑判断同步演化。"
         ]
       ]
-    }
+    },
+    "mediaImages": []
   },
   {
-    "id": "06",
+    "id": "02",
+    "categoryKey": "system",
+    "en": {
+      "title": "SYSTEM",
+      "brief": "INFORMATION + URBAN DATA",
+      "meta": "INFORMATION ARCHITECTURE / CITY DATA / INTERFACE",
+      "year": "2025–26",
+      "role": "SYSTEM DESIGN / INFORMATION ARCHITECTURE / UX / DEVELOPMENT",
+      "tools": "HTML / CSS / JS / MAPBOX / RHINO / GRASSHOPPER",
+      "output": "KNOWLEDGE SYSTEMS / INTERACTIVE CITY TOOLS",
+      "desc": "Systems for turning complex studio knowledge and urban information into interfaces that are easier to browse, understand and use.",
+      "question": "How can complex information become useful without forcing the user to understand the internal structure behind it?",
+      "built": "This section combines Studio Library with City as Data / Melbourne City Model work. One reorganises recurring design knowledge around user intent; the other translates spatial geometry and urban data into a browser-based city interface.",
+      "judgement": "The recurring decision is what not to show. I prioritise clear entry points, spatial orientation and progressive disclosure over exposing every tool, folder or dataset at once.",
+      "media": [
+        "CITY AS DATA / MELBOURNE CITY MODEL",
+        "RHINO → MAPBOX → WEB / SPATIAL DATA WORKFLOW",
+        "STUDIO LIBRARY / KNOWLEDGE SYSTEM",
+        "TOOL-CENTRIC → TASK-CENTRIC INFORMATION ARCHITECTURE"
+      ],
+      "taste": [
+        [
+          "KEEP",
+          "Clear, high-confidence entry points that match what the user is trying to do."
+        ],
+        [
+          "REMOVE",
+          "Internal folder logic, tool directories and duplicated information that increase cognitive load."
+        ],
+        [
+          "TEST",
+          "How search, spatial browsing and progressive disclosure can shorten the path from question to useful resource."
+        ]
+      ]
+    },
+    "zh": {
+      "title": "系统",
+      "brief": "信息 + 城市数据",
+      "meta": "信息架构 / 城市数据 / 界面",
+      "year": "2025–26",
+      "role": "系统设计 / 信息架构 / UX / 开发",
+      "tools": "HTML / CSS / JS / MAPBOX / RHINO / GRASSHOPPER",
+      "output": "知识系统 / 交互式城市工具",
+      "desc": "把复杂的事务所知识与城市信息转化成更容易浏览、理解和使用的界面系统。",
+      "question": "如何让复杂信息变得真正可用，而不是要求用户先理解背后的内部组织结构？",
+      "built": "这一部分把 Studio Library 与 City as Data / Melbourne City Model 放在同一个系统设计章节中。前者围绕用户意图重新组织设计知识，后者把空间几何与城市数据转化为浏览器中的城市界面。",
+      "judgement": "反复出现的核心判断，是“哪些东西不应该出现”。我优先保留明确入口、空间定位感与渐进式信息展开，而不是一次性暴露所有工具、文件夹和数据。",
+      "media": [
+        "城市即数据 / 墨尔本城市模型",
+        "RHINO → MAPBOX → WEB / 空间数据工作流",
+        "STUDIO LIBRARY / 知识系统",
+        "工具导向 → 任务导向的信息架构"
+      ],
+      "taste": [
+        [
+          "保留",
+          "对应用户真实意图、无需解释的高置信度入口。"
+        ],
+        [
+          "移除",
+          "增加认知负担的内部文件夹逻辑、工具目录与重复信息。"
+        ],
+        [
+          "测试",
+          "搜索、空间浏览与渐进式展示能否缩短从问题到可用资源的路径。"
+        ]
+      ]
+    },
+    "mediaImages": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": "03",
+    "categoryKey": "code",
+    "en": {
+      "title": "CODE",
+      "brief": "COMPUTATIONAL DESIGN",
+      "meta": "GRASSHOPPER / PYTHON / TOOLS / AI PROTOTYPING",
+      "year": "2020–26",
+      "role": "COMPUTATIONAL DESIGN / TOOLMAKING / PROTOTYPING",
+      "tools": "RHINO / GRASSHOPPER / PYTHON / HTML / CSS / JS / AI CODING AGENTS",
+      "output": "PARAMETRIC WORKFLOWS / INTERNAL TOOLS / INTERACTIVE PROTOTYPES",
+      "desc": "Computational work that turns repeated design problems into tools, systems and interactive prototypes.",
+      "question": "Where should computation automate a process, and where should judgement remain visible and editable?",
+      "built": "This section brings together Rhino Tabs, Grasshopper and Python workflows, automation, web tooling and AI-assisted prototyping. The common thread is not a specific software package, but designing the logic between input, transformation and decision.",
+      "judgement": "The tool should reduce friction without hiding the decision. I keep computational systems legible enough to critique, change and reuse rather than treating automation as a black box.",
+      "media": [
+        "RHINO TABS / INTERNAL TOOLING",
+        "GRASSHOPPER + PYTHON / PARAMETRIC WORKFLOWS",
+        "AUTOMATION / RHINO ↔ REVIT / STUDIO WORKFLOWS",
+        "AI PROTOTYPING / CLAUDE CODE + CODEX + CHATGPT",
+        "PROMPT → OUTPUT → CRITIQUE → ITERATION"
+      ],
+      "taste": [
+        [
+          "KEEP",
+          "Tools that make the next useful action obvious and keep design intent visible."
+        ],
+        [
+          "REMOVE",
+          "Automation that adds complexity without reducing meaningful work."
+        ],
+        [
+          "TEST",
+          "How AI-assisted building can stay fast without becoming visually or behaviourally generic."
+        ]
+      ]
+    },
+    "zh": {
+      "title": "代码",
+      "brief": "计算设计",
+      "meta": "GRASSHOPPER / PYTHON / 工具 / AI 原型",
+      "year": "2020–26",
+      "role": "计算设计 / 工具开发 / 原型",
+      "tools": "RHINO / GRASSHOPPER / PYTHON / HTML / CSS / JS / AI CODING AGENTS",
+      "output": "参数化工作流 / 内部工具 / 交互原型",
+      "desc": "把重复出现的设计问题转化为工具、系统与交互原型的计算实践。",
+      "question": "什么应该被计算自动化，什么判断又应该继续保持可见、可修改？",
+      "built": "这一部分整合 Rhino Tabs、Grasshopper 与 Python 工作流、自动化、网页工具以及 AI 辅助原型。共同点不是某一种软件，而是对输入、转换与判断之间逻辑关系的设计。",
+      "judgement": "工具应该减少摩擦，但不能把判断藏起来。我希望计算系统始终足够清晰，可以被批评、修改和复用，而不是成为黑箱。",
+      "media": [
+        "RHINO TABS / 内部工具",
+        "GRASSHOPPER + PYTHON / 参数化工作流",
+        "自动化 / RHINO ↔ REVIT / 工作室流程",
+        "AI 原型 / CLAUDE CODE + CODEX + CHATGPT",
+        "PROMPT → 输出 → 批评 → 迭代"
+      ],
+      "taste": [
+        [
+          "保留",
+          "让下一步操作自然明确，同时保持设计意图可见的工具。"
+        ],
+        [
+          "移除",
+          "没有减少真正工作量、反而增加复杂度的自动化。"
+        ],
+        [
+          "测试",
+          "AI 辅助开发如何保持速度，同时避免视觉和行为上的模板化。"
+        ]
+      ]
+    },
+    "mediaImages": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": "04",
+    "categoryKey": "observation",
     "en": {
       "title": "OBSERVATION",
-      "brief": "PHOTOGRAPHY / YEARS / FRAGMENTS",
-      "meta": "MEDIUM / 135 FILM / DIGITAL SUPPLEMENTS",
+      "brief": "PHOTOGRAPHY / PERCEPTION",
+      "meta": "PHOTOGRAPHY / SEQUENCING / VISUAL JUDGEMENT",
       "year": "ONGOING",
       "role": "PHOTOGRAPHER / EDITOR",
-      "tools": "CAMERA / SEQUENCING / EDIT",
+      "tools": "MEDIUM FORMAT / 135 FILM / DIGITAL / SEQUENCING",
       "output": "PHOTOGRAPHIC SERIES",
-      "desc": "Photography as an ongoing exercise in attention: people, buildings, incidental gestures and landscape fragments selected over the years, mostly in medium and 135 format film, with a small amount of digital work as supplement.",
-      "question": "What makes an image worth keeping when nothing dramatic is happening? The section treats selection and sequencing as a way to make visual judgement explicit.",
-      "built": "An evolving body of street, architectural, landscape and observational photography. The work moves slowly through contact sheets and sequences, and the edit is treated as part of the image-making.",
-      "judgement": "I look for tension between geometry and behaviour, clarity without over-composition, and frames that gain more meaning when they sit beside another frame. The edit matters as much as the shutter.",
+      "desc": "Photography as an ongoing exercise in attention: people, buildings, incidental gestures and landscape fragments selected and sequenced over time.",
+      "question": "What makes an image worth keeping when nothing dramatic is happening?",
+      "built": "The work is organised as an authored sequence rather than a masonry archive: DENSITY → DISTANCE → OBJECT → LIGHT → TRACE. Selection and sequencing are treated as part of the image-making.",
+      "judgement": "I look for tension between geometry and behaviour, clarity without over-composition, and frames that gain more meaning when they sit beside another frame.",
       "media": [
-        "SELECTS / ACROSS YEARS",
-        "FILM AS PRIMARY MEDIUM",
-        "SEQUENCE / EDIT / RHYTHM"
+        "DENSITY → DISTANCE → OBJECT → LIGHT → TRACE"
       ],
       "taste": [
         [
@@ -372,30 +240,28 @@
         ],
         [
           "REMOVE",
-          "Technically clean photographs that say the same thing as a stronger frame."
+          "Technically polished photographs that say the same thing as a stronger frame."
         ],
         [
           "TEST",
-          "Whether a sequence produces a new reading that no single image can carry alone."
+          "Whether sequencing by perceptual association creates a reading that no single image can carry."
         ]
       ]
     },
     "zh": {
       "title": "观察",
-      "brief": "摄影 / 年份 / 碎片",
-      "meta": "中画幅 / 135 胶片 / 数码补充",
+      "brief": "摄影 / 感知",
+      "meta": "摄影 / 序列 / 视觉判断",
       "year": "持续进行中",
       "role": "摄影 / 编辑",
-      "tools": "相机 / 序列 / 编辑",
+      "tools": "中画幅 / 135 胶片 / 数码 / 序列编辑",
       "output": "摄影系列",
-      "desc": "把摄影当作一种持续的注意力练习：人物、建筑、偶然动作与风景碎片，跨越不同年份拍摄，主要以中画幅与 135 胶片为主，少量数码作为补充。",
-      "question": "当没有明显戏剧事件发生时，什么样的图像仍然值得被保留？这个部分把“挑选”与“排序”当成显化视觉判断的方法。",
-      "built": "一个持续生长的街头、建筑、风景与观察性影像集合。作品通过接触表和序列慢慢成形，编辑本身被视为拍摄的一部分。",
-      "judgement": "我在意几何与行为之间的张力、清晰但不过度构图的画面，以及一张图像与另一张图像并置后产生的新含义。快门和编辑同样重要。",
+      "desc": "把摄影当作一种持续的注意力练习：人物、建筑、偶然动作与风景碎片，被不断筛选并重新排序。",
+      "question": "当没有明显戏剧事件发生时，什么样的图像仍然值得被保留？",
+      "built": "作品不再以普通 masonry 图库呈现，而是按 DENSITY → DISTANCE → OBJECT → LIGHT → TRACE 的顺序形成一条有作者判断的观看路径。挑选和排序本身也是拍摄的一部分。",
+      "judgement": "我在意几何与行为之间的张力、清晰但不过度构图的画面，以及一张图像与另一张并置后产生的新含义。",
       "media": [
-        "跨年份精选",
-        "胶片为主",
-        "序列 / 编辑 / 节奏"
+        "DENSITY → DISTANCE → OBJECT → LIGHT → TRACE"
       ],
       "taste": [
         [
@@ -404,72 +270,95 @@
         ],
         [
           "去除",
-          "技术上很干净、但表达重复于更强画面的照片。"
+          "技术上精致，但表达重复于更强画面的照片。"
         ],
         [
           "测试",
-          "一个序列是否能产生单张图像无法承担的新阅读。"
+          "按感知关联而非时间顺序编排，能否产生单张图像无法承担的新阅读。"
         ]
       ]
-    }
+    },
+    "mediaImages": [
+      null
+    ]
   },
   {
-    "id": "07",
+    "id": "05",
+    "categoryKey": "research",
     "en": {
-      "title": "STUDIO LIBRARY",
-      "brief": "DESIGN KNOWLEDGE / INTERNAL TOOLING",
-      "meta": "PRODUCT / INFORMATION ARCHITECTURE / FRONT-END",
-      "year": "2026",
-      "role": "CONCEPT / INFORMATION ARCHITECTURE / UX / PROTOTYPING",
-      "tools": "HTML / CSS / JS / MAPS / AI-ASSISTED PROTOTYPING",
-      "output": "INTERACTIVE KNOWLEDGE SYSTEM",
-      "desc": "A redesign of the studio knowledge entry point: moving recurring design resources from fragmented technology pages and tool-led navigation into one coherent, task-oriented interface.",
-      "question": "The knowledge already existed across Insite pages, software guides and specialist resources. How could the entry point be redesigned so a designer can find what they need without first knowing where the studio stores it?",
-      "built": "I reviewed the existing Technology navigation and knowledge pages, consolidated recurring resources into four high-confidence categories, and built a searchable, map-aware web prototype. The public portfolio version preserves the information architecture and interaction logic while replacing proprietary content with fictional demonstration data.",
-      "judgement": "The key decision was to stop exposing internal structure. I reduced a long list of tool and page names into a small number of resource-led paths — prioritising the user’s design intent over the way information happens to be stored.",
-      "media": [],
+      "title": "RESEARCH",
+      "brief": "GRADUATION THESIS / TODAI",
+      "meta": "MACHINE LEARNING / TOD / PLANNING TOOL",
+      "year": "2021–22",
+      "role": "RESEARCH / COMPUTATIONAL DESIGN / VISUALISATION",
+      "tools": "MACHINE LEARNING / PYTHON / PARAMETRIC PLANNING / DATA VISUALISATION",
+      "output": "THESIS / PLANNING TOOL / CAADRIA PAPER",
+      "desc": "TODAI — a machine-learning-powered planning tool for Transit-Oriented Development, developed during my UNSW Computational Design degree.",
+      "question": "Can machine learning support early-stage planning decisions for Transit-Oriented Development without reducing the process to a single optimisation score?",
+      "built": "The thesis explored how planning data, computational generation and machine learning could be combined into a decision-support workflow for TOD. The portfolio version will present the research as a visual research artifact rather than as a conventional academic paper.",
+      "judgement": "The most useful role for computation is not to replace planning judgement, but to expose alternatives, patterns and trade-offs early enough to influence a design decision.",
+      "media": [
+        "PROBLEM / TRANSIT-ORIENTED DEVELOPMENT",
+        "DATASET + METHOD",
+        "MACHINE-LEARNING PLANNING LOGIC",
+        "INTERFACE / OUTPUT",
+        "WHAT I LEARNED"
+      ],
       "taste": [
         [
           "KEEP",
-          "Four high-confidence entry points that match recurring design tasks and make the next useful action obvious."
+          "Research outputs that make the relationship between data, model logic and planning decision legible."
         ],
         [
           "REMOVE",
-          "Long tool directories, internal folder logic and implementation details that force users to understand the system before using it."
+          "Academic complexity that does not help explain the actual decision-support idea."
         ],
         [
           "TEST",
-          "How search, spatial browsing and progressively disclosed detail can reduce the time between a design question and the resource needed to answer it."
+          "How the original research could be reframed today as an AI-native interactive planning interface."
         ]
       ]
     },
     "zh": {
-      "title": "STUDIO LIBRARY",
-      "brief": "设计知识 / 内部工具",
-      "meta": "产品 / 信息架构 / 前端",
-      "year": "2026",
-      "role": "概念 / 信息架构 / UX / 原型开发",
-      "tools": "HTML / CSS / JS / 地图 / AI 辅助原型开发",
-      "output": "交互式知识系统",
-      "desc": "重新设计事务所设计知识的入口：把分散在 Technology 页面与软件导航中的高频资源，整合为一个以任务为导向的统一界面。",
-      "question": "原有知识已经存在于 Insite 页面、软件指南与各类专业资源中。如何重新设计入口，让设计师不需要先知道资料被存在哪里，也能快速找到自己需要的内容？",
-      "built": "我梳理了原有的 Technology 导航与知识页面，把高频设计资源整合为四个高置信度类别，并搭建了支持搜索与地图浏览的网页原型。公开作品集版本保留原始信息架构与交互逻辑，同时以虚构示例数据替代内部专有内容。",
-      "judgement": "最关键的判断，是停止把内部组织结构直接暴露给用户。我把长列表式的软件与页面入口压缩为少量以资源和任务为中心的路径，让“设计师想做什么”优先于“文件实际上被放在哪里”。",
-      "media": [],
+      "title": "研究",
+      "brief": "毕业论文 / TODAI",
+      "meta": "机器学习 / TOD / 规划工具",
+      "year": "2021–22",
+      "role": "研究 / 计算设计 / 可视化",
+      "tools": "机器学习 / PYTHON / 参数化规划 / 数据可视化",
+      "output": "毕业论文 / 规划工具 / CAADRIA 论文",
+      "desc": "TODAI —— 一个面向公共交通导向开发（TOD）的机器学习规划工具，完成于 UNSW Computational Design 本科阶段。",
+      "question": "机器学习能否辅助 TOD 的早期规划判断，同时避免把复杂的规划过程压缩成单一优化分数？",
+      "built": "论文研究了如何把规划数据、计算生成与机器学习组合成 TOD 的决策支持工作流。作品集版本会把它重新编辑成一个视觉化 research artifact，而不是传统论文页面。",
+      "judgement": "计算最有价值的角色不是代替规划判断，而是更早暴露备选方案、模式与权衡，让它们真正进入设计决策。",
+      "media": [
+        "问题 / TOD",
+        "数据集 + 方法",
+        "机器学习规划逻辑",
+        "界面 / 输出",
+        "我学到了什么"
+      ],
       "taste": [
         [
           "保留",
-          "四个对应高频设计任务的明确入口，让下一步操作不需要解释就能被理解。"
+          "能够清楚说明数据、模型逻辑与规划判断关系的研究输出。"
         ],
         [
-          "移除",
-          "长列表式工具目录、内部文件夹逻辑，以及要求用户先理解系统实现方式的细节。"
+          "去除",
+          "无法帮助解释决策支持概念的学术复杂度。"
         ],
         [
           "测试",
-          "搜索、空间浏览与渐进式信息展示，能否缩短从“提出设计问题”到“找到可用资源”的路径。"
+          "如果今天重新做一次，如何把原研究改造成 AI-native 的交互式规划界面。"
         ]
       ]
-    }
+    },
+    "mediaImages": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
   }
 ]

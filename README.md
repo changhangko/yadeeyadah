@@ -135,3 +135,7 @@ Portfolio image assets are curated crops extracted from the supplied project PDF
 
 ## v8 Grid editor
 12-column modular grid + 8px baseline in edit mode. GRID ON lets you drag text/images/sections; SNAP ON aligns horizontal movement to half-column steps and vertical movement to 8px. Drag the selected element's bottom-right handle to resize in column-based increments. Turn GRID OFF to edit text normally. Save with SAVE IMAGE-LAYOUT.JSON.
+
+
+## v9 — Five-category structure
+Top-level navigation and Index are now exactly: SPACE / SYSTEM / CODE / OBSERVATION / RESEARCH. Legacy single projects are grouped inside these categories rather than shown as seven equal top-level items.
