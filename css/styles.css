@@ -1895,3 +1895,43 @@ footer{
     width:min(1240px,calc(100vw - 72px));
   }
 }
+
+
+/* ---------- v18 / lighter Chinese title hierarchy ---------- */
+html[lang="zh-CN"] .index-title-main,
+html[lang="zh-CN"] .index-row:hover .index-title-main,
+html[lang="zh-CN"] #project .eyebrow,
+html[lang="zh-CN"] #project .pbody > h1,
+html[lang="zh-CN"] .story h2,
+html[lang="zh-CN"] .meta-value,
+html[lang="zh-CN"] .system-animation-head h2,
+html[lang="zh-CN"] .system-animation-meta,
+html[lang="zh-CN"] .arch-intro h2,
+html[lang="zh-CN"] .arch-chapter-head h3,
+html[lang="zh-CN"] .arch-subproject-copy h4,
+html[lang="zh-CN"] .studio-section-head h3,
+html[lang="zh-CN"] .studio-intervention-copy h3,
+html[lang="zh-CN"] .about-copy h1,
+html[lang="zh-CN"] .concept-grid h2,
+html[lang="zh-CN"] .about-block h2{
+  font-family:
+    "Noto Sans SC",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-weight:500;
+  letter-spacing:.035em;
+}
+
+/* Keep Chinese index rows lighter and less dense. */
+html[lang="zh-CN"] .index-title-main{
+  font-weight:500;
+  letter-spacing:.055em;
+}
+html[lang="zh-CN"] .index-title-sub,
+html[lang="zh-CN"] .index-meta,
+html[lang="zh-CN"] .index-year{
+  letter-spacing:.045em;
+}

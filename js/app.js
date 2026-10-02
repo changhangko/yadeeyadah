@@ -1,4 +1,4 @@
-const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","about":"[ PROFILE ]","themeLight":"[ LIGHT ]","themeDark":"[ DARK ]","index":"[ INDEX ]","lang":"[ EN / 中文 ]","footerLeft":"ACGT / SELECTED WORK","footerRight":"MUTATION → DECODE","close":"[ ESC / CLOSE ]","labels":{"role":"Role","tools":"Tools","output":"Output","year":"Year"},"story":{"question":"01 / Question","built":"02 / Built","judgement":"03 / Judgement"},"taste":"Taste / Decision Log","next":"NEXT MUTATION","indexTitle":"PROJECT INDEX","indexIntro":"Five bodies of work: SPACE / SYSTEM / CODE / OBSERVATION / RESEARCH. Each category gathers related projects and studies into one coherent practice area.","aboutTitle":"PROFILE / PRACTICE","aboutLead":"Creative Technologist and Computational Designer with five years of professional experience across computational design, generative workflows, 3D modelling, internal tools, web development and AI-assisted prototyping.","aboutText":"I currently work at Bates Smart in Melbourne, where my role has grown from project-based computational design into toolmaking, interface thinking and digital workflows. I use Rhino, Grasshopper and Python to automate repeated design and modelling tasks; build internal tools such as Rhino Tabs; develop browser-based spatial tools using HTML, CSS, JavaScript and Mapbox; and use Claude Code, Codex and ChatGPT for rapid prototyping and iterative interface development. Alongside technical work, I have contributed to competitive bids and client-facing design presentations. My current interests sit around AI-native interaction, visual judgement, multimodal interfaces, creative technology and product experience.","aboutBlocks":[["Current","Computational Designer<br>Bates Smart / Melbourne<br>2021 — Present"],["Practice","Computational Design · Creative Technology · Internal Tools · Web / Spatial Interaction · AI-assisted Prototyping"],["Selected Work","Rhino Tabs · Melbourne City Model / Insight Web · Parametric + automation workflows · Competitive residential / mixed-use bids"],["Client + Collaboration","Client Presentation · Design Pitch · Developer-facing communication · Cross-disciplinary collaboration"],["Education","UNSW — Bachelor of Computational Design<br>Graduated with Distinction · Dean’s Merit List"],["Research","TODAI — Machine-learning-powered planning tool for Transit-Oriented Development<br>Published at CAADRIA"],["Tools","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["Languages","Mandarin Chinese — Native<br>English — Full Professional Proficiency"],["Contact","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>Melbourne / Beijing"]],"galleryTitle":"Selected Frames","profileEyebrow":"01 / PROFILE","profileMetaLeft":"SELF / IDENTITY","profileMetaRight":"ACGT → DECODE","conceptEyebrow":"02 / DESIGN CONCEPT","conceptTitle":"GENOME / MUTATION / DECODE","conceptText1":"This portfolio draws from the conceptual language of science fiction films such as Blade Runner, Ex Machina and Gattaca. Rather than borrowing their aesthetics directly, I am interested in the questions they share: how identity is encoded, how machines interpret humans, how systems classify individuals, and where judgement sits between data and intuition.","conceptText2":"The Genome interface translates these ideas into a navigational system. Projects appear as mutations within a field of ACGT sequences, and interaction becomes a process of decoding. The website is therefore not only a container for work, but a small speculative system about perception, identity and machine-readable judgement.","practiceEyebrow":"03 / EXPERIENCE + CAPABILITIES"},"zh":{"roleLine":"创意技术 / 计算设计","about":"[ 个人简介 ]","themeLight":"[ 浅色 ]","themeDark":"[ 深色 ]","index":"[ 索引 ]","lang":"[ 中文 / EN ]","footerLeft":"ACGT / 作品索引","footerRight":"变异 → 解码","close":"[ ESC / 关闭 ]","labels":{"role":"角色","tools":"工具","output":"产出","year":"年份"},"story":{"question":"01 / 问题","built":"02 / 构建","judgement":"03 / 判断"},"taste":"审美判断 / 决策记录","next":"下一个变异","indexTitle":"项目索引","indexIntro":"五个实践方向：空间 / 系统 / 代码 / 观察 / 研究。每个大类内部再整合相关项目与研究，而不是把所有项目平铺在同一级。","aboutTitle":"个人简介","aboutLead":"拥有 5 年专业经验的 Creative Technologist / Computational Designer，工作横跨计算设计、生成式设计、3D 建模、内部数字工具、网页开发与 AI-assisted prototyping。","aboutText":"目前就职于墨尔本 Bates Smart。我的工作从项目中的计算设计逐渐延伸到工具开发、界面思考与数字工作流：使用 Rhino、Grasshopper 与 Python 把重复的设计、建模和数据处理转化为可复用工具；设计 Rhino Tabs 等内部工具；结合 HTML / CSS / JavaScript / Mapbox 开发浏览器中的空间与城市数据界面；同时长期使用 Claude Code、Codex 与 ChatGPT 进行快速原型、测试和多轮界面迭代。除了技术工作，我也参与竞争性投标、客户汇报与跨专业沟通。现在希望进一步探索 AI-native interaction、视觉判断、多模态界面、Creative Technology 与产品体验。","aboutBlocks":[["当前","Computational Designer<br>Bates Smart / Melbourne<br>2021 — 至今"],["实践方向","计算设计 · Creative Technology · 内部工具 · Web / Spatial Interaction · AI-assisted Prototyping"],["代表工作","Rhino Tabs · Melbourne City Model / Insight Web · 参数化与自动化工作流 · 住宅及综合开发竞争性投标"],["客户与协作","客户汇报 · Design Pitch · 开发商沟通 · 跨专业协作"],["教育","UNSW — Bachelor of Computational Design<br>Distinction 毕业 · Dean’s Merit List"],["研究","TODAI — 基于机器学习的 TOD 规划工具<br>发表于 CAADRIA 国际会议"],["工具","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["语言","普通话 — 母语<br>英语 — Full Professional Proficiency"],["联系","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>墨尔本 / 北京"]],"galleryTitle":"摄影选帧","profileEyebrow":"01 / 关于我","profileMetaLeft":"自我 / 身份","profileMetaRight":"ACGT → 解码","conceptEyebrow":"02 / 设计概念","conceptTitle":"基因 / 变异 / 解码","conceptText1":"这个作品集的设计受到《银翼杀手》《机械姬》《Gattaca》等科幻电影在概念层面的影响。与其直接借用它们的视觉风格，我更关注这些作品共同讨论的问题：身份如何被编码，机器如何理解人，系统如何分类个体，以及判断如何存在于数据与直觉之间。","conceptText2":"Genome 界面把这些概念转化成一套导航系统。项目以“变异”的形式散布在 ACGT 序列中，用户通过交互逐渐完成“解码”。因此，这个网站不仅是作品的容器，也像一个关于感知、身份与机器可读判断的小型推演系统。","practiceEyebrow":"03 / 经历 + 能力"}};
+const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","about":"[ PROFILE ]","themeLight":"[ LIGHT ]","themeDark":"[ DARK ]","index":"[ INDEX ]","lang":"[ EN / 中文 ]","footerLeft":"ACGT / SELECTED WORK","footerRight":"MUTATION → DECODE","close":"[ ESC / CLOSE ]","labels":{"role":"Role","tools":"Tools","output":"Output","year":"Year"},"story":{"question":"01 / Question","built":"02 / Built","judgement":"03 / Judgement"},"taste":"Taste / Decision Log","next":"NEXT MUTATION","indexTitle":"PROJECT INDEX","indexIntro":"Five bodies of work: SPACE / SYSTEM / CODE / OBSERVATION / RESEARCH. Each category gathers related projects and studies into one coherent practice area.","aboutTitle":"PROFILE / PRACTICE","aboutLead":"Creative Technologist and Computational Designer with five years of professional experience across computational design, generative workflows, 3D modelling, internal tools, web development and AI-assisted prototyping.","aboutText":"I currently work at Bates Smart in Melbourne, where my role has grown from project-based computational design into toolmaking, interface thinking and digital workflows. I use Rhino, Grasshopper and Python to automate repeated design and modelling tasks; build internal tools such as Rhino Tabs; develop browser-based spatial tools using HTML, CSS, JavaScript and Mapbox; and use Claude Code, Codex and ChatGPT for rapid prototyping and iterative interface development. Alongside technical work, I have contributed to competitive bids and client-facing design presentations. My current interests sit around AI-native interaction, visual judgement, multimodal interfaces, creative technology and product experience.","aboutBlocks":[["Current","Computational Designer<br>Bates Smart / Melbourne<br>2021 — Present"],["Practice","Computational Design · Creative Technology · Internal Tools · Web / Spatial Interaction · AI-assisted Prototyping"],["Selected Work","Rhino Tabs · Melbourne City Model / Insight Web · Parametric + automation workflows · Competitive residential / mixed-use bids"],["Client + Collaboration","Client Presentation · Design Pitch · Developer-facing communication · Cross-disciplinary collaboration"],["Education","UNSW — Bachelor of Computational Design<br>Graduated with Distinction · Dean’s Merit List"],["Research","TODAI — Machine-learning-powered planning tool for Transit-Oriented Development<br>Published at CAADRIA"],["Tools","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["Languages","Mandarin Chinese — Native<br>English — Full Professional Proficiency"],["Contact","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>Melbourne / Beijing"]],"galleryTitle":"Selected Frames","profileEyebrow":"01 / PROFILE","profileMetaLeft":"SELF / IDENTITY","profileMetaRight":"ACGT → DECODE","conceptEyebrow":"02 / DESIGN CONCEPT","conceptTitle":"GENOME / MUTATION / DECODE","conceptText1":"This portfolio draws from the conceptual language of science fiction films such as Blade Runner, Ex Machina and Gattaca. Rather than borrowing their aesthetics directly, I am interested in the questions they share: how identity is encoded, how machines interpret humans, how systems classify individuals, and where judgement sits between data and intuition.","conceptText2":"The Genome interface translates these ideas into a navigational system. Projects appear as mutations within a field of ACGT sequences, and interaction becomes a process of decoding. The website is therefore not only a container for work, but a small speculative system about perception, identity and machine-readable judgement.","practiceEyebrow":"03 / EXPERIENCE + CAPABILITIES"},"zh":{"roleLine":"创意技术 / 计算设计","about":"[ 个人简介 ]","themeLight":"[ 浅色 ]","themeDark":"[ 深色 ]","index":"[ 索引 ]","lang":"[ 中文 / EN ]","footerLeft":"ACGT / 作品索引","footerRight":"变异 → 解码","close":"[ ESC / 关闭 ]","labels":{"role":"角色","tools":"工具","output":"产出","year":"年份"},"story":{"question":"01 / 问题","built":"02 / 构建","judgement":"03 / 判断"},"taste":"审美判断 / 决策记录","next":"下一个变异","indexTitle":"项目索引","indexIntro":"五个实践方向：空间 / 系统 / 代码 / 观察 / 研究.每个大类内部再整合相关项目与研究，而不是把所有项目平铺在同一级.","aboutTitle":"个人简介","aboutLead":"拥有 5 年专业经验的 Creative Technologist / Computational Designer，工作横跨计算设计、生成式设计、3D 建模、内部数字工具、网页开发与 AI-assisted prototyping.","aboutText":"目前就职于墨尔本 Bates Smart.我的工作从项目中的计算设计逐渐延伸到工具开发、界面思考与数字工作流：使用 Rhino、Grasshopper 与 Python 把重复的设计、建模和数据处理转化为可复用工具；设计 Rhino Tabs 等内部工具；结合 HTML / CSS / JavaScript / Mapbox 开发浏览器中的空间与城市数据界面；同时长期使用 Claude Code、Codex 与 ChatGPT 进行快速原型、测试和多轮界面迭代.除了技术工作，我也参与竞争性投标、客户汇报与跨专业沟通.现在希望进一步探索 AI-native interaction、视觉判断、多模态界面、Creative Technology 与产品体验.","aboutBlocks":[["当前","Computational Designer<br>Bates Smart / Melbourne<br>2021 — 至今"],["实践方向","计算设计 · Creative Technology · 内部工具 · Web / Spatial Interaction · AI-assisted Prototyping"],["代表工作","Rhino Tabs · Melbourne City Model / Insight Web · 参数化与自动化工作流 · 住宅及综合开发竞争性投标"],["客户与协作","客户汇报 · Design Pitch · 开发商沟通 · 跨专业协作"],["教育","UNSW — Bachelor of Computational Design<br>Distinction 毕业 · Dean’s Merit List"],["研究","TODAI — 基于机器学习的 TOD 规划工具<br>发表于 CAADRIA 国际会议"],["工具","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["语言","普通话 — 母语<br>英语 — Full Professional Proficiency"],["联系","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>墨尔本 / 北京"]],"galleryTitle":"摄影选帧","profileEyebrow":"01 / 关于我","profileMetaLeft":"自我 / 身份","profileMetaRight":"ACGT → 解码","conceptEyebrow":"02 / 设计概念","conceptTitle":"基因 / 变异 / 解码","conceptText1":"这个作品集的设计受到《银翼杀手》《机械姬》《Gattaca》等科幻电影在概念层面的影响.与其直接借用它们的视觉风格，我更关注这些作品共同讨论的问题：身份如何被编码，机器如何理解人，系统如何分类个体，以及判断如何存在于数据与直觉之间.","conceptText2":"Genome 界面把这些概念转化成一套导航系统.项目以“变异”的形式散布在 ACGT 序列中，用户通过交互逐渐完成“解码”.因此，这个网站不仅是作品的容器，也像一个关于感知、身份与机器可读判断的小型推演系统.","practiceEyebrow":"03 / 经历 + 能力"}};
 
 let PROJECTS=[];
 let PHOTO_DATA=null;
@@ -831,13 +831,13 @@ const METHOD_ANIMATION_COPY={
     },
     zh:{
       kicker:'空间 / 空间综合',
-      title:'约束逐渐转化为空间判断。',
-      intro:'同一套视觉语法也可以描述建筑判断：分散的条件形成作用场，作用场形成体量，体量最终转化为公共空间与建筑形体。',
+      title:'约束逐渐转化为空间判断.',
+      intro:'同一套视觉语法也可以描述建筑判断：分散的条件形成作用场，作用场形成体量，体量最终转化为公共空间与建筑形体.',
       cards:[
-        ['01 / 约束','场地 + 日照 + 流线','边界、日照、流线与功能需求最初是彼此分离的力量。'],
-        ['02 / 场','关系 + 压力','不同条件开始相互影响，逐渐形成具有方向性的作用场。'],
-        ['03 / 体量','形体 + 朝向','作用场被翻译成比例、朝向与建筑体量。'],
-        ['04 / 结果','空间 + 建成形态','最终形成建筑、街道与开放空间之间清晰的空间关系。']
+        ['01 / 约束','场地 + 日照 + 流线','边界、日照、流线与功能需求最初是彼此分离的力量.'],
+        ['02 / 场','关系 + 压力','不同条件开始相互影响，逐渐形成具有方向性的作用场.'],
+        ['03 / 体量','形体 + 朝向','作用场被翻译成比例、朝向与建筑体量.'],
+        ['04 / 结果','空间 + 建成形态','最终形成建筑、街道与开放空间之间清晰的空间关系.']
       ]
     }
   },
@@ -855,13 +855,13 @@ const METHOD_ANIMATION_COPY={
     },
     zh:{
       kicker:'代码 / 计算逻辑',
-      title:'输入逐渐变成关系、规则与工具。',
-      intro:'这里把计算过程保持为可读链条，而不是黑箱：参数进入，关系被连接，规则组织行为，最终形成界面或可复用工具。',
+      title:'输入逐渐变成关系、规则与工具.',
+      intro:'这里把计算过程保持为可读链条，而不是黑箱：参数进入，关系被连接，规则组织行为，最终形成界面或可复用工具.',
       cards:[
-        ['01 / 输入','参数 + 事件','几何、数值、用户操作与设计意图作为独立输入进入系统。'],
-        ['02 / 连接','依赖关系','不同输入通过明确的关系与依赖被连接起来。'],
-        ['03 / 规则','逻辑 + 迭代','规则把网络组织成可重复执行的计算工作流。'],
-        ['04 / 输出','工具 + 界面','逻辑最终变成可复用的脚本、工作流、界面或交互原型。']
+        ['01 / 输入','参数 + 事件','几何、数值、用户操作与设计意图作为独立输入进入系统.'],
+        ['02 / 连接','依赖关系','不同输入通过明确的关系与依赖被连接起来.'],
+        ['03 / 规则','逻辑 + 迭代','规则把网络组织成可重复执行的计算工作流.'],
+        ['04 / 输出','工具 + 界面','逻辑最终变成可复用的脚本、工作流、界面或交互原型.']
       ]
     }
   },
@@ -879,13 +879,13 @@ const METHOD_ANIMATION_COPY={
     },
     zh:{
       kicker:'观察 / 视觉编辑',
-      title:'碎片逐渐形成具有作者判断的序列。',
-      intro:'摄影使用同样的组织逻辑，但动作更安静：大量碎片被观察，少量画面被保留，选择被重新排序，最终留下视觉痕迹。',
+      title:'碎片逐渐形成具有作者判断的序列.',
+      intro:'摄影使用同样的组织逻辑，但动作更安静：大量碎片被观察，少量画面被保留，选择被重新排序，最终留下视觉痕迹.',
       cards:[
-        ['01 / 碎片','注意力','大量普通瞬间同时存在，还没有明确层级。'],
-        ['02 / 选择','保留 / 去除','少量画面被保留，技术完整但表达重复的画面逐渐消失。'],
-        ['03 / 序列','节奏 + 联想','被选中的画面按照视觉关联而不是时间顺序重新排列。'],
-        ['04 / 痕迹','记忆 + 阅读','最终序列形成单张图像无法独立承担的观看含义。']
+        ['01 / 碎片','注意力','大量普通瞬间同时存在，还没有明确层级.'],
+        ['02 / 选择','保留 / 去除','少量画面被保留，技术完整但表达重复的画面逐渐消失.'],
+        ['03 / 序列','节奏 + 联想','被选中的画面按照视觉关联而不是时间顺序重新排列.'],
+        ['04 / 痕迹','记忆 + 阅读','最终序列形成单张图像无法独立承担的观看含义.']
       ]
     }
   },
@@ -903,13 +903,13 @@ const METHOD_ANIMATION_COPY={
     },
     zh:{
       kicker:'研究 / 决策支持',
-      title:'数据逐渐变成可比较的判断场。',
-      intro:'研究把原始观察转化为证据：数据被收集，模式变得可见，模型组织变量之间的关系，最终让规划方案在决策前可以被比较。',
+      title:'数据逐渐变成可比较的判断场.',
+      intro:'研究把原始观察转化为证据：数据被收集，模式变得可见，模型组织变量之间的关系，最终让规划方案在决策前可以被比较.',
       cards:[
-        ['01 / 数据','观察 + 变量','规划变量最初表现为大量独立观察。'],
-        ['02 / 模式','关系 + 信号','随着观察被比较与分组，隐藏模式逐渐显现。'],
-        ['03 / 模型','学习到的关系','模型把变量关系编码下来，使不同条件可以被重复测试。'],
-        ['04 / 决策','比较 + 判断','最终结果仍然是可供比较的备选，而不是自动生成的唯一答案。']
+        ['01 / 数据','观察 + 变量','规划变量最初表现为大量独立观察.'],
+        ['02 / 模式','关系 + 信号','随着观察被比较与分组，隐藏模式逐渐显现.'],
+        ['03 / 模型','学习到的关系','模型把变量关系编码下来，使不同条件可以被重复测试.'],
+        ['04 / 决策','比较 + 判断','最终结果仍然是可供比较的备选，而不是自动生成的唯一答案.']
       ]
     }
   }
@@ -1204,7 +1204,7 @@ function addMedia(){
     items[items.length-1]?.focus();
   });
 }
-function addTaste(){if(!editMode)return;PROJECTS[currentProject][lang].taste.push([lang==='en'?'DECISION':'判断',lang==='en'?'Describe the judgement here.':'在这里描述你的判断。']);touch();openProject(currentProject);requestAnimationFrame(()=>{const items=ptaste.querySelectorAll('[data-taste-text]');items[items.length-1]?.focus();});}
+function addTaste(){if(!editMode)return;PROJECTS[currentProject][lang].taste.push([lang==='en'?'DECISION':'判断',lang==='en'?'Describe the judgement here.':'在这里描述你的判断.']);touch();openProject(currentProject);requestAnimationFrame(()=>{const items=ptaste.querySelectorAll('[data-taste-text]');items[items.length-1]?.focus();});}
 function downloadJson(filename,data){const blob=new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast(`${filename} ${lang==='en'?'downloaded':'已下载'}`);}
 function saveProjectsJson(){downloadJson('projects.json',PROJECTS);dirty=false;markDirtyState();}
 function savePhotosJson(){downloadJson('photography.json',PHOTO_DATA);dirty=false;markDirtyState();}

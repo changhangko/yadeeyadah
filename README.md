@@ -195,3 +195,9 @@ Key changes:
 - Edit Mode controls become horizontally scrollable on phones.
 - Drag grid mode no longer auto-enables on coarse/touch pointers; snap remains available.
 Desktop layouts are intentionally preserved.
+
+
+## v18 — Chinese typography + punctuation
+- Chinese titles / stronger hierarchy now use a cleaner CJK sans stack at medium weight instead of dense bold monospace rendering.
+- English, code and metadata remain monospace.
+- Replaced 120 Chinese full stops `。` with ASCII periods `.` across user-facing source content.
