@@ -158,3 +158,7 @@ The five top-level sections now share one animation grammar while telling differ
 - OBSERVATION: fragments → selection → sequence → trace
 - RESEARCH: data → pattern → model → comparison/decision
 Generic image-placeholder blocks are hidden for these category intros. Real evidence remains below where available: architecture cases, Studio Library prototype, and photography.
+
+
+## v14 — Profile expansion
+ABOUT is renamed to PROFILE / 个人简介. The page now contains expanded experience, selected work, client/collaboration, education, research, tools, languages and contact information based on the supplied resume. Font-size controls now display only `A − / +` without `(FONT SIZE)`.

@@ -1001,3 +1001,44 @@ body.light .index-year{
   letter-spacing:.08em;
   text-transform:uppercase;
 }
+
+
+/* ---------- v14 / richer profile page ---------- */
+.about-info{
+  margin-top:96px;
+}
+.about-aside{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:var(--line);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.about-block{
+  min-height:150px;
+  padding:20px 22px 24px;
+  background:var(--bg);
+}
+.about-block h2{
+  margin:0 0 16px;
+  color:var(--fg);
+  font-size:var(--content-9);
+  font-weight:400;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.about-block p{
+  margin:0;
+  max-width:none;
+  color:var(--soft);
+  font-size:var(--content-10);
+  line-height:1.75;
+}
+@media(max-width:900px){
+  .about-aside{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .about-aside{grid-template-columns:1fr}
+  .about-block{min-height:auto}
+}
