@@ -294,7 +294,7 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProj
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
-const EDITOR_PASSWORD='change-this-password';
+const EDITOR_PASSWORD='685536';
 const editParams=new URLSearchParams(window.location.search);
 let editorUnlocked=false;
 if(editParams.get('edit')==='1'){
@@ -608,9 +608,9 @@ function openProject(i){
     </div>`;
   }).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
-  if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
-  const hasArchitecture=base.id==='05';
-  const hasEmbeddedLibrary=base.id==='07';
+  if(base.id==='04')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  const hasArchitecture=base.id==='01';
+  const hasEmbeddedLibrary=base.id==='02';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
   pmedia.style.display=(hasArchitecture||hasEmbeddedLibrary)?'none':'';
@@ -692,7 +692,7 @@ function updateEditorLabels(){
 function updateEditorForProject(){
   if(!PROJECTS[currentProject])return;
   pmetaEdit.textContent=proj(currentProject).meta||'';
-  q('savePhotosJson').classList.toggle('visible',PROJECTS[currentProject].id==='06');
+  q('savePhotosJson').classList.toggle('visible',PROJECTS[currentProject].id==='04');
   updateEditorLabels();
   markDirtyState();
 }
@@ -715,7 +715,7 @@ function makeEditable(){
   ptaste.querySelectorAll('[data-taste-key]').forEach(el=>{el.contentEditable='true';el.spellcheck=true;el.oninput=()=>{PROJECTS[currentProject][lang].taste[+el.dataset.tasteKey][0]=cleanText(el);touch();};});
   ptaste.querySelectorAll('[data-taste-text]').forEach(el=>{el.contentEditable='true';el.spellcheck=true;el.oninput=()=>{PROJECTS[currentProject][lang].taste[+el.dataset.tasteText][1]=cleanText(el);touch();};});
   ptaste.querySelectorAll('[data-remove-taste]').forEach(btn=>btn.onclick=()=>{PROJECTS[currentProject][lang].taste.splice(+btn.dataset.removeTaste,1);touch();openProject(currentProject);});
-  if(PROJECTS[currentProject].id==='06'){
+  if(PROJECTS[currentProject].id==='04'){
     q('photoNote').contentEditable='true';q('photoNote').dataset.editable='true';q('photoNote').spellcheck=true;
     q('photoNote').oninput=()=>{PHOTO_DATA.note[lang]=cleanText(q('photoNote'));touch();};
     bindPhotoEditors();
