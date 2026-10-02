@@ -178,3 +178,20 @@ Edit Mode now has `[ DOWNLOAD SITE ZIP ]`.
 You can edit text, replace images, resize/reposition content with the grid editor, then click this once.
 The browser collects the current site, injects the current projects / photography / image-layout JSON, overwrites any images changed in the current edit session, and downloads a complete deployable ZIP.
 No separate JSON or image-file replacement step is required for this workflow.
+
+
+
+## v17 — Responsive / mobile QA pass
+Target widths: 375, 390, 430, 600, 768, 800, 1024, 1440+.
+Key changes:
+- Safer header/footer spacing for iOS safe areas.
+- Mobile header controls are denser and wrap less.
+- Index becomes a simpler 3-column hierarchy on phones.
+- Category animations stack vertically with shorter canvases.
+- Architecture grids collapse cleanly to single-column layouts.
+- Studio Library embedded prototype uses a phone-friendly frame height.
+- Photography is one-column on phones.
+- Profile/About blocks collapse into a readable single-column flow.
+- Edit Mode controls become horizontally scrollable on phones.
+- Drag grid mode no longer auto-enables on coarse/touch pointers; snap remains available.
+Desktop layouts are intentionally preserved.

@@ -22,6 +22,8 @@ let mutationInteracted=false;
 
 const q=id=>document.getElementById(id);
 
+const isCoarsePointer=window.matchMedia?.('(pointer: coarse)').matches;
+
 /* ---------- Reader text size ---------- */
 const TEXT_SCALE_DEFAULT=1.2;
 const TEXT_SCALE_MIN=.9;
@@ -1176,7 +1178,7 @@ function makeEditable(){
   }
   bindProjectImageEditors();
   bindLayoutEditableElements();
-  setGridLayoutMode(true);
+  setGridLayoutMode(!isCoarsePointer);
   setGridSnap(true);
 }
 function bindPhotoEditors(){
