@@ -131,3 +131,7 @@ Project 05 has been rebuilt as a single architectural-design case study:
 - 87 Queensbridge / OSK — short tower-form competition study
 
 Portfolio image assets are curated crops extracted from the supplied project PDFs. Original submission PDFs are not included in this deployable package.
+
+
+## v8 Grid editor
+12-column modular grid + 8px baseline in edit mode. GRID ON lets you drag text/images/sections; SNAP ON aligns horizontal movement to half-column steps and vertical movement to 8px. Drag the selected element's bottom-right handle to resize in column-based increments. Turn GRID OFF to edit text normally. Save with SAVE IMAGE-LAYOUT.JSON.
