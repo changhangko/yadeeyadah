@@ -72,6 +72,7 @@
     "data/image-layout.json",
     "data/photography.json",
     "data/projects.json",
+    "data/text-overrides.json",
     "index.html",
     "js/app.js",
     "js/vendor/jszip.min.js",
@@ -88,7 +89,6 @@
     "projects/studio-library/images/model-riverside.svg",
     "projects/studio-library/images/model-station.svg",
     "projects/studio-library/index.html",
-    "projects/studio-library/materials-data.js",
-    "vercel.json"
+    "projects/studio-library/materials-data.js"
   ]
 }

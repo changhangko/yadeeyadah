@@ -1935,3 +1935,18 @@ html[lang="zh-CN"] .index-meta,
 html[lang="zh-CN"] .index-year{
   letter-spacing:.045em;
 }
+
+
+/* ---------- v20 / all text editable ---------- */
+.editing [data-free-text-editable="true"]{
+  outline:1px dotted color-mix(in srgb,var(--fg) 22%,transparent);
+  outline-offset:2px;
+  cursor:text;
+}
+.editing [data-free-text-editable="true"]:hover,
+.editing [data-free-text-editable="true"]:focus{
+  outline-color:color-mix(in srgb,var(--fg) 58%,transparent);
+}
+.editing.grid-layout-active [data-free-text-editable="true"]{
+  cursor:move;
+}

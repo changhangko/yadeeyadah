@@ -201,3 +201,31 @@ Desktop layouts are intentionally preserved.
 - Chinese titles / stronger hierarchy now use a cleaner CJK sans stack at medium weight instead of dense bold monospace rendering.
 - English, code and metadata remain monospace.
 - Replaced 120 Chinese full stops `。` with ASCII periods `.` across user-facing source content.
+
+
+
+## v19 — Edit Mode ZIP export fix
+Fixed `[ DOWNLOAD SITE ZIP ]` failing on deployed Vercel sites with `Could not collect vercel.json`.
+`vercel.json` is now injected directly into the downloaded ZIP instead of being fetched from the public website.
+
+
+## User projects.json baseline
+The user-supplied projects.json is now the canonical project-content baseline for future ZIP updates. Do not replace or rewrite its project copy unless specifically requested. The user plans to continue refining the Chinese copy later.
+
+
+
+## v19c — Edit Mode centering fix
+Fixed a Grid Edit Mode bug where generic layout positioning overwrote existing CSS transforms.
+This was causing the full architecture case study to shift to the right because `.architecture-case`
+uses `transform: translateX(-50%)` for centering. Manual editor offsets now use the independent CSS
+`translate` property, preserving built-in transforms and centering.
+
+
+
+## v20 — All project text editable
+Edit Mode now makes every leaf text element inside the project content editable, not only the original projects.json fields.
+This includes architecture case-study headings/captions, Studio Library case-study copy, animation titles/captions, section labels, and other static project-page text.
+- GRID OFF: click and type.
+- GRID ON: move / align.
+- Free-text edits are stored in `data/text-overrides.json`.
+- `[ DOWNLOAD SITE ZIP ]` includes `text-overrides.json`, so those edits persist in the deployable ZIP.

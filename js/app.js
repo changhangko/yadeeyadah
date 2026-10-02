@@ -3,9 +3,11 @@ const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","a
 let PROJECTS=[];
 let PHOTO_DATA=null;
 let IMAGE_LAYOUT={};
+let TEXT_OVERRIDES={};
 let SERVER_PROJECTS=[];
 let SERVER_PHOTO_DATA=null;
 let SERVER_IMAGE_LAYOUT={};
+let SERVER_TEXT_OVERRIDES={};
 const L="ACGT", genome=document.getElementById("genome");
 const LANG_STORAGE_KEY='garry_portfolio_lang_v2';
 const THEME_STORAGE_KEY='garry_portfolio_theme_v1';
@@ -62,18 +64,21 @@ function bindTextScaleControls(){
 
 
 async function loadData(){
-  const [projectsRes, photoRes, layoutRes] = await Promise.all([
+  const [projectsRes, photoRes, layoutRes, textRes] = await Promise.all([
     fetch('/data/projects.json'),
     fetch('/data/photography.json'),
-    fetch('/data/image-layout.json').catch(()=>null)
+    fetch('/data/image-layout.json').catch(()=>null),
+    fetch('/data/text-overrides.json').catch(()=>null)
   ]);
   if(!projectsRes.ok || !photoRes.ok) throw new Error('Portfolio data failed to load.');
   PROJECTS = await projectsRes.json();
   PHOTO_DATA = await photoRes.json();
   IMAGE_LAYOUT = layoutRes?.ok ? await layoutRes.json() : {};
+  TEXT_OVERRIDES = textRes?.ok ? await textRes.json() : {};
   SERVER_PROJECTS = deepClone(PROJECTS);
   SERVER_PHOTO_DATA = deepClone(PHOTO_DATA);
   SERVER_IMAGE_LAYOUT = deepClone(IMAGE_LAYOUT);
+  SERVER_TEXT_OVERRIDES = deepClone(TEXT_OVERRIDES);
 }
 function deepClone(value){return JSON.parse(JSON.stringify(value));}
 function t(){return UI[lang]}
@@ -366,7 +371,13 @@ function genericLayoutValue(key){
 function applyGenericLayout(el){
  const key=stableLayoutKey(el);if(!key)return;
  const d=genericLayoutValue(key);
- el.style.transform=`translate(${d.x}px,${d.y}px)`;
+
+ // Use the independent CSS `translate` property instead of overwriting `transform`.
+ // Some portfolio sections already rely on transforms for centering / image positioning
+ // (e.g. .architecture-case uses translateX(-50%)).
+ if(d.x||d.y)el.style.translate=`${d.x}px ${d.y}px`;
+ else el.style.removeProperty('translate');
+
  if(d.width!==100){el.style.width=`${d.width}%`;el.style.maxWidth='none'}
  else if(!el.matches('[data-edit-image]')){el.style.removeProperty('width');el.style.removeProperty('max-width')}
 }
@@ -397,7 +408,7 @@ function selectLayoutElement(el){
 function resetSelectedLayout(){
  if(!selectedLayoutElement)return;
  const key=stableLayoutKey(selectedLayoutElement);if(key)delete IMAGE_LAYOUT[key];
- selectedLayoutElement.style.removeProperty('transform');
+ selectedLayoutElement.style.removeProperty('translate');
  if(!selectedLayoutElement.matches('[data-edit-image]')){
    selectedLayoutElement.style.removeProperty('width');
    selectedLayoutElement.style.removeProperty('max-width')
@@ -1069,6 +1080,7 @@ function openProject(i){
   updateEditorForProject();
   applyAllImageLayouts(projectEl);
   applyAllGenericLayouts(projectEl);
+  applyTextOverrides(projectEl);
   if(editorUnlocked&&!editMode)enterEditMode();
   else if(editMode)makeEditable();
 }
@@ -1118,25 +1130,108 @@ function applyUI(){
 }
 
 /* ---------- Editor ---------- */
+
+/* ---------- v20 / all project text editable ---------- */
+function textEditKey(el,index=0){
+  if(el.dataset.editKey)return el.dataset.editKey;
+  const category=PROJECTS[currentProject]?.categoryKey||'project';
+  const idPart=el.id?`id:${el.id}`:'';
+  const i18nPart=el.classList.contains('arch-i18n')?'arch-i18n':
+                 el.classList.contains('studio-i18n')?'studio-i18n':
+                 el.classList.contains('system-animation-kicker')?'animation-kicker':
+                 el.classList.contains('system-animation-caption')?'animation-caption':
+                 el.classList.contains('system-animation-meta')?'animation-meta':'text';
+  const key=`${category}:${lang}:${idPart||i18nPart}:${index}`;
+  el.dataset.editKey=key;
+  return key;
+}
+
+function isExistingStructuredEditor(el){
+  return !!(
+    el.dataset.scalarField ||
+    el.dataset.media != null ||
+    el.dataset.tasteKey != null ||
+    el.dataset.tasteText != null ||
+    el.dataset.photoCaption != null ||
+    el.id==='pmetaEdit'
+  );
+}
+
+function isEditableTextLeaf(el){
+  if(!el || !(el instanceof HTMLElement))return false;
+  if(el.closest('.editor-bar,.image-layout-panel,.layout-selection-toolbar,.phead'))return false;
+  if(el.matches('button,a,input,textarea,select,canvas,script,style,img,iframe'))return false;
+  if(el.closest('button,a'))return false;
+  if(el.hasAttribute('data-edit-image'))return false;
+  const childElements=[...el.children].filter(c=>c.tagName!=='BR');
+  if(childElements.length>0)return false;
+  return (el.innerText||'').trim().length>0;
+}
+
+function applyTextOverrides(root=projectEl){
+  if(!root)return;
+  const candidates=[...root.querySelectorAll('[data-edit-key]')];
+  candidates.forEach(el=>{
+    const value=TEXT_OVERRIDES[el.dataset.editKey];
+    if(typeof value==='string' && !isExistingStructuredEditor(el))el.innerText=value;
+  });
+}
+
+function bindAllProjectTextEditors(){
+  if(!editMode)return;
+
+  const leaves=[...projectEl.querySelectorAll('.pbody *')].filter(isEditableTextLeaf);
+  leaves.forEach((el,i)=>{
+    if(isExistingStructuredEditor(el))return;
+
+    const key=textEditKey(el,i);
+
+    // Restore a previously saved custom edit after any render/reopen.
+    if(typeof TEXT_OVERRIDES[key]==='string' && document.activeElement!==el){
+      el.innerText=TEXT_OVERRIDES[key];
+    }
+
+    el.contentEditable='true';
+    el.spellcheck=true;
+    el.dataset.editable='true';
+    el.dataset.freeTextEditable='true';
+
+    el.oninput=()=>{
+      TEXT_OVERRIDES[key]=cleanText(el);
+      touch();
+    };
+  });
+}
+
+function disableAllProjectTextEditors(){
+  projectEl.querySelectorAll('[data-free-text-editable]').forEach(el=>{
+    el.contentEditable='false';
+    el.removeAttribute('data-free-text-editable');
+    if(!isExistingStructuredEditor(el))el.removeAttribute('data-editable');
+    el.oninput=null;
+  });
+}
+
 const scalarBindings=[
   [pt,'title'],[pbrief,'brief'],[pd,'desc'],[prole,'role'],[ptools,'tools'],[poutput,'output'],[pyear,'year'],[pquestion,'question'],[pbuilt,'built'],[pjudgement,'judgement']
 ];
 
 function enterEditMode(){
   if(editMode)return;
-  editMode=true;editSnapshot={projects:deepClone(PROJECTS),photos:deepClone(PHOTO_DATA),imageLayout:deepClone(IMAGE_LAYOUT)};dirty=false;layoutDirty=false;
+  editMode=true;editSnapshot={projects:deepClone(PROJECTS),photos:deepClone(PHOTO_DATA),imageLayout:deepClone(IMAGE_LAYOUT),textOverrides:deepClone(TEXT_OVERRIDES)};dirty=false;layoutDirty=false;
   projectEl.classList.add('editing');editorBar.classList.add('visible');editorBar.setAttribute('aria-hidden','false');
   editProjectBtn.textContent='[ EDITING ]';
   updateEditorForProject();makeEditable();showToast(lang==='en'?'Edit mode on':'编辑模式已开启');
 }
 function exitEditMode(cancel=false){
   if(!editMode)return;
-  if(cancel && editSnapshot){PROJECTS=deepClone(editSnapshot.projects);PHOTO_DATA=deepClone(editSnapshot.photos);IMAGE_LAYOUT=deepClone(editSnapshot.imageLayout||{});buildIndex();build();}
+  if(cancel && editSnapshot){PROJECTS=deepClone(editSnapshot.projects);PHOTO_DATA=deepClone(editSnapshot.photos);IMAGE_LAYOUT=deepClone(editSnapshot.imageLayout||{});TEXT_OVERRIDES=deepClone(editSnapshot.textOverrides||{});buildIndex();build();}
   editMode=false;editSnapshot=null;dirty=false;layoutDirty=false;clearSelectedImage();setGridLayoutMode(false);selectedLayoutElement=null;
   projectEl.classList.remove('editing');editorBar.classList.remove('visible');editorBar.setAttribute('aria-hidden','true');
   editProjectBtn.textContent='[ EDIT ]';
   scalarBindings.forEach(([el])=>{el.contentEditable='false';el.removeAttribute('data-editable');});
   pmetaEdit.contentEditable='false';
+  disableAllProjectTextEditors();
   if(projectEl.classList.contains('visible'))openProject(currentProject);
 }
 function updateEditorLabels(){
@@ -1178,6 +1273,7 @@ function makeEditable(){
   }
   bindProjectImageEditors();
   bindLayoutEditableElements();
+  bindAllProjectTextEditors();
   setGridLayoutMode(!isCoarsePointer);
   setGridSnap(true);
 }
@@ -1209,6 +1305,7 @@ function downloadJson(filename,data){const blob=new Blob([JSON.stringify(data,nu
 function saveProjectsJson(){downloadJson('projects.json',PROJECTS);dirty=false;markDirtyState();}
 function savePhotosJson(){downloadJson('photography.json',PHOTO_DATA);dirty=false;markDirtyState();}
 function saveImageLayoutJson(){downloadJson('image-layout.json',IMAGE_LAYOUT);layoutDirty=false;q('saveImageLayoutJson')?.classList.remove('editor-dirty');}
+function saveTextOverridesJson(){downloadJson('text-overrides.json',TEXT_OVERRIDES);}
 
 function siteZipFilename(){
   const d=new Date();
@@ -1233,6 +1330,7 @@ async function downloadEditedSiteZip(){
       'data/projects.json',
       'data/photography.json',
       'data/image-layout.json',
+      'data/text-overrides.json',
       'data/site-manifest.json'
     ]);
 
@@ -1243,7 +1341,7 @@ async function downloadEditedSiteZip(){
         zip.file(path,editedFileBlobs.get(path));
       }else{
         const res=await fetch('/'+path,{cache:'no-store'});
-        if(!res.ok)throw new Error(`Could not collect ${path}`);
+        if(!res.ok)throw new Error(`Could not collect ${path} (${res.status})`);
         zip.file(path,await res.blob());
       }
       done++;
@@ -1256,7 +1354,15 @@ async function downloadEditedSiteZip(){
     zip.file('data/projects.json',JSON.stringify(PROJECTS,null,2)+'\n');
     zip.file('data/photography.json',JSON.stringify(PHOTO_DATA,null,2)+'\n');
     zip.file('data/image-layout.json',JSON.stringify(IMAGE_LAYOUT,null,2)+'\n');
+    zip.file('data/text-overrides.json',JSON.stringify(TEXT_OVERRIDES,null,2)+'\n');
     zip.file('data/site-manifest.json',JSON.stringify(manifest,null,2)+'\n');
+
+    // Deployment config is not necessarily served as a public asset by Vercel,
+    // so include it directly instead of trying to fetch /vercel.json.
+    zip.file('vercel.json',JSON.stringify({
+      cleanUrls:false,
+      trailingSlash:false
+    },null,2)+'\n');
 
     // Include every image replaced during this edit session, including newly created project image paths.
     for(const [path,blob] of editedFileBlobs){
