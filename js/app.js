@@ -291,7 +291,7 @@ const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
-const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame');
+const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame'),systemAnimationProject=q('systemAnimationProject');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
@@ -724,6 +724,86 @@ function transitionToProject(i){
   },1980);
 }
 
+
+/* ---------- SYSTEM narrative animation ---------- */
+let systemAnimationFrame=0;
+let systemAnimationStart=performance.now();
+function systemAnimationPalette(){
+ const light=document.body.classList.contains('light');
+ return {bg:light?'#f5f5f3':'#050505',fg:light?'#111111':'#f2f2f2',soft:light?'#9a9a96':'#777777',line:light?'#cfcfca':'#303030'};
+}
+function easeSystem(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+function lerpSystem(a,b,t){return a+(b-a)*t}
+function hashSystem(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+function fitSystemCanvas(canvas){
+ const rect=canvas.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);
+ const cw=Math.max(1,Math.round(rect.width*dpr)),ch=Math.max(1,Math.round(rect.height*dpr));
+ if(canvas.width!==cw||canvas.height!==ch){canvas.width=cw;canvas.height=ch}
+ const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w:rect.width,h:rect.height};
+}
+function systemPointSeed(i,w,h){return{x:22+hashSystem(i*3+1)*(w-44),y:24+hashSystem(i*3+2)*(h-48),r:1.1+hashSystem(i*3+3)*1.7}}
+function drawSystemDot(ctx,x,y,r,color,a=1){ctx.globalAlpha=a;ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+function drawSystemLine(ctx,x1,y1,x2,y2,color,a=.3){ctx.globalAlpha=a;ctx.strokeStyle=color;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.globalAlpha=1}
+function drawSystemLabel(ctx,text,x,y,p){ctx.fillStyle=p.soft;ctx.font='9px "Courier New", monospace';ctx.textBaseline='middle';ctx.fillText(text,x,y)}
+function drawSystemPanel(canvas,stage,time){
+ const {ctx,w,h}=fitSystemCanvas(canvas),p=systemAnimationPalette();ctx.clearRect(0,0,w,h);
+ const count=46,cycle=(time%7200)/7200;
+ if(stage==='scatter'){
+   for(let i=0;i<count;i++){
+     const s=systemPointSeed(i,w,h),dx=Math.sin(time*.00055+i*1.7)*5,dy=Math.cos(time*.00042+i*1.2)*4;
+     drawSystemDot(ctx,s.x+dx,s.y+dy,s.r,p.soft,.38+.32*hashSystem(i+30));
+     if(i%11===0)drawSystemLabel(ctx,['PAGE','LINK','MODEL','DATA','GUIDE'][i%5],s.x+8+dx,s.y+dy,p);
+   } return;
+ }
+ if(stage==='cluster'){
+   const centers=[{x:w*.25,y:h*.32},{x:w*.72,y:h*.28},{x:w*.32,y:h*.70},{x:w*.74,y:h*.70}];
+   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.08)/.55)));
+   for(let i=0;i<count;i++){
+     const s=systemPointSeed(i,w,h),c=centers[i%4],ring=(i%12)*.58,ang=i*2.399;
+     const tx=c.x+Math.cos(ang)*ring*3.6,ty=c.y+Math.sin(ang)*ring*3.1,x=lerpSystem(s.x,tx,t),y=lerpSystem(s.y,ty,t);
+     drawSystemDot(ctx,x,y,s.r,p.fg,.42+.38*t);if(t>.45&&i%4===0)drawSystemLine(ctx,x,y,c.x,c.y,p.line,(t-.45)*.55);
+   }
+   if(t>.62)['CITY','MATERIAL','DESIGN','GUIDE'].forEach((v,i)=>drawSystemLabel(ctx,v,centers[i].x-18,centers[i].y-30,p));return;
+ }
+ if(stage==='align'){
+   const cols=4,rows=3,padX=w*.11,padY=h*.18,gapX=(w-padX*2)/(cols-1),gapY=(h-padY*2)/(rows-1);
+   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.06)/.56)));
+   for(let i=0;i<count;i++){
+     const s=systemPointSeed(i,w,h),cell=i%(cols*rows),cx=padX+(cell%cols)*gapX,cy=padY+Math.floor(cell/cols)*gapY;
+     const x=lerpSystem(s.x,cx+((i%3)-1)*5,t),y=lerpSystem(s.y,cy+((Math.floor(i/3)%3)-1)*4,t);drawSystemDot(ctx,x,y,1.5,p.fg,.38+.5*t);
+   }
+   ctx.strokeStyle=p.line;ctx.lineWidth=1;ctx.globalAlpha=.15+.4*t;
+   for(let c=0;c<cols;c++){const x=padX+c*gapX;ctx.beginPath();ctx.moveTo(x,padY-28);ctx.lineTo(x,h-padY+28);ctx.stroke()}
+   for(let r=0;r<rows;r++){const y=padY+r*gapY;ctx.beginPath();ctx.moveTo(padX-36,y);ctx.lineTo(w-padX+36,y);ctx.stroke()}
+   ctx.globalAlpha=1;if(t>.58)['01','02','03','04'].forEach((v,i)=>drawSystemLabel(ctx,v,padX+i*gapX-5,padY-40,p));return;
+ }
+ if(stage==='reveal'){
+   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.05)/.58))),left={x:w*.28,y:h*.5},right={x:w*.72,y:h*.5};
+   for(let i=0;i<count;i++){
+     const s=systemPointSeed(i,w,h),target=i%2?right:left,ang=i*2.15,rad=14+(i%10)*2.2;
+     const x=lerpSystem(s.x,target.x+Math.cos(ang)*rad,t),y=lerpSystem(s.y,target.y+Math.sin(ang)*rad*.6,t);drawSystemDot(ctx,x,y,1.5,p.fg,.3+.5*t);
+   }
+   if(t>.42){
+     const a=Math.min(1,(t-.42)/.45),bw=w*.28,bh=64;ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.lineWidth=1;
+     [left,right].forEach(c=>ctx.strokeRect(c.x-bw/2,c.y-bh/2,bw,bh));
+     ctx.fillStyle=p.fg;ctx.font='700 12px "Courier New", monospace';ctx.textAlign='center';
+     ctx.fillText('CITY DATA',left.x,left.y-3);ctx.fillText('STUDIO LIBRARY',right.x,right.y-3);
+     ctx.fillStyle=p.soft;ctx.font='8px "Courier New", monospace';ctx.fillText('SPATIAL INFORMATION',left.x,left.y+16);ctx.fillText('DESIGN KNOWLEDGE',right.x,right.y+16);
+     ctx.textAlign='start';ctx.globalAlpha=1;
+   }
+ }
+}
+function renderSystemAnimations(now=performance.now()){
+ systemAnimationFrame=0;if(!systemAnimationProject||systemAnimationProject.hidden)return;
+ systemAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{const canvas=card.querySelector('canvas');if(canvas)drawSystemPanel(canvas,card.dataset.systemStage,now-systemAnimationStart)});
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)systemAnimationFrame=requestAnimationFrame(renderSystemAnimations);
+}
+function restartSystemAnimations(){cancelAnimationFrame(systemAnimationFrame);systemAnimationStart=performance.now();requestAnimationFrame(renderSystemAnimations)}
+function applySystemAnimationLanguage(){
+ if(!systemAnimationProject)return;
+ systemAnimationProject.querySelectorAll('[data-en][data-zh]').forEach(el=>{el.textContent=lang==='zh'?el.dataset.zh:el.dataset.en});
+}
+
 function openProject(i){
   currentProject=i;const p=proj(i),base=PROJECTS[i];
   pid.textContent=`MUTATION ${base.id}`;pt.textContent=p.title;pd.textContent=p.desc;pbrief.textContent=p.brief;
@@ -743,12 +823,15 @@ function openProject(i){
     </div>`;
   }).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
-  if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  if(base.categoryKey==='observation')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
   const hasArchitecture=base.categoryKey==='space';
+  const hasSystemAnimation=base.categoryKey==='system';
   const hasEmbeddedLibrary=base.categoryKey==='system';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
+  if(systemAnimationProject){systemAnimationProject.hidden=!hasSystemAnimation;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
-  pmedia.style.display=hasArchitecture?'none':'';
+  pmedia.style.display=(hasArchitecture||hasSystemAnimation)?'none':'';
+  if(hasSystemAnimation){applySystemAnimationLanguage();restartSystemAnimations();}else{cancelAnimationFrame(systemAnimationFrame);}
   if(hasEmbeddedLibrary&&studioLibraryFrame){
     // Reload the demo when the case study is reopened so its blue home screen is always the entry state.
     const src=studioLibraryFrame.getAttribute('src');
@@ -802,7 +885,7 @@ function applyUI(){
   q('projectIndex').textContent=copy.index;
   q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
-  renderAbout();applyStudioCaseCopy();buildIndex();build();applyAllImageLayouts(document);
+  renderAbout();applyStudioCaseCopy();applySystemAnimationLanguage();buildIndex();build();applyAllImageLayouts(document);
   if(projectEl.classList.contains('visible'))openProject(currentProject);
   updateEditorLabels();
 }

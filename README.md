@@ -139,3 +139,7 @@ Portfolio image assets are curated crops extracted from the supplied project PDF
 
 ## v9 — Five-category structure
 Top-level navigation and Index are now exactly: SPACE / SYSTEM / CODE / OBSERVATION / RESEARCH. Legacy single projects are grouped inside these categories rather than shown as seven equal top-level items.
+
+
+## v10 — SYSTEM narrative animation prototype
+SYSTEM replaces its generic media/image placeholder grid with four animated panels: DISPERSED → DETECT → STRUCTURE → OUTPUT. The embedded Studio Library prototype remains below as real evidence.
