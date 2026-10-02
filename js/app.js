@@ -91,13 +91,13 @@ function interactionHintCopy(){
     return {
       title:'MUTATION / PROJECT ENTRY',
       brief:dark?'点击白色基因突变进入项目':'点击黑色基因突变进入项目',
-      meta:'高亮碱基 = 项目入口',
+      meta:'高亮碱基字母 = 项目入口',
       tail:'CLICK / TAP TO OPEN'
     };
   }
   return {
     title:'MUTATION / PROJECT ENTRY',
-    brief:dark?'CLICK A WHITE MUTATION TO ENTER A PROJECT':'CLICK A BLACK MUTATION TO ENTER A PROJECT',
+    brief:dark?'CLICK A WHITE MUTATION LETTER TO ENTER A PROJECT':'CLICK A BLACK MUTATION LETTER TO ENTER A PROJECT',
     meta:'HIGHLIGHTED BASE = PROJECT ENTRY',
     tail:'CLICK / TAP TO OPEN'
   };
@@ -286,7 +286,7 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProj
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
-const EDITOR_PASSWORD='change-this-password';
+const EDITOR_PASSWORD='685536';
 const editParams=new URLSearchParams(window.location.search);
 let editorUnlocked=false;
 if(editParams.get('edit')==='1'){
