@@ -1003,10 +1003,8 @@ body.light .index-year{
 }
 
 
-/* ---------- v14 / richer profile page ---------- */
-.about-info{
-  margin-top:96px;
-}
+/* ---------- v14b / richer profile page ---------- */
+.about-info{margin-top:96px}
 .about-aside{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));

@@ -160,5 +160,5 @@ The five top-level sections now share one animation grammar while telling differ
 Generic image-placeholder blocks are hidden for these category intros. Real evidence remains below where available: architecture cases, Studio Library prototype, and photography.
 
 
-## v14 — Profile expansion
-ABOUT is renamed to PROFILE / 个人简介. The page now contains expanded experience, selected work, client/collaboration, education, research, tools, languages and contact information based on the supplied resume. Font-size controls now display only `A − / +` without `(FONT SIZE)`.
+## v14b — Profile page fixed
+Fixed the JavaScript syntax error that caused the site to render blank. PROFILE / 个人简介 is expanded from the supplied resume. Font-size control now shows only A − / +.
