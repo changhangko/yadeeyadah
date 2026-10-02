@@ -2,8 +2,10 @@ const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","a
 
 let PROJECTS=[];
 let PHOTO_DATA=null;
+let IMAGE_LAYOUT={};
 let SERVER_PROJECTS=[];
 let SERVER_PHOTO_DATA=null;
+let SERVER_IMAGE_LAYOUT={};
 const L="ACGT", genome=document.getElementById("genome");
 const LANG_STORAGE_KEY='garry_portfolio_lang_v2';
 let zones=[], currentProject=0, lang=localStorage.getItem(LANG_STORAGE_KEY)||'zh';
@@ -57,12 +59,18 @@ function bindTextScaleControls(){
 
 
 async function loadData(){
-  const [projectsRes, photoRes] = await Promise.all([fetch('/data/projects.json'), fetch('/data/photography.json')]);
+  const [projectsRes, photoRes, layoutRes] = await Promise.all([
+    fetch('/data/projects.json'),
+    fetch('/data/photography.json'),
+    fetch('/data/image-layout.json').catch(()=>null)
+  ]);
   if(!projectsRes.ok || !photoRes.ok) throw new Error('Portfolio data failed to load.');
   PROJECTS = await projectsRes.json();
   PHOTO_DATA = await photoRes.json();
+  IMAGE_LAYOUT = layoutRes?.ok ? await layoutRes.json() : {};
   SERVER_PROJECTS = deepClone(PROJECTS);
   SERVER_PHOTO_DATA = deepClone(PHOTO_DATA);
+  SERVER_IMAGE_LAYOUT = deepClone(IMAGE_LAYOUT);
 }
 function deepClone(value){return JSON.parse(JSON.stringify(value));}
 function t(){return UI[lang]}
@@ -91,13 +99,13 @@ function interactionHintCopy(){
     return {
       title:'MUTATION / PROJECT ENTRY',
       brief:dark?'点击白色基因突变进入项目':'点击黑色基因突变进入项目',
-      meta:'高亮碱基字母 = 项目入口',
+      meta:'高亮碱基 = 项目入口',
       tail:'CLICK / TAP TO OPEN'
     };
   }
   return {
     title:'MUTATION / PROJECT ENTRY',
-    brief:dark?'CLICK A WHITE MUTATION LETTER TO ENTER A PROJECT':'CLICK A BLACK MUTATION LETTER TO ENTER A PROJECT',
+    brief:dark?'CLICK A WHITE MUTATION TO ENTER A PROJECT':'CLICK A BLACK MUTATION TO ENTER A PROJECT',
     meta:'HIGHLIGHTED BASE = PROJECT ENTRY',
     tail:'CLICK / TAP TO OPEN'
   };
@@ -286,7 +294,7 @@ const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProj
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
-const EDITOR_PASSWORD='685536';
+const EDITOR_PASSWORD='change-this-password';
 const editParams=new URLSearchParams(window.location.search);
 let editorUnlocked=false;
 if(editParams.get('edit')==='1'){
@@ -309,6 +317,85 @@ function rootPath(path){return path?.startsWith('/')?path:`/${path||''}`;}
 const localMediaPreviews=new Map();
 const localPhotoPreviews=new Map();
 let pendingImageTarget=null;
+let selectedImageTarget=null;
+let layoutDirty=false;
+
+
+function imageLayoutKey(el){
+  return el?.dataset?.layoutKey || el?.dataset?.imagePath || '';
+}
+function getImageLayout(key){
+  return IMAGE_LAYOUT[key] || {width:100};
+}
+function applyImageLayoutToElement(el){
+  if(!el)return;
+  const key=imageLayoutKey(el);if(!key)return;
+  const width=Math.max(30,Math.min(100,Number(getImageLayout(key).width)||100));
+  if(el.classList.contains('media-image')){
+    el.style.setProperty('--image-size',String(width));
+  }else{
+    el.style.width=`${width}%`;
+  }
+}
+function applyAllImageLayouts(root=document){
+  root.querySelectorAll?.('[data-edit-image][data-layout-key]').forEach(applyImageLayoutToElement);
+}
+function markLayoutDirty(){
+  layoutDirty=true;
+  q('saveImageLayoutJson')?.classList.add('editor-dirty');
+}
+function setImageLayoutWidth(el,width){
+  const key=imageLayoutKey(el);if(!key)return;
+  width=Math.max(30,Math.min(100,Math.round(Number(width)/5)*5));
+  IMAGE_LAYOUT[key]={...(IMAGE_LAYOUT[key]||{}),width};
+  applyImageLayoutToElement(el);
+  markLayoutDirty();
+  if(q('imageSizeValue'))q('imageSizeValue').textContent=`${width}%`;
+}
+function imageDisplayDiagnostics(el){
+  if(!el)return '';
+  const nw=el.naturalWidth||0,nh=el.naturalHeight||0;
+  const rect=el.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  const needed=Math.round(rect.width*dpr);
+  const ratio=nw&&needed?nw/needed:1;
+  if(!nw)return '';
+  const quality=ratio>=1?'SOURCE OK':ratio>=.7?'SLIGHT UPSCALE':'LOW-RES / UPSCALED';
+  return `${nw}×${nh} · ${quality}`;
+}
+function refreshSelectedImagePanel(){
+  const panel=q('imageLayoutPanel'),el=selectedImageTarget?.element;
+  if(!panel||!el)return;
+  const key=imageLayoutKey(el);
+  const width=Math.max(30,Math.min(100,Number(getImageLayout(key).width)||100));
+  q('imageLayoutName').textContent=pathFilename(el.dataset.imagePath||key||'IMAGE');
+  q('imageSizeRange').value=String(width);
+  q('imageSizeValue').textContent=`${width}%`;
+  q('imageResolutionInfo').textContent=imageDisplayDiagnostics(el);
+  q('imageSizeLabel').textContent=lang==='zh'?'尺寸':'SIZE';
+  q('imageSizeReset').textContent=lang==='zh'?'[ 重置 ]':'[ RESET ]';
+  q('replaceSelectedImage').textContent=lang==='zh'?'[ 替换图片 ]':'[ REPLACE IMAGE ]';
+  panel.classList.add('visible');panel.setAttribute('aria-hidden','false');
+}
+function selectEditableImage(el){
+  projectEl.querySelectorAll('.image-selected').forEach(x=>x.classList.remove('image-selected'));
+  el.classList.add('image-selected');
+  selectedImageTarget={
+    type:el.dataset.editImage,
+    element:el,
+    mediaIndex:el.dataset.mediaImage!=null?+el.dataset.mediaImage:null,
+    photoIndex:el.dataset.photoImage!=null?+el.dataset.photoImage:null,
+    path:el.dataset.imagePath||'',
+    layoutKey:imageLayoutKey(el)
+  };
+  refreshSelectedImagePanel();
+}
+function clearSelectedImage(){
+  projectEl.querySelectorAll('.image-selected').forEach(x=>x.classList.remove('image-selected'));
+  selectedImageTarget=null;
+  const panel=q('imageLayoutPanel');
+  panel?.classList.remove('visible');panel?.setAttribute('aria-hidden','true');
+}
 
 function mediaPreviewKey(projectId,index){return `${projectId}:${index}`;}
 function mediaPreviewUrl(projectId,index,path){
@@ -330,17 +417,20 @@ function pathFilename(path){return (path||'replacement.webp').split('/').pop().s
 function pathExt(path){const name=pathFilename(path);const dot=name.lastIndexOf('.');return dot>=0?name.slice(dot+1).toLowerCase():'webp';}
 function extMime(ext){return ext==='png'?'image/png':(ext==='jpg'||ext==='jpeg')?'image/jpeg':'image/webp';}
 
-async function fileToCanvasBlob(file,targetPath,maxWidth=2200){
+async function fileToCanvasBlob(file,targetPath,maxDimension=4096){
   const bitmap=await createImageBitmap(file);
-  const scale=Math.min(1,maxWidth/bitmap.width);
+  const longest=Math.max(bitmap.width,bitmap.height);
+  const scale=Math.min(1,maxDimension/longest);
   const width=Math.max(1,Math.round(bitmap.width*scale));
   const height=Math.max(1,Math.round(bitmap.height*scale));
   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
   const ctx=canvas.getContext('2d',{alpha:true});
+  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingQuality='high';
   ctx.drawImage(bitmap,0,0,width,height);
   bitmap.close?.();
   const ext=pathExt(targetPath),mime=extMime(ext);
-  const quality=mime==='image/jpeg'||mime==='image/webp'?.9:undefined;
+  const quality=(mime==='image/jpeg'||mime==='image/webp')?0.98:undefined;
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,mime,quality));
   if(!blob)throw new Error('Image conversion failed');
   return {blob,width,height};
@@ -362,18 +452,10 @@ function bindProjectImageEditors(){
   if(!editMode)return;
   ensureStaticImageBadges();
   projectEl.querySelectorAll('[data-edit-image]').forEach(el=>{
+    applyImageLayoutToElement(el);
     el.onclick=(e)=>{
       e.preventDefault();e.stopPropagation();
-      pendingImageTarget={
-        type:el.dataset.editImage,
-        element:el,
-        mediaIndex:el.dataset.mediaImage!=null?+el.dataset.mediaImage:null,
-        photoIndex:el.dataset.photoImage!=null?+el.dataset.photoImage:null,
-        path:el.dataset.imagePath||''
-      };
-      const picker=q('portfolioImagePicker');
-      picker.value='';
-      picker.click();
+      selectEditableImage(el);
     };
   });
 }
@@ -388,7 +470,7 @@ async function handlePickedPortfolioImage(file){
       while(base.mediaImages.length<=index)base.mediaImages.push(null);
       const safeTitle=(base.en?.title||`project-${base.id}`).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
       const targetPath=`/assets/projects/${safeTitle}-${base.id}-media-${String(index+1).padStart(2,'0')}.webp`;
-      const {blob}=await fileToCanvasBlob(file,targetPath,2000);
+      const {blob}=await fileToCanvasBlob(file,targetPath,4096);
       const preview=URL.createObjectURL(blob);
       const key=mediaPreviewKey(base.id,index);
       const old=localMediaPreviews.get(key);if(old?.startsWith('blob:'))URL.revokeObjectURL(old);
@@ -396,6 +478,7 @@ async function handlePickedPortfolioImage(file){
       base.mediaImages[index]=targetPath;
       downloadBlobAs(blob,pathFilename(targetPath));
       touch();openProject(currentProject);
+      requestAnimationFrame(()=>{const el=projectEl.querySelector(`[data-layout-key="project:${base.id}:media:${index}"]`);if(el)selectEditableImage(el);});
       imageEditorToast(lang==='zh'?`已替换预览并下载 ${pathFilename(targetPath)} · 把文件放进 assets/projects/`:`Preview replaced + ${pathFilename(targetPath)} downloaded · place it in assets/projects/`);
       return;
     }
@@ -403,7 +486,7 @@ async function handlePickedPortfolioImage(file){
     if(target.type==='photo'){
       const item=PHOTO_DATA.photos[target.photoIndex];
       const targetPath=item.src?.startsWith('/')?item.src:`/${item.src}`;
-      const {blob,width,height}=await fileToCanvasBlob(file,targetPath,2048);
+      const {blob,width,height}=await fileToCanvasBlob(file,targetPath,4096);
       const preview=URL.createObjectURL(blob);
       const old=localPhotoPreviews.get(target.photoIndex);if(old?.startsWith('blob:'))URL.revokeObjectURL(old);
       localPhotoPreviews.set(target.photoIndex,preview);
@@ -412,13 +495,14 @@ async function handlePickedPortfolioImage(file){
       item.srcset={small:targetPath,medium:targetPath,large:targetPath};
       downloadBlobAs(blob,pathFilename(targetPath));
       touch();renderPhotoWall();bindProjectImageEditors();
+      requestAnimationFrame(()=>{const el=projectEl.querySelector(`[data-layout-key="photo:${target.photoIndex}"]`);if(el)selectEditableImage(el);});
       imageEditorToast(lang==='zh'?`照片已替换并下载 ${pathFilename(targetPath)} · 同时保存 photography.json`:`Photo replaced + ${pathFilename(targetPath)} downloaded · also save photography.json`);
       return;
     }
 
     if(target.type==='static'){
       const targetPath=target.path;
-      const {blob}=await fileToCanvasBlob(file,targetPath,2400);
+      const {blob}=await fileToCanvasBlob(file,targetPath,4096);
       const preview=URL.createObjectURL(blob);
       target.element.removeAttribute('srcset');
       target.element.src=preview;
@@ -437,7 +521,7 @@ function renderPhotoWall(){
   q('photoNote').textContent=PHOTO_DATA.note?.[lang]||'';
   q('galleryTitle').textContent=t().galleryTitle;
   photoWall.innerHTML=PHOTO_DATA.photos.map((item,idx)=>`<figure class="photo-item" data-photo-index="${idx}">
-    <img data-edit-image="photo" data-photo-image="${idx}" data-image-path="${escapeAttr(item.src)}" src="${photoPreviewUrl(idx,rootPath(item.src))}" srcset="${photoPreviewSrcset(idx,item)}" sizes="(max-width:700px) 100vw, (max-width:900px) 50vw, 33vw" loading="${idx<2?'eager':'lazy'}" decoding="async" width="${item.width}" height="${item.height}" alt="${escapeAttr(item.caption?.[lang]||'')}">
+    <img data-edit-image="photo" data-photo-image="${idx}" data-image-path="${escapeAttr(item.src)}" data-layout-key="photo:${idx}" src="${photoPreviewUrl(idx,rootPath(item.src))}" srcset="${photoPreviewSrcset(idx,item)}" sizes="(max-width:700px) 100vw, (max-width:900px) 50vw, 33vw" loading="${idx<2?'eager':'lazy'}" decoding="async" width="${item.width}" height="${item.height}" alt="${escapeAttr(item.caption?.[lang]||'')}">
     <figcaption class="photo-cap"><span><b>${item.id}</b></span><span class="photo-caption-editor" data-editable="true" data-photo-caption="${idx}">${escapeHtml(item.caption?.[lang]||'')}</span><span class="photo-caption-view">${item.visibleMeta?escapeHtml(item.caption?.[lang]||''):''}</span></figcaption>
     <span class="editor-image-action">${lang==='zh'?'点击替换图片':'CLICK TO REPLACE'}</span>
   </figure>`).join('');
@@ -516,8 +600,8 @@ function openProject(i){
     const preview=mediaPreviewUrl(base.id,j,imagePath);
     return `<div class="media ${imagePath?'has-image':''}" data-media-index="${j}">
       <button class="editor-remove remove-media" data-remove-media="${j}">[ × ]</button>
-      ${imagePath?`<img class="media-image" data-edit-image="media" data-media-image="${j}" data-image-path="${escapeAttr(imagePath)}" src="${escapeAttr(preview)}" alt="">`:''}
-      <div class="media-image-empty" data-edit-image="media" data-media-image="${j}">+ ADD IMAGE</div>
+      ${imagePath?`<img class="media-image" data-edit-image="media" data-media-image="${j}" data-image-path="${escapeAttr(imagePath)}" data-layout-key="project:${base.id}:media:${j}" src="${escapeAttr(preview)}" alt="">`:''}
+      <div class="media-image-empty" data-edit-image="media" data-media-image="${j}" data-layout-key="project:${base.id}:media:${j}">+ ADD IMAGE</div>
       <span class="media-index"><b>${String(j+1).padStart(2,'0')}</b></span>
       <span class="media-text" data-editable="true" data-media="${j}">${escapeHtml(m)}</span>
       <span class="editor-image-action">${lang==='zh'?'点击替换图片':'CLICK TO REPLACE'}</span>
@@ -538,6 +622,7 @@ function openProject(i){
   const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
   if(!projectEl.classList.contains('visible'))showPanel(projectEl);
   updateEditorForProject();
+  applyAllImageLayouts(projectEl);
   if(editorUnlocked&&!editMode)enterEditMode();
   else if(editMode)makeEditable();
 }
@@ -571,7 +656,7 @@ function applyUI(){
   const copy=t();document.documentElement.lang=lang==='en'?'en':'zh-CN';
   q('brandRole').textContent=UI.en.roleLine;q('about').textContent=copy.about;q('theme').textContent=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;q('index').textContent=copy.index;q('langToggle').textContent=copy.lang;q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
-  renderAbout();applyStudioCaseCopy();buildIndex();build();
+  renderAbout();applyStudioCaseCopy();buildIndex();build();applyAllImageLayouts(document);
   if(projectEl.classList.contains('visible'))openProject(currentProject);
   updateEditorLabels();
 }
@@ -583,15 +668,15 @@ const scalarBindings=[
 
 function enterEditMode(){
   if(editMode)return;
-  editMode=true;editSnapshot={projects:deepClone(PROJECTS),photos:deepClone(PHOTO_DATA)};dirty=false;
+  editMode=true;editSnapshot={projects:deepClone(PROJECTS),photos:deepClone(PHOTO_DATA),imageLayout:deepClone(IMAGE_LAYOUT)};dirty=false;layoutDirty=false;
   projectEl.classList.add('editing');editorBar.classList.add('visible');editorBar.setAttribute('aria-hidden','false');
   editProjectBtn.textContent='[ EDITING ]';
   updateEditorForProject();makeEditable();showToast(lang==='en'?'Edit mode on':'编辑模式已开启');
 }
 function exitEditMode(cancel=false){
   if(!editMode)return;
-  if(cancel && editSnapshot){PROJECTS=deepClone(editSnapshot.projects);PHOTO_DATA=deepClone(editSnapshot.photos);buildIndex();build();}
-  editMode=false;editSnapshot=null;dirty=false;
+  if(cancel && editSnapshot){PROJECTS=deepClone(editSnapshot.projects);PHOTO_DATA=deepClone(editSnapshot.photos);IMAGE_LAYOUT=deepClone(editSnapshot.imageLayout||{});buildIndex();build();}
+  editMode=false;editSnapshot=null;dirty=false;layoutDirty=false;clearSelectedImage();
   projectEl.classList.remove('editing');editorBar.classList.remove('visible');editorBar.setAttribute('aria-hidden','true');
   editProjectBtn.textContent='[ EDIT ]';
   scalarBindings.forEach(([el])=>{el.contentEditable='false';el.removeAttribute('data-editable');});
@@ -664,6 +749,7 @@ function addTaste(){if(!editMode)return;PROJECTS[currentProject][lang].taste.pus
 function downloadJson(filename,data){const blob=new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast(`${filename} ${lang==='en'?'downloaded':'已下载'}`);}
 function saveProjectsJson(){downloadJson('projects.json',PROJECTS);dirty=false;markDirtyState();}
 function savePhotosJson(){downloadJson('photography.json',PHOTO_DATA);dirty=false;markDirtyState();}
+function saveImageLayoutJson(){downloadJson('image-layout.json',IMAGE_LAYOUT);layoutDirty=false;q('saveImageLayoutJson')?.classList.remove('editor-dirty');}
 function showToast(message){let el=q('editorToast');if(!el){el=document.createElement('div');el.id='editorToast';el.className='editor-toast';document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(showToast._t);showToast._t=setTimeout(()=>el.classList.remove('visible'),1600);}
 function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));}
 function escapeAttr(value=''){return escapeHtml(value).replace(/`/g,'&#96;');}
@@ -733,6 +819,14 @@ function restartProfileDecode(){
 function bindGlobal(){
   bindTextScaleControls();
   q('portfolioImagePicker').addEventListener('change',e=>handlePickedPortfolioImage(e.target.files?.[0]));
+  q('imageSizeRange').addEventListener('input',e=>{if(selectedImageTarget?.element)setImageLayoutWidth(selectedImageTarget.element,e.target.value);});
+  q('imageSizeReset').addEventListener('click',()=>{if(selectedImageTarget?.element)setImageLayoutWidth(selectedImageTarget.element,100);});
+  q('replaceSelectedImage').addEventListener('click',()=>{
+    if(!selectedImageTarget)return;
+    pendingImageTarget={...selectedImageTarget};
+    const picker=q('portfolioImagePicker');picker.value='';picker.click();
+  });
+  q('saveImageLayoutJson').addEventListener('click',saveImageLayoutJson);
   q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
   q('langToggle').addEventListener('click',()=>{
     lang=lang==='en'?'zh':'en';

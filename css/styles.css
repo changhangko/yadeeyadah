@@ -720,3 +720,65 @@ body.light .embedded-project-shell{background:linear-gradient(180deg,#e8e8e6 0%,
   .editor-image-action{top:7px;right:7px}
   .media.has-image{min-height:38vh}
 }
+
+
+/* ---------- Image sizing / high-resolution editor ---------- */
+.image-layout-panel{
+  display:none;
+  position:sticky;
+  top:44px;
+  z-index:9;
+  max-width:1120px;
+  margin:0 auto 20px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 94%,transparent);
+  backdrop-filter:blur(10px);
+  font-size:9px;
+  line-height:1.4;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.editing .image-layout-panel.visible{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.image-layout-title{display:flex;align-items:center;gap:14px;min-width:0}
+#imageLayoutName{max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg)}
+#imageResolutionInfo{color:var(--soft);white-space:nowrap}
+.image-layout-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.image-layout-label{color:var(--soft)}
+#imageSizeRange{width:150px;accent-color:var(--fg)}
+#imageSizeValue{min-width:34px;text-align:right;color:var(--fg);font-variant-numeric:tabular-nums}
+.image-layout-panel button{font-size:8px}
+.editing [data-edit-image].image-selected{
+  outline:2px solid var(--fg)!important;
+  outline-offset:3px!important;
+}
+[data-edit-image]:not(.media-image){
+  max-width:100%;
+}
+figure > img[data-edit-image],
+.studio-image-frame > img[data-edit-image],
+.photo-item > img[data-edit-image]{
+  margin-left:auto;
+  margin-right:auto;
+}
+.media.has-image .media-image{
+  --image-size:100;
+  left:50%;
+  top:50%;
+  right:auto;
+  bottom:auto;
+  width:calc(var(--image-size) * 1%);
+  height:calc(var(--image-size) * 1%);
+  transform:translate(-50%,-50%);
+}
+body.light .image-layout-panel{
+  background:rgba(245,245,243,.96);
+}
+@media(max-width:700px){
+  .editing .image-layout-panel.visible{align-items:flex-start;flex-direction:column}
+  .image-layout-title{width:100%;justify-content:space-between}
+  .image-layout-controls{width:100%;justify-content:flex-start}
+  #imageSizeRange{flex:1;min-width:110px}
+}
+
+.project .media-image, .architecture-project img, .studio-case-study img, .photo-wall img{image-rendering:auto;}
