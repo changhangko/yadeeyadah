@@ -162,3 +162,19 @@ Generic image-placeholder blocks are hidden for these category intros. Real evid
 
 ## v14b — Profile page fixed
 Fixed the JavaScript syntax error that caused the site to render blank. PROFILE / 个人简介 is expanded from the supplied resume. Font-size control now shows only A − / +.
+
+
+
+## v15 — Index subtitles + project title hierarchy
+- Every Index row now shows the category subtitle directly after the category name.
+- In every project detail page, the category name is the small eyebrow and the subtitle is the large hero title.
+  Example: 空间 becomes small; 建筑设计 becomes large.
+- Applied to all five categories.
+
+
+
+## v16 — One-click complete site ZIP from Edit Mode
+Edit Mode now has `[ DOWNLOAD SITE ZIP ]`.
+You can edit text, replace images, resize/reposition content with the grid editor, then click this once.
+The browser collects the current site, injects the current projects / photography / image-layout JSON, overwrites any images changed in the current edit session, and downloads a complete deployable ZIP.
+No separate JSON or image-file replacement step is required for this workflow.

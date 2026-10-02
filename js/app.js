@@ -340,6 +340,7 @@ function rootPath(path){return path?.startsWith('/')?path:`/${path||''}`;}
 
 const localMediaPreviews=new Map();
 const localPhotoPreviews=new Map();
+const editedFileBlobs=new Map();
 let pendingImageTarget=null;
 let selectedImageTarget=null;
 let layoutDirty=false;
@@ -611,10 +612,10 @@ async function handlePickedPortfolioImage(file){
       const old=localMediaPreviews.get(key);if(old?.startsWith('blob:'))URL.revokeObjectURL(old);
       localMediaPreviews.set(key,preview);
       base.mediaImages[index]=targetPath;
-      downloadBlobAs(blob,pathFilename(targetPath));
+      editedFileBlobs.set(targetPath.replace(/^\//,''),blob);
       touch();openProject(currentProject);
       requestAnimationFrame(()=>{const el=projectEl.querySelector(`[data-layout-key="project:${base.id}:media:${index}"]`);if(el)selectEditableImage(el);});
-      imageEditorToast(lang==='zh'?`已替换预览并下载 ${pathFilename(targetPath)} · 把文件放进 assets/projects/`:`Preview replaced + ${pathFilename(targetPath)} downloaded · place it in assets/projects/`);
+      imageEditorToast(lang==='zh'?`图片已替换 · 会自动包含在最终网站 ZIP 中`:`Image replaced · it will be included in the final site ZIP`);
       return;
     }
 
@@ -628,10 +629,10 @@ async function handlePickedPortfolioImage(file){
       item.width=width;item.height=height;
       item.src=targetPath;
       item.srcset={small:targetPath,medium:targetPath,large:targetPath};
-      downloadBlobAs(blob,pathFilename(targetPath));
+      editedFileBlobs.set(targetPath.replace(/^\//,''),blob);
       touch();renderPhotoWall();bindProjectImageEditors();
       requestAnimationFrame(()=>{const el=projectEl.querySelector(`[data-layout-key="photo:${target.photoIndex}"]`);if(el)selectEditableImage(el);});
-      imageEditorToast(lang==='zh'?`照片已替换并下载 ${pathFilename(targetPath)} · 同时保存 photography.json`:`Photo replaced + ${pathFilename(targetPath)} downloaded · also save photography.json`);
+      imageEditorToast(lang==='zh'?`照片已替换 · 会自动包含在最终网站 ZIP 中`:`Photo replaced · it will be included in the final site ZIP`);
       return;
     }
 
@@ -641,8 +642,8 @@ async function handlePickedPortfolioImage(file){
       const preview=URL.createObjectURL(blob);
       target.element.removeAttribute('srcset');
       target.element.src=preview;
-      downloadBlobAs(blob,pathFilename(targetPath));
-      imageEditorToast(lang==='zh'?`预览已替换并下载 ${pathFilename(targetPath)} · 用它覆盖原 assets 文件`:`Preview replaced + ${pathFilename(targetPath)} downloaded · overwrite the original asset file`);
+      editedFileBlobs.set(targetPath.replace(/^\//,''),blob);
+      imageEditorToast(lang==='zh'?`图片已替换 · 会自动覆盖最终 ZIP 内的原文件`:`Image replaced · it will overwrite the original file inside the final ZIP`);
     }
   }catch(err){
     console.error(err);
@@ -1027,7 +1028,7 @@ function restartMethodAnimations(){
 
 function openProject(i){
   currentProject=i;const p=proj(i),base=PROJECTS[i];
-  pid.textContent=`MUTATION ${base.id}`;pt.textContent=p.title;pd.textContent=p.desc;pbrief.textContent=p.brief;
+  pid.textContent=`MUTATION ${base.id}`;pbrief.textContent=p.title;pt.textContent=p.brief;pd.textContent=p.desc;
   prole.textContent=p.role;ptools.textContent=p.tools;poutput.textContent=p.output;pyear.textContent=p.year;
   pquestion.textContent=p.question;pbuilt.textContent=p.built;pjudgement.textContent=p.judgement;
   const mediaImages=base.mediaImages||[];
@@ -1070,7 +1071,7 @@ function openProject(i){
   else if(editMode)makeEditable();
 }
 
-function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title">${escapeHtml(d.title)}</span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>transitionToProject(+btn.dataset.project)));}
+function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title"><span class="index-title-main">${escapeHtml(d.title)}</span><span class="index-title-sub">${escapeHtml(d.brief)}</span></span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>transitionToProject(+btn.dataset.project)));}
 function renderAbout(){
   const copy=t();
   q('aboutHero').textContent=copy.aboutTitle;
@@ -1206,6 +1207,86 @@ function downloadJson(filename,data){const blob=new Blob([JSON.stringify(data,nu
 function saveProjectsJson(){downloadJson('projects.json',PROJECTS);dirty=false;markDirtyState();}
 function savePhotosJson(){downloadJson('photography.json',PHOTO_DATA);dirty=false;markDirtyState();}
 function saveImageLayoutJson(){downloadJson('image-layout.json',IMAGE_LAYOUT);layoutDirty=false;q('saveImageLayoutJson')?.classList.remove('editor-dirty');}
+
+function siteZipFilename(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  return `changhangko-edit-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.zip`;
+}
+
+async function downloadEditedSiteZip(){
+  const btn=q('downloadSiteZip');
+  const original=btn.textContent;
+  try{
+    if(!window.JSZip)throw new Error('ZIP library did not load.');
+    btn.disabled=true;
+    btn.textContent=lang==='zh'?'[ 正在打包网站… ]':'[ BUILDING SITE ZIP… ]';
+
+    const manifestRes=await fetch('/data/site-manifest.json',{cache:'no-store'});
+    if(!manifestRes.ok)throw new Error('Could not load site manifest.');
+    const manifest=await manifestRes.json();
+
+    const zip=new window.JSZip();
+    const dynamicPaths=new Set([
+      'data/projects.json',
+      'data/photography.json',
+      'data/image-layout.json',
+      'data/site-manifest.json'
+    ]);
+
+    let done=0;
+    for(const path of manifest.files){
+      if(dynamicPaths.has(path))continue;
+      if(editedFileBlobs.has(path)){
+        zip.file(path,editedFileBlobs.get(path));
+      }else{
+        const res=await fetch('/'+path,{cache:'no-store'});
+        if(!res.ok)throw new Error(`Could not collect ${path}`);
+        zip.file(path,await res.blob());
+      }
+      done++;
+      if(done%8===0){
+        btn.textContent=lang==='zh'?`[ 收集文件 ${done}/${manifest.files.length} ]`:`[ COLLECTING ${done}/${manifest.files.length} ]`;
+      }
+    }
+
+    // Current in-browser edits always replace the server JSON files.
+    zip.file('data/projects.json',JSON.stringify(PROJECTS,null,2)+'\n');
+    zip.file('data/photography.json',JSON.stringify(PHOTO_DATA,null,2)+'\n');
+    zip.file('data/image-layout.json',JSON.stringify(IMAGE_LAYOUT,null,2)+'\n');
+    zip.file('data/site-manifest.json',JSON.stringify(manifest,null,2)+'\n');
+
+    // Include every image replaced during this edit session, including newly created project image paths.
+    for(const [path,blob] of editedFileBlobs){
+      zip.file(path,blob);
+    }
+
+    btn.textContent=lang==='zh'?'[ 正在压缩… ]':'[ COMPRESSING… ]';
+    const blob=await zip.generateAsync({
+      type:'blob',
+      compression:'DEFLATE',
+      compressionOptions:{level:6}
+    });
+    downloadBlobAs(blob,siteZipFilename());
+
+    dirty=false;
+    layoutDirty=false;
+    markDirtyState();
+    q('saveImageLayoutJson')?.classList.remove('editor-dirty');
+    imageEditorToast(lang==='zh'
+      ?'完整网站 ZIP 已下载 · 可直接解压部署 / 上传 GitHub'
+      :'Complete site ZIP downloaded · ready to deploy or upload to GitHub');
+  }catch(err){
+    console.error(err);
+    imageEditorToast(lang==='zh'
+      ?`网站 ZIP 导出失败：${err.message}`
+      :`Site ZIP export failed: ${err.message}`);
+  }finally{
+    btn.disabled=false;
+    btn.textContent=original;
+  }
+}
+
 function showToast(message){let el=q('editorToast');if(!el){el=document.createElement('div');el.id='editorToast';el.className='editor-toast';document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(showToast._t);showToast._t=setTimeout(()=>el.classList.remove('visible'),1600);}
 function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));}
 function escapeAttr(value=''){return escapeHtml(value).replace(/`/g,'&#96;');}
@@ -1309,6 +1390,7 @@ function bindGlobal(){
     const picker=q('portfolioImagePicker');picker.value='';picker.click();
   });
   q('saveImageLayoutJson').addEventListener('click',saveImageLayoutJson);
+  q('downloadSiteZip').addEventListener('click',downloadEditedSiteZip);
   q('gridModeToggle').addEventListener('click',()=>setGridLayoutMode(!gridLayoutMode));
   q('gridSnapToggle').addEventListener('click',()=>setGridSnap(!gridSnap));
   q('resetSelectedLayout').addEventListener('click',resetSelectedLayout);

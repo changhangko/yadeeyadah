@@ -1040,3 +1040,84 @@ body.light .index-year{
   .about-aside{grid-template-columns:1fr}
   .about-block{min-height:auto}
 }
+
+
+/* ---------- v15 / category + subtitle hierarchy ---------- */
+.index-title{
+  display:flex;
+  align-items:baseline;
+  gap:13px;
+  min-width:0;
+}
+.index-title-main{
+  flex:0 0 auto;
+  color:var(--fg);
+}
+.index-title-sub{
+  min-width:0;
+  color:var(--soft);
+  font-size:calc(var(--content-10) * .88);
+  letter-spacing:.08em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.index-row:hover .index-title-main{font-weight:700}
+.index-row:hover .index-title-sub{color:var(--fg)}
+
+#project .eyebrow{
+  font-size:var(--content-10);
+  color:var(--soft);
+  margin-bottom:13px;
+}
+#project .pbody > h1{
+  max-width:1080px;
+  font-size:clamp(48px,8.6vw,116px);
+  line-height:.86;
+  letter-spacing:-.078em;
+}
+
+/* category becomes small, subtitle becomes hero */
+#project.visible .eyebrow{
+  animation:categorySettle .38s ease both;
+}
+#project.visible .pbody > h1{
+  animation:subtitleHero .52s cubic-bezier(.2,.72,.2,1) both;
+}
+@keyframes categorySettle{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes subtitleHero{
+  from{opacity:0;transform:translateY(18px);letter-spacing:-.045em}
+  to{opacity:1;transform:translateY(0);letter-spacing:-.078em}
+}
+@media(max-width:700px){
+  .index-title{display:block}
+  .index-title-sub{
+    display:block;
+    margin-top:4px;
+    font-size:8px;
+  }
+  #project .pbody > h1{
+    font-size:clamp(42px,15vw,76px);
+  }
+}
+
+
+/* ---------- v16 / one-click full-site export ---------- */
+.editor-primary-action{
+  border-color:var(--fg)!important;
+  background:var(--fg)!important;
+  color:var(--bg)!important;
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+.editor-primary-action:hover,
+.editor-primary-action:focus-visible{
+  opacity:.78;
+}
+.editor-primary-action:disabled{
+  opacity:.45;
+  cursor:wait;
+}
