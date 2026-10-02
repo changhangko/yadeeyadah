@@ -782,3 +782,62 @@ body.light .image-layout-panel{
 }
 
 .project .media-image, .architecture-project img, .studio-case-study img, .photo-wall img{image-rendering:auto;}
+
+
+/* ---------- v6 compact font-size control ---------- */
+.text-size-control{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  white-space:nowrap;
+}
+.text-size-label{
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.08em;
+  color:var(--soft);
+}
+.text-size-divider{
+  color:var(--soft);
+  opacity:.7;
+}
+.text-size-btn{
+  min-width:auto;
+  padding:0 1px;
+  border:0;
+  background:none;
+  color:var(--fg);
+  font-size:11px;
+  font-weight:400;
+  line-height:1;
+}
+.text-size-btn:hover,
+.text-size-btn:focus-visible{
+  font-weight:700;
+}
+.text-size-small,
+.text-size-large{
+  font-size:inherit;
+  font-weight:inherit;
+}
+.project-head-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:13px;
+  flex-wrap:wrap;
+}
+.project-head-actions > button{
+  white-space:nowrap;
+}
+@media(max-width:900px){
+  .project-head-actions{gap:9px}
+  .project-head-actions #projectAbout{display:none}
+}
+@media(max-width:700px){
+  .text-size-label{font-size:8px}
+  .project-head-actions{
+    max-width:74vw;
+    row-gap:7px;
+  }
+}

@@ -8,6 +8,10 @@ let SERVER_PHOTO_DATA=null;
 let SERVER_IMAGE_LAYOUT={};
 const L="ACGT", genome=document.getElementById("genome");
 const LANG_STORAGE_KEY='garry_portfolio_lang_v2';
+const THEME_STORAGE_KEY='garry_portfolio_theme_v1';
+const savedTheme=localStorage.getItem(THEME_STORAGE_KEY);
+if(savedTheme==='dark')document.body.classList.remove('light');
+else document.body.classList.add('light');
 let zones=[], currentProject=0, lang=localStorage.getItem(LANG_STORAGE_KEY)||'zh';
 let editMode=false, editSnapshot=null, dirty=false;
 let armedMutation=null;
@@ -35,9 +39,6 @@ function applyTextScale(){
   rootStyle.setProperty('--content-12',`${(12*textScale).toFixed(1)}px`);
   rootStyle.setProperty('--content-14',`${(14*textScale).toFixed(1)}px`);
   rootStyle.setProperty('--content-18',`${(18*textScale).toFixed(1)}px`);
-  document.querySelectorAll('.text-size-value').forEach(el=>{
-    el.textContent=`${Math.round(textScale*100)}%`;
-  });
   document.querySelectorAll('[data-text-delta]').forEach(btn=>{
     const delta=Number.parseFloat(btn.dataset.textDelta)||0;
     btn.disabled=(delta<0&&textScale<=TEXT_SCALE_MIN+.001)||(delta>0&&textScale>=TEXT_SCALE_MAX-.001);
@@ -608,9 +609,9 @@ function openProject(i){
     </div>`;
   }).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
-  if(base.id==='04')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
-  const hasArchitecture=base.id==='01';
-  const hasEmbeddedLibrary=base.id==='02';
+  if(base.id==='06')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  const hasArchitecture=base.id==='05';
+  const hasEmbeddedLibrary=base.id==='07';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
   pmedia.style.display=(hasArchitecture||hasEmbeddedLibrary)?'none':'';
@@ -654,7 +655,17 @@ function applyStudioCaseCopy(){
 
 function applyUI(){
   const copy=t();document.documentElement.lang=lang==='en'?'en':'zh-CN';
-  q('brandRole').textContent=UI.en.roleLine;q('about').textContent=copy.about;q('theme').textContent=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;q('index').textContent=copy.index;q('langToggle').textContent=copy.lang;q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
+  const themeLabel=document.body.classList.contains('light')?copy.themeDark:copy.themeLight;
+  q('brandRole').textContent=UI.en.roleLine;
+  q('about').textContent=copy.about;
+  q('theme').textContent=themeLabel;
+  q('index').textContent=copy.index;
+  q('langToggle').textContent=copy.lang;
+  q('projectLangToggle').textContent=copy.lang;
+  q('projectAbout').textContent=copy.about;
+  q('projectTheme').textContent=themeLabel;
+  q('projectIndex').textContent=copy.index;
+  q('footerLeft').textContent=copy.footerLeft;q('footerRight').textContent=copy.footerRight;q('close').textContent=copy.close;q('indexClose').textContent=copy.close;q('aboutClose').textContent=copy.close;
   q('labelRole').textContent=copy.labels.role;q('labelTools').textContent=copy.labels.tools;q('labelOutput').textContent=copy.labels.output;q('labelYear').textContent=copy.labels.year;q('storyQuestion').textContent=copy.story.question;q('storyBuilt').textContent=copy.story.built;q('storyJudgement').textContent=copy.story.judgement;q('tasteHeading').textContent=copy.taste;q('nextLabel').textContent=copy.next;q('indexTitle').textContent=copy.indexTitle;q('indexIntro').textContent=copy.indexIntro;q('aboutTitle').textContent=copy.aboutTitle;
   renderAbout();applyStudioCaseCopy();buildIndex();build();applyAllImageLayouts(document);
   if(projectEl.classList.contains('visible'))openProject(currentProject);
@@ -692,7 +703,7 @@ function updateEditorLabels(){
 function updateEditorForProject(){
   if(!PROJECTS[currentProject])return;
   pmetaEdit.textContent=proj(currentProject).meta||'';
-  q('savePhotosJson').classList.toggle('visible',PROJECTS[currentProject].id==='04');
+  q('savePhotosJson').classList.toggle('visible',PROJECTS[currentProject].id==='06');
   updateEditorLabels();
   markDirtyState();
 }
@@ -715,7 +726,7 @@ function makeEditable(){
   ptaste.querySelectorAll('[data-taste-key]').forEach(el=>{el.contentEditable='true';el.spellcheck=true;el.oninput=()=>{PROJECTS[currentProject][lang].taste[+el.dataset.tasteKey][0]=cleanText(el);touch();};});
   ptaste.querySelectorAll('[data-taste-text]').forEach(el=>{el.contentEditable='true';el.spellcheck=true;el.oninput=()=>{PROJECTS[currentProject][lang].taste[+el.dataset.tasteText][1]=cleanText(el);touch();};});
   ptaste.querySelectorAll('[data-remove-taste]').forEach(btn=>btn.onclick=()=>{PROJECTS[currentProject][lang].taste.splice(+btn.dataset.removeTaste,1);touch();openProject(currentProject);});
-  if(PROJECTS[currentProject].id==='04'){
+  if(PROJECTS[currentProject].id==='06'){
     q('photoNote').contentEditable='true';q('photoNote').dataset.editable='true';q('photoNote').spellcheck=true;
     q('photoNote').oninput=()=>{PHOTO_DATA.note[lang]=cleanText(q('photoNote'));touch();};
     bindPhotoEditors();
@@ -816,6 +827,21 @@ function restartProfileDecode(){
   if(box?._restartProfileDecode)requestAnimationFrame(()=>box._restartProfileDecode());
 }
 
+function togglePortfolioTheme(){
+  document.body.classList.toggle('light');
+  localStorage.setItem(THEME_STORAGE_KEY,document.body.classList.contains('light')?'light':'dark');
+  applyUI();
+}
+function togglePortfolioLanguage(){
+  lang=lang==='en'?'zh':'en';
+  localStorage.setItem(LANG_STORAGE_KEY,lang);
+  const hintWasVisible=interactionHintShown&&q('interactionHint')?.classList.contains('visible');
+  applyUI();
+  if(hintWasVisible)requestAnimationFrame(()=>flickInteractionHintLanguage());
+}
+function openPortfolioIndex(){showPanel(indexPanel);}
+function openPortfolioAbout(){showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);}
+
 function bindGlobal(){
   bindTextScaleControls();
   q('portfolioImagePicker').addEventListener('change',e=>handlePickedPortfolioImage(e.target.files?.[0]));
@@ -827,14 +853,21 @@ function bindGlobal(){
     const picker=q('portfolioImagePicker');picker.value='';picker.click();
   });
   q('saveImageLayoutJson').addEventListener('click',saveImageLayoutJson);
-  q('close').addEventListener('click',hidePanels);document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));q('theme').addEventListener('click',e=>{document.body.classList.toggle('light');e.currentTarget.textContent=document.body.classList.contains('light')?t().themeDark:t().themeLight;});q('index').addEventListener('click',()=>showPanel(indexPanel));q('about').addEventListener('click',()=>{showPanel(aboutPanel);requestAnimationFrame(restartProfileDecode);});
-  q('langToggle').addEventListener('click',()=>{
-    lang=lang==='en'?'zh':'en';
-    localStorage.setItem(LANG_STORAGE_KEY,lang);
-    const hintWasVisible=interactionHintShown&&q('interactionHint')?.classList.contains('visible');
-    applyUI();
-    if(hintWasVisible)requestAnimationFrame(()=>flickInteractionHintLanguage());
-  });
+  q('close').addEventListener('click',hidePanels);
+  document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));
+  q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));
+
+  q('theme').addEventListener('click',togglePortfolioTheme);
+  q('projectTheme').addEventListener('click',togglePortfolioTheme);
+
+  q('index').addEventListener('click',openPortfolioIndex);
+  q('projectIndex').addEventListener('click',openPortfolioIndex);
+
+  q('about').addEventListener('click',openPortfolioAbout);
+  q('projectAbout').addEventListener('click',openPortfolioAbout);
+
+  q('langToggle').addEventListener('click',togglePortfolioLanguage);
+  q('projectLangToggle').addEventListener('click',togglePortfolioLanguage);
   editProjectBtn.addEventListener('click',()=>editMode?exitEditMode(false):enterEditMode());
   q('cancelEdit').addEventListener('click',()=>exitEditMode(true));q('addMedia').addEventListener('click',addMedia);q('addTaste').addEventListener('click',addTaste);q('saveProjectsJson').addEventListener('click',saveProjectsJson);q('savePhotosJson').addEventListener('click',savePhotosJson);
   addEventListener('keydown',e=>{if(e.key==='Escape'){if(editMode){exitEditMode(false);}else{hidePanels();}}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editMode){e.preventDefault();saveProjectsJson();}});

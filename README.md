@@ -131,15 +131,3 @@ Project 05 has been rebuilt as a single architectural-design case study:
 - 87 Queensbridge / OSK — short tower-form competition study
 
 Portfolio image assets are curated crops extracted from the supplied project PDFs. Original submission PDFs are not included in this deployable package.
-
-## Current top-level portfolio structure
-
-The homepage now contains only five mutations, in this order:
-
-1. SPACE
-2. SYSTEM
-3. CODE
-4. OBSERVATION
-5. RESEARCH
-
-Legacy top-level entries (Machine Vision, City as Data, Rhino Tabs, AI Prototyping, Studio Library) have been removed as separate homepage projects. Their relevant material is consolidated under SYSTEM or CODE. The existing Architecture, Studio Library and Photography custom case-study views are preserved.

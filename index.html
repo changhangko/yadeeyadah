@@ -7,13 +7,14 @@
 <title>Garry Zhang — Genome Portfolio</title>
 <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body class="light">
 <header>
  <div class="brand">GARRY ZHANG<br><span class="muted" id="brandRole"></span></div>
  <div class="controls"><span class="text-size-control" aria-label="Text size">
- <button class="text-size-btn text-size-small" data-text-delta="-0.1" aria-label="Decrease text size">A</button>
- <span class="text-size-value" aria-live="polite">120%</span>
- <button class="text-size-btn text-size-large" data-text-delta="0.1" aria-label="Increase text size">A</button>
+ <span class="text-size-label">A (FONT SIZE)</span>
+ <button class="text-size-btn" data-text-delta="-0.1" aria-label="Decrease text size">−</button>
+ <span class="text-size-divider">/</span>
+ <button class="text-size-btn" data-text-delta="0.1" aria-label="Increase text size">+</button>
 </span><span id="editorIndicator" style="display:none">[ EDITOR ON ]</span><button id="langToggle"></button><button id="about"></button><button id="theme"></button><button id="index"></button></div>
 </header>
 <main id="genome" aria-label="Selected portfolio projects"></main>
@@ -29,11 +30,18 @@
  <div class="overlay-inner">
   <div class="phead">
    <span id="pid"></span>
-   <div class="project-head-actions"><span class="text-size-control text-size-control-project" aria-label="Text size">
- <button class="text-size-btn text-size-small" data-text-delta="-0.1" aria-label="Decrease text size">A</button>
- <span class="text-size-value" aria-live="polite">120%</span>
- <button class="text-size-btn text-size-large" data-text-delta="0.1" aria-label="Increase text size">A</button>
-</span><button id="editProject" style="display:none">[ EDIT ]</button><button id="close"></button></div>
+   <div class="project-head-actions"><button id="projectLangToggle"></button>
+ <button id="projectAbout"></button>
+ <button id="projectTheme"></button>
+ <button id="projectIndex"></button>
+ <span class="text-size-control text-size-control-project" aria-label="Text size">
+  <span class="text-size-label">A (FONT SIZE)</span>
+  <button class="text-size-btn" data-text-delta="-0.1" aria-label="Decrease text size">−</button>
+  <span class="text-size-divider">/</span>
+  <button class="text-size-btn" data-text-delta="0.1" aria-label="Increase text size">+</button>
+ </span>
+ <button id="editProject" style="display:none">[ EDIT ]</button>
+ <button id="close"></button></div>
   </div>
   <div class="editor-bar" id="editorBar" aria-hidden="true">
    <div class="editor-status"><span id="editorStatus">EDIT MODE</span><span class="editor-hint" id="editorHint">CLICK TEXT TO EDIT · CHANGES ARE LOCAL UNTIL EXPORTED</span></div>
