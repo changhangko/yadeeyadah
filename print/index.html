@@ -8,5 +8,9 @@
 <body>
 <nav class="screen-only"><strong>GZ / PRINT PORTFOLIO V2</strong><span id="status">LOADING · JS FIX 3780107</span><button onclick="window.print()">[ PRINT / SAVE PDF ]</button></nav>
 <main id="portfolio"></main>
-<script src="/print/print.js?v=3780107" defer onload="document.getElementById('status').textContent='JS FILE LOADED · EXECUTION FAILED'" onerror="document.getElementById('status').textContent='JS FILE FAILED TO LOAD'"></script>
+<script>
+window.addEventListener('error',function(e){var s=document.getElementById('status');if(s)s.textContent='JS ERROR · '+e.message+' · LINE '+e.lineno;});
+window.addEventListener('unhandledrejection',function(e){var s=document.getElementById('status');if(s)s.textContent='PROMISE ERROR · '+String(e.reason);});
+</script>
+<script src="/print/print.js?v=errorprobe1" defer onload="setTimeout(function(){var s=document.getElementById('status');if(s&&s.textContent.indexOf('READY')<0&&s.textContent.indexOf('ERROR')<0)s.textContent='JS LOADED · NO READY'},3000)" onerror="document.getElementById('status').textContent='JS FILE FAILED TO LOAD'"></script>
 </body></html>
