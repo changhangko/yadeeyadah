@@ -2,7 +2,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:#d8d8d5;color:#111;font-family:Futura,"Futura PT","Futura Std","Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB","Century Gothic",Avenir,sans-serif}
 .screen-only{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:24px;padding:14px 20px;background:#050505;color:#f5f5f3;font-size:10px;letter-spacing:.12em}
-.screen-only #status{margin-left:auto;color:#999}.screen-only button{border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+.screen-only #status{margin-left:auto;color:#999}.screen-only button{border:0;background:none;color:inherit;font:inherit;cursor:pointer}.screen-only button:disabled{opacity:.35;cursor:wait}
 #portfolio{display:flex;flex-direction:column;align-items:center;gap:18px;padding:18px}
 .sheet{position:relative;width:420mm;height:297mm;overflow:hidden;background:#f5f5f3;padding:16mm 18mm;break-after:page;page-break-after:always}
 .sheet.dark{background:#090909;color:#f5f5f1}
@@ -30,5 +30,13 @@ html,body{margin:0;background:#d8d8d5;color:#111;font-family:Futura,"Futura PT",
 .photo-contact{grid-column:1/-1;align-self:center;display:grid;grid-template-columns:repeat(4,1fr);gap:7mm 5mm}
 .photo-card{height:80mm;margin:0;position:relative}.photo-card .caption{position:absolute;left:0;bottom:-5mm}
 .closing h2{grid-column:2/11;align-self:center;margin:0;font-size:42pt;line-height:1}.closing p{grid-column:2/7;align-self:end;font-size:11pt;line-height:1.6}
-@media print{html,body{background:#fff}.screen-only{display:none!important}#portfolio{display:block;padding:0}.sheet{margin:0;box-shadow:none}}
+@media print{
+ html,body{width:420mm;margin:0!important;padding:0!important;background:#fff}
+ .screen-only{display:none!important}
+ #portfolio{display:block!important;width:420mm;padding:0!important;margin:0!important}
+ .sheet{display:block!important;width:420mm;height:297mm;margin:0!important;padding:16mm 18mm;box-shadow:none!important;break-after:page;page-break-after:always}
+ .sheet:last-child{break-after:auto;page-break-after:auto}
+ img{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .dark,.studio-mini-resource{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
 @media screen{.sheet{box-shadow:0 5px 25px #0002}}
