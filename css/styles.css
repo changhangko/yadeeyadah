@@ -2023,3 +2023,15 @@ html[lang="zh-CN"] .index-year{
     transform:translateY(-50%);
   }
 }
+
+/* ---------- Studio Library: problem + extracted modules ---------- */
+.studio-problem-modules,.studio-feature-modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:42px 0 96px}
+.studio-feature-modules{grid-template-columns:repeat(4,minmax(0,1fr));margin:46px 0 34px}
+.studio-problem-modules article,.studio-feature-modules article{min-width:0;padding:22px 24px 26px 0;border-right:1px solid var(--line)}
+.studio-problem-modules article+article,.studio-feature-modules article+article{padding-left:24px}
+.studio-problem-modules article:last-child,.studio-feature-modules article:last-child{border-right:0}
+.studio-problem-modules span,.studio-feature-modules span{display:block;margin-bottom:28px;color:var(--dna);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.studio-problem-modules h4,.studio-feature-modules h4{margin:0 0 12px;font:inherit;font-size:15px;line-height:1.25;letter-spacing:.01em}
+.studio-problem-modules p,.studio-feature-modules p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+@media(max-width:900px){.studio-problem-modules,.studio-feature-modules{grid-template-columns:1fr 1fr}.studio-problem-modules article,.studio-feature-modules article{border-bottom:1px solid var(--line)}}
+@media(max-width:600px){.studio-problem-modules,.studio-feature-modules{grid-template-columns:1fr}.studio-problem-modules article,.studio-feature-modules article,.studio-problem-modules article+article,.studio-feature-modules article+article{padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}}
