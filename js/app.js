@@ -842,13 +842,13 @@ const METHOD_ANIMATION_COPY={
     },
     zh:{
       kicker:'空间 / 空间综合',
-      title:'让场地、日照和流线条件帮助我们做空间判断。',
-      intro:'建筑设计从几个具体条件开始：场地、日照、流线和功能。把这些条件放在一起比较，再决定体量、朝向，以及公共空间怎么安排。',
+      title:'从一个最大体量开始，一步步打开场地。',
+      intro:'四张图使用同一个场地和视角：先确定最大可建体量，再切开体量引入日照与通行，随后调整高度，最后把公共空间和建筑体量一起确定下来。',
       cards:[
-        ['01 / 约束','场地 + 日照 + 流线','先把场地边界、日照、流线和功能需求分别看清楚。'],
-        ['02 / 场','关系 + 压力','把不同条件放在一起比较，看看哪些方向更适合布置建筑和空间。'],
-        ['03 / 体量','形体 + 朝向','根据比较结果调整建筑的比例、朝向和体量。'],
-        ['04 / 结果','空间 + 建成形态','最后再检查建筑、街道和开放空间放在一起是否合理。']
+        ['01 / 最大体量','场地 + 日照 + 流线','先根据场地边界确定最大可建体量，同时标出主要日照方向和通行方向。'],
+        ['02 / 打开场地','切分 + 通行','把完整体量切成几组建筑，让日照和步行路线进入场地内部。'],
+        ['03 / 调整高度','日照 + 高度','保持建筑位置不变，根据日照条件调整各体量高度，减少彼此遮挡。'],
+        ['04 / 最终方案','建筑 + 公共空间','保留前一步的体量关系，再明确公共空间的位置，形成最终的建筑与开放空间布局。']
       ]
     }
   },
@@ -948,61 +948,64 @@ function drawMethodPanel(canvas,category,stage,time){
   const count=40;
 
   if(category==='space'){
-    // Architectural massing studies: consistent axonometric "chunks" with site,
-    // context, massing operations and one restrained accent for the active move.
+    // Four comparable architectural massing studies. Same site, camera and base mass:
+    // envelope -> carve courtyards -> tune heights -> define public realm.
     const iso=(x,y,z)=>({x:w*.5+(x-y)*w*.225,y:h*.70+(x+y)*h*.10-z*h*.31});
-    const rgba=(hex,a)=>{const m=hex.match(/#(..)(..)(..)/);return m?`rgba(${parseInt(m[1],16)},${parseInt(m[2],16)},${parseInt(m[3],16)},${a})`:`rgba(120,120,120,${a})`};
-    const accent=getComputedStyle(document.body).getPropertyValue('--fg').trim()||'#111111';
-    const softFill=rgba(accent,.035), activeFill=rgba(accent,.095);
+    const ink=getComputedStyle(document.body).getPropertyValue('--fg').trim()||'#111';
+    const rgba=(hex,a)=>{const m=hex.match(/#(..)(..)(..)/);return m?`rgba(${parseInt(m[1],16)},${parseInt(m[2],16)},${parseInt(m[3],16)},${a})`:`rgba(100,100,100,${a})`};
     const poly=(pts,fill=null,stroke=p.line,alpha=1)=>{
       ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();pts.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));ctx.closePath();
       if(fill){ctx.fillStyle=fill;ctx.fill()}ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();ctx.restore();
     };
-    const box=(x,y,z,sx,sy,sz,{active=false,alpha=1}={})=>{
+    const box=(x,y,z,sx,sy,sz,active=false,alpha=1)=>{
       const A=iso(x,y,z),B=iso(x+sx,y,z),C=iso(x+sx,y+sy,z),D=iso(x,y+sy,z);
       const At=iso(x,y,z+sz),Bt=iso(x+sx,y,z+sz),Ct=iso(x+sx,y+sy,z+sz),Dt=iso(x,y+sy,z+sz);
-      const fill=active?activeFill:softFill;
-      poly([At,Bt,Ct,Dt],fill,p.fg,.64*alpha);poly([D,C,Ct,Dt],rgba(accent,active?.07:.025),p.soft,.46*alpha);poly([B,C,Ct,Bt],rgba(accent,active?.055:.018),p.soft,.5*alpha);
-      [[A,At],[B,Bt],[C,Ct],[D,Dt]].forEach(([u,v])=>drawSystemLine(ctx,u.x,u.y,v.x,v.y,p.soft,.28*alpha));
+      poly([At,Bt,Ct,Dt],rgba(ink,active?.11:.045),p.fg,.72*alpha);
+      poly([D,C,Ct,Dt],rgba(ink,active?.07:.025),p.soft,.55*alpha);
+      poly([B,C,Ct,Bt],rgba(ink,active?.085:.035),p.soft,.6*alpha);
+      [[A,At],[B,Bt],[C,Ct],[D,Dt]].forEach(([u,v])=>drawSystemLine(ctx,u.x,u.y,v.x,v.y,p.soft,.34*alpha));
     };
-    const arrow=(a,b,label)=>{
-      const A=iso(...a),B=iso(...b);drawSystemLine(ctx,A.x,A.y,B.x,B.y,p.fg,.5);
+    const arrow2d=(A,B,label)=>{
+      drawSystemLine(ctx,A.x,A.y,B.x,B.y,p.fg,.48);
       const ang=Math.atan2(B.y-A.y,B.x-A.x),s=6;
-      drawSystemLine(ctx,B.x,B.y,B.x-Math.cos(ang-.55)*s,B.y-Math.sin(ang-.55)*s,p.fg,.5);
-      drawSystemLine(ctx,B.x,B.y,B.x-Math.cos(ang+.55)*s,B.y-Math.sin(ang+.55)*s,p.fg,.5);
+      [-.55,.55].forEach(d=>drawSystemLine(ctx,B.x,B.y,B.x-Math.cos(ang+d)*s,B.y-Math.sin(ang+d)*s,p.fg,.48));
       if(label)drawSystemLabel(ctx,label,(A.x+B.x)/2+5,(A.y+B.y)/2-7,p);
     };
     const site=[iso(-1,-.72,0),iso(1,-.72,0),iso(1,.72,0),iso(-1,.72,0)];
-    poly(site,rgba(accent,.012),p.soft,.38);
-    // faint neighbouring blocks establish scale without competing with the operation
-    [[-1.32,-.58,.24,.38,.18],[1.08,-.5,.28,.34,.24],[-1.2,.28,.25,.3,.14],[1.02,.3,.3,.28,.18]].forEach(b=>box(...b,{alpha:.28}));
+    poly(site,rgba(ink,.012),p.soft,.4);
+    // Same neighbouring context in every frame.
+    [[-1.3,-.56,.23,.34,.16],[1.07,-.5,.26,.32,.2],[-1.18,.3,.23,.28,.13],[1.02,.3,.27,.27,.16]].forEach(b=>box(...b,false,.22));
+
+    const fourBars=(heights=[.62,.62,.62,.62],active=-1)=>{
+      const bars=[[-.72,-.5,.5,.36],[-.1,-.5,.5,.36],[-.72,.12,.5,.36],[-.1,.12,.5,.36]];
+      bars.forEach((b,i)=>box(b[0],b[1],0,b[2],b[3],heights[i],i===active,.96));
+    };
 
     if(stage===0){
-      box(-.64,-.44,0,1.28,.88,.68,{active:true});
-      arrow([-.9,.62,.02],[.78,-.55,.02],'ACCESS');
-      const sunA=iso(.95,-.7,.9),sunB=iso(.48,-.28,.1);drawSystemLine(ctx,sunA.x,sunA.y,sunB.x,sunB.y,p.fg,.42);drawSystemLabel(ctx,'SOLAR',sunA.x-18,sunA.y-8,p);
-      drawSystemLabel(ctx,'01 / SITE ENVELOPE',w*.08,h*.14,p);
+      // Existing maximum envelope: one clear starting condition.
+      box(-.72,-.5,0,1.22,.98,.64,true,.96);
+      const a=iso(-.96,.62,.02),b=iso(.8,-.58,.02);arrow2d(a,b,'ACCESS');
+      const s1=iso(.92,-.66,.9),s2=iso(.42,-.22,.08);arrow2d(s1,s2,'SUN');
+      drawSystemLabel(ctx,'MAXIMUM ENVELOPE',w*.58,h*.22,p);
     }else if(stage===1){
-      const bars=[[-.72,-.48,.48,.36,.62],[-.12,-.48,.48,.36,.62],[-.72,.12,.48,.36,.62],[-.12,.12,.48,.36,.62]];
-      bars.forEach((b,i)=>box(...b,{active:i===1||i===2}));
-      arrow([-.92,.02,.02],[.82,.02,.02],'POROSITY');
-      drawSystemLabel(ctx,'02 / SPLIT + OPEN',w*.08,h*.14,p);
+      // Carve the envelope into four bars so sunlight and pedestrian routes enter the site.
+      fourBars([.62,.62,.62,.62],1);
+      const a=iso(-.94,.02,.03),b=iso(.72,.02,.03);arrow2d(a,b,'OPEN');
+      const c1=iso(.02,-.68,.03),c2=iso(.02,.62,.03);arrow2d(c1,c2,'OPEN');
+      drawSystemLabel(ctx,'CARVE + CONNECT',w*.58,h*.22,p);
     }else if(stage===2){
-      const bars=[[-.74,-.5,.46,.36,.54],[-.16,-.5,.46,.36,.92],[-.74,.08,.46,.36,.38],[-.16,.08,.46,.36,.7]];
-      bars.forEach((b,i)=>box(...b,{active:i===1}));
-      arrow([.08,-.67,.05],[.08,-.67,.9],'HEIGHT');
-      const corridor=[iso(-.18,.53,.01),iso(.86,.53,.01),iso(.86,.69,.01),iso(-.18,.69,.01)];
-      poly(corridor,activeFill,p.fg,.42);
-      drawSystemLabel(ctx,'03 / HEIGHT + ORIENTATION',w*.08,h*.14,p);
+      // Keep the same four bars and only change height: north/solar side lower, core taller.
+      fourBars([.42,.82,.3,.62],1);
+      const a=iso(.4,-.58,.08),b=iso(.4,-.58,.86);arrow2d(a,b,'HEIGHT');
+      drawSystemLabel(ctx,'SOLAR + HEIGHT',w*.58,h*.22,p);
     }else{
-      const bars=[[-.76,-.5,.43,.34,.5],[-.2,-.5,.43,.34,.88],[-.76,.06,.43,.34,.34],[-.2,.06,.43,.34,.64]];
-      bars.forEach(b=>box(...b,{}));
-      const open=[iso(.31,-.5,.012),iso(.84,-.5,.012),iso(.84,.48,.012),iso(.31,.48,.012)];
-      poly(open,activeFill,p.fg,.55);
-      // small landscape marks make the public realm read as designed space, not leftover void
-      [[.42,-.34],[.68,-.26],[.46,.08],[.72,.24]].forEach(([x,y])=>{const q=iso(x,y,.02);ctx.beginPath();ctx.arc(q.x,q.y,2.2,0,Math.PI*2);ctx.fillStyle=p.fg;ctx.globalAlpha=.42;ctx.fill();ctx.globalAlpha=1});
-      arrow([.38,.58,.02],[.76,.58,.02],'PUBLIC REALM');
-      drawSystemLabel(ctx,'04 / MASSING + OPEN SPACE',w*.08,h*.14,p);
+      // Final frame preserves stage 3 massing and adds the public-space decision.
+      fourBars([.42,.82,.3,.62],-1);
+      const open=[iso(.46,-.42,.015),iso(.86,-.42,.015),iso(.86,.42,.015),iso(.46,.42,.015)];
+      poly(open,rgba(ink,.10),p.fg,.58);
+      [[.54,-.27],[.73,-.16],[.55,.12],[.76,.25]].forEach(([x,y])=>{const q=iso(x,y,.025);ctx.beginPath();ctx.arc(q.x,q.y,2.1,0,Math.PI*2);ctx.fillStyle=p.fg;ctx.globalAlpha=.42;ctx.fill();ctx.globalAlpha=1});
+      const a=iso(.38,.58,.02),b=iso(.82,.58,.02);arrow2d(a,b,'PUBLIC SPACE');
+      drawSystemLabel(ctx,'RESOLVED MASSING',w*.58,h*.22,p);
     } return;
   }
 
