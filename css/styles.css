@@ -2111,3 +2111,26 @@ html[lang="zh-CN"] #project .eyebrow{
 .studio-component-demo .studio-mini-resource:focus-visible small{
   color:#fff;
 }
+
+/* ---------- Readability pass: public-facing small labels ---------- */
+.studio-section-no,.studio-section-kicker{font-size:clamp(12px,.78vw,15px);line-height:1.45}
+.studio-case-meta{font-size:12px;line-height:1.45}
+.studio-section-head>span{font-size:12px}
+.studio-intervention-arrow{font-size:12px}
+.studio-principle>span{font-size:12px}.studio-principle p{font-size:13px}
+.studio-problem-modules span,.studio-feature-modules span{font-size:11px}
+.studio-problem-modules h4,.studio-feature-modules h4{font-size:17px}
+.studio-problem-modules p,.studio-feature-modules p{font-size:13px}
+.embedded-project-toolbar,.embedded-caption{font-size:11px}
+.studio-web-design-summary span{font-size:11px;line-height:1.5}
+.about-block h2{font-size:12px}.about-block p{font-size:13px}
+.story h2,.taste h2,.photo-intro,.photo-wall-title{font-size:12px}
+.meta-value{font-size:12px}
+.arch-chapter-head>span,.arch-metric-row span{font-size:12px}
+@media(max-width:700px){
+  .studio-section-no,.studio-section-kicker,.studio-section-head>span,.studio-intervention-arrow,
+  .studio-principle>span,.studio-problem-modules span,.studio-feature-modules span,
+  .embedded-project-toolbar,.embedded-caption,.studio-web-design-summary span,
+  .about-block h2,.story h2,.taste h2,.photo-intro,.photo-wall-title,.meta-value,.arch-chapter-head>span,.arch-metric-row span{font-size:11px}
+  .studio-problem-modules p,.studio-feature-modules p,.studio-principle p,.about-block p{font-size:12px}
+}
