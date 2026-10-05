@@ -2259,3 +2259,29 @@ html[lang="zh-CN"] #project .eyebrow{
 .parametric-flow-step.is-output{background:#111;color:#fff;border-color:#111}
 .parametric-hero-meta{grid-column:1/-1}
 @media(max-width:850px){.parametric-hero{grid-template-columns:1fr}.parametric-image-stack{aspect-ratio:auto;height:auto!important}.parametric-image-stack .parametric-image{position:relative;height:auto}.parametric-image-stack .parametric-image-highlight{position:absolute}.parametric-workflow{margin-top:26px}.parametric-hero-meta{grid-column:1}}
+
+/* 435 Bourke horizontal process / extracted diagram language */
+.parametric-hero{grid-template-columns:1fr!important}
+.parametric-image-stack{width:min(760px,58vw);justify-self:start}
+.parametric-process-strip{grid-column:1/-1;margin-top:44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.parametric-process-head{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font:10px/1.2 "Courier New",monospace;letter-spacing:.08em}
+.parametric-process-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.parametric-process-card{min-width:0;padding:14px 12px 18px;border-right:1px solid var(--line)}
+.parametric-process-card:last-child{border-right:0}.parametric-process-card>b{font:9px/1 "Courier New",monospace;font-weight:400;opacity:.5}
+.parametric-process-card h3{margin:12px 0 7px;font-size:13px;line-height:1.2;font-weight:700}
+.parametric-process-card p{margin:0;min-height:64px;font-size:11px;line-height:1.55}
+.parametric-process-card small{display:block;margin-top:13px;font:8px/1.2 "Courier New",monospace;letter-spacing:.06em;opacity:.48}
+.parametric-process-diagram{position:relative;height:104px;margin:13px 0 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.parametric-process-diagram i{position:absolute;display:block;border:1px solid currentColor}
+.parametric-process-diagram i:nth-child(1){width:54%;height:42%;left:12%;top:30%;transform:skewY(-10deg)}
+.parametric-process-diagram i:nth-child(2){width:45%;height:34%;left:35%;top:20%;transform:skewY(8deg)}
+.parametric-process-diagram i:nth-child(3){width:1px;height:70%;left:62%;top:14%;border:0;background:currentColor;opacity:.5}
+.parametric-process-diagram.levels i{height:1px;border:0;background:currentColor;left:10%;width:78%;transform:none}.parametric-process-diagram.levels i:nth-child(1){top:28%}.parametric-process-diagram.levels i:nth-child(2){top:50%}.parametric-process-diagram.levels i:nth-child(3){top:72%}
+.parametric-process-diagram.curves i{border-width:1px 0 0;border-radius:50%;height:42%;transform:rotate(-5deg)}
+.parametric-process-diagram.anchors i{width:5px;height:5px;border-radius:50%;background:currentColor}.parametric-process-diagram.anchors i:nth-child(1){left:18%;top:64%}.parametric-process-diagram.anchors i:nth-child(2){left:48%;top:35%}.parametric-process-diagram.anchors i:nth-child(3){left:78%;top:54%}
+.parametric-process-diagram.interpolate i{border-width:1px 0 0;border-radius:50%;height:55%;width:80%;left:10%;transform:rotate(-7deg)}.parametric-process-diagram.interpolate i:nth-child(2){top:40%;transform:rotate(5deg)}.parametric-process-diagram.interpolate i:nth-child(3){top:58%;transform:rotate(-2deg)}
+.parametric-process-diagram.divide{background:repeating-linear-gradient(90deg,transparent 0,transparent 17%,currentColor 17.3%,transparent 17.6%)}.parametric-process-diagram.divide i{display:none}
+.parametric-process-diagram.panels{background:repeating-linear-gradient(90deg,transparent 0,transparent 22%,currentColor 22.3%,transparent 22.6%),repeating-linear-gradient(0deg,transparent 0,transparent 31%,currentColor 31.3%,transparent 31.6%)}.parametric-process-diagram.panels i{display:none}
+.parametric-process-card.output{background:#111;color:#fff}.parametric-process-card.output .parametric-process-diagram{border-color:#555}
+@media(max-width:1050px){.parametric-process-row{grid-template-columns:repeat(4,1fr)}.parametric-process-card{border-bottom:1px solid var(--line)}}
+@media(max-width:720px){.parametric-image-stack{width:100%}.parametric-process-row{grid-template-columns:1fr 1fr}.parametric-process-card p{min-height:0}.parametric-process-strip{margin-top:30px}}
