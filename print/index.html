@@ -6,9 +6,10 @@
 <link rel="stylesheet" href="/print/print.css">
 </head>
 <body>
-<nav class="screen-only"><strong>GZ / PRINT PORTFOLIO V2</strong><span id="status">LOADING</span><button onclick="window.print()">[ PRINT / SAVE PDF ]</button></nav>
+<nav class="screen-only"><strong>GZ / PRINT PORTFOLIO V2</strong><span id="status">BOOTING · INLINE A483</span><button onclick="window.print()">[ PRINT / SAVE PDF ]</button></nav>
 <main id="portfolio"></main>
 <script>
+document.getElementById("status").textContent="SCRIPT STARTED · INLINE A483";
 const $=s=>document.querySelector(s);
 const printButton=document.querySelector('.screen-only button');
 if(printButton)printButton.disabled=true;
