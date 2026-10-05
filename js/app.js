@@ -973,8 +973,8 @@ function drawMethodPanel(canvas,category,stage,time){
     };
     const site=[iso(-1,-.72,0),iso(1,-.72,0),iso(1,.72,0),iso(-1,.72,0)];
     poly(site,rgba(ink,.012),p.soft,.4);
-    // Same neighbouring context in every frame.
-    [[-1.3,-.56,.23,.34,.16],[1.07,-.5,.26,.32,.2],[-1.18,.3,.23,.28,.13],[1.02,.3,.27,.27,.16]].forEach(b=>box(...b,false,.22));
+    // Keep the diagram focused on the project site. Do not add generic context
+    // blocks unless they represent real, project-specific surrounding buildings.
 
     const fourBars=(heights=[.62,.62,.62,.62],active=-1)=>{
       const bars=[[-.72,-.5,.5,.36],[-.1,-.5,.5,.36],[-.72,.12,.5,.36],[-.1,.12,.5,.36]];
