@@ -1955,3 +1955,43 @@ html[lang="zh-CN"] .index-year{
 .footer-actions{display:flex;align-items:center;gap:18px}.print-portfolio-link{position:static;color:var(--dna);font:inherit;letter-spacing:inherit;text-decoration:none;text-transform:uppercase}.print-portfolio-link:hover,.print-portfolio-link:focus-visible{color:var(--fg);font-weight:700;outline:none}@media(max-width:700px){.footer-actions{gap:10px}}
 
 
+
+
+/* ---------- Index readability / desktop presence ---------- */
+@media (min-width: 901px){
+  #indexPanel .pbody{
+    max-width:min(1380px,82vw);
+    margin-top:10vh;
+  }
+  .index-intro{
+    max-width:980px;
+    margin-bottom:64px;
+    font-size:clamp(14px,.82vw,17px);
+    line-height:1.75;
+    letter-spacing:.025em;
+  }
+  .index-row{
+    grid-template-columns:minmax(180px,.9fr) minmax(340px,1.7fr) 110px;
+    gap:32px;
+    padding:22px 0;
+    font-size:clamp(14px,.8vw,17px);
+    letter-spacing:.055em;
+    line-height:1.45;
+  }
+  .index-title-main{
+    font-size:clamp(16px,.95vw,20px);
+    letter-spacing:.035em;
+  }
+  .index-title-sub{
+    margin-left:18px;
+    font-size:clamp(12px,.68vw,14px);
+    color:var(--dna);
+  }
+  .index-meta{
+    font-size:clamp(12px,.68vw,14px);
+    line-height:1.5;
+  }
+  .index-year{
+    font-size:clamp(12px,.68vw,14px);
+  }
+}
