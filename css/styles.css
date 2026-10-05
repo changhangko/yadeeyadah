@@ -2070,3 +2070,17 @@ html[lang="zh-CN"] #project .eyebrow{
 .studio-mini-detail{position:absolute;inset:108px 22px 80px;padding:18px;background:#002c91;color:#fff;opacity:0;visibility:hidden;transition:.2s ease;display:flex;flex-direction:column;justify-content:center}.studio-mini-detail.open{opacity:1;visibility:visible}.studio-mini-detail button{position:absolute;right:10px;top:8px;border:0;background:none;color:#fff;font-size:20px}.studio-mini-detail small,.studio-mini-detail span{font:7px "Courier New",monospace}.studio-mini-detail strong{margin:12px 0;font:20px "Courier New",monospace}
 .studio-web-design-summary{display:grid;grid-template-columns:180px 1fr;gap:34px;margin-top:34px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.studio-web-design-summary span{font:8px "Courier New",monospace}.studio-web-design-summary p{margin:0;font-size:12px;line-height:1.8;color:var(--muted)}
 @media(max-width:800px){.studio-component-head,.studio-web-design-summary{grid-template-columns:1fr}.studio-component-grid{grid-template-columns:1fr}.studio-component-demo{border-right:0;border-bottom:1px solid var(--line)}.studio-component-demo>p{position:static;margin-top:28px}}
+
+/* Studio component specimens: readable UI typography */
+.studio-component-demo{font-family:Arial,"Helvetica Neue",sans-serif}
+.studio-demo-code,.studio-demo-code code,.studio-demo-code span{font-family:"Courier New",monospace}
+.studio-demo-code{font-size:11px;line-height:1.65}.studio-demo-code span{font-size:12px}
+.studio-mini-resource{font-family:Arial,"Helvetica Neue",sans-serif}
+.studio-mini-resource span,.studio-mini-resource small{font-family:"Courier New",monospace;font-size:10px;letter-spacing:.08em}
+.studio-mini-resource strong{font-family:Arial,"Helvetica Neue",sans-serif;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.studio-mini-filter input{font-family:Arial,"Helvetica Neue",sans-serif;font-size:13px}
+.studio-mini-filter button,.studio-mini-filter output{font-family:"Courier New",monospace;font-size:9px}
+.studio-mini-swatch small,.studio-mini-swatch strong,.studio-mini-detail small,.studio-mini-detail span,.studio-mini-detail strong{font-family:"Courier New",monospace}
+.studio-mini-detail{color:#fff}
+.studio-mini-detail small,.studio-mini-detail span{font-size:9px}.studio-mini-detail strong{font-size:25px;color:#fff}
+.studio-component-demo>p{font-size:12px;line-height:1.7}
