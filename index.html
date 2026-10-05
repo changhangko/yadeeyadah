@@ -121,27 +121,21 @@
       <img class="parametric-image parametric-image-original" src="/assets/parametric/435-bourke-original.jpg" alt="435 Bourke Street under construction">
       <img class="parametric-image parametric-image-highlight" src="/assets/parametric/435-bourke-highlight.jpg" alt="435 Bourke Street with the parametric PV facade highlighted">
      </div>
-     <aside class="parametric-workflow" aria-label="Grasshopper facade workflow">
-      <div class="parametric-workflow-head"><span>GRASSHOPPER LOGIC</span><span>435 BOURKE / PV FACADE</span></div>
-      <div class="parametric-flow">
-       <div class="parametric-flow-step"><b>01</b><span>REFERENCE GEOMETRY</span><small>Rhino façade geometry</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step"><b>02</b><span>HORIZONTAL LEVELS</span><small>Define panel heights</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step"><b>03</b><span>BASE CURVES</span><small>Start + end points</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step"><b>04</b><span>ANCHOR VECTORS</span><small>Divide + locate</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step"><b>05</b><span>CURVE INTERPOLATION</span><small>Resolve curved geometry</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step"><b>06</b><span>PANEL DIVISION</span><small>Segment façade</small></div>
-       <i>↓</i>
-       <div class="parametric-flow-step is-output"><b>07</b><span>PV PANELS</span><small>Individual panel geometry</small></div>
-      </div>
-     </aside>
      <div class="parametric-hero-meta">
       <span>01 / BUILT RESULT</span><span>435 BOURKE ST / MELBOURNE</span>
      </div>
+    <div class="parametric-process-strip" aria-label="435 Bourke parametric facade process">
+     <div class="parametric-process-head"><span data-en="PARAMETRIC PROCESS" data-zh="参数化流程">参数化流程</span><span>435 BOURKE / PV FACADE</span></div>
+     <div class="parametric-process-row">
+      <article class="parametric-process-card"><b>01</b><div class="parametric-process-diagram"><i></i><i></i><i></i></div><h3 data-en="REFERENCE GEOMETRY" data-zh="引用几何">引用几何</h3><p data-en="Reference the curved façade geometry from Rhino." data-zh="从 Rhino 引用曲面外立面的基础几何。">从 Rhino 引用曲面外立面的基础几何。</p><small>REFERENCE GEOMETRY</small></article>
+      <article class="parametric-process-card"><b>02</b><div class="parametric-process-diagram levels"><i></i><i></i><i></i></div><h3 data-en="HORIZONTAL LEVELS" data-zh="定义水平高度">定义水平高度</h3><p data-en="Set the horizontal levels that control panel height and position." data-zh="定义水平高度，控制每层 panel 的位置和范围。">定义水平高度，控制每层 panel 的位置和范围。</p><small>HORIZONTAL LEVELS</small></article>
+      <article class="parametric-process-card"><b>03</b><div class="parametric-process-diagram curves"><i></i><i></i><i></i></div><h3 data-en="BASE CURVES" data-zh="生成基础曲线">生成基础曲线</h3><p data-en="Use panel start and end points to form the base curves." data-zh="通过 panel 的起点和终点生成基础曲线。">通过 panel 的起点和终点生成基础曲线。</p><small>BASE CURVES</small></article>
+      <article class="parametric-process-card"><b>04</b><div class="parametric-process-diagram anchors"><i></i><i></i><i></i></div><h3 data-en="ANCHOR VECTORS" data-zh="建立锚点与向量">建立锚点与向量</h3><p data-en="Divide the curves and establish anchor vectors for interpolation." data-zh="分割曲线并建立锚点与向量，为曲线插值提供控制。">分割曲线并建立锚点与向量，为曲线插值提供控制。</p><small>ANCHOR VECTORS</small></article>
+      <article class="parametric-process-card"><b>05</b><div class="parametric-process-diagram interpolate"><i></i><i></i><i></i></div><h3 data-en="CURVE INTERPOLATION" data-zh="曲线插值">曲线插值</h3><p data-en="Interpolate the control points to resolve the changing façade curvature." data-zh="根据控制点进行曲线插值，适应外立面不断变化的曲率。">根据控制点进行曲线插值，适应外立面不断变化的曲率。</p><small>CURVE INTERPOLATION</small></article>
+      <article class="parametric-process-card"><b>06</b><div class="parametric-process-diagram divide"><i></i><i></i><i></i></div><h3 data-en="PANEL DIVISION" data-zh="分割面板">分割面板</h3><p data-en="Divide the resolved geometry into individual façade segments." data-zh="将生成后的几何进一步分割成独立的外立面单元。">将生成后的几何进一步分割成独立的外立面单元。</p><small>PANEL DIVISION</small></article>
+      <article class="parametric-process-card output"><b>07</b><div class="parametric-process-diagram panels"><i></i><i></i><i></i></div><h3 data-en="PV PANELS" data-zh="生成 PV 面板">生成 PV 面板</h3><p data-en="Output individually resolved PV panel geometry for design development and documentation." data-zh="生成每块独立的 PV panel 几何，用于设计深化和施工图工作。">生成每块独立的 PV panel 几何，用于设计深化和施工图工作。</p><small>PV PANELS / OUTPUT</small></article>
+     </div>
+    </div>
     </div>
     <div class="parametric-copy">
      <div><span class="parametric-kicker">PARAMETRIC PV FACADE</span><h2>435 Bourke Street</h2></div>
