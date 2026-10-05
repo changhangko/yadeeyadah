@@ -41,3 +41,55 @@ Before production deployment, audit the changed area separately for:
 Every finding should point to a concrete selector, value, component or sentence. Zero findings is an acceptable result. Fix root causes rather than accumulating patches.
 
 These guardrails are inspired by the audit principles in Jacob Perks' “How to stop your frontend looking AI-generated” (Medium, 2026-08-02), adapted to this portfolio rather than treated as absolute stylistic rules.
+
+## Human-led design review — Oliur principles
+These checks extend the anti-generic-AI rules above. The goal is not to hide the use of AI; it is to make sure every visible decision has a reason tied to Garry's work and taste.
+
+### Start from intent, not a component library
+- Before adding a section, state its single job in plain language. If the job is unclear, do not design the section yet.
+- Choose one focal point per view. Size, contrast and spacing must support that focal point instead of making every element compete.
+- Never accept the first generated layout. Generate/implement, critique, remove, then refine.
+- AI may accelerate execution and exploration; final hierarchy, selection, sequencing and deletion remain human decisions.
+
+### Remove before adding
+- For every new visual element ask: does this improve navigation, comprehension, project evidence, or the portfolio's authored identity?
+- If the answer is no, remove it. Empty space is an active layout tool, not an area that needs decoration.
+- Do not add gradients, shadows, blur, cards, badges, icons, animation or texture merely to make a sparse area feel 'designed'.
+
+### Use real evidence
+- Prefer Garry's actual project drawings, photographs, models, diagrams, screenshots and process artifacts over generic/generated decoration.
+- A visual must relate directly to the claim beside it. Avoid unrelated filler imagery.
+- Never invent project metrics, outcomes, quotes, clients, awards or process details.
+- Imperfection is acceptable when it is authentic: contact sheets, working diagrams, model photos, crop marks, annotations and process traces can carry more authorship than polished decoration.
+
+### Hierarchy and typography
+- Main reading text must be comfortable at 100% browser zoom. Small type is reserved for metadata/annotation, never the primary reading experience.
+- Use a small, intentional type system. Futura is the print/PDF Latin face; Chinese needs a compatible CJK fallback. The website keeps its established genome/editorial typography unless intentionally redesigned.
+- Do not use size merely for spectacle. Large type must indicate actual importance.
+- Maintain deliberate contrast between primary, secondary and metadata levels.
+- Use whitespace to establish rhythm and grouping before introducing borders, cards or backgrounds.
+
+### Portfolio-specific authorship
+- Preserve the genome / mutation / decode navigation because it comes from the portfolio's concept, not from a generic UI trend.
+- Each project category may have its own editorial rhythm when the content demands it; consistency does not mean forcing every project into the same template.
+- Project pages should show why a decision was made, what changed, and what Garry contributed. A polished screen without reasoning is insufficient.
+- Chinese copy must be immediately understandable to a native Mandarin reader. Prefer concrete verbs and actions over translated design jargon or abstract nouns.
+- Ask: “Could this exact section plausibly belong to 500 unrelated AI-generated portfolios?” If yes, make it more specific or remove it.
+
+### Current-site watch list
+These are not automatic failures, but must be justified when touched:
+- `#projectTransition` currently uses `z-index:9999`; replace extreme stacking values with a documented stacking scale when that system is next refactored.
+- Studio Library presentation uses large radii, gradients and shadows. These are acceptable only where they deliberately frame the embedded product/interface; do not spread this treatment to the general portfolio shell.
+- Profile/header gradients are functional readability fades. Keep them subtle and do not turn them into decorative gradient language.
+- Editor/debug overlays use blur, high z-index and utility styling. Keep these isolated from the public-facing visual language.
+- Print/PDF preview shadow is screen-only and must never appear in the printed artifact.
+
+### Pre-ship human pass
+Before a production change is considered finished, answer:
+1. What should the viewer notice first?
+2. What can be removed?
+3. Which element is uniquely tied to this project or Garry?
+4. Is every visual evidence for something being said?
+5. Can a Mandarin reader understand the Chinese copy on the first read?
+6. Does the page still work at 100% zoom without tiring the reader?
+7. Are we showing design judgement, not merely polished output?
