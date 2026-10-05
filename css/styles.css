@@ -2184,3 +2184,47 @@ html[lang="zh-CN"] #project .eyebrow{
   .about-info .about-aside{grid-template-columns:1fr}
   .about-info .about-block,.about-info .about-block:not(:first-child){min-height:auto;padding:20px 16px}
 }
+
+/* ---------- About CV: asymmetric editorial composition ---------- */
+.about-info .about-aside{
+  display:grid;
+  grid-template-columns:1.15fr 1.15fr .9fr;
+  grid-auto-flow:row;
+  border:0;
+  border-top:1px solid var(--line);
+}
+.about-info .about-block,
+.about-info .about-block:not(:first-child){
+  min-height:0;
+  padding:28px 30px 32px 0;
+  border:0;
+  border-bottom:1px solid var(--line);
+}
+.about-info .about-block:nth-child(3n+2),
+.about-info .about-block:nth-child(3n+3){padding-left:30px;border-left:1px solid var(--line)}
+.about-info .about-block:nth-child(-n+4){min-height:185px}
+.about-info .about-block h2{margin:0 0 30px;font-size:13px;font-weight:600;letter-spacing:.04em}
+.about-info .about-block p{max-width:38ch;margin:0;font-size:14px;line-height:1.8;color:var(--soft)}
+.about-info .about-block:nth-child(2) p,
+.about-info .about-block:nth-child(3) p,
+.about-info .about-block:nth-child(4) p{color:var(--fg)}
+@media(min-width:1100px){
+  .about-info .about-block:nth-child(1){grid-column:1}
+  .about-info .about-block:nth-child(2){grid-column:2}
+  .about-info .about-block:nth-child(3){grid-column:3}
+  .about-info .about-block:nth-child(4){grid-column:1}
+  .about-info .about-block:nth-child(5){grid-column:2}
+  .about-info .about-block:nth-child(6){grid-column:3}
+  .about-info .about-block:nth-child(7){grid-column:1 / span 2}
+  .about-info .about-block:nth-child(8){grid-column:3}
+  .about-info .about-block:nth-child(9){grid-column:1 / -1;display:grid;grid-template-columns:1.15fr 2.05fr;gap:30px;align-items:start}
+  .about-info .about-block:nth-child(9) h2{margin:0}
+}
+@media(max-width:900px){
+  .about-info .about-aside{grid-template-columns:1fr 1fr}
+  .about-info .about-block,.about-info .about-block:not(:first-child){padding:22px 20px;border-left:0;border-right:1px solid var(--line)}
+}
+@media(max-width:600px){
+  .about-info .about-aside{grid-template-columns:1fr}
+  .about-info .about-block,.about-info .about-block:not(:first-child){padding:22px 0;border-right:0}
+}
