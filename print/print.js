@@ -35,13 +35,13 @@ fetchJson("/data/projects.json",true).then(async projects=>{
  });
  pages.push(S("closing",'<div class="grid"><h2>GARRY ZHANG<br>CREATIVE TECHNOLOGIST<br>/ COMPUTATIONAL DESIGNER</h2><p>Melbourne / Beijing<br>changhangko.cc</p></div>',true));
  $("#portfolio").innerHTML=pages.join("");
- const imgs=[...document.images];
- const imageReady=imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true})}));
- Promise.all([document.fonts?.ready||Promise.resolve(),...imageReady]).then(()=>{
-   document.body.classList.add("print-ready");
-   if(printButton)printButton.disabled=false;
-   $("#status").textContent=projects.length+" SECTIONS / "+n+" PAGES / A3 LANDSCAPE / READY";
- });
+ // Rendering is complete at this point. Do not block the whole portfolio on
+ // image/font readiness: a browser can leave those promises pending indefinitely.
+ document.body.classList.add("print-ready");
+ if(printButton)printButton.disabled=false;
+ $("#status").textContent=projects.length+" SECTIONS / "+n+" PAGES / A3 LANDSCAPE / READY";
+ // Decode available images opportunistically after the UI is already usable.
+ [...document.images].forEach(img=>{ if(img.decode) img.decode().catch(()=>{}); });
 }).catch(err=>{
  $("#status").textContent="LOAD ERROR — "+(err?.message||"REFRESH");
  if(printButton)printButton.disabled=true;
