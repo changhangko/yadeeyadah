@@ -1953,3 +1953,14 @@ html[lang="zh-CN"] .index-year{
 
 /* ---------- Printable portfolio entry ---------- */
 .footer-actions{display:flex;align-items:center;gap:18px}.print-portfolio-link{position:static;color:var(--dna);font:inherit;letter-spacing:inherit;text-decoration:none;text-transform:uppercase}.print-portfolio-link:hover,.print-portfolio-link:focus-visible{color:var(--fg);font-weight:700;outline:none}@media(max-width:700px){.footer-actions{gap:10px}}
+
+/* ---------- Genome face test ---------- */
+.genome-face-test{position:fixed;z-index:19;left:50%;bottom:76px;width:58px;height:58px;transform:translateX(-50%);cursor:crosshair;overflow:hidden;color:var(--dna);font-family:"Courier New",Courier,monospace;user-select:none;-webkit-user-select:none}
+.genome-face-code,.genome-face-smile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .18s ease,transform .32s cubic-bezier(.2,.8,.2,1),filter .25s ease}
+.genome-face-code{white-space:pre;text-align:center;font-size:9px;line-height:1.22;letter-spacing:.2em;animation:faceCodeFlicker 1.7s steps(2,end) infinite}
+.genome-face-smile{opacity:0;transform:scale(.55) rotate(-8deg);filter:blur(5px);color:var(--fg)}
+.genome-face-smile span{position:absolute;top:17px;font-size:7px}.genome-face-smile span:first-child{left:15px}.genome-face-smile span:nth-child(2){right:15px}.genome-face-smile b{position:absolute;top:24px;font-size:27px;line-height:1;font-weight:400}
+.genome-face-test:hover .genome-face-code,.genome-face-test:focus-within .genome-face-code{opacity:0;transform:scale(1.35);filter:blur(4px)}
+.genome-face-test:hover .genome-face-smile,.genome-face-test:focus-within .genome-face-smile{opacity:1;transform:scale(1) rotate(0);filter:blur(0)}
+@keyframes faceCodeFlicker{0%,82%,100%{opacity:.72}84%{opacity:.18}87%{opacity:.9}90%{opacity:.32}}
+@media(max-width:700px){.genome-face-test{bottom:58px;width:52px;height:52px}}
