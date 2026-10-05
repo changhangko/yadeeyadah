@@ -948,32 +948,42 @@ function drawMethodPanel(canvas,category,stage,time){
   const count=40;
 
   if(category==='space'){
+    // Architecture uses an axonometric massing sequence rather than abstract dots.
+    const iso=(x,y,z)=>({x:w*.5+(x-y)*w*.24,y:h*.72+(x+y)*h*.105-z*h*.34});
+    const poly=(pts,fill,stroke=p.line,alpha=1)=>{
+      ctx.globalAlpha=alpha;ctx.beginPath();pts.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));
+      ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}ctx.strokeStyle=stroke;ctx.stroke();ctx.globalAlpha=1;
+    };
+    const box=(x,y,z,sx,sy,sz,alpha=1)=>{
+      const A=iso(x,y,z),B=iso(x+sx,y,z),C=iso(x+sx,y+sy,z),D=iso(x,y+sy,z);
+      const At=iso(x,y,z+sz),Bt=iso(x+sx,y,z+sz),Ct=iso(x+sx,y+sy,z+sz),Dt=iso(x,y+sy,z+sz);
+      const top='rgba(255,255,255,.07)',left='rgba(255,255,255,.025)',right='rgba(255,255,255,.045)';
+      poly([At,Bt,Ct,Dt],top,p.fg,.58*alpha);poly([D,C,Ct,Dt],left,p.soft,.42*alpha);poly([B,C,Ct,Bt],right,p.soft,.5*alpha);
+      drawSystemLine(ctx,A.x,A.y,At.x,At.y,p.soft,.26*alpha);drawSystemLine(ctx,B.x,B.y,Bt.x,Bt.y,p.soft,.26*alpha);
+    };
+    const site=[iso(-.95,-.72,0),iso(.95,-.72,0),iso(.95,.72,0),iso(-.95,.72,0)];
+    poly(site,null,p.soft,.32);
     if(stage===0){
-      for(let i=0;i<count;i++){const s=systemPointSeed(i,w,h);drawSystemDot(ctx,s.x,s.y,s.r,p.soft,.45)}
-      ctx.strokeStyle=p.line;ctx.strokeRect(w*.18,h*.18,w*.64,h*.64);
-      drawSystemLine(ctx,w*.12,h*.7,w*.88,h*.32,p.soft,.35);
-      drawSystemLabel(ctx,'SUN',w*.72,h*.13,p);drawSystemLabel(ctx,'ACCESS',w*.12,h*.78,p);
+      box(-.58,-.42,0,1.16,.84,.72,.9);
+      drawSystemLine(ctx,w*.18,h*.23,w*.33,h*.38,p.soft,.4);
+      drawSystemLabel(ctx,'SUN',w*.15,h*.2,p);
+      drawSystemLabel(ctx,'SITE',w*.18,h*.82,p);
     }else if(stage===1){
-      const cx=w*.5,cy=h*.5;
-      for(let i=0;i<count;i++){
-        const s=systemPointSeed(i,w,h),ang=Math.atan2(cy-s.y,cx-s.x),len=18+hashSystem(i)*30;
-        drawSystemLine(ctx,s.x,s.y,s.x+Math.cos(ang)*len,s.y+Math.sin(ang)*len,p.soft,.25+.3*t);
-        drawSystemDot(ctx,s.x,s.y,1.2,p.fg,.42);
-      }
+      const masses=[[-.68,-.5,.52,.42,.56],[-.08,-.5,.52,.42,.56],[-.68,.08,.52,.42,.56],[-.08,.08,.52,.42,.56]];
+      masses.forEach((b,i)=>box(b[0],b[1],0,b[2],b[3],b[4]*(.75+.25*t),.92));
+      drawSystemLabel(ctx,'SPLIT',w*.72,h*.2,p);
     }else if(stage===2){
-      const blocks=[[-.28,.06,.18,.46],[0,-.08,.2,.62],[.27,.03,.17,.5]];
-      blocks.forEach((b,i)=>{
-        const bw=w*b[2],bh=h*b[3]*t,x=w*(.5+b[0])-bw/2,y=h*.78-bh;
-        ctx.strokeStyle=p.line;ctx.strokeRect(x,y,bw,bh);
-        ctx.globalAlpha=.06+.12*t;ctx.fillStyle=p.fg;ctx.fillRect(x,y,bw,bh);ctx.globalAlpha=1;
-      });
-      drawSystemLine(ctx,w*.12,h*.8,w*.88,h*.8,p.soft,.35);
+      const masses=[[-.72,-.5,.48,.38,.72],[-.12,-.5,.48,.38,.96],[-.72,.08,.48,.38,.48],[-.12,.08,.48,.38,.66]];
+      masses.forEach((b,i)=>box(b[0],b[1],0,b[2],b[3],b[4]*(.65+.35*t),.94));
+      const p1=iso(-.78,.66,.02),p2=iso(.82,.66,.02);drawSystemLine(ctx,p1.x,p1.y,p2.x,p2.y,p.fg,.32);
+      drawSystemLabel(ctx,'HEIGHT + ORIENTATION',w*.56,h*.18,p);
     }else{
-      const a=Math.min(1,t*1.4);
-      const blocks=[{x:.18,w:.19,h:.52},{x:.63,w:.2,h:.48}];
-      blocks.forEach(b=>{ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.strokeRect(w*b.x,h*(.76-b.h),w*b.w,h*b.h)});
-      ctx.globalAlpha=a*.55;ctx.fillStyle=p.soft;ctx.fillRect(w*.41,h*.48,w*.15,h*.28);ctx.globalAlpha=1;
-      drawSystemLabel(ctx,'PUBLIC SPACE',w*.405,h*.44,p);
+      const masses=[[-.74,-.5,.44,.36,.72],[-.18,-.5,.44,.36,1.02],[-.74,.06,.44,.36,.44],[-.18,.06,.44,.36,.68]];
+      masses.forEach(b=>box(b[0],b[1],0,b[2],b[3],b[4],.96));
+      const open=[iso(.34,-.48,.01),iso(.82,-.48,.01),iso(.82,.52,.01),iso(.34,.52,.01)];
+      poly(open,'rgba(255,255,255,.025)',p.fg,.45);
+      drawSystemLabel(ctx,'PUBLIC SPACE',w*.61,h*.7,p);
+      drawSystemLabel(ctx,'MASSING',w*.18,h*.2,p);
     } return;
   }
 
