@@ -1995,3 +1995,31 @@ html[lang="zh-CN"] .index-year{
     font-size:clamp(12px,.68vw,14px);
   }
 }
+
+
+/* ---------- Index: keep the five project rows vertically centered ---------- */
+@media (min-width: 701px){
+  #indexPanel .pbody{
+    position:relative;
+    min-height:calc(100dvh - 120px);
+    margin-top:0;
+    margin-bottom:0;
+    padding-top:0;
+    padding-bottom:0;
+  }
+  #indexPanel .index-intro{
+    position:absolute;
+    left:0;
+    right:0;
+    top:calc(50% - 250px);
+    margin:0;
+    transform:translateY(-100%);
+  }
+  #indexPanel .index-list{
+    position:absolute;
+    left:0;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+  }
+}
