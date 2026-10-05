@@ -2134,3 +2134,53 @@ html[lang="zh-CN"] #project .eyebrow{
   .about-block h2,.story h2,.taste h2,.photo-intro,.photo-wall-title,.meta-value,.arch-chapter-head>span,.arch-metric-row span{font-size:11px}
   .studio-problem-modules p,.studio-feature-modules p,.studio-principle p,.about-block p{font-size:12px}
 }
+
+/* ---------- Profile practice matrix: editorial hierarchy ---------- */
+.about-info .about-aside{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.about-info .about-block,
+.about-info .about-block:not(:first-child){
+  min-height:190px;
+  padding:22px 24px 26px;
+  border:0;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.about-info .about-block h2{
+  margin:0 0 28px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:none;
+}
+.about-info .about-block p{
+  max-width:34ch;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--soft);
+}
+@media(min-width:1100px){
+  .about-info .about-block:nth-child(2),
+  .about-info .about-block:nth-child(3),
+  .about-info .about-block:nth-child(4){
+    min-height:230px;
+  }
+  .about-info .about-block:nth-child(2) p,
+  .about-info .about-block:nth-child(3) p,
+  .about-info .about-block:nth-child(4) p{
+    color:var(--fg);
+    font-size:15px;
+    line-height:1.75;
+  }
+}
+@media(max-width:900px){
+  .about-info .about-aside{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-info .about-block,.about-info .about-block:not(:first-child){min-height:170px;padding:20px}
+}
+@media(max-width:600px){
+  .about-info .about-aside{grid-template-columns:1fr}
+  .about-info .about-block,.about-info .about-block:not(:first-child){min-height:auto;padding:20px 16px}
+}
