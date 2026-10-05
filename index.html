@@ -231,6 +231,31 @@
 
     <section class="studio-after">
      <div class="studio-section-head studio-after-head"><span>02</span><div><div class="studio-section-kicker studio-i18n" data-en="NEW SYSTEM" data-zh="新系统">NEW SYSTEM</div><h3 class="studio-i18n" data-en="One interface for recurring design knowledge." data-zh="把常用的设计资源放进同一个界面。">One interface for recurring design knowledge.</h3><p class="studio-i18n" data-en="City models, materials, façade guidance and colour references become four clear entry points inside a single working interface. The portfolio version below keeps the interaction logic while replacing proprietary content with fictional demonstration data." data-zh="城市模型、材质、立面和色彩资源被整理成四个入口。下面的作品集版本保留原来的操作方式和分类方法，但把事务所内部资料换成了示例数据。">City models, materials, façade guidance and colour references become four clear entry points inside a single working interface. The portfolio version below keeps the interaction logic while replacing proprietary content with fictional demonstration data.</p></div></div>
+     <section class="studio-component-study" aria-label="Studio Library interaction components">
+      <div class="studio-component-head">
+       <div><div class="studio-section-kicker studio-i18n" data-en="INTERACTION COMPONENTS" data-zh="交互元组件">INTERACTION COMPONENTS</div><h3 class="studio-i18n" data-en="The interface is built from a small set of reusable behaviours." data-zh="整个 Library 由几种简单、重复使用的交互组成。">The interface is built from a small set of reusable behaviours.</h3></div>
+       <p class="studio-i18n" data-en="Instead of showing the code as decoration, these fragments isolate the behaviours that shape the experience: choose a resource, narrow a library, inspect an item, then act." data-zh="这里不把代码当装饰，而是把网页里真正影响使用体验的几个动作单独拿出来：选择资源、缩小范围、查看内容，再执行下一步。">Instead of showing the code as decoration, these fragments isolate the behaviours that shape the experience: choose a resource, narrow a library, inspect an item, then act.</p>
+      </div>
+      <div class="studio-component-grid">
+       <article class="studio-component-demo studio-component-entry" tabindex="0">
+        <div class="studio-demo-code"><span>.library-option:hover</span><code>background: #fff;<br>color: var(--accent);<br>transform: translateY(-4px);</code></div>
+        <button class="studio-mini-resource" type="button"><span>LIB / 01</span><strong>City Models</strong><small>OPEN LIBRARY →</small></button>
+        <p class="studio-i18n" data-en="A resource tile changes state before the click, making the available action visible." data-zh="资源模块在点击之前先改变状态，让用户马上知道这里可以继续操作。">A resource tile changes state before the click, making the available action visible.</p>
+       </article>
+       <article class="studio-component-demo">
+        <div class="studio-demo-code"><span>.filter()</span><code>name.includes(query)<br>&amp;&amp; type === selected</code></div>
+        <div class="studio-mini-filter"><input type="text" value="" placeholder="Search materials…" aria-label="Demo material search"><div><button type="button" class="active">ALL</button><button type="button">STONE</button><button type="button">METAL</button></div><output>12 RESULTS</output></div>
+        <p class="studio-i18n" data-en="Search and filters reduce a large library without sending the user into another page." data-zh="搜索和筛选直接缩小资源范围，不需要为了找一个东西不断跳转页面。">Search and filters reduce a large library without sending the user into another page.</p>
+       </article>
+       <article class="studio-component-demo">
+        <div class="studio-demo-code"><span>dialog.showModal()</span><code>item → detail<br>detail → action</code></div>
+        <button class="studio-mini-swatch" type="button" aria-label="Open demo colour detail"><i></i><span><small>BS / BLUE</small><strong>#002C91</strong></span></button>
+        <div class="studio-mini-detail" aria-hidden="true"><button type="button" aria-label="Close">×</button><small>COLOUR REFERENCE</small><strong>#002C91</strong><span>CLICK TO CLOSE</span></div>
+        <p class="studio-i18n" data-en="Details open in context, so inspection does not break the browsing flow." data-zh="详情直接在当前浏览过程中打开，看完就能回到原来的位置，不会打断浏览。">Details open in context, so inspection does not break the browsing flow.</p>
+       </article>
+      </div>
+      <div class="studio-web-design-summary"><span class="studio-i18n" data-en="WEB DESIGN LOGIC" data-zh="网页设计逻辑">WEB DESIGN LOGIC</span><p class="studio-i18n" data-en="The visual system follows the same idea as the information architecture: fewer entry points, visible states and short paths between a question and a usable resource. The blue grid establishes one recognisable environment; repeated components make different libraries feel related without forcing their content into the same layout." data-zh="网页视觉和信息架构用的是同一个思路：入口更少、状态更清楚，从一个问题到可用资源之间尽量少绕路。蓝色网格建立统一的视觉环境，重复使用的交互让不同 Library 看起来属于同一个系统，但每类内容仍然可以用最适合自己的方式展示。">The visual system follows the same idea as the information architecture: fewer entry points, visible states and short paths between a question and a usable resource. The blue grid establishes one recognisable environment; repeated components make different libraries feel related without forcing their content into the same layout.</p></div>
+     </section>
      <div class="studio-feature-modules">
       <article><span>01 / CITY MODELS</span><h4 class="studio-i18n" data-en="Find a city model by place" data-zh="按地点找城市模型">Find a city model by place</h4><p class="studio-i18n" data-en="Start from location and available coverage instead of searching through model filenames." data-zh="先看地点和覆盖范围，不用从模型文件名开始猜。">Start from location and available coverage instead of searching through model filenames.</p></article>
       <article><span>02 / MATERIALS</span><h4 class="studio-i18n" data-en="Browse materials visually" data-zh="直接看材质，再做选择">Browse materials visually</h4><p class="studio-i18n" data-en="Use visual previews and useful attributes to narrow the library before opening files." data-zh="先通过预览和关键属性缩小范围，再打开需要的文件。">Use visual previews and useful attributes to narrow the library before opening files.</p></article>
