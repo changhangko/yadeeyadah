@@ -1,6 +1,6 @@
 @page{size:A3 landscape;margin:0}
 *{box-sizing:border-box}
-html,body{margin:0;background:#d8d8d5;color:#111;font-family:"Courier New",Courier,monospace}
+html,body{margin:0;background:#d8d8d5;color:#111;font-family:Futura,"Futura PT","Futura Std","Century Gothic",Avenir,sans-serif}
 .screen-only{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:24px;padding:14px 20px;background:#050505;color:#f5f5f3;font-size:10px;letter-spacing:.12em}
 .screen-only #status{margin-left:auto;color:#999}.screen-only button{border:0;background:none;color:inherit;font:inherit;cursor:pointer}
 #portfolio{display:flex;flex-direction:column;align-items:center;gap:18px;padding:18px}
