@@ -1952,6 +1952,4 @@ html[lang="zh-CN"] .index-year{
 }
 
 /* ---------- Printable portfolio entry ---------- */
-.print-portfolio-link{position:fixed;right:26px;bottom:22px;z-index:24;color:var(--dna);font:10px/1 "Courier New",Courier,monospace;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;transition:color .18s ease,font-weight .18s ease}
-.print-portfolio-link:hover,.print-portfolio-link:focus-visible{color:var(--fg);font-weight:700;outline:none}
-@media(max-width:700px){.print-portfolio-link{right:18px;bottom:18px;font-size:9px}}
+.footer-actions{display:flex;align-items:center;gap:18px}.print-portfolio-link{position:static;color:var(--dna);font:inherit;letter-spacing:inherit;text-decoration:none;text-transform:uppercase}.print-portfolio-link:hover,.print-portfolio-link:focus-visible{color:var(--fg);font-weight:700;outline:none}@media(max-width:700px){.footer-actions{gap:10px}}
