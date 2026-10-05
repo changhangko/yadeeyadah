@@ -1,12 +1,15 @@
 const $=s=>document.querySelector(s);
+const printButton=document.querySelector('.screen-only button');
+if(printButton)printButton.disabled=true;
 const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let n=0;const N=()=>String(n++).padStart(2,"0");
 const S=(cls,body,dark=false)=>'<section class="sheet '+cls+(dark?' dark':'')+'">'+body+'<span class="folio">'+N()+'</span></section>';
 Promise.all([
- fetch("/data/projects.json").then(r=>r.json()),
- fetch("/data/photography.json").then(r=>r.json()).catch(()=>null)
+ fetch("/data/projects.json").then(r=>{if(!r.ok)throw new Error("projects.json "+r.status);return r.json()}),
+ fetch("/data/photography.json").then(r=>r.ok?r.json():null).catch(()=>null)
 ]).then(([projects,photo])=>{
  const pages=[];
+ const assetPromises=[];
  pages.push(S("cover",'<div class="grid"><div class="meta rule">GARRY ZHANG / SELECTED WORKS / 2026</div><h1>DESIGNING<br>BETWEEN<br>SPACE +<br>SYSTEMS</h1><div class="sub">Creative Technologist / Computational Designer<br><br>Architecture · Information · Computation · Photography · Research</div></div>',true));
  pages.push(S("index",'<div class="grid"><h2>INDEX / SELECTED WORKS</h2><div class="index-list">'+projects.map((p,i)=>'<div class="index-row"><strong>'+E((p.zh||p.en).title)+'</strong><span>'+E((p.zh||p.en).brief)+'</span></div>').join("")+'</div></div>'));
  projects.forEach((p,i)=>{
@@ -23,5 +26,15 @@ Promise.all([
  });
  pages.push(S("closing",'<div class="grid"><h2>GARRY ZHANG<br>CREATIVE TECHNOLOGIST<br>/ COMPUTATIONAL DESIGNER</h2><p>Melbourne / Beijing<br>changhangko.cc</p></div>',true));
  $("#portfolio").innerHTML=pages.join("");
- $("#status").textContent=projects.length+" SECTIONS / "+n+" PAGES / A3 LANDSCAPE";
-}).catch(err=>{$("#status").textContent="LOAD ERROR";console.error(err)});
+ const imgs=[...document.images];
+ const imageReady=imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true})}));
+ Promise.all([document.fonts?.ready||Promise.resolve(),...imageReady]).then(()=>{
+   document.body.classList.add("print-ready");
+   if(printButton)printButton.disabled=false;
+   $("#status").textContent=projects.length+" SECTIONS / "+n+" PAGES / A3 LANDSCAPE / READY";
+ });
+}).catch(err=>{
+ $("#status").textContent="LOAD ERROR — REFRESH";
+ if(printButton)printButton.disabled=true;
+ console.error("Print portfolio failed to load:",err);
+});
