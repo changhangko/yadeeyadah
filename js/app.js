@@ -1111,7 +1111,8 @@ function openProject(i){
   const hasMethodAnimation=['space','code','observation','research'].includes(base.categoryKey);
   const hasEmbeddedLibrary=base.categoryKey==='system';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
-  if(methodAnimationProject){methodAnimationProject.hidden=!hasMethodAnimation;}\n  if(parametricProject){parametricProject.hidden=base.categoryKey!=='code';}
+  if(methodAnimationProject){methodAnimationProject.hidden=!hasMethodAnimation;}
+  if(parametricProject){parametricProject.hidden=base.categoryKey!=='code';}
   if(systemAnimationProject){systemAnimationProject.hidden=!hasSystemAnimation;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
   pmedia.style.display=(hasArchitecture||hasSystemAnimation||hasMethodAnimation)?'none':'';
