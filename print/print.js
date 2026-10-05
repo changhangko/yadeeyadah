@@ -24,7 +24,7 @@ fetchJson("/data/projects.json",true).then(async projects=>{
  projects.forEach((p,i)=>{
   const x=p.zh||p.en;
   pages.push(S("chapter",'<div class="grid"><div class="top meta rule">'+E(x.meta)+'<span style="float:right">'+E(x.year)+'</span></div><h1>'+E(x.title)+'</h1><div class="brief">'+E(x.brief)+'</div><div class="desc">'+E(x.desc)+'</div><div class="facts"><span class="label">角色</span>'+E(x.role)+'<br><br><span class="label">工具</span>'+E(x.tools)+'<br><br><span class="label">输出</span>'+E(x.output)+'</div></div>',i%2===1));
-  pages.push(S("essay",'<div class="grid"><div class="top meta rule">'+'问题 + 设计判断'</div><div class="question">“'+E(x.question)+'”</div><div class="built"><span class="label">项目 / 背景</span>'+E(x.built)+'</div><div class="judgement"><span class="label">设计判断</span>'+E(x.judgement)+'</div></div>'));
+  pages.push(S("essay",'<div class="grid"><div class="top meta rule">问题 + 设计判断</div><div class="question">“'+E(x.question)+'”</div><div class="built"><span class="label">项目 / 背景</span>'+E(x.built)+'</div><div class="judgement"><span class="label">设计判断</span>'+E(x.judgement)+'</div></div>'));
   if(x.media && x.media.length)pages.push(S("media-page",'<div class="grid"><h2>项目内容</h2><div class="media-list">'+x.media.map((m,k)=>'<div class="media-row"><span>'+String(k+1).padStart(2,"0")+'</span><strong>'+E(m)+'</strong><span>→</span></div>').join("")+'</div></div>'));
   if(p.categoryKey==="observation" && photo && photo.photos && photo.photos.length){
    const hero=photo.photos[0],rest=photo.photos.slice(1,9);
