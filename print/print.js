@@ -4,10 +4,19 @@ if(printButton)printButton.disabled=true;
 const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let n=0;const N=()=>String(n++).padStart(2,"0");
 const S=(cls,body,dark=false)=>'<section class="sheet '+cls+(dark?' dark':'')+'">'+body+'<span class="folio">'+N()+'</span></section>';
-Promise.all([
- fetch("/data/projects.json").then(r=>{if(!r.ok)throw new Error("projects.json "+r.status);return r.json()}),
- fetch("/data/photography.json").then(r=>r.ok?r.json():null).catch(()=>null)
-]).then(([projects,photo])=>{
+const fetchJson=async(url,required=false)=>{
+ try{
+  const r=await fetch(url,{cache:"no-store"});
+  if(!r.ok)throw new Error(url+" "+r.status);
+  return await r.json();
+ }catch(err){
+  if(required)throw err;
+  console.warn("Optional print data unavailable:",url,err);
+  return null;
+ }
+};
+fetchJson("/data/projects.json",true).then(async projects=>{
+ const photo=await fetchJson("/data/photography.json",false);
  const pages=[];
  const assetPromises=[];
  pages.push(S("cover",'<div class="grid"><div class="meta rule">GARRY ZHANG / SELECTED WORKS / 2026</div><h1>DESIGNING<br>BETWEEN<br>SPACE +<br>SYSTEMS</h1><div class="sub">Creative Technologist / Computational Designer<br><br>Architecture · Information · Computation · Photography · Research</div></div>',true));
@@ -34,7 +43,7 @@ Promise.all([
    $("#status").textContent=projects.length+" SECTIONS / "+n+" PAGES / A3 LANDSCAPE / READY";
  });
 }).catch(err=>{
- $("#status").textContent="LOAD ERROR — REFRESH";
+ $("#status").textContent="LOAD ERROR — "+(err?.message||"REFRESH");
  if(printButton)printButton.disabled=true;
  console.error("Print portfolio failed to load:",err);
 });
