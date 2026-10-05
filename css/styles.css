@@ -2035,3 +2035,23 @@ html[lang="zh-CN"] .index-year{
 .studio-problem-modules p,.studio-feature-modules p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
 @media(max-width:900px){.studio-problem-modules,.studio-feature-modules{grid-template-columns:1fr 1fr}.studio-problem-modules article,.studio-feature-modules article{border-bottom:1px solid var(--line)}}
 @media(max-width:600px){.studio-problem-modules,.studio-feature-modules{grid-template-columns:1fr}.studio-problem-modules article,.studio-feature-modules article,.studio-problem-modules article+article,.studio-feature-modules article+article{padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* ---------- Project category label readability ---------- */
+#project .eyebrow{
+  font-size:clamp(14px,.9vw,18px);
+  line-height:1.35;
+  letter-spacing:.1em;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+html[lang="zh-CN"] #project .eyebrow{
+  font-size:clamp(15px,.95vw,19px);
+  letter-spacing:.08em;
+}
+@media(max-width:700px){
+  #project .eyebrow,
+  html[lang="zh-CN"] #project .eyebrow{
+    font-size:13px;
+    margin-bottom:12px;
+  }
+}
