@@ -1059,6 +1059,21 @@ function drawMethodPanel(canvas,category,stage,time){
     }
   }
 }
+function initStudioComponentDemos(){
+  document.querySelectorAll('.studio-mini-filter').forEach(demo=>{
+    const input=demo.querySelector('input'),output=demo.querySelector('output'),buttons=[...demo.querySelectorAll('button')];
+    const update=()=>{const q=(input?.value||'').trim();if(output)output.textContent=(q?Math.max(2,12-q.length*2):12)+' RESULTS'};
+    input?.addEventListener('input',update);
+    buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(output)output.textContent=btn.textContent==='ALL'?'12 RESULTS':'4 RESULTS'}));
+  });
+  document.querySelectorAll('.studio-component-demo').forEach(card=>{
+    const swatch=card.querySelector('.studio-mini-swatch'),detail=card.querySelector('.studio-mini-detail'),close=detail?.querySelector('button');
+    swatch?.addEventListener('click',()=>{detail?.classList.add('open');detail?.setAttribute('aria-hidden','false')});
+    close?.addEventListener('click',()=>{detail?.classList.remove('open');detail?.setAttribute('aria-hidden','true')});
+  });
+}
+initStudioComponentDemos();
+
 function renderMethodAnimations(now=performance.now()){
   methodAnimationFrame=0;if(!methodAnimationProject||methodAnimationProject.hidden||!activeMethodCategory)return;
   methodAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{
