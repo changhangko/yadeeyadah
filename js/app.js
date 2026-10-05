@@ -246,7 +246,7 @@ function activate(row){
   zones.forEach(z=>{if(z!==row&&!z.classList.contains('armed'))z.classList.remove("active")});
   row.classList.add("active");
   const p=proj(+row.dataset.p),d=row.querySelector('.decode');
-  flipLine(d.querySelector('.title'),`${PROJECTS[+row.dataset.p].id} / ${p.title}`);
+  flipLine(d.querySelector('.title'),`${p.title}`);
   flipLine(d.querySelector('.brief'),p.brief,4);
   flipLine(d.querySelector('.meta'),p.meta,7);
   flipLine(d.querySelector('.year'),p.year,10);
@@ -720,7 +720,7 @@ function transitionToProject(i){
   requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('fill')));
   setTimeout(()=>{
     overlay.classList.add('decoding');
-    transitionFlip(q('transitionId'),`MUTATION ${base.id}`,0);
+    transitionFlip(q('transitionId'),`MUTATION`,0);
     transitionFlip(q('transitionTitle'),p.title,70);
     transitionFlip(q('transitionBrief'),p.brief,140);
     transitionFlip(q('transitionMeta'),p.meta,210);
@@ -1041,7 +1041,7 @@ function restartMethodAnimations(){
 
 function openProject(i){
   currentProject=i;const p=proj(i),base=PROJECTS[i];
-  pid.textContent=`MUTATION ${base.id}`;pbrief.textContent=p.title;pt.textContent=p.brief;pd.textContent=p.desc;
+  pid.textContent=`MUTATION`;pbrief.textContent=p.title;pt.textContent=p.brief;pd.textContent=p.desc;
   prole.textContent=p.role;ptools.textContent=p.tools;poutput.textContent=p.output;pyear.textContent=p.year;
   pquestion.textContent=p.question;pbuilt.textContent=p.built;pjudgement.textContent=p.judgement;
   const mediaImages=base.mediaImages||[];
@@ -1075,7 +1075,7 @@ function openProject(i){
     const src=studioLibraryFrame.getAttribute('src');
     studioLibraryFrame.setAttribute('src',src);
   }
-  const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${nextBase.id} / ${next.title}`;
+  const next=proj((i+1)%PROJECTS.length),nextBase=PROJECTS[(i+1)%PROJECTS.length];nextProjectName.textContent=`${next.title}`;
   if(!projectEl.classList.contains('visible'))showPanel(projectEl);
   updateEditorForProject();
   applyAllImageLayouts(projectEl);
@@ -1085,7 +1085,7 @@ function openProject(i){
   else if(editMode)makeEditable();
 }
 
-function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-no">${p.id}</span><span class="index-title"><span class="index-title-main">${escapeHtml(d.title)}</span><span class="index-title-sub">${escapeHtml(d.brief)}</span></span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>transitionToProject(+btn.dataset.project)));}
+function buildIndex(){const list=q('indexList');list.innerHTML=PROJECTS.map((p,i)=>{const d=p[lang];return `<button class="index-row" data-project="${i}"><span class="index-title"><span class="index-title-main">${escapeHtml(d.title)}</span><span class="index-title-sub">${escapeHtml(d.brief)}</span></span><span class="index-meta">${escapeHtml(d.meta)}</span><span class="index-year">${escapeHtml(d.year)}</span></button>`}).join('');list.querySelectorAll('.index-row').forEach(btn=>btn.addEventListener('click',()=>transitionToProject(+btn.dataset.project)));}
 function renderAbout(){
   const copy=t();
   q('aboutHero').textContent=copy.aboutTitle;
