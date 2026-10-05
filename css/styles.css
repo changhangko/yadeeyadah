@@ -2242,3 +2242,20 @@ html[lang="zh-CN"] #project .eyebrow{
 .parametric-copy p{margin:2px 0 0;max-width:620px;font-size:14px;line-height:1.7}
 @media (prefers-reduced-motion:reduce){.parametric-image-highlight{animation:none;opacity:1}}
 @media(max-width:720px){.parametric-case{margin:48px 0 64px}.parametric-image-stack{height:68vh;min-height:460px}.parametric-copy{grid-template-columns:1fr;gap:24px}.parametric-hero-meta{font-size:9px}}
+
+/* 435 Bourke: full-photo + computational workflow */
+.parametric-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);column-gap:clamp(28px,4vw,72px);align-items:stretch}
+.parametric-image-stack{height:auto!important;min-height:0!important;aspect-ratio:2/3;background:#111}
+.parametric-image{object-fit:contain!important;object-position:center!important;background:#111}
+.parametric-workflow{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0 14px;display:flex;flex-direction:column;min-width:0}
+.parametric-workflow-head{display:flex;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line);font:10px/1.2 "Courier New",monospace;letter-spacing:.08em}
+.parametric-flow{display:flex;flex:1;flex-direction:column;justify-content:center;padding:14px 0}
+.parametric-flow-step{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"n title" "n note";column-gap:12px;padding:10px 8px;border-top:1px solid var(--line)}
+.parametric-flow-step:last-child{border-bottom:1px solid var(--line)}
+.parametric-flow-step b{grid-area:n;font:10px/1.2 "Courier New",monospace;font-weight:400;opacity:.55}
+.parametric-flow-step span{grid-area:title;font-size:clamp(13px,1.15vw,17px);line-height:1.15;letter-spacing:.02em}
+.parametric-flow-step small{grid-area:note;margin-top:5px;font:10px/1.35 "Courier New",monospace;opacity:.58}
+.parametric-flow>i{height:14px;padding-left:10px;font:10px/14px "Courier New",monospace;font-style:normal;opacity:.45}
+.parametric-flow-step.is-output{background:#111;color:#fff;border-color:#111}
+.parametric-hero-meta{grid-column:1/-1}
+@media(max-width:850px){.parametric-hero{grid-template-columns:1fr}.parametric-image-stack{aspect-ratio:auto;height:auto!important}.parametric-image-stack .parametric-image{position:relative;height:auto}.parametric-image-stack .parametric-image-highlight{position:absolute}.parametric-workflow{margin-top:26px}.parametric-hero-meta{grid-column:1}}
