@@ -2228,3 +2228,17 @@ html[lang="zh-CN"] #project .eyebrow{
   .about-info .about-aside{grid-template-columns:1fr}
   .about-info .about-block,.about-info .about-block:not(:first-child){padding:22px 0;border-right:0}
 }
+
+/* 435 Bourke / parametric facade */
+.parametric-case{margin:72px 0 88px;border-top:1px solid var(--line);padding-top:18px}
+.parametric-hero{position:relative}.parametric-image-stack{position:relative;width:100%;height:min(78vh,920px);min-height:560px;overflow:hidden;background:#111}
+.parametric-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;display:block}
+.parametric-image-original{opacity:1}.parametric-image-highlight{opacity:0;animation:parametricFacadeFocus 8s ease-in-out infinite}
+@keyframes parametricFacadeFocus{0%,18%{opacity:0}42%,68%{opacity:1}88%,100%{opacity:0}}
+.parametric-hero-meta{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid var(--line);font:10px/1.2 "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}
+.parametric-copy{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:7vw;padding:30px 0 10px}
+.parametric-kicker{display:block;margin-bottom:12px;font:11px/1.2 "Courier New",monospace;letter-spacing:.08em}
+.parametric-copy h2{margin:0;font-size:clamp(34px,5vw,72px);line-height:.94;font-weight:500;letter-spacing:-.04em}
+.parametric-copy p{margin:2px 0 0;max-width:620px;font-size:14px;line-height:1.7}
+@media (prefers-reduced-motion:reduce){.parametric-image-highlight{animation:none;opacity:1}}
+@media(max-width:720px){.parametric-case{margin:48px 0 64px}.parametric-image-stack{height:68vh;min-height:460px}.parametric-copy{grid-template-columns:1fr;gap:24px}.parametric-hero-meta{font-size:9px}}
