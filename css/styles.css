@@ -2084,3 +2084,30 @@ html[lang="zh-CN"] #project .eyebrow{
 .studio-mini-detail{color:#fff}
 .studio-mini-detail small,.studio-mini-detail span{font-size:9px}.studio-mini-detail strong{font-size:25px;color:#fff}
 .studio-component-demo>p{font-size:12px;line-height:1.7}
+
+/* Studio Library resource specimen: preserve the original blue/white state.
+   Portfolio-level button rules must not turn this component white. */
+.studio-component-demo .studio-mini-resource{
+  background:#17449e;
+  color:#fff;
+  border-color:#7c94cf;
+}
+.studio-component-demo .studio-mini-resource span,
+.studio-component-demo .studio-mini-resource strong,
+.studio-component-demo .studio-mini-resource small{
+  color:#fff;
+}
+.studio-component-demo .studio-mini-resource:hover,
+.studio-component-demo .studio-mini-resource:focus-visible{
+  background:#002c91;
+  color:#fff;
+  border-color:#fff;
+}
+.studio-component-demo .studio-mini-resource:hover span,
+.studio-component-demo .studio-mini-resource:hover strong,
+.studio-component-demo .studio-mini-resource:hover small,
+.studio-component-demo .studio-mini-resource:focus-visible span,
+.studio-component-demo .studio-mini-resource:focus-visible strong,
+.studio-component-demo .studio-mini-resource:focus-visible small{
+  color:#fff;
+}
