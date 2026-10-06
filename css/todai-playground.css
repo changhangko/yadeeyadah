@@ -1,0 +1,42 @@
+/* TODAI working drawing: the diagram and its controls form one research plate. */
+#todaiPlayground{margin-top:72px;border-top:1px solid var(--line);padding-top:24px;color:var(--fg)}
+#todaiPlayground h3{font-size:clamp(24px,3vw,40px);font-weight:400;margin:16px 0}
+#todaiPlayground .tp-intro{max-width:760px;font-size:15px;line-height:1.8}
+.tp-workbench{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;margin-top:30px}
+.tp-controls{display:flex;flex-direction:column;gap:20px}
+.tp-controls label{display:block;font-size:14px;line-height:1.6}
+.tp-controls select{display:block;width:100%;margin-top:8px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:0;padding:12px;font:inherit}
+.tp-controls input{width:100%;margin:16px 0 0;accent-color:var(--fg);min-height:24px}
+.tp-controls button{background:transparent;border:1px solid var(--line);border-radius:0;color:var(--fg);padding:12px;text-align:left;font:inherit;font-size:13px;line-height:1.5;text-transform:none;letter-spacing:0;min-height:44px;cursor:pointer}
+.tp-controls button:hover{border-color:var(--fg)}
+#todaiPlayground :is(button,select,input,summary):focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.tp-drawings{min-width:0;display:grid;grid-template-columns:1.15fr 1fr;gap:24px}
+.tp-drawings figure{margin:0;min-width:0}
+.tp-drawings figcaption{border-bottom:1px solid var(--line);padding-bottom:10px;font:11px/1.7 "Courier New",monospace}
+.tp-drawings svg{width:100%;height:auto;display:block;overflow:visible}
+.tp-drawings .tp-road{stroke:currentColor;stroke-width:10;opacity:.07}
+.tp-drawings .tp-centreline{stroke:currentColor;stroke-width:.6;opacity:.25;stroke-dasharray:2 4}
+.tp-drawings .tp-parcel{fill:none;stroke:currentColor;stroke-width:.6;opacity:.35}
+.tp-drawings .tp-route{fill:none;stroke:currentColor;stroke-width:2}
+.tp-drawings text{fill:currentColor;font:10px "Courier New",monospace}
+.tp-drawings .tp-building{fill:var(--bg);stroke:currentColor;stroke-width:.8}
+.tp-drawings .tp-side{fill:currentColor;fill-opacity:.08}
+.tp-drawings .tp-floor{stroke:currentColor;stroke-width:.5;opacity:.25}
+.tp-node{cursor:pointer}
+.tp-node circle{fill:var(--bg);stroke:currentColor;stroke-width:1}
+.tp-node[aria-pressed="true"] circle{fill:currentColor}
+.tp-node:focus{outline:none}
+.tp-node:focus-visible circle{stroke-width:4}
+.tp-node:hover circle{stroke-width:3}
+.tp-legend{font:11px/1.8 "Courier New",monospace;display:flex;flex-wrap:wrap;gap:8px 20px;margin:0}
+.tp-legend span{white-space:nowrap}
+.tp-comparison{width:100%;border-collapse:collapse;margin-top:28px;font-size:13px;font-variant-numeric:tabular-nums}
+.tp-comparison th,.tp-comparison td{border-bottom:1px solid var(--line);padding:12px 6px;text-align:right;font-weight:400}
+.tp-comparison th:first-child{text-align:left;width:43%}
+.tp-comparison thead{font:11px/1.6 "Courier New",monospace}
+.tp-status{font-size:13px;line-height:1.6;min-height:2em}
+.tp-method{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;font-size:13px;line-height:1.8}
+.tp-method summary{cursor:pointer;min-height:44px}
+.tp-method p{max-width:800px}
+@media(max-width:1000px){.tp-workbench{grid-template-columns:180px minmax(0,1fr);gap:20px}.tp-drawings{grid-template-columns:1fr}}
+@media(max-width:600px){#todaiPlayground{margin-top:48px}.tp-workbench{grid-template-columns:1fr}.tp-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px}.tp-controls label:first-child{grid-column:1/-1}.tp-controls label:nth-child(2){grid-column:1/-1}.tp-drawings{gap:16px}.tp-comparison th:first-child{width:36%}.tp-comparison{font-size:12px}.tp-comparison th,.tp-comparison td{padding:10px 3px}}

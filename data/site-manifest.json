@@ -96,6 +96,9 @@
     "print/index.html",
     "print/print.css",
     "print/print.js",
-    "print/portfolio-data.json"
+    "print/portfolio-data.json",
+    "css/todai-playground.css",
+    "js/todai-model.js",
+    "js/todai-playground.js"
   ]
 }

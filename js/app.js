@@ -1478,6 +1478,13 @@ try{
   await loadData();
   bindGlobal();
   applyUI();
+  if(editParams.get('project')==='research'){
+    const researchIndex=PROJECTS.findIndex(p=>p.categoryKey==='research');
+    if(researchIndex>=0){
+      openProject(researchIndex);
+      if(window.location.hash==='#todaiPlayground')requestAnimationFrame(()=>document.getElementById('todaiPlayground')?.scrollIntoView({block:'start'}));
+    }
+  }
   if(editParams.get('edit')==='1')showEditorLogin();
 }catch(err){
   console.error(err);
