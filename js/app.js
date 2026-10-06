@@ -1,3 +1,4 @@
+import { drawEditorialDiagram, refineFacadeDiagrams } from './diagrams.js';
 const UI = {"en":{"roleLine":"CREATIVE TECHNOLOGIST / COMPUTATIONAL DESIGNER","about":"[ PROFILE ]","themeLight":"[ LIGHT ]","themeDark":"[ DARK ]","index":"[ INDEX ]","lang":"[ EN / 中文 ]","footerLeft":"ACGT / SELECTED WORK","footerRight":"MUTATION → DECODE","close":"[ ESC / CLOSE ]","labels":{"role":"Role","tools":"Tools","output":"Output","year":"Year"},"story":{"question":"01 / Question","built":"02 / Built","judgement":"03 / Judgement"},"taste":"Taste / Decision Log","next":"NEXT MUTATION","indexTitle":"PROJECT INDEX","indexIntro":"Five bodies of work: SPACE / SYSTEM / CODE / OBSERVATION / RESEARCH. Each category gathers related projects and studies into one coherent practice area.","aboutTitle":"PROFILE / PRACTICE","aboutLead":"Creative Technologist and Computational Designer with five years of professional experience across computational design, generative workflows, 3D modelling, internal tools, web development and AI-assisted prototyping.","aboutText":"I currently work at Bates Smart in Melbourne, where my role has grown from project-based computational design into toolmaking, interface thinking and digital workflows. I use Rhino, Grasshopper and Python to automate repeated design and modelling tasks; build internal tools such as Rhino Tabs; develop browser-based spatial tools using HTML, CSS, JavaScript and Mapbox; and use Claude Code, Codex and ChatGPT for rapid prototyping and iterative interface development. Alongside technical work, I have contributed to competitive bids and client-facing design presentations. My current interests sit around AI-native interaction, visual judgement, multimodal interfaces, creative technology and product experience.","aboutBlocks":[["Current","Computational Designer<br>Bates Smart / Melbourne<br>2021 — Present"],["Practice","Computational Design · Creative Technology · Internal Tools · Web / Spatial Interaction · AI-assisted Prototyping"],["Selected Work","Rhino Tabs · Melbourne City Model / Insight Web · Parametric + automation workflows · Competitive residential / mixed-use bids"],["Client + Collaboration","Client Presentation · Design Pitch · Developer-facing communication · Cross-disciplinary collaboration"],["Education","UNSW — Bachelor of Computational Design<br>Graduated with Distinction · Dean’s Merit List"],["Research","TODAI — Machine-learning-powered planning tool for Transit-Oriented Development<br>Published at CAADRIA"],["Tools","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["Languages","Mandarin Chinese — Native<br>English — Full Professional Proficiency"],["Contact","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>Melbourne / Beijing"]],"galleryTitle":"Selected Frames","profileEyebrow":"01 / PROFILE","profileMetaLeft":"SELF / IDENTITY","profileMetaRight":"ACGT → DECODE","conceptEyebrow":"02 / DESIGN CONCEPT","conceptTitle":"GENOME / MUTATION / DECODE","conceptText1":"This portfolio draws from the conceptual language of science fiction films such as Blade Runner, Ex Machina and Gattaca. Rather than borrowing their aesthetics directly, I am interested in the questions they share: how identity is encoded, how machines interpret humans, how systems classify individuals, and where judgement sits between data and intuition.","conceptText2":"The Genome interface translates these ideas into a navigational system. Projects appear as mutations within a field of ACGT sequences, and interaction becomes a process of decoding. The website is therefore not only a container for work, but a small speculative system about perception, identity and machine-readable judgement.","practiceEyebrow":"03 / EXPERIENCE + CAPABILITIES"},"zh":{"roleLine":"创意技术 / 计算设计","about":"[ 个人简介 ]","themeLight":"[ 浅色 ]","themeDark":"[ 深色 ]","index":"[ 索引 ]","lang":"[ 中文 / EN ]","footerLeft":"ACGT / 作品索引","footerRight":"变异 → 解码","close":"[ ESC / 关闭 ]","labels":{"role":"角色","tools":"工具","output":"产出","year":"年份"},"story":{"question":"01 / 问题","built":"02 / 构建","judgement":"03 / 判断"},"taste":"审美判断 / 决策记录","next":"下一个变异","indexTitle":"项目索引","indexIntro":"五个实践方向：空间 / 系统 / 代码 / 观察 / 研究.每个大类内部再整合相关项目与研究，而不是把所有项目平铺在同一级.","aboutTitle":"个人简介","aboutLead":"拥有 5 年专业经验的 Creative Technologist / Computational Designer，工作横跨计算设计、生成式设计、3D 建模、内部数字工具、网页开发与 AI-assisted prototyping.","aboutText":"目前就职于墨尔本 Bates Smart.我的工作从项目中的计算设计逐渐延伸到工具开发、界面思考与数字工作流：使用 Rhino、Grasshopper 与 Python 把重复的设计、建模和数据处理转化为可复用工具；设计 Rhino Tabs 等内部工具；结合 HTML / CSS / JavaScript / Mapbox 开发浏览器中的空间与城市数据界面；同时长期使用 Claude Code、Codex 与 ChatGPT 进行快速原型、测试和多轮界面迭代.除了技术工作，我也参与竞争性投标、客户汇报与跨专业沟通.现在希望进一步探索 AI-native interaction、视觉判断、多模态界面、Creative Technology 与产品体验.","aboutBlocks":[["当前","Computational Designer<br>Bates Smart / Melbourne<br>2021 — 至今"],["实践方向","计算设计 · Creative Technology · 内部工具 · Web / Spatial Interaction · AI-assisted Prototyping"],["代表工作","Rhino Tabs · Melbourne City Model / Insight Web · 参数化与自动化工作流 · 住宅及综合开发竞争性投标"],["客户与协作","客户汇报 · Design Pitch · 开发商沟通 · 跨专业协作"],["教育","UNSW — Bachelor of Computational Design<br>Distinction 毕业 · Dean’s Merit List"],["研究","TODAI — 基于机器学习的 TOD 规划工具<br>发表于 CAADRIA 国际会议"],["工具","Rhino · Grasshopper · Python · JavaScript · HTML/CSS · Mapbox · Revit · GitHub · Claude Code · Codex · ChatGPT"],["语言","普通话 — 母语<br>英语 — Full Professional Proficiency"],["联系","<a class=\"contact-link\" href=\"mailto:zhanghangge@gmail.com\">zhanghangge@gmail.com</a><br>墨尔本 / 北京"]],"galleryTitle":"摄影选帧","profileEyebrow":"01 / 关于我","profileMetaLeft":"自我 / 身份","profileMetaRight":"ACGT → 解码","conceptEyebrow":"02 / 设计概念","conceptTitle":"基因 / 变异 / 解码","conceptText1":"这个作品集的设计受到《银翼杀手》《机械姬》《Gattaca》等科幻电影在概念层面的影响.与其直接借用它们的视觉风格，我更关注这些作品共同讨论的问题：身份如何被编码，机器如何理解人，系统如何分类个体，以及判断如何存在于数据与直觉之间.","conceptText2":"Genome 界面把这些概念转化成一套导航系统.项目以“变异”的形式散布在 ACGT 序列中，用户通过交互逐渐完成“解码”.因此，这个网站不仅是作品的容器，也像一个关于感知、身份与机器可读判断的小型推演系统.","practiceEyebrow":"03 / 经历 + 能力"}};
 
 let PROJECTS=[];
@@ -741,6 +742,8 @@ function transitionToProject(i){
 
 /* ---------- SYSTEM narrative animation ---------- */
 let systemAnimationFrame=0;
+const diagramMotion={system:{static:false,elapsed:3200},method:{static:false,elapsed:3200}};
+const diagramDuration=3200;
 let systemAnimationStart=performance.now();
 function systemAnimationPalette(){
  const light=document.body.classList.contains('light');
@@ -760,65 +763,22 @@ function drawSystemDot(ctx,x,y,r,color,a=1){ctx.globalAlpha=a;ctx.fillStyle=colo
 function drawSystemLine(ctx,x1,y1,x2,y2,color,a=.3){ctx.globalAlpha=a;ctx.strokeStyle=color;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.globalAlpha=1}
 function drawSystemLabel(ctx,text,x,y,p){ctx.fillStyle=p.soft;ctx.font='9px "Courier New", monospace';ctx.textBaseline='middle';ctx.fillText(text,x,y)}
 function drawSystemPanel(canvas,stage,time){
- const {ctx,w,h}=fitSystemCanvas(canvas),p=systemAnimationPalette();ctx.clearRect(0,0,w,h);
- const count=46,cycle=(time%7200)/7200;
- if(stage==='scatter'){
-   for(let i=0;i<count;i++){
-     const s=systemPointSeed(i,w,h),dx=Math.sin(time*.00055+i*1.7)*5,dy=Math.cos(time*.00042+i*1.2)*4;
-     drawSystemDot(ctx,s.x+dx,s.y+dy,s.r,p.soft,.38+.32*hashSystem(i+30));
-     if(i%11===0)drawSystemLabel(ctx,['PAGE','LINK','MODEL','DATA','GUIDE'][i%5],s.x+8+dx,s.y+dy,p);
-   } return;
- }
- if(stage==='cluster'){
-   const centers=[{x:w*.25,y:h*.32},{x:w*.72,y:h*.28},{x:w*.32,y:h*.70},{x:w*.74,y:h*.70}];
-   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.08)/.55)));
-   for(let i=0;i<count;i++){
-     const s=systemPointSeed(i,w,h),c=centers[i%4],ring=(i%12)*.58,ang=i*2.399;
-     const tx=c.x+Math.cos(ang)*ring*3.6,ty=c.y+Math.sin(ang)*ring*3.1,x=lerpSystem(s.x,tx,t),y=lerpSystem(s.y,ty,t);
-     drawSystemDot(ctx,x,y,s.r,p.fg,.42+.38*t);if(t>.45&&i%4===0)drawSystemLine(ctx,x,y,c.x,c.y,p.line,(t-.45)*.55);
-   }
-   if(t>.62)['CITY','MATERIAL','DESIGN','GUIDE'].forEach((v,i)=>drawSystemLabel(ctx,v,centers[i].x-18,centers[i].y-30,p));return;
- }
- if(stage==='align'){
-   const cols=4,rows=3,padX=w*.11,padY=h*.18,gapX=(w-padX*2)/(cols-1),gapY=(h-padY*2)/(rows-1);
-   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.06)/.56)));
-   for(let i=0;i<count;i++){
-     const s=systemPointSeed(i,w,h),cell=i%(cols*rows),cx=padX+(cell%cols)*gapX,cy=padY+Math.floor(cell/cols)*gapY;
-     const x=lerpSystem(s.x,cx+((i%3)-1)*5,t),y=lerpSystem(s.y,cy+((Math.floor(i/3)%3)-1)*4,t);drawSystemDot(ctx,x,y,1.5,p.fg,.38+.5*t);
-   }
-   ctx.strokeStyle=p.line;ctx.lineWidth=1;ctx.globalAlpha=.15+.4*t;
-   for(let c=0;c<cols;c++){const x=padX+c*gapX;ctx.beginPath();ctx.moveTo(x,padY-28);ctx.lineTo(x,h-padY+28);ctx.stroke()}
-   for(let r=0;r<rows;r++){const y=padY+r*gapY;ctx.beginPath();ctx.moveTo(padX-36,y);ctx.lineTo(w-padX+36,y);ctx.stroke()}
-   ctx.globalAlpha=1;if(t>.58)['01','02','03','04'].forEach((v,i)=>drawSystemLabel(ctx,v,padX+i*gapX-5,padY-40,p));return;
- }
- if(stage==='reveal'){
-   const t=easeSystem(Math.min(1,Math.max(0,(cycle-.05)/.58))),left={x:w*.28,y:h*.5},right={x:w*.72,y:h*.5};
-   const blockEnter=Math.min(1,Math.max(0,(t-.42)/.12));
-   const dotFade=1-blockEnter;
-   for(let i=0;i<count;i++){
-     const s=systemPointSeed(i,w,h),target=i%2?right:left,ang=i*2.15,rad=14+(i%10)*2.2;
-     const x=lerpSystem(s.x,target.x+Math.cos(ang)*rad,t),y=lerpSystem(s.y,target.y+Math.sin(ang)*rad*.6,t);
-     drawSystemDot(ctx,x,y,1.5,p.fg,Math.max(0,.3+.5*t)*dotFade);
-   }
-   if(t>.42){
-     const a=Math.min(1,(t-.42)/.28),bw=w*.28,bh=64;ctx.globalAlpha=a;ctx.strokeStyle=p.line;ctx.lineWidth=1;
-     [left,right].forEach(c=>ctx.strokeRect(c.x-bw/2,c.y-bh/2,bw,bh));
-     ctx.fillStyle=p.fg;ctx.font='700 12px "Courier New", monospace';ctx.textAlign='center';
-     ctx.fillText('CITY DATA',left.x,left.y-3);ctx.fillText('STUDIO LIBRARY',right.x,right.y-3);
-     ctx.fillStyle=p.soft;ctx.font='8px "Courier New", monospace';ctx.fillText('SPATIAL INFORMATION',left.x,left.y+16);ctx.fillText('DESIGN KNOWLEDGE',right.x,right.y+16);
-     ctx.textAlign='start';ctx.globalAlpha=1;
-   }
- }
+ const stages=['scatter','cluster','align','reveal'];
+ drawEditorialDiagram(canvas,'system',stages.indexOf(stage),easeSystem(Math.min(1,time/3000)),PHOTO_DATA,lang);
 }
 function renderSystemAnimations(now=performance.now()){
  systemAnimationFrame=0;if(!systemAnimationProject||systemAnimationProject.hidden)return;
- systemAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{const canvas=card.querySelector('canvas');if(canvas)drawSystemPanel(canvas,card.dataset.systemStage,now-systemAnimationStart)});
- if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)systemAnimationFrame=requestAnimationFrame(renderSystemAnimations);
+ diagramMotion.system.elapsed=diagramMotion.system.static||window.matchMedia('(prefers-reduced-motion: reduce)').matches?diagramDuration:Math.min(diagramDuration,now-systemAnimationStart);
+ systemAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{const canvas=card.querySelector('canvas');if(canvas)drawSystemPanel(canvas,card.dataset.systemStage,diagramMotion.system.elapsed)});
+ if(!diagramMotion.system.static&&diagramMotion.system.elapsed<diagramDuration&&!document.hidden)systemAnimationFrame=requestAnimationFrame(renderSystemAnimations);
 }
-function restartSystemAnimations(){cancelAnimationFrame(systemAnimationFrame);systemAnimationStart=performance.now();requestAnimationFrame(renderSystemAnimations)}
+function restartSystemAnimations(){cancelAnimationFrame(systemAnimationFrame);systemAnimationStart=performance.now();systemAnimationFrame=requestAnimationFrame(renderSystemAnimations);}
 function applySystemAnimationLanguage(){
  if(!systemAnimationProject)return;
  systemAnimationProject.querySelectorAll('[data-en][data-zh]').forEach(el=>{el.textContent=lang==='zh'?el.dataset.zh:el.dataset.en});
+ systemAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{
+  const canvas=card.querySelector('canvas');canvas.removeAttribute('aria-hidden');canvas.setAttribute('role','img');canvas.setAttribute('aria-label',card.querySelector('.system-animation-caption').textContent);
+ });
 }
 
 
@@ -831,13 +791,13 @@ const METHOD_ANIMATION_COPY={
   space:{
     en:{
       kicker:'SPACE / SPATIAL SYNTHESIS',
-      title:'Constraints become spatial decisions.',
-      intro:'The same visual grammar describes architectural judgement: scattered constraints become fields, fields become massing, and massing resolves into public space and built form.',
+      title:'One site. Four spatial decisions.',
+      intro:'The same site and viewpoint make four design moves comparable: establish an envelope, open passages, adjust heights, then define public space. These drawings explain the design logic rather than measured project geometry.',
       cards:[
-        ['01 / CONSTRAINTS','SITE + SOLAR + ACCESS','Boundary, sunlight, movement and program begin as separate forces.'],
-        ['02 / FIELD','RELATION + PRESSURE','The forces begin to influence one another and create a directional field.'],
-        ['03 / MASSING','FORM + ORIENTATION','The field is translated into proportion, orientation and building mass.'],
-        ['04 / RESULT','SPACE + BUILT FORM','The final arrangement creates a legible relationship between building, street and open space.']
+        ['01 / ENVELOPE','SITE + SUN + ACCESS','Establish a maximum envelope within the site boundary.'],
+        ['02 / CARVE','PASSAGE + DAYLIGHT','Split the envelope to bring routes and daylight into the site.'],
+        ['03 / HEIGHT','PROPORTION + ORIENTATION','Keep the footprints comparable while testing different heights.'],
+        ['04 / PUBLIC REALM','BUILDING + OPEN SPACE','Resolve building mass and open space as one arrangement.']
       ]
     },
     zh:{
@@ -927,6 +887,7 @@ const METHOD_ANIMATION_COPY={
 };
 
 function buildMethodAnimation(category){
+ setupDiagramToolbar(methodAnimationProject,'method');
   activeMethodCategory=category;
   const copy=METHOD_ANIMATION_COPY[category]?.[lang]||METHOD_ANIMATION_COPY[category]?.en;
   if(!copy||!methodAnimationProject)return;
@@ -936,128 +897,12 @@ function buildMethodAnimation(category){
   methodAnimationGrid.innerHTML=copy.cards.map((c,i)=>`
     <article class="system-animation-card" data-method-stage="${i}">
       <div class="system-animation-meta"><span>${escapeHtml(c[0])}</span><span>${escapeHtml(c[1])}</span></div>
-      <canvas class="system-animation-canvas" aria-hidden="true"></canvas>
+      <canvas class="system-animation-canvas" role="img" aria-label="${escapeAttr(c[0]+': '+c[2])}"></canvas>
       <div class="system-animation-caption">${escapeHtml(c[2])}</div>
     </article>`).join('');
 }
 function drawMethodPanel(canvas,category,stage,time){
-  const {ctx,w,h}=fitSystemCanvas(canvas),p=systemAnimationPalette();
-  ctx.clearRect(0,0,w,h);
-  const cycle=(time%7600)/7600;
-  const t=easeSystem(Math.min(1,Math.max(0,(cycle-.05)/.72)));
-  const count=40;
-
-  if(category==='space'){
-    // Four comparable architectural massing studies. Same site, camera and base mass:
-    // envelope -> carve courtyards -> tune heights -> define public realm.
-    const iso=(x,y,z)=>({x:w*.5+(x-y)*w*.225,y:h*.70+(x+y)*h*.10-z*h*.31});
-    const ink=getComputedStyle(document.body).getPropertyValue('--fg').trim()||'#111';
-    const rgba=(hex,a)=>{const m=hex.match(/#(..)(..)(..)/);return m?`rgba(${parseInt(m[1],16)},${parseInt(m[2],16)},${parseInt(m[3],16)},${a})`:`rgba(100,100,100,${a})`};
-    const poly=(pts,fill=null,stroke=p.line,alpha=1)=>{
-      ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();pts.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));ctx.closePath();
-      if(fill){ctx.fillStyle=fill;ctx.fill()}ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();ctx.restore();
-    };
-    const box=(x,y,z,sx,sy,sz,active=false,alpha=1)=>{
-      const A=iso(x,y,z),B=iso(x+sx,y,z),C=iso(x+sx,y+sy,z),D=iso(x,y+sy,z);
-      const At=iso(x,y,z+sz),Bt=iso(x+sx,y,z+sz),Ct=iso(x+sx,y+sy,z+sz),Dt=iso(x,y+sy,z+sz);
-      poly([At,Bt,Ct,Dt],rgba(ink,active?.11:.045),p.fg,.72*alpha);
-      poly([D,C,Ct,Dt],rgba(ink,active?.07:.025),p.soft,.55*alpha);
-      poly([B,C,Ct,Bt],rgba(ink,active?.085:.035),p.soft,.6*alpha);
-      [[A,At],[B,Bt],[C,Ct],[D,Dt]].forEach(([u,v])=>drawSystemLine(ctx,u.x,u.y,v.x,v.y,p.soft,.34*alpha));
-    };
-    const arrow2d=(A,B,label)=>{
-      drawSystemLine(ctx,A.x,A.y,B.x,B.y,p.fg,.48);
-      const ang=Math.atan2(B.y-A.y,B.x-A.x),s=6;
-      [-.55,.55].forEach(d=>drawSystemLine(ctx,B.x,B.y,B.x-Math.cos(ang+d)*s,B.y-Math.sin(ang+d)*s,p.fg,.48));
-      if(label)drawSystemLabel(ctx,label,(A.x+B.x)/2+5,(A.y+B.y)/2-7,p);
-    };
-    const site=[iso(-1,-.72,0),iso(1,-.72,0),iso(1,.72,0),iso(-1,.72,0)];
-    poly(site,rgba(ink,.012),p.soft,.4);
-    // Keep the diagram focused on the project site. Do not add generic context
-    // blocks unless they represent real, project-specific surrounding buildings.
-
-    const fourBars=(heights=[.62,.62,.62,.62],active=-1)=>{
-      const bars=[[-.72,-.5,.5,.36],[-.1,-.5,.5,.36],[-.72,.12,.5,.36],[-.1,.12,.5,.36]];
-      bars.forEach((b,i)=>box(b[0],b[1],0,b[2],b[3],heights[i],i===active,.96));
-    };
-
-    if(stage===0){
-      // Existing maximum envelope: one clear starting condition.
-      box(-.72,-.5,0,1.22,.98,.64,true,.96);
-      const a=iso(-.96,.62,.02),b=iso(.8,-.58,.02);arrow2d(a,b,'ACCESS');
-      const s1=iso(.92,-.66,.9),s2=iso(.42,-.22,.08);arrow2d(s1,s2,'SUN');
-      drawSystemLabel(ctx,'MAXIMUM ENVELOPE',w*.58,h*.22,p);
-    }else if(stage===1){
-      // Carve the envelope into four bars so sunlight and pedestrian routes enter the site.
-      fourBars([.62,.62,.62,.62],1);
-      const a=iso(-.94,.02,.03),b=iso(.72,.02,.03);arrow2d(a,b,'OPEN');
-      const c1=iso(.02,-.68,.03),c2=iso(.02,.62,.03);arrow2d(c1,c2,'OPEN');
-      drawSystemLabel(ctx,'CARVE + CONNECT',w*.58,h*.22,p);
-    }else if(stage===2){
-      // Keep the same four bars and only change height: north/solar side lower, core taller.
-      fourBars([.42,.82,.3,.62],1);
-      const a=iso(.4,-.58,.08),b=iso(.4,-.58,.86);arrow2d(a,b,'HEIGHT');
-      drawSystemLabel(ctx,'SOLAR + HEIGHT',w*.58,h*.22,p);
-    }else{
-      // Final frame preserves stage 3 massing and adds the public-space decision.
-      fourBars([.42,.82,.3,.62],-1);
-      const open=[iso(.46,-.42,.015),iso(.86,-.42,.015),iso(.86,.42,.015),iso(.46,.42,.015)];
-      poly(open,rgba(ink,.10),p.fg,.58);
-      [[.54,-.27],[.73,-.16],[.55,.12],[.76,.25]].forEach(([x,y])=>{const q=iso(x,y,.025);ctx.beginPath();ctx.arc(q.x,q.y,2.1,0,Math.PI*2);ctx.fillStyle=p.fg;ctx.globalAlpha=.42;ctx.fill();ctx.globalAlpha=1});
-      const a=iso(.38,.58,.02),b=iso(.82,.58,.02);arrow2d(a,b,'PUBLIC SPACE');
-      drawSystemLabel(ctx,'RESOLVED MASSING',w*.58,h*.22,p);
-    } return;
-  }
-
-  if(category==='code'){
-    const nodes=Array.from({length:18},(_,i)=>({x:w*(.1+hashSystem(i*2)*.8),y:h*(.16+hashSystem(i*2+1)*.68)}));
-    if(stage===0){
-      nodes.forEach((n,i)=>{drawSystemDot(ctx,n.x,n.y,2,p.fg,.55);if(i%4===0)drawSystemLabel(ctx,['X','Y','R','T','USER'][i%5],n.x+8,n.y,p)});
-    }else if(stage===1){
-      nodes.forEach((n,i)=>{drawSystemDot(ctx,n.x,n.y,2,p.fg,.62);if(i>0&&i%3!==0)drawSystemLine(ctx,n.x,n.y,nodes[i-1].x,nodes[i-1].y,p.soft,.18+.34*t)});
-    }else if(stage===2){
-      const cols=5,rows=4;
-      nodes.forEach((n,i)=>{const tx=w*(.14+(i%cols)*.18),ty=h*(.2+Math.floor(i/cols)*.18);const x=lerpSystem(n.x,tx,t),y=lerpSystem(n.y,ty,t);drawSystemDot(ctx,x,y,2,p.fg,.65);if(i%cols)drawSystemLine(ctx,x,y,w*(.14+((i-1)%cols)*.18),y,p.soft,.3*t)});
-    }else{
-      const cards=[['SCRIPT',.18],['WORKFLOW',.42],['INTERFACE',.66]];
-      cards.forEach(([label,x])=>{ctx.strokeStyle=p.line;ctx.strokeRect(w*x,h*.36,w*.17,h*.24);ctx.textAlign='center';ctx.fillStyle=p.fg;ctx.font='10px "Courier New",monospace';ctx.fillText(label,w*(x+.085),h*.49)});
-      ctx.textAlign='start';
-    } return;
-  }
-
-  if(category==='observation'){
-    const frames=Array.from({length:16},(_,i)=>({x:w*(.08+hashSystem(i*4)*.78),y:h*(.12+hashSystem(i*4+1)*.7),ww:28+hashSystem(i*4+2)*34,hh:24+hashSystem(i*4+3)*42}));
-    if(stage===0){
-      frames.forEach((f,i)=>{ctx.globalAlpha=.22+.35*hashSystem(i);ctx.strokeStyle=p.soft;ctx.strokeRect(f.x,f.y,f.ww,f.hh);ctx.globalAlpha=1});
-    }else if(stage===1){
-      frames.forEach((f,i)=>{const keep=i%3===0||i===7;ctx.globalAlpha=keep?(.35+.55*t):(.45*(1-t));ctx.strokeStyle=keep?p.fg:p.soft;ctx.strokeRect(f.x,f.y,f.ww,f.hh);ctx.globalAlpha=1});
-    }else if(stage===2){
-      frames.slice(0,8).forEach((f,i)=>{const tx=w*(.09+i*.105),ty=h*.45,tw=w*.082,th=h*.28;const x=lerpSystem(f.x,tx,t),y=lerpSystem(f.y,ty,t);ctx.strokeStyle=p.line;ctx.strokeRect(x,y,tw,th)});
-      drawSystemLine(ctx,w*.08,h*.78,w*.92,h*.78,p.soft,.3);
-    }else{
-      const labels=['DENSITY','DISTANCE','OBJECT','LIGHT','TRACE'];
-      drawSystemLine(ctx,w*.1,h*.52,w*.9,h*.52,p.soft,.3);
-      labels.forEach((label,i)=>{const x=w*(.12+i*.19);drawSystemDot(ctx,x,h*.52,2.2,p.fg,.7);drawSystemLabel(ctx,label,x-18,h*.61,p)});
-    } return;
-  }
-
-  if(category==='research'){
-    const pts=Array.from({length:44},(_,i)=>({x:w*(.08+hashSystem(i*2)*.84),y:h*(.12+hashSystem(i*2+1)*.74)}));
-    if(stage===0){
-      pts.forEach((n,i)=>drawSystemDot(ctx,n.x,n.y,1.4,p.soft,.4+.25*hashSystem(i)));
-      drawSystemLine(ctx,w*.1,h*.82,w*.9,h*.82,p.line,.35);drawSystemLine(ctx,w*.1,h*.82,w*.1,h*.15,p.line,.35);
-    }else if(stage===1){
-      pts.forEach((n,i)=>{const group=i%3,cx=w*(.27+group*.24),cy=h*(.34+(group%2)*.28);const x=lerpSystem(n.x,cx+(hashSystem(i+60)-.5)*70,t),y=lerpSystem(n.y,cy+(hashSystem(i+90)-.5)*60,t);drawSystemDot(ctx,x,y,1.5,p.fg,.5)});
-    }else if(stage===2){
-      const layers=[[.18,5],[.43,4],[.68,3],[.86,2]],all=[];
-      layers.forEach(([x,n],li)=>{for(let i=0;i<n;i++){const y=.2+(i/(Math.max(1,n-1)))*.6;all.push({li,x:w*x,y:h*y});drawSystemDot(ctx,w*x,h*y,2,p.fg,.65)}});
-      all.forEach(a=>all.filter(b=>b.li===a.li+1).forEach(b=>drawSystemLine(ctx,a.x,a.y,b.x,b.y,p.soft,.12+.22*t)));
-    }else{
-      const labels=['A','B','C'];
-      labels.forEach((label,i)=>{const x=w*(.16+i*.27);ctx.strokeStyle=p.line;ctx.strokeRect(x,h*.36,w*.18,h*.26);ctx.textAlign='center';ctx.fillStyle=p.fg;ctx.font='700 12px "Courier New",monospace';ctx.fillText(`OPTION ${label}`,x+w*.09,h*.48);ctx.fillStyle=p.soft;ctx.font='8px "Courier New",monospace';ctx.fillText(i===1?'COMPARE':'ALTERNATIVE',x+w*.09,h*.54)});
-      ctx.textAlign='start';
-    }
-  }
+ drawEditorialDiagram(canvas,category,stage,easeSystem(Math.min(1,time/3000)),PHOTO_DATA,lang);
 }
 function initStudioComponentDemos(){
   document.querySelectorAll('.studio-mini-filter').forEach(demo=>{
@@ -1076,14 +921,15 @@ initStudioComponentDemos();
 
 function renderMethodAnimations(now=performance.now()){
   methodAnimationFrame=0;if(!methodAnimationProject||methodAnimationProject.hidden||!activeMethodCategory)return;
+  diagramMotion.method.elapsed=diagramMotion.method.static||window.matchMedia('(prefers-reduced-motion: reduce)').matches?diagramDuration:Math.min(diagramDuration,now-methodAnimationStart);
   methodAnimationProject.querySelectorAll('.system-animation-card').forEach(card=>{
     const canvas=card.querySelector('canvas');
-    if(canvas)drawMethodPanel(canvas,activeMethodCategory,+card.dataset.methodStage,now-methodAnimationStart);
+    if(canvas)drawMethodPanel(canvas,activeMethodCategory,+card.dataset.methodStage,diagramMotion.method.elapsed);
   });
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)methodAnimationFrame=requestAnimationFrame(renderMethodAnimations);
+  if(!diagramMotion.method.static&&diagramMotion.method.elapsed<diagramDuration&&!document.hidden)methodAnimationFrame=requestAnimationFrame(renderMethodAnimations);
 }
 function restartMethodAnimations(){
-  cancelAnimationFrame(methodAnimationFrame);methodAnimationStart=performance.now();requestAnimationFrame(renderMethodAnimations);
+  cancelAnimationFrame(methodAnimationFrame);methodAnimationStart=performance.now();methodAnimationFrame=requestAnimationFrame(renderMethodAnimations);
 }
 
 function openProject(i){
@@ -1109,7 +955,7 @@ function openProject(i){
   projectEl.classList.toggle('research-project',base.categoryKey==='research');
   const hasArchitecture=base.categoryKey==='space';
   const hasSystemAnimation=base.categoryKey==='system';
-  const hasMethodAnimation=['space','code','observation','research'].includes(base.categoryKey);
+  const hasMethodAnimation=['space','code','observation'].includes(base.categoryKey);
   const hasEmbeddedLibrary=base.categoryKey==='system';
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
   if(methodAnimationProject){methodAnimationProject.hidden=!hasMethodAnimation;}
@@ -1154,7 +1000,7 @@ function renderAbout(){
 
 
 function applyStudioCaseCopy(){
-  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh]').forEach(el=>{
+  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh], #parametricProject [data-en][data-zh], .diagram-toolbar [data-en][data-zh]').forEach(el=>{
     const value=lang==='zh'?el.dataset.zh:el.dataset.en;
     if(value)el.textContent=value;
   });
@@ -1178,6 +1024,57 @@ function applyUI(){
   if(projectEl.classList.contains('visible'))openProject(currentProject);
   updateEditorLabels();
 }
+
+
+function setupDiagramToolbar(section,type){
+ if(!section)return;
+ let toolbar=section.querySelector('.diagram-toolbar');
+ if(!toolbar){
+  toolbar=document.createElement('div');toolbar.className='diagram-toolbar';
+  toolbar.innerHTML='<p data-en="EXPLANATORY STUDIES / NOT MEASURED RESULTS" data-zh="流程与设计示意 / 非实测结果">流程与设计示意 / 非实测结果</p><div><button type="button" class="diagram-static" aria-pressed="false"><span data-en="STATIC VIEW" data-zh="静止视图">静止视图</span></button><button type="button" class="diagram-replay"><span data-en="REPLAY" data-zh="重新播放">重新播放</span></button></div>';
+  section.querySelector('.system-animation-grid').before(toolbar);
+  toolbar.querySelector('.diagram-static').addEventListener('click',()=>{
+   diagramMotion[type].static=!diagramMotion[type].static;
+   toolbar.querySelector('.diagram-static').setAttribute('aria-pressed',String(diagramMotion[type].static));
+   type==='system'?restartSystemAnimations():restartMethodAnimations();
+  });
+  toolbar.querySelector('.diagram-replay').addEventListener('click',()=>{
+   diagramMotion[type].static=false;toolbar.querySelector('.diagram-static').setAttribute('aria-pressed','false');
+   type==='system'?restartSystemAnimations():restartMethodAnimations();
+  });
+ }
+ toolbar.querySelectorAll('[data-en][data-zh]').forEach(el=>el.textContent=lang==='zh'?el.dataset.zh:el.dataset.en);
+}
+setupDiagramToolbar(systemAnimationProject,'system');
+refineFacadeDiagrams(parametricProject);
+const diagramObserver=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   if(entry.target===systemAnimationProject&&!systemAnimationProject.hidden)restartSystemAnimations();
+   if(entry.target===methodAnimationProject&&!methodAnimationProject.hidden)restartMethodAnimations();
+  }else{
+   if(entry.target===systemAnimationProject)cancelAnimationFrame(systemAnimationFrame);
+   if(entry.target===methodAnimationProject)cancelAnimationFrame(methodAnimationFrame);
+  }
+ });
+},{threshold:.08});
+[systemAnimationProject,methodAnimationProject].filter(Boolean).forEach(section=>diagramObserver.observe(section));
+projectEl.addEventListener('diagram-image-ready',()=>{
+ if(activeMethodCategory==='observation'&&!methodAnimationProject.hidden){cancelAnimationFrame(methodAnimationFrame);renderMethodAnimations(performance.now());}
+});
+let diagramResizeTimer;
+window.addEventListener('resize',()=>{clearTimeout(diagramResizeTimer);diagramResizeTimer=setTimeout(()=>{
+ if(!systemAnimationProject.hidden)renderSystemAnimations(systemAnimationStart+diagramDuration);
+ if(!methodAnimationProject.hidden)renderMethodAnimations(methodAnimationStart+diagramDuration);
+},180);});
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){cancelAnimationFrame(methodAnimationFrame);cancelAnimationFrame(systemAnimationFrame);}
+ else {if(!methodAnimationProject.hidden)renderMethodAnimations(methodAnimationStart+diagramDuration);if(!systemAnimationProject.hidden)renderSystemAnimations(systemAnimationStart+diagramDuration);}
+});
+window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>{
+ if(!methodAnimationProject.hidden)restartMethodAnimations();
+ if(!systemAnimationProject.hidden)restartSystemAnimations();
+});
 
 /* ---------- Editor ---------- */
 

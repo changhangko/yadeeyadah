@@ -2355,3 +2355,35 @@ html[lang="zh-CN"] #project .eyebrow{
 #project.research-project .todai-case{margin-top:24px}
 #project.research-project .todai-title{padding-top:36px}
 #project.research-project .todai-title h2{font-size:clamp(64px,9vw,132px);line-height:.82}
+
+
+/* Project diagrams: technical linework, legible captions, bounded motion. */
+.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:0 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.diagram-toolbar p{margin:0!important;font:11px/1.6 "Courier New",monospace!important;color:var(--soft)}
+.diagram-toolbar>div{display:flex;gap:10px}
+.diagram-toolbar button{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:0;min-height:44px;padding:10px 14px;font:12px/1.4 "Courier New",monospace;cursor:pointer}
+.diagram-toolbar button:hover{border-color:var(--fg)}
+.diagram-toolbar button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.diagram-toolbar button[aria-pressed="true"]:is(:hover,:focus-visible){color:var(--bg)}
+.diagram-toolbar button:focus-visible,.facade-diagram-button:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.system-animation-grid .system-animation-caption{font-size:14px;line-height:1.7;min-height:84px;color:var(--soft);letter-spacing:0;padding:18px 20px}
+.system-animation-grid .system-animation-meta{font-size:11px;line-height:1.5;letter-spacing:.04em;padding:14px 20px}
+.system-animation-grid .system-animation-canvas{height:340px;min-height:340px}
+.parametric-process-diagram.facade-drawing{height:auto;aspect-ratio:5/4;min-height:130px;background:none;overflow:visible}
+.facade-drawing .facade-diagram-button{display:block;width:100%;height:100%;border:0;border-radius:0;padding:0;background:transparent;color:inherit;cursor:pointer}
+.facade-drawing svg{display:block;width:100%;height:auto}
+.facade-drawing svg path,.facade-drawing svg circle{fill:none;stroke:currentColor;stroke-width:1;vector-effect:non-scaling-stroke}
+.facade-drawing .facade-guide{opacity:.3;stroke-dasharray:3 4}
+.facade-drawing svg text{fill:currentColor;font:8px "Courier New",monospace}
+.facade-drawing .facade-marks{opacity:.7}
+.facade-drawing button[aria-pressed="true"] .facade-curves path{stroke-width:1.6}
+.facade-drawing.facade-replay .facade-curves path{stroke-dasharray:500;animation:facade-trace 1.3s ease-out both}
+.parametric-process-card h3{font-size:14px;line-height:1.4}
+.parametric-process-card p{font-size:13px;line-height:1.65;color:var(--soft)}
+.parametric-process-card.output p{color:#d0d0d0}
+.parametric-process-card small{opacity:.75;line-height:1.5}
+.facade-process-note{font-size:13px;line-height:1.7;margin:18px 0;color:var(--soft)}
+@keyframes facade-trace{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}
+@media(max-width:720px){.system-animation-grid .system-animation-canvas{height:290px;min-height:290px}.system-animation-grid .system-animation-meta{padding:12px;gap:10px;flex-wrap:wrap}.system-animation-grid .system-animation-caption{padding:16px;min-height:0}.diagram-toolbar{align-items:flex-start}.parametric-process-card{padding:14px 10px}}
+@media(prefers-reduced-motion:reduce){.facade-drawing.facade-replay .facade-curves path{animation:none}}
+@media(max-width:720px){#project .pbody>h1{overflow-wrap:anywhere}}

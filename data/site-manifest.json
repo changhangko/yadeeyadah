@@ -89,6 +89,12 @@
     "projects/studio-library/images/model-riverside.svg",
     "projects/studio-library/images/model-station.svg",
     "projects/studio-library/index.html",
-    "projects/studio-library/materials-data.js"
+    "projects/studio-library/materials-data.js",
+    "js/diagrams.js",
+    "assets/parametric/435-bourke-original.jpg",
+    "assets/parametric/435-bourke-highlight.jpg",
+    "print/index.html",
+    "print/print.css",
+    "print/print.js"
   ]
 }
