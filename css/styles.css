@@ -2342,3 +2342,16 @@ html[lang="zh-CN"] #project .eyebrow{
 .tod-problem-grid b{font-size:12px}.tod-problem-grid p{font-size:12px;line-height:1.65;max-width:380px}
 .todai-reveal{display:grid;grid-template-columns:1.15fr .85fr;gap:7vw;padding:72px 0}.todai-reveal h3{font-size:clamp(30px,4vw,58px)}.todai-reveal>p{align-self:end;font-size:13px;line-height:1.75;max-width:620px}
 @media(max-width:850px){.todai-title,.tod-intro,.todai-reveal{grid-template-columns:1fr}.todai-title h2,.todai-title p{grid-column:1}.tod-intro{padding:48px 0}.tod-diagram{min-height:430px}.tod-problem-grid{grid-template-columns:1fr}.tod-problem-grid>div,.tod-problem-grid>div+div{padding:18px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* Research category uses the dedicated TODAI case-study shell */
+#project.research-project .pbody > .eyebrow,
+#project.research-project .pbody > #pt,
+#project.research-project .pbody > #pd,
+#project.research-project .pbody > .meta-grid,
+#project.research-project .pbody > .story-grid,
+#project.research-project #methodAnimationProject,
+#project.research-project #pmedia,
+#project.research-project #ptaste{display:none!important}
+#project.research-project .todai-case{margin-top:24px}
+#project.research-project .todai-title{padding-top:36px}
+#project.research-project .todai-title h2{font-size:clamp(64px,9vw,132px);line-height:.82}
