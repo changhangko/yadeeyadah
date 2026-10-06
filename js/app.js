@@ -1106,6 +1106,7 @@ function openProject(i){
   }).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
   if(base.categoryKey==='observation')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
+  projectEl.classList.toggle('research-project',base.categoryKey==='research');
   const hasArchitecture=base.categoryKey==='space';
   const hasSystemAnimation=base.categoryKey==='system';
   const hasMethodAnimation=['space','code','observation','research'].includes(base.categoryKey);
