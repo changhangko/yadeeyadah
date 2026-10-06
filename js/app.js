@@ -1154,7 +1154,7 @@ function renderAbout(){
 
 
 function applyStudioCaseCopy(){
-  document.querySelectorAll('.studio-i18n, .arch-i18n').forEach(el=>{
+  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh]').forEach(el=>{
     const value=lang==='zh'?el.dataset.zh:el.dataset.en;
     if(value)el.textContent=value;
   });
