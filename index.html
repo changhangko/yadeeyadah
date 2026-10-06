@@ -38,16 +38,18 @@
 #todaiProject .td-input-cloud,#todaiProject .td-output{fill:currentColor;opacity:.2;transition:opacity .5s}
 #todaiProject .td-model{fill:var(--bg);stroke:currentColor;stroke-width:1.5;opacity:.2;transition:opacity .5s}
 #todaiProject .td-transform,#todaiProject .td-feedback{fill:none;stroke:currentColor;opacity:.2}
-#todaiProject .td-transfer{stroke-width:3;stroke-dasharray:10 76;animation:td-transfer 1.4s linear 2}
+#todaiProject .td-transfer{stroke-width:3;stroke-dasharray:10 76;animation:none}
+#todaiProject .td-workspace.td-animate .td-transfer{animation:td-transfer 1.4s linear 2}
 #todaiProject .td-feedback{stroke-dasharray:5 5}
 #todaiProject .td-workspace[data-stage="0"] .td-input-cloud,#todaiProject .td-workspace[data-stage="1"] .td-model,#todaiProject .td-workspace[data-stage="2"] .td-model,#todaiProject .td-workspace[data-stage="3"] .td-model,#todaiProject .td-workspace[data-stage="4"] .td-output,#todaiProject .td-workspace[data-stage="5"] .td-feedback{opacity:1}
 #todaiProject .td-stage-description>div[hidden]{display:none}
 #todaiProject .td-stage-description span{font:11px/1.6 "Courier New",monospace}
 #todaiProject .td-stage-description h4{font-size:clamp(28px,3vw,46px);font-weight:500;letter-spacing:-.04em;margin:18px 0}
-#todaiProject .td-stage-description p{font-size:16px;line-height:1.7}
+#todaiProject .td-stage-description p{font-size:16px;line-height:1.7;color:var(--fg)}
+#todaiProject .tod-intro-copy p,#todaiProject .tod-problem-grid p,#todaiProject .todai-reveal>p{color:var(--soft)}
 @keyframes td-transfer{to{stroke-dashoffset:-86}}
 @media(max-width:850px){#todaiProject .td-step-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}#todaiProject .td-workspace{grid-template-columns:1fr;gap:12px}#todaiProject .td-stage-description{min-height:170px}}
-@media(prefers-reduced-motion:reduce){#todaiProject .td-transfer{animation:none}#todaiProject .td-routes,#todaiProject .td-rings,#todaiProject .td-parcels,#todaiProject .td-model,#todaiProject .td-output,#todaiProject .td-input-cloud{transition:none}}
+@media(prefers-reduced-motion:reduce){#todaiProject .td-workspace.td-animate .td-transfer{animation:none}#todaiProject .td-routes,#todaiProject .td-rings,#todaiProject .td-parcels,#todaiProject .td-model,#todaiProject .td-output,#todaiProject .td-input-cloud{transition:none}}
 </style>
 </head>
 <body class="light">
@@ -485,7 +487,10 @@ root.querySelector('.td-map').dataset.mode=button.dataset.tdMode;
 root.querySelectorAll('[data-td-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
 }));
 root.querySelectorAll('[data-td-step]').forEach(button=>button.addEventListener('click',()=>{
-root.querySelector('.td-workspace').dataset.stage=button.dataset.tdStep;
+const workspace=root.querySelector('.td-workspace');
+workspace.dataset.stage=button.dataset.tdStep;
+workspace.classList.remove('td-animate');
+requestAnimationFrame(()=>requestAnimationFrame(()=>workspace.classList.add('td-animate')));
 root.querySelectorAll('[data-td-step]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
 root.querySelectorAll('[data-td-panel]').forEach(p=>p.hidden=p.dataset.tdPanel!==button.dataset.tdStep);
 }));
