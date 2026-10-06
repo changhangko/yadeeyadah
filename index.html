@@ -6,6 +6,49 @@
 <meta name="description" content="Garry Zhang — Creative Technologist / Computational Designer portfolio">
 <title>Garry Zhang — Genome Portfolio</title>
 <link rel="stylesheet" href="/css/styles.css">
+<style id="todai-diagrams-styles">
+#todaiProject .td-figure{margin:0;color:var(--fg);min-width:0}
+#todaiProject .td-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:11px/1.6 "Courier New",monospace;letter-spacing:.04em;padding:14px 0;border-bottom:1px solid var(--line)}
+#todaiProject .td-map svg{display:block;width:100%;height:auto;max-height:520px}
+#todaiProject .td-parcels{fill:currentColor;opacity:.09;transition:opacity .5s}
+#todaiProject .td-roads{fill:none;stroke:currentColor;stroke-width:1;opacity:.22}
+#todaiProject .td-rings{fill:none;stroke:currentColor;stroke-width:1;stroke-dasharray:3 6;opacity:.22;transition:opacity .5s}
+#todaiProject .td-routes{fill:none;stroke:currentColor;stroke-width:2;stroke-dasharray:600;stroke-dashoffset:0;transition:stroke-dashoffset .8s,opacity .5s}
+#todaiProject .td-destinations{fill:var(--bg);stroke:currentColor;stroke-width:2}
+#todaiProject .td-centre{fill:currentColor}
+#todaiProject .td-station-label{fill:var(--bg);font:12px "Courier New",monospace}
+#todaiProject .td-labels{fill:currentColor;font:10px "Courier New",monospace;letter-spacing:.04em}
+#todaiProject .td-map[data-mode="radius"] .td-routes{stroke-dashoffset:600;opacity:.12}
+#todaiProject .td-map[data-mode="radius"] .td-rings{opacity:.85}
+#todaiProject .td-map[data-mode="fabric"] .td-parcels{opacity:.45}
+#todaiProject .td-map[data-mode="fabric"] .td-routes{opacity:.15}
+#todaiProject .td-map[data-mode="fabric"] .td-rings{opacity:.08}
+#todaiProject .td-controls{display:flex;flex-wrap:wrap;gap:8px}
+#todaiProject .td-controls button,#todaiProject .td-step-buttons button{background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:0;padding:12px;min-height:44px;cursor:pointer;font:12px/1.4 "Courier New",monospace}
+#todaiProject button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+#todaiProject .td-controls button:hover,#todaiProject .td-step-buttons button:hover{border-color:var(--fg)}
+#todaiProject .td-controls button:focus-visible,#todaiProject .td-step-buttons button:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+#todaiProject .td-map figcaption,#todaiProject .td-disclaimer{font-size:14px;line-height:1.7;color:var(--soft);margin:18px 0}
+#todaiProject .td-workflow{border-top:1px solid var(--line);padding:30px 0 45px}
+#todaiProject .td-step-buttons{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-top:24px}
+#todaiProject .td-step-buttons button{text-align:left}
+#todaiProject .td-step-buttons small{display:block;font-size:10px;margin-bottom:18px}
+#todaiProject .td-workspace{display:grid;grid-template-columns:1.6fr 1fr;align-items:center;gap:35px;padding:36px 0}
+#todaiProject .td-workspace svg{width:100%;height:auto;overflow:visible}
+#todaiProject .td-input-cloud,#todaiProject .td-output{fill:currentColor;opacity:.2;transition:opacity .5s}
+#todaiProject .td-model{fill:var(--bg);stroke:currentColor;stroke-width:1.5;opacity:.2;transition:opacity .5s}
+#todaiProject .td-transform,#todaiProject .td-feedback{fill:none;stroke:currentColor;opacity:.2}
+#todaiProject .td-transfer{stroke-width:3;stroke-dasharray:10 76;animation:td-transfer 1.4s linear 2}
+#todaiProject .td-feedback{stroke-dasharray:5 5}
+#todaiProject .td-workspace[data-stage="0"] .td-input-cloud,#todaiProject .td-workspace[data-stage="1"] .td-model,#todaiProject .td-workspace[data-stage="2"] .td-model,#todaiProject .td-workspace[data-stage="3"] .td-model,#todaiProject .td-workspace[data-stage="4"] .td-output,#todaiProject .td-workspace[data-stage="5"] .td-feedback{opacity:1}
+#todaiProject .td-stage-description>div[hidden]{display:none}
+#todaiProject .td-stage-description span{font:11px/1.6 "Courier New",monospace}
+#todaiProject .td-stage-description h4{font-size:clamp(28px,3vw,46px);font-weight:500;letter-spacing:-.04em;margin:18px 0}
+#todaiProject .td-stage-description p{font-size:16px;line-height:1.7}
+@keyframes td-transfer{to{stroke-dashoffset:-86}}
+@media(max-width:850px){#todaiProject .td-step-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}#todaiProject .td-workspace{grid-template-columns:1fr;gap:12px}#todaiProject .td-stage-description{min-height:170px}}
+@media(prefers-reduced-motion:reduce){#todaiProject .td-transfer{animation:none}#todaiProject .td-routes,#todaiProject .td-rings,#todaiProject .td-parcels,#todaiProject .td-model,#todaiProject .td-output,#todaiProject .td-input-cloud{transition:none}}
+</style>
 </head>
 <body class="light">
 <header>
@@ -164,15 +207,25 @@
       <p class="tod-lead" data-en="Transit-Oriented Development organises higher-density development and everyday amenities around public transport, with walking as a key connection between them." data-zh="TOD（Transit-Oriented Development，公共交通导向型开发）围绕公共交通节点组织更高密度的城市开发和日常设施，并把步行作为连接它们的重要方式。">TOD（Transit-Oriented Development，公共交通导向型开发）围绕公共交通节点组织更高密度的城市开发和日常设施，并把步行作为连接它们的重要方式。</p>
       <p data-en="The planning question is not simply where a station sits. Street networks, amenities, zoning, density and built form interact, so changing one condition can affect several outcomes at once." data-zh="规划问题并不只是“车站在哪里”。街道网络、设施、分区、密度和建筑形态彼此影响，一个条件改变，往往会同时改变多个结果。">规划问题并不只是“车站在哪里”。街道网络、设施、分区、密度和建筑形态彼此影响，一个条件改变，往往会同时改变多个结果。</p>
      </div>
-     <div class="tod-diagram" aria-label="Transit-oriented development diagram">
-      <div class="tod-radius r2"></div><div class="tod-radius r1"></div>
-      <div class="tod-station"><b>STATION</b><small>TRANSIT</small></div>
-      <div class="tod-node housing"><b data-en="HOUSING" data-zh="住宅">住宅</b><small>HOUSING</small></div>
-      <div class="tod-node work"><b data-en="WORK" data-zh="工作">工作</b><small>EMPLOYMENT</small></div>
-      <div class="tod-node amenity"><b data-en="AMENITIES" data-zh="设施">设施</b><small>AMENITIES</small></div>
-      <div class="tod-node public"><b data-en="PUBLIC SPACE" data-zh="公共空间">公共空间</b><small>PUBLIC SPACE</small></div>
-      <span class="tod-walk">WALKABLE NETWORK / TRANSIT CENTRED</span>
-     </div>
+<figure class="td-map td-figure" data-mode="network">
+<div class="td-meta"><span>01 / TRANSIT + URBAN FABRIC</span><span>CONCEPTUAL / NOT TO SCALE</span></div>
+<svg viewBox="0 0 560 470" role="img" aria-label="Conceptual station diagram showing streets, plots and walking connections">
+<g class="td-parcels"><rect x="48" y="50" width="35" height="40" rx="1"/><rect x="106" y="50" width="35" height="40" rx="1"/><rect x="164" y="50" width="35" height="40" rx="1"/><rect x="222" y="50" width="35" height="40" rx="1"/><rect x="280" y="50" width="35" height="40" rx="1"/><rect x="338" y="50" width="35" height="40" rx="1"/><rect x="396" y="50" width="35" height="40" rx="1"/><rect x="454" y="50" width="35" height="40" rx="1"/><rect x="48" y="114" width="35" height="40" rx="1"/><rect x="106" y="114" width="35" height="40" rx="1"/><rect x="164" y="114" width="35" height="40" rx="1"/><rect x="222" y="114" width="35" height="40" rx="1"/><rect x="280" y="114" width="35" height="40" rx="1"/><rect x="338" y="114" width="35" height="40" rx="1"/><rect x="396" y="114" width="35" height="40" rx="1"/><rect x="454" y="114" width="35" height="40" rx="1"/><rect x="48" y="178" width="35" height="40" rx="1"/><rect x="106" y="178" width="35" height="40" rx="1"/><rect x="164" y="178" width="35" height="40" rx="1"/><rect x="222" y="178" width="35" height="40" rx="1"/><rect x="280" y="178" width="35" height="40" rx="1"/><rect x="338" y="178" width="35" height="40" rx="1"/><rect x="396" y="178" width="35" height="40" rx="1"/><rect x="454" y="178" width="35" height="40" rx="1"/><rect x="48" y="242" width="35" height="40" rx="1"/><rect x="106" y="242" width="35" height="40" rx="1"/><rect x="164" y="242" width="35" height="40" rx="1"/><rect x="222" y="242" width="35" height="40" rx="1"/><rect x="280" y="242" width="35" height="40" rx="1"/><rect x="338" y="242" width="35" height="40" rx="1"/><rect x="396" y="242" width="35" height="40" rx="1"/><rect x="454" y="242" width="35" height="40" rx="1"/><rect x="48" y="306" width="35" height="40" rx="1"/><rect x="106" y="306" width="35" height="40" rx="1"/><rect x="164" y="306" width="35" height="40" rx="1"/><rect x="222" y="306" width="35" height="40" rx="1"/><rect x="280" y="306" width="35" height="40" rx="1"/><rect x="338" y="306" width="35" height="40" rx="1"/><rect x="396" y="306" width="35" height="40" rx="1"/><rect x="454" y="306" width="35" height="40" rx="1"/><rect x="48" y="370" width="35" height="40" rx="1"/><rect x="106" y="370" width="35" height="40" rx="1"/><rect x="164" y="370" width="35" height="40" rx="1"/><rect x="222" y="370" width="35" height="40" rx="1"/><rect x="280" y="370" width="35" height="40" rx="1"/><rect x="338" y="370" width="35" height="40" rx="1"/><rect x="396" y="370" width="35" height="40" rx="1"/><rect x="454" y="370" width="35" height="40" rx="1"/></g>
+<g class="td-roads"><path d="M35 135H525M35 263H525M35 391H525M151 30V430M325 30V430M441 30V430"/></g>
+<g class="td-rings"><circle cx="280" cy="235" r="78"/><circle cx="280" cy="235" r="150"/></g>
+<g class="td-routes"><path d="M280 235H325V135H441V85"/><path d="M280 235H151V391H93"/><path d="M280 235H325V391H383"/><path d="M280 235H151V135H93"/></g>
+<g class="td-destinations"><circle cx="441" cy="85" r="7"/><circle cx="93" cy="391" r="7"/><circle cx="383" cy="391" r="7"/><circle cx="93" cy="135" r="7"/></g>
+<g class="td-labels"><text x="455" y="81">WORK</text><text x="44" y="419">HOUSING</text><text x="345" y="420">PUBLIC SPACE</text><text x="44" y="116">AMENITIES</text></g>
+<circle class="td-centre" cx="280" cy="235" r="19"/><text class="td-station-label" x="280" y="239" text-anchor="middle">S</text>
+<text class="td-labels" x="250" y="205">STATION</text>
+</svg>
+<div class="td-controls" role="group" aria-label="Diagram view">
+<button type="button" data-td-mode="radius" aria-pressed="false"><span data-en="RADIUS" data-zh="直线范围">直线范围</span></button>
+<button type="button" data-td-mode="network" aria-pressed="true"><span data-en="WALKING NETWORK" data-zh="步行网络">步行网络</span></button>
+<button type="button" data-td-mode="fabric" aria-pressed="false"><span data-en="URBAN FABRIC" data-zh="城市肌理">城市肌理</span></button>
+</div>
+<figcaption><span data-en="A radius describes proximity. Streets determine the route. Switch views to see the difference." data-zh="圆形范围表达距离，街道决定实际路线。切换视图，比较两者的区别。">圆形范围表达距离，街道决定实际路线。切换视图，比较两者的区别。</span></figcaption>
+</figure>
     </section>
     <section class="tod-problem">
      <span class="tod-section-no">02 / THE PLANNING PROBLEM</span>
@@ -187,6 +240,22 @@
      <div><span class="tod-section-no">03 / TODAI</span><h3 data-en="Data → Model → Optimise → Predict → Feedback" data-zh="数据 → 模型 → 优化 → 预测 → 反馈">数据 → 模型 → 优化 → 预测 → 反馈</h3></div>
      <p data-en="TODAI connects rule-based urban generation in Rhino + Grasshopper with optimisation and machine-learning prediction. XGBoost, trained through H2O on enumerated Grasshopper inputs and analytical outputs, returns indicators to the interface in near real-time." data-zh="TODAI 将 Rhino + Grasshopper 的规则化城市生成、优化和机器学习预测连接在一起。研究通过 Grasshopper 枚举输入并生成训练数据，再使用 H2O 训练 XGBoost，让新的规划输入能够近实时返回分析指标。">TODAI 将 Rhino + Grasshopper 的规则化城市生成、优化和机器学习预测连接在一起。研究通过 Grasshopper 枚举输入并生成训练数据，再使用 H2O 训练 XGBoost，让新的规划输入能够近实时返回分析指标。</p>
     </section>
+<section class="td-workflow td-figure" aria-label="Interactive TODAI research workflow">
+<div class="td-meta"><span>04 / FROM URBAN DATA TO FEEDBACK</span><span data-en="SELECT A STAGE" data-zh="点击阶段查看流程">点击阶段查看流程</span></div>
+<div class="td-step-buttons" role="group" aria-label="Research stages"><button type="button" data-td-step="0" aria-pressed="true" aria-controls="td-stage-description"><small>01</small><span data-en="DATA" data-zh="数据">数据</span></button><button type="button" data-td-step="1" aria-pressed="false" aria-controls="td-stage-description"><small>02</small><span data-en="GENERATE" data-zh="生成">生成</span></button><button type="button" data-td-step="2" aria-pressed="false" aria-controls="td-stage-description"><small>03</small><span data-en="OPTIMISE" data-zh="优化">优化</span></button><button type="button" data-td-step="3" aria-pressed="false" aria-controls="td-stage-description"><small>04</small><span data-en="TRAIN" data-zh="训练">训练</span></button><button type="button" data-td-step="4" aria-pressed="false" aria-controls="td-stage-description"><small>05</small><span data-en="PREDICT" data-zh="预测">预测</span></button><button type="button" data-td-step="5" aria-pressed="false" aria-controls="td-stage-description"><small>06</small><span data-en="FEEDBACK" data-zh="反馈">反馈</span></button></div>
+<div class="td-workspace" data-stage="0">
+<svg viewBox="0 0 720 300" role="img" aria-label="Schematic transformation from urban data through a model to feedback">
+<g class="td-input-cloud"><circle cx="40" cy="58" r="2"/><circle cx="66" cy="58" r="3"/><circle cx="92" cy="58" r="4"/><circle cx="118" cy="58" r="2"/><circle cx="144" cy="58" r="3"/><circle cx="40" cy="93" r="4"/><circle cx="66" cy="93" r="2"/><circle cx="92" cy="93" r="3"/><circle cx="118" cy="93" r="4"/><circle cx="144" cy="93" r="2"/><circle cx="40" cy="128" r="3"/><circle cx="66" cy="128" r="4"/><circle cx="92" cy="128" r="2"/><circle cx="118" cy="128" r="3"/><circle cx="144" cy="128" r="4"/><circle cx="40" cy="163" r="2"/><circle cx="66" cy="163" r="3"/><circle cx="92" cy="163" r="4"/><circle cx="118" cy="163" r="2"/><circle cx="144" cy="163" r="3"/><circle cx="40" cy="198" r="4"/><circle cx="66" cy="198" r="2"/><circle cx="92" cy="198" r="3"/><circle cx="118" cy="198" r="4"/><circle cx="144" cy="198" r="2"/><circle cx="40" cy="233" r="3"/><circle cx="66" cy="233" r="4"/><circle cx="92" cy="233" r="2"/><circle cx="118" cy="233" r="3"/><circle cx="144" cy="233" r="4"/></g>
+<g class="td-transform"><path d="M190 150H276M444 150H530"/><path class="td-transfer" d="M190 150H276M444 150H530"/></g>
+<g class="td-model"><path d="M360 68V106M360 106L310 151M360 106L410 151M310 151L285 212M310 151L335 212M410 151L385 212M410 151L435 212"/><circle cx="360" cy="68" r="6"/><circle cx="360" cy="106" r="6"/><circle cx="310" cy="151" r="6"/><circle cx="410" cy="151" r="6"/><circle cx="285" cy="212" r="6"/><circle cx="335" cy="212" r="6"/><circle cx="385" cy="212" r="6"/><circle cx="435" cy="212" r="6"/></g>
+<g class="td-output"><rect x="560" y="62" width="50" height="7"/><rect x="560" y="97" width="67" height="7"/><rect x="560" y="132" width="84" height="7"/><rect x="560" y="167" width="101" height="7"/><rect x="560" y="202" width="118" height="7"/></g>
+<path class="td-feedback" d="M615 245V277H105V245"/>
+<g class="td-labels"><text x="40" y="28">INPUT</text><text x="321" y="28">TRANSFORM</text><text x="560" y="28">OUTPUT</text></g>
+</svg>
+<div id="td-stage-description" class="td-stage-description" aria-live="polite"><div data-td-panel="0" ><span>01 / OSM / CADASTRE / CONSTRAINTS</span><h4 data-en="DATA" data-zh="数据">数据</h4><p data-en="Public urban data provides the context for testing scenarios." data-zh="公共城市数据为方案测试提供背景。">公共城市数据为方案测试提供背景。</p></div><div data-td-panel="1" hidden><span>02 / RHINO + GRASSHOPPER</span><h4 data-en="GENERATE" data-zh="生成">生成</h4><p data-en="Rule-based geometry turns planning inputs into urban scenarios." data-zh="规则化几何将规划输入转化成城市方案。">规则化几何将规划输入转化成城市方案。</p></div><div data-td-panel="2" hidden><span>03 / GALAPAGOS</span><h4 data-en="OPTIMISE" data-zh="优化">优化</h4><p data-en="Optimisation explores alternatives against the analytical objectives." data-zh="优化过程根据分析目标探索不同方案。">优化过程根据分析目标探索不同方案。</p></div><div data-td-panel="3" hidden><span>04 / H2O / XGBOOST</span><h4 data-en="TRAIN" data-zh="训练">训练</h4><p data-en="Enumerated inputs and analytical outputs form training examples." data-zh="枚举的输入与分析结果组成模型训练样本。">枚举的输入与分析结果组成模型训练样本。</p></div><div data-td-panel="4" hidden><span>05 / NEW INPUT → INDICATORS</span><h4 data-en="PREDICT" data-zh="预测">预测</h4><p data-en="The trained model estimates indicators for new planning inputs." data-zh="训练后的模型为新的规划输入估算指标。">训练后的模型为新的规划输入估算指标。</p></div><div data-td-panel="5" hidden><span>06 / RETURN TO THE INTERFACE</span><h4 data-en="FEEDBACK" data-zh="反馈">反馈</h4><p data-en="Indicators return to the interface to support further comparison." data-zh="指标返回界面，帮助继续比较和调整方案。">指标返回界面，帮助继续比较和调整方案。</p></div></div>
+</div>
+<p class="td-disclaimer"><span data-en="Process illustration only. This diagram does not execute Galapagos or XGBoost and shows no measured research results." data-zh="此图解释研究流程，不运行 Galapagos 或 XGBoost，也不展示实测研究结果。">此图解释研究流程，不运行 Galapagos 或 XGBoost，也不展示实测研究结果。</span></p>
+</section>
    </section>
 
    <section class="system-animation-project method-animation-project" id="methodAnimationProject" hidden aria-label="Category narrative animation">
@@ -409,5 +478,17 @@
 <input id="portfolioImagePicker" type="file" accept="image/*" hidden>
 <div id="imageEditToast" class="image-edit-toast" aria-live="polite"></div>
 
+<script type="module">
+const root=document.getElementById('todaiProject');
+root.querySelectorAll('[data-td-mode]').forEach(button=>button.addEventListener('click',()=>{
+root.querySelector('.td-map').dataset.mode=button.dataset.tdMode;
+root.querySelectorAll('[data-td-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+}));
+root.querySelectorAll('[data-td-step]').forEach(button=>button.addEventListener('click',()=>{
+root.querySelector('.td-workspace').dataset.stage=button.dataset.tdStep;
+root.querySelectorAll('[data-td-step]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+root.querySelectorAll('[data-td-panel]').forEach(p=>p.hidden=p.dataset.tdPanel!==button.dataset.tdStep);
+}));
+</script>
 </body>
 </html>
