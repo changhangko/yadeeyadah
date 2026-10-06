@@ -95,6 +95,7 @@
     "assets/parametric/435-bourke-highlight.jpg",
     "print/index.html",
     "print/print.css",
-    "print/print.js"
+    "print/print.js",
+    "print/portfolio-data.json"
   ]
 }

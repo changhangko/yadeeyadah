@@ -1,42 +1,29 @@
 @page{size:A3 landscape;margin:0}
 *{box-sizing:border-box}
-html,body{margin:0;background:#d8d8d5;color:#111;font-family:Futura,"Futura PT","Futura Std","Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB","Century Gothic",Avenir,sans-serif}
-.screen-only{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:24px;padding:14px 20px;background:#050505;color:#f5f5f3;font-size:10px;letter-spacing:.12em}
-.screen-only #status{margin-left:auto;color:#999}.screen-only button{border:0;background:none;color:inherit;font:inherit;cursor:pointer}.screen-only button:disabled{opacity:.35;cursor:wait}
-#portfolio{display:flex;flex-direction:column;align-items:center;gap:18px;padding:18px}
-.sheet{position:relative;width:420mm;height:297mm;overflow:hidden;background:#f5f5f3;padding:16mm 18mm;break-after:page;page-break-after:always}
-.sheet.dark{background:#090909;color:#f5f5f1}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:6mm;height:100%}
-.rule{border-top:.35mm solid currentColor;padding-top:3mm}
-.meta,.label,.folio,.caption{font-size:7.5pt;line-height:1.45;letter-spacing:.12em;text-transform:uppercase}
-.folio{position:absolute;right:18mm;bottom:9mm}
-.cover .grid{grid-template-rows:auto 1fr auto}.cover .meta{grid-column:1/-1}
-.cover h1{grid-column:1/10;align-self:center;margin:0;font-size:58pt;line-height:.84;letter-spacing:-.07em}
-.cover .sub{grid-column:1/6;align-self:end;font-size:11pt;line-height:1.55}
-.index h2,.media-page h2,.photo-page h2,.decisions h2{grid-column:1/-1;margin:0;font-size:30pt;letter-spacing:-.04em}
-.index-list{grid-column:1/-1;align-self:center}
-.index-row{display:grid;grid-template-columns:1fr 6fr 4fr 1fr;border-top:.25mm solid #999;padding:4mm 0;font-size:10pt}.index-row:last-child{border-bottom:.25mm solid #999}
-.chapter .top{grid-column:1/-1}.chapter h1{grid-column:1/9;align-self:center;margin:0;font-size:70pt;line-height:.82;letter-spacing:-.075em}
-.chapter .brief{grid-column:9/-1;align-self:center;font-size:15pt;line-height:1.25}
-.chapter .desc{grid-column:1/7;align-self:end;font-size:11.5pt;line-height:1.55}
-.chapter .facts{grid-column:9/-1;align-self:end;font-size:8.5pt;line-height:1.6}
-.essay .top{grid-column:1/-1}.essay .question{grid-column:1/8;align-self:center;font-size:22pt;line-height:1.25}
-.essay .built{grid-column:9/-1;align-self:center;font-size:9.5pt;line-height:1.65}
-.essay .judgement{grid-column:1/9;align-self:end;font-size:11pt;line-height:1.55}
-.media-list{grid-column:1/-1;align-self:center}.media-row{display:grid;grid-template-columns:1fr 10fr 1fr;border-top:.25mm solid #999;padding:5mm 0;font-size:13pt}.media-row:last-child{border-bottom:.25mm solid #999}
-.decision-list{grid-column:3/12;align-self:center}.decision{display:grid;grid-template-columns:1fr 5fr;gap:8mm;border-top:.25mm solid #999;padding:6mm 0}.decision:last-child{border-bottom:.25mm solid #999}.decision p{margin:0;font-size:11pt;line-height:1.5}
-.photo-hero{grid-column:1/10;align-self:center;height:190mm;margin:0}.photo-hero img,.photo-card img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-copy{grid-column:10/-1;align-self:end;font-size:9.5pt;line-height:1.55}
-.photo-contact{grid-column:1/-1;align-self:center;display:grid;grid-template-columns:repeat(4,1fr);gap:7mm 5mm}
-.photo-card{height:80mm;margin:0;position:relative}.photo-card .caption{position:absolute;left:0;bottom:-5mm}
-.closing h2{grid-column:2/11;align-self:center;margin:0;font-size:42pt;line-height:1}.closing p{grid-column:2/7;align-self:end;font-size:11pt;line-height:1.6}
+html,body{margin:0;color:#111;background:#d8d8d3;font-family:Arial,"Microsoft YaHei","Noto Sans SC",sans-serif}
+.screen-only{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:14px 20px;background:#111;color:#f5f5f0;font-size:11px;letter-spacing:.04em}
+.screen-only #status{margin-left:auto}.screen-only a,.screen-only button{color:inherit;border:0;background:transparent;text-decoration:none;font:inherit;cursor:pointer;padding:8px;min-height:36px}
+.screen-only button:disabled{opacity:.45;cursor:wait}.screen-only a:focus-visible,.screen-only button:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+#portfolio{display:flex;align-items:center;flex-direction:column;gap:20px;padding:22px 12px}
+.page-wrap{position:relative;flex:none}
+.sheet{position:absolute;left:0;top:0;width:420mm;height:297mm;background:#f5f5f0;overflow:hidden;transform-origin:top left;color:#111}
+.sheet.dark{background:#0b0b0b;color:#f5f5f0}
+.page-node{position:absolute;margin:0;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.page-node.image img{display:block;width:100%;height:100%;object-fit:contain}
+.page-node.diagram svg{display:block;width:100%;height:100%;object-fit:contain}
+.page-category,.page-subtitle,.page-footer{position:absolute;margin:0;font-size:9pt;line-height:1.45;color:#62625b}
+.dark .page-category,.dark .page-subtitle,.dark .page-footer{color:#c7c7c1}
+.page-category{left:20mm;top:13mm;width:310mm}.page-title{position:absolute;left:20mm;top:27mm;width:380mm;margin:0;font-size:28pt;line-height:1.45;font-weight:600}
+.page-subtitle{left:20mm;top:49mm;width:380mm}
+.page-footer{left:20mm;top:280mm;width:380mm;border-top:.25pt solid currentColor;padding-top:3mm;font-size:8pt;display:flex;justify-content:space-between}
+.page-contact-link{color:inherit;text-decoration:none}
 @media print{
- html,body{width:420mm;margin:0!important;padding:0!important;background:#fff}
- .screen-only{display:none!important}
- #portfolio{display:block!important;width:420mm;padding:0!important;margin:0!important}
- .sheet{display:block!important;width:420mm;height:297mm;margin:0!important;padding:16mm 18mm;box-shadow:none!important;break-after:page;page-break-after:always}
- .sheet:last-child{break-after:auto;page-break-after:auto}
- img{print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .dark,.studio-mini-resource{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+html,body{width:420mm;background:white;margin:0;padding:0}
+.screen-only{display:none!important}
+#portfolio{display:block;padding:0;margin:0;width:420mm}
+.page-wrap{width:420mm!important;height:297mm!important;margin:0;break-after:page;page-break-after:always}
+.page-wrap:last-child{break-after:auto;page-break-after:auto}
+.sheet{position:relative;width:420mm;height:297mm;transform:none!important;box-shadow:none}
+.sheet,*{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
-@media screen{.sheet{box-shadow:0 5px 25px #0002}}
+@media screen{.sheet{box-shadow:0 4px 20px #0002}}
