@@ -9,7 +9,11 @@ async function build(){
  portfolio.innerHTML=plan.pages.map((p,index)=>{
   const nodes=p.nodes.map(n=>{
    const attrs='style="left:'+n.x+'mm;top:'+n.y+'mm;width:'+n.w+'mm;height:'+n.h+'mm;'+(n.type==='text'?'font-size:'+n.size+'pt;'+(n.bold?'font-weight:600;':'')+(n.color?'color:'+n.color+';':''):'')+'"';
-   if(n.type==='image')return '<figure class="page-node image" '+attrs+'><img src="/'+escapeText(n.path)+'" alt="'+escapeText(p.title+' / 项目图像')+'" loading="eager"></figure>';
+   if(n.type==='image'){
+    if(n.crop){const [a,b,d,e]=n.crop,iw=n.originalWidth,ih=n.originalHeight;return '<figure class="page-node diagram" '+attrs+' aria-label="'+escapeText(p.title+' / 原始图纸局部放大')+'"><svg xmlns="http://www.w3.org/2000/svg" viewBox="'+[a*iw,b*ih,(d-a)*iw,(e-b)*ih].join(' ')+'" preserveAspectRatio="xMidYMid meet"><image href="/'+escapeText(n.path)+'" x="0" y="0" width="'+iw+'" height="'+ih+'"/></svg></figure>';}
+    return '<figure class="page-node image" '+attrs+'><img src="/'+escapeText(n.path)+'" alt="'+escapeText(p.title+' / 项目图像')+'" loading="eager"></figure>';
+   }
+   if(n.type==='qr')return '<a class="page-node diagram" '+attrs+' href="https://changhangko.cc" aria-label="作品集网站二维码">'+n.svg+'</a>';
    if(n.type==='diagram')return '<figure class="page-node diagram" '+attrs+' aria-label="'+escapeText(p.title+' / 占位图解')+'">'+n.svg+'</figure>';
    let value=n.text;if(n.source){const [category,field]=n.source.split('.');value=byCategory[category]?.zh?.[field]||value;}
    return '<div class="page-node text" '+attrs+'>'+escapeText(value)+'</div>';

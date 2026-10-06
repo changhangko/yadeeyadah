@@ -1,177 +1,117 @@
 {
-  "version": 3,
+  "version": 4,
   "width": 420,
   "height": 297,
   "language": "zh",
   "pages": [
     {
-      "category": "SELECTED WORKS",
+      "category": "SELECTED WORKS / 2026",
       "title": "GARRY ZHANG",
       "subtitle": "Creative Technologist / Computational Designer",
       "dark": true,
       "nodes": [
         {
           "type": "text",
-          "text": "SPACE\nSYSTEMS\nCOMPUTATION",
+          "text": "SPACE / SYSTEMS\nCOMPUTATION",
           "x": 20,
           "y": 67,
-          "w": 290,
-          "h": 145,
-          "size": 59,
+          "w": 261,
+          "h": 73,
+          "size": 43,
           "color": null,
           "bold": true,
           "source": null
         },
         {
           "type": "text",
-          "text": "Architecture / Digital tools / Research / Photography",
-          "x": 20,
-          "y": 245,
-          "w": 270,
-          "h": 16,
-          "size": 12,
+          "text": "设计、计算与界面\n\n在建筑事务所的专业实践中，将空间问题转化为可以比较、调整和重复使用的工作流。",
+          "x": 303,
+          "y": 68,
+          "w": 97,
+          "h": 62,
+          "size": 14,
           "color": null,
           "bold": false,
           "source": null
         },
         {
           "type": "text",
-          "text": "作品集排版草稿\n含待替换图版",
-          "x": 331,
-          "y": 239,
-          "w": 69,
-          "h": 26,
-          "size": 10,
+          "text": "Bates Smart / Melbourne\nUNSW / Computational Design",
+          "x": 303,
+          "y": 146,
+          "w": 97,
+          "h": 24,
+          "size": 11,
           "color": null,
           "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "PROFILE + INDEX",
-      "title": "设计、计算与界面",
-      "subtitle": "SELECTED WORKS / 2026",
-      "dark": false,
-      "nodes": [
-        {
-          "type": "text",
-          "text": "我把建筑设计中的问题转化成可以比较、调整和重复使用的工具与界面。",
-          "x": 20,
-          "y": 60,
-          "w": 170,
-          "h": 42,
-          "size": 23,
-          "color": null,
-          "bold": true,
           "source": null
         },
         {
           "type": "text",
-          "text": "Creative Technologist / Computational Designer\nBates Smart / Melbourne\nUNSW / Computational Design",
+          "text": "02–03  SYSTEM / 信息与城市数据\n04–05  CODE / 参数化与工具\n06–07  TODAI / 研究与决策支持\n08–10  SPACE / 建筑实践\n11  OBSERVATION / 摄影",
           "x": 20,
-          "y": 125,
-          "w": 160,
-          "h": 38,
+          "y": 155,
+          "w": 265,
+          "h": 45,
           "size": 13,
           "color": null,
           "bold": false,
           "source": null
         },
         {
+          "type": "image",
+          "path": "assets/architecture/denmark-hero.webp",
+          "x": 20,
+          "y": 216,
+          "w": 111,
+          "h": 46
+        },
+        {
           "type": "text",
-          "text": "阅读顺序\nSYSTEM 03–06\nCODE 07–10\nTODAI 11–14\nSPACE 15–17\nOBSERVATION 18–19",
-          "x": 230,
-          "y": 58,
-          "w": 165,
-          "h": 149,
-          "size": 17,
+          "text": "SPACE / 60 DENMARK STREET",
+          "x": 20,
+          "y": 265,
+          "w": 111,
+          "h": 8,
+          "size": 8,
           "color": null,
           "bold": false,
           "source": null
-        },
-        {
-          "type": "text",
-          "text": "changhangko.cc\nzhanghangge@gmail.com",
-          "x": 20,
-          "y": 231,
-          "w": 170,
-          "h": 24,
-          "size": 11,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "SYSTEM / 01",
-      "title": "从分散入口到设计任务",
-      "subtitle": "Studio Library / Information Architecture",
-      "dark": false,
-      "nodes": [
-        {
-          "type": "text",
-          "text": "事务所里的信息通常很多，也很散。工具、模型、城市数据、文件夹都各有一套逻辑。我做这类项目时，想解决的其实很简单：一个人带着问题进来，能不能少找几层、少猜几次，更快拿到真正有用的东西。",
-          "x": 20,
-          "y": 57,
-          "w": 103,
-          "h": 67,
-          "size": 12,
-          "color": null,
-          "bold": false,
-          "source": "system.desc"
-        },
-        {
-          "type": "text",
-          "text": "我的参与 / MY CONTRIBUTION",
-          "x": 20,
-          "y": 140,
-          "w": 103,
-          "h": 9,
-          "size": 9,
-          "color": null,
-          "bold": true,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "系统设计 / 信息架构 / UX / 开发",
-          "x": 20,
-          "y": 153,
-          "w": 103,
-          "h": 36,
-          "size": 10,
-          "color": null,
-          "bold": false,
-          "source": "system.role"
-        },
-        {
-          "type": "text",
-          "text": "HTML / CSS / JS / MAPBOX / RHINO / GRASSHOPPER",
-          "x": 20,
-          "y": 219,
-          "w": 103,
-          "h": 30,
-          "size": 9,
-          "color": null,
-          "bold": false,
-          "source": "system.tools"
         },
         {
           "type": "image",
-          "path": "assets/studio-library/existing-navigation.png",
-          "x": 145,
-          "y": 59,
-          "w": 255,
-          "h": 151
+          "path": "assets/parametric/435-bourke-highlight.jpg",
+          "x": 155,
+          "y": 213,
+          "w": 98,
+          "h": 49
         },
         {
           "type": "text",
-          "text": "原有导航截图 / EXISTING NAVIGATION",
-          "x": 145,
-          "y": 213,
-          "w": 255,
+          "text": "CODE / PV FACADE",
+          "x": 155,
+          "y": 265,
+          "w": 98,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/photography/obs_001-1400.webp",
+          "x": 276,
+          "y": 216,
+          "w": 124,
+          "h": 46
+        },
+        {
+          "type": "text",
+          "text": "OBSERVATION / PHOTOGRAPHY",
+          "x": 276,
+          "y": 265,
+          "w": 124,
           "h": 8,
           "size": 8,
           "color": null,
@@ -180,12 +120,116 @@
         },
         {
           "type": "text",
-          "text": "资源并不缺，入口却各有一套分类。整理的重点是缩短“我现在要做什么”到“找到可用资源”之间的路径。",
-          "x": 145,
-          "y": 226,
-          "w": 245,
-          "h": 31,
+          "text": "排版草稿 / 缺原始素材的图版仍为占位",
+          "x": 303,
+          "y": 183,
+          "w": 97,
+          "h": 14,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        }
+      ]
+    },
+    {
+      "category": "SYSTEM / 01",
+      "title": "Studio Library",
+      "subtitle": "Information Architecture / Task-led Interface",
+      "dark": false,
+      "nodes": [
+        {
+          "type": "image",
+          "path": "assets/studio-library/existing-navigation.png",
+          "x": 20,
+          "y": 62,
+          "w": 114,
+          "h": 108
+        },
+        {
+          "type": "text",
+          "text": "01 / 原有入口：软件、页面和文件各有分类",
+          "x": 20,
+          "y": 173,
+          "w": 114,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"25\" y=\"30\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">FROM FILE LOCATION TO DESIGN INTENT</text><rect x=\"25\" y=\"70\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"99\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">SOFTWARE</text><line x1=\"195\" y1=\"95\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"143\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"172\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">PAGES</text><line x1=\"195\" y1=\"168\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"216\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"245\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">DOCUMENTS</text><line x1=\"195\" y1=\"241\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"289\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"318\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">LINKS</text><line x1=\"195\" y1=\"314\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"285\" y=\"174\" width=\"150\" height=\"76\" fill=\"#111\" stroke=\"#111\" stroke-width=\"1\"/><text x=\"305\" y=\"218\" font-family=\"Arial,sans-serif\" font-size=\"17\" fill=\"#fff\">DESIGN TASK</text><line x1=\"435\" y1=\"212\" x2=\"500\" y2=\"128\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"500\" y=\"85\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"511\" y=\"128\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">CITY MODELS</text><text x=\"511\" y=\"152\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"645\" y2=\"128\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"645\" y=\"85\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"656\" y=\"128\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">MATERIALS</text><text x=\"656\" y=\"152\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"500\" y2=\"276\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"500\" y=\"233\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"511\" y=\"276\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">FAÇADE</text><text x=\"511\" y=\"300\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"645\" y2=\"276\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"645\" y=\"233\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"656\" y=\"276\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">COLOUR</text><text x=\"656\" y=\"300\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><text x=\"25\" y=\"405\" font-family=\"Arial,sans-serif\" font-size=\"11\" fill=\"#555\">STRUCTURE RECONSTRUCTION / REPLACE WITH FINAL IA</text></svg>",
+          "x": 156,
+          "y": 61,
+          "w": 244,
+          "h": 121
+        },
+        {
+          "type": "text",
+          "text": "02 / 按任务重新组织入口，分类关系为重建示意",
+          "x": 156,
+          "y": 186,
+          "w": 244,
+          "h": 15,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "问题与参与\n设计师需要先猜资料在哪里，再去找资源。我的工作是整理信息架构、设计入口和开发前端原型。",
+          "x": 20,
+          "y": 196,
+          "w": 115,
+          "h": 47,
           "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "HTML / CSS / JS\n分类、浏览、搜索与详情",
+          "x": 20,
+          "y": 250,
+          "w": 115,
+          "h": 20,
+          "size": 10,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"20\" y=\"25\" width=\"760\" height=\"370\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><line x1=\"20\" y1=\"78\" x2=\"780\" y2=\"78\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><text x=\"43\" y=\"58\" font-family=\"Arial,sans-serif\" font-size=\"19\" fill=\"#111\">STUDIO LIBRARY</text><text x=\"550\" y=\"56\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">SCREENSHOT PLACEHOLDER</text><rect x=\"45\" y=\"108\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"61\" y=\"131\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><text x=\"61\" y=\"173\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">CITY MODELS</text><rect x=\"420\" y=\"108\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"436\" y=\"131\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><text x=\"436\" y=\"173\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">MATERIALS</text><rect x=\"45\" y=\"234\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"61\" y=\"257\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><text x=\"61\" y=\"299\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">FAÇADE</text><rect x=\"420\" y=\"234\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"436\" y=\"257\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><text x=\"436\" y=\"299\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">COLOUR</text><text x=\"43\" y=\"421\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">REPLACE WITH THE ACTUAL PROTOTYPE SCREEN</text></svg>",
+          "x": 157,
+          "y": 204,
+          "w": 155,
+          "h": 66
+        },
+        {
+          "type": "text",
+          "text": "03 / 当前界面截图待补，保留首页图版位置",
+          "x": 157,
+          "y": 274,
+          "w": 155,
+          "h": 15,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "操作路径\n选择资源\n缩小范围\n查看详情\n继续使用\n\n减少第一层需要理解的内容。",
+          "x": 332,
+          "y": 204,
+          "w": 68,
+          "h": 66,
+          "size": 11,
           "color": null,
           "bold": false,
           "source": null
@@ -194,24 +238,36 @@
     },
     {
       "category": "SYSTEM / 02",
-      "title": "重新组织入口",
-      "subtitle": "Task-led Information Architecture",
+      "title": "City as Data",
+      "subtitle": "Melbourne City Model / Rhino → Spatial Data → Web",
       "dark": false,
       "nodes": [
         {
-          "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"25\" y=\"30\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">FROM FILE LOCATION TO DESIGN INTENT</text><rect x=\"25\" y=\"70\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"99\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">SOFTWARE</text><line x1=\"195\" y1=\"95\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"143\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"172\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">PAGES</text><line x1=\"195\" y1=\"168\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"216\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"245\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">DOCUMENTS</text><line x1=\"195\" y1=\"241\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"25\" y=\"289\" width=\"170\" height=\"49\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"318\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">LINKS</text><line x1=\"195\" y1=\"314\" x2=\"285\" y2=\"213\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"285\" y=\"174\" width=\"150\" height=\"76\" fill=\"#111\" stroke=\"#111\" stroke-width=\"1\"/><text x=\"305\" y=\"218\" font-family=\"Arial,sans-serif\" font-size=\"17\" fill=\"#fff\">DESIGN TASK</text><line x1=\"435\" y1=\"212\" x2=\"500\" y2=\"128\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"500\" y=\"85\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"511\" y=\"128\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">CITY MODELS</text><text x=\"511\" y=\"152\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"645\" y2=\"128\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"645\" y=\"85\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"656\" y=\"128\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">MATERIALS</text><text x=\"656\" y=\"152\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"500\" y2=\"276\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"500\" y=\"233\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"511\" y=\"276\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">FAÇADE</text><text x=\"511\" y=\"300\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><line x1=\"435\" y1=\"212\" x2=\"645\" y2=\"276\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><rect x=\"645\" y=\"233\" width=\"130\" height=\"86\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"656\" y=\"276\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#111\">COLOUR</text><text x=\"656\" y=\"300\" font-family=\"Arial,sans-serif\" font-size=\"10\" fill=\"#555\">FIND / INSPECT</text><text x=\"25\" y=\"405\" font-family=\"Arial,sans-serif\" font-size=\"11\" fill=\"#555\">STRUCTURE RECONSTRUCTION / REPLACE WITH FINAL IA</text></svg>",
+          "type": "text",
+          "text": "将空间模型和城市信息带到浏览器，让使用者通过地点和可用范围找到需要的内容。",
           "x": 20,
-          "y": 57,
-          "w": 380,
-          "h": 183
+          "y": 61,
+          "w": 222,
+          "h": 28,
+          "size": 15,
+          "color": null,
+          "bold": true,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"26\" y=\"32\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">MODEL / PARCEL / WEB LAYERS</text><rect x=\"26\" y=\"60\" width=\"746\" height=\"300\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\"/><text x=\"189\" y=\"218\" font-family=\"Arial,sans-serif\" font-size=\"19\" fill=\"#555\">SOURCE MODEL GEOMETRY TO BE ADDED</text><line x1=\"26\" y1=\"381\" x2=\"772\" y2=\"381\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><text x=\"26\" y=\"412\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">GEOMETRY / ATTRIBUTES / COVERAGE</text></svg>",
+          "x": 20,
+          "y": 99,
+          "w": 224,
+          "h": 122
         },
         {
           "type": "text",
-          "text": "信息架构重建示意。之后可替换为最终分类树和完整用户路径。",
+          "text": "模型图版占位：待补墨尔本真实几何与图层",
           "x": 20,
-          "y": 244,
-          "w": 380,
+          "y": 225,
+          "w": 224,
           "h": 15,
           "size": 9,
           "color": null,
@@ -220,92 +276,52 @@
         },
         {
           "type": "text",
-          "text": "设计判断：优先展示任务入口，再逐层打开资源与详情。",
-          "x": 20,
-          "y": 260,
-          "w": 380,
-          "h": 14,
+          "text": "图层与数据\n建筑几何\n地点与范围\n可用资源\n空间属性\n\n这些内容应与实际模型一一对应。",
+          "x": 266,
+          "y": 63,
+          "w": 134,
+          "h": 59,
           "size": 12,
           "color": null,
           "bold": false,
           "source": null
-        }
-      ]
-    },
-    {
-      "category": "SYSTEM / 03",
-      "title": "界面怎样支持下一步操作",
-      "subtitle": "Studio Library / Interface States",
-      "dark": false,
-      "nodes": [
+        },
         {
           "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"20\" y=\"25\" width=\"760\" height=\"370\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><line x1=\"20\" y1=\"78\" x2=\"780\" y2=\"78\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><text x=\"43\" y=\"58\" font-family=\"Arial,sans-serif\" font-size=\"19\" fill=\"#111\">STUDIO LIBRARY</text><text x=\"550\" y=\"56\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">SCREENSHOT PLACEHOLDER</text><rect x=\"45\" y=\"108\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"61\" y=\"131\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><text x=\"61\" y=\"173\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">CITY MODELS</text><rect x=\"420\" y=\"108\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"436\" y=\"131\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><text x=\"436\" y=\"173\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">MATERIALS</text><rect x=\"45\" y=\"234\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"61\" y=\"257\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><text x=\"61\" y=\"299\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">FAÇADE</text><rect x=\"420\" y=\"234\" width=\"330\" height=\"105\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"436\" y=\"257\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><text x=\"436\" y=\"299\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">COLOUR</text><text x=\"43\" y=\"421\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">REPLACE WITH THE ACTUAL PROTOTYPE SCREEN</text></svg>",
-          "x": 20,
-          "y": 57,
-          "w": 271,
-          "h": 173
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"20\" y=\"25\" width=\"760\" height=\"370\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><line x1=\"20\" y1=\"78\" x2=\"780\" y2=\"78\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><text x=\"43\" y=\"58\" font-family=\"Arial,sans-serif\" font-size=\"22\" fill=\"#111\">MELBOURNE CITY MODEL</text><line x1=\"211\" y1=\"78\" x2=\"211\" y2=\"395\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" /><text x=\"43\" y=\"110\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#555\">LAYERS</text><text x=\"43\" y=\"161\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#555\">BUILDINGS</text><text x=\"43\" y=\"211\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#555\">COVERAGE</text><text x=\"43\" y=\"261\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#555\">ATTRIBUTES</text><text x=\"262\" y=\"230\" font-family=\"Arial,sans-serif\" font-size=\"19\" fill=\"#555\">ACTUAL MAP VIEW TO BE ADDED</text><text x=\"20\" y=\"428\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#555\">BROWSER SCREENSHOT PLACEHOLDER</text></svg>",
+          "x": 263,
+          "y": 143,
+          "w": 137,
+          "h": 70
         },
         {
           "type": "text",
-          "text": "待补：当前原型的首页、筛选和详情截图。此图为布局占位。",
+          "text": "网页截图占位 / 待替换为实际地图界面",
+          "x": 263,
+          "y": 217,
+          "w": 137,
+          "h": 15,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 185\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"13\" y=\"45\" width=\"178\" height=\"67\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"26\" y=\"66\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><text x=\"26\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">RHINO GEOMETRY</text><line x1=\"191\" y1=\"79\" x2=\"212\" y2=\"79\" fill=\"none\" stroke=\"#111\" stroke-width=\"1\" /><rect x=\"212\" y=\"45\" width=\"178\" height=\"67\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"225\" y=\"66\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><text x=\"225\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">SPATIAL DATA</text><line x1=\"390\" y1=\"79\" x2=\"411\" y2=\"79\" fill=\"none\" stroke=\"#111\" stroke-width=\"1\" /><rect x=\"411\" y=\"45\" width=\"178\" height=\"67\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"424\" y=\"66\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><text x=\"424\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">WEB LAYERS</text><line x1=\"589\" y1=\"79\" x2=\"610\" y2=\"79\" fill=\"none\" stroke=\"#111\" stroke-width=\"1\" /><rect x=\"610\" y=\"45\" width=\"178\" height=\"67\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"623\" y=\"66\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><text x=\"623\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">BROWSER VIEW</text><text x=\"13\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#555\">GEOMETRY + ATTRIBUTES → INTERACTIVE BROWSING</text></svg>",
           "x": 20,
           "y": 234,
-          "w": 271,
+          "w": 380,
+          "h": 35
+        },
+        {
+          "type": "text",
+          "text": "数据转换流程示意：原始模型、导出方式和最终图层需在补素材时核对",
+          "x": 20,
+          "y": 273,
+          "w": 380,
           "h": 15,
           "size": 9,
-          "color": null,
-          "bold": false,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "01 / 选择资源\nCity Models / Materials / Façade / Colour\n\n02 / 缩小范围\n搜索与筛选\n\n03 / 查看并使用\n详情与后续操作",
-          "x": 312,
-          "y": 66,
-          "w": 88,
-          "h": 151,
-          "size": 13,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "SYSTEM / 04",
-      "title": "把城市模型带到浏览器",
-      "subtitle": "City as Data / Melbourne City Model",
-      "dark": false,
-      "nodes": [
-        {
-          "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"26\" y=\"32\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">MODEL / PARCEL / WEB LAYERS</text><path d=\"M 345.8 166.6 L 377.0 182.2 L 377.0 161.89999999999998 L 345.8 146.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 408.2 166.6 L 377.0 182.2 L 377.0 161.89999999999998 L 408.2 146.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 377.0 130.7 L 408.2 146.3 L 377.0 161.89999999999998 L 345.8 146.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 297.8 190.6 L 329.0 206.2 L 329.0 177.2 L 297.8 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 360.2 190.6 L 329.0 206.2 L 329.0 177.2 L 360.2 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 329.0 146.0 L 360.2 161.6 L 329.0 177.2 L 297.8 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 249.8 214.6 L 281.0 230.2 L 281.0 192.5 L 249.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 312.2 214.6 L 281.0 230.2 L 281.0 192.5 L 312.2 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 281.0 161.3 L 312.2 176.9 L 281.0 192.5 L 249.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 201.79999999999998 238.6 L 233.0 254.2 L 233.0 233.89999999999998 L 201.79999999999998 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 264.2 238.6 L 233.0 254.2 L 233.0 233.89999999999998 L 264.2 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 233.0 202.7 L 264.2 218.3 L 233.0 233.89999999999998 L 201.79999999999998 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 393.8 190.6 L 425.0 206.2 L 425.0 177.2 L 393.8 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 456.2 190.6 L 425.0 206.2 L 425.0 177.2 L 456.2 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 425.0 146.0 L 456.2 161.6 L 425.0 177.2 L 393.8 161.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 345.8 214.6 L 377.0 230.2 L 377.0 192.5 L 345.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 408.2 214.6 L 377.0 230.2 L 377.0 192.5 L 408.2 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 377.0 161.3 L 408.2 176.9 L 377.0 192.5 L 345.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 297.8 238.6 L 329.0 254.2 L 329.0 233.89999999999998 L 297.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 360.2 238.6 L 329.0 254.2 L 329.0 233.89999999999998 L 360.2 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 329.0 202.7 L 360.2 218.3 L 329.0 233.89999999999998 L 297.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 249.8 262.6 L 281.0 278.2 L 281.0 249.2 L 249.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 312.2 262.6 L 281.0 278.2 L 281.0 249.2 L 312.2 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 281.0 218.0 L 312.2 233.60000000000002 L 281.0 249.2 L 249.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 441.8 214.6 L 473.0 230.2 L 473.0 192.5 L 441.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 504.2 214.6 L 473.0 230.2 L 473.0 192.5 L 504.2 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 473.0 161.3 L 504.2 176.9 L 473.0 192.5 L 441.8 176.9 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 393.8 238.6 L 425.0 254.2 L 425.0 233.89999999999998 L 393.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 456.2 238.6 L 425.0 254.2 L 425.0 233.89999999999998 L 456.2 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 425.0 202.7 L 456.2 218.3 L 425.0 233.89999999999998 L 393.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 345.8 262.6 L 377.0 278.2 L 377.0 249.2 L 345.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 408.2 262.6 L 377.0 278.2 L 377.0 249.2 L 408.2 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 377.0 218.0 L 408.2 233.60000000000002 L 377.0 249.2 L 345.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 297.8 286.6 L 329.0 302.2 L 329.0 264.5 L 297.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 360.2 286.6 L 329.0 302.2 L 329.0 264.5 L 360.2 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 329.0 233.3 L 360.2 248.90000000000003 L 329.0 264.5 L 297.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 489.8 238.6 L 521.0 254.2 L 521.0 233.89999999999998 L 489.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 552.2 238.6 L 521.0 254.2 L 521.0 233.89999999999998 L 552.2 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 521.0 202.7 L 552.2 218.3 L 521.0 233.89999999999998 L 489.8 218.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 441.8 262.6 L 473.0 278.2 L 473.0 249.2 L 441.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 504.2 262.6 L 473.0 278.2 L 473.0 249.2 L 504.2 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 473.0 218.0 L 504.2 233.60000000000002 L 473.0 249.2 L 441.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 393.8 286.6 L 425.0 302.2 L 425.0 264.5 L 393.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 456.2 286.6 L 425.0 302.2 L 425.0 264.5 L 456.2 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 425.0 233.3 L 456.2 248.90000000000003 L 425.0 264.5 L 393.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 345.8 310.6 L 377.0 326.2 L 377.0 305.9 L 345.8 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 408.2 310.6 L 377.0 326.2 L 377.0 305.9 L 408.2 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 377.0 274.7 L 408.2 290.3 L 377.0 305.9 L 345.8 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 537.8 262.6 L 569.0 278.2 L 569.0 249.2 L 537.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 600.2 262.6 L 569.0 278.2 L 569.0 249.2 L 600.2 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 569.0 218.0 L 600.2 233.60000000000002 L 569.0 249.2 L 537.8 233.60000000000002 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 489.8 286.6 L 521.0 302.2 L 521.0 264.5 L 489.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 552.2 286.6 L 521.0 302.2 L 521.0 264.5 L 552.2 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 521.0 233.3 L 552.2 248.90000000000003 L 521.0 264.5 L 489.8 248.90000000000003 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 441.8 310.6 L 473.0 326.2 L 473.0 305.9 L 441.8 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 504.2 310.6 L 473.0 326.2 L 473.0 305.9 L 504.2 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 473.0 274.7 L 504.2 290.3 L 473.0 305.9 L 441.8 290.3 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 393.8 334.6 L 425.0 350.2 L 425.0 321.2 L 393.8 305.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 456.2 334.6 L 425.0 350.2 L 425.0 321.2 L 456.2 305.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 425.0 290.0 L 456.2 305.6 L 425.0 321.2 L 393.8 305.6 Z \" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"26\" y=\"405\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">CITY MODEL PLACEHOLDER / NOT MELBOURNE GEOMETRY</text></svg>",
-          "x": 20,
-          "y": 60,
-          "w": 274,
-          "h": 172
-        },
-        {
-          "type": "text",
-          "text": "建筑几何为占位，不代表墨尔本实测数据。待补真实模型、地图与网页截图。",
-          "x": 20,
-          "y": 236,
-          "w": 274,
-          "h": 15,
-          "size": 9,
-          "color": null,
-          "bold": false,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "Rhino → 空间数据 → Mapbox → Web\n\n把模型中的空间信息转成可以在浏览器里查看和使用的界面。\n\n待补素材\n城市模型导出\n真实地图截图\n交互状态与图例",
-          "x": 313,
-          "y": 62,
-          "w": 87,
-          "h": 168,
-          "size": 12,
           "color": null,
           "bold": false,
           "source": null
@@ -315,23 +331,43 @@
     {
       "category": "CODE / 01",
       "title": "435 Bourke Street",
-      "subtitle": "Built PV Facade / Melbourne",
+      "subtitle": "Built PV Facade / Grasshopper + Rhino",
       "dark": false,
       "nodes": [
         {
           "type": "image",
           "path": "assets/parametric/435-bourke-original.jpg",
           "x": 20,
-          "y": 57,
-          "w": 208,
-          "h": 200
+          "y": 61,
+          "w": 131,
+          "h": 130
         },
         {
           "type": "text",
-          "text": "建成项目照片 / 原始项目素材",
+          "text": "01 / 项目原始照片",
           "x": 20,
-          "y": 260,
-          "w": 208,
+          "y": 194,
+          "w": 131,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/parametric/435-bourke-highlight.jpg",
+          "x": 298,
+          "y": 61,
+          "w": 102,
+          "h": 130
+        },
+        {
+          "type": "text",
+          "text": "02 / PV 外立面位置高亮",
+          "x": 298,
+          "y": 194,
+          "w": 102,
           "h": 8,
           "size": 8,
           "color": null,
@@ -340,23 +376,11 @@
         },
         {
           "type": "text",
-          "text": "从曲面几何到可重复的面板流程",
-          "x": 250,
+          "text": "参与工作\n建立与调整参数化流程，将曲面几何分割为独立 PV 面板，支持设计深化与施工图。",
+          "x": 172,
           "y": 65,
-          "w": 150,
-          "h": 39,
-          "size": 26,
-          "color": null,
-          "bold": true,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "使用 Grasshopper 引用 Rhino 外立面几何，建立水平高度、基础曲线和锚点，再将曲面分割为独立 PV 面板。",
-          "x": 250,
-          "y": 123,
-          "w": 139,
-          "h": 48,
+          "w": 109,
+          "h": 49,
           "size": 13,
           "color": null,
           "bold": false,
@@ -364,12 +388,44 @@
         },
         {
           "type": "text",
-          "text": "参与工作\nComputational Design / Grasshopper\n\n产出\n面板几何、设计深化与施工图支持",
-          "x": 250,
-          "y": 205,
-          "w": 139,
-          "h": 50,
-          "size": 11,
+          "text": "控制关系\n水平高度与基础曲线\n锚点、向量和插值\n面板分割与几何输出",
+          "x": 172,
+          "y": 132,
+          "w": 109,
+          "h": 51,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 193\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"15\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><path d=\"M 15 59 C 43 38 75 85 115 60 L 115 131 C 75 157 43 111 15 134 Z \" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"15\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">REFERENCE</text><text x=\"127\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><line x1=\"127\" y1=\"57\" x2=\"227\" y2=\"57\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><line x1=\"127\" y1=\"82\" x2=\"227\" y2=\"82\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><line x1=\"127\" y1=\"107\" x2=\"227\" y2=\"107\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><line x1=\"127\" y1=\"132\" x2=\"227\" y2=\"132\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><text x=\"127\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">LEVELS</text><text x=\"239\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><path d=\"M 239 55 C 267 30 299 91 339 53\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 239 82 C 267 57 299 112 339 80\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"239\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">CURVES</text><text x=\"351\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><path d=\"M 351 55 C 379 30 411 91 451 53\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 351 82 C 379 57 411 112 451 80\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><circle cx=\"351\" cy=\"63\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"351\" y1=\"63\" x2=\"351\" y2=\"38\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><circle cx=\"398\" cy=\"73\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"398\" y1=\"73\" x2=\"398\" y2=\"38\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><circle cx=\"445\" cy=\"83\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"445\" y1=\"83\" x2=\"445\" y2=\"38\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><text x=\"351\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">ANCHORS</text><text x=\"463\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">05</text><path d=\"M 463 55 C 491 30 523 91 563 53\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 82 C 491 57 523 112 563 80\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 109 C 491 84 523 133 563 107\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 136 C 491 111 523 154 563 134\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><circle cx=\"463\" cy=\"63\" r=\"2\" fill=\"#777\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"510\" cy=\"73\" r=\"2\" fill=\"#777\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"557\" cy=\"83\" r=\"2\" fill=\"#777\" stroke=\"none\" stroke-width=\"1\"/><text x=\"463\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">INTERPOLATE</text><text x=\"575\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">06</text><path d=\"M 575 55 C 603 30 635 91 675 53\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 82 C 603 57 635 112 675 80\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 109 C 603 84 635 133 675 107\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 136 C 603 111 635 154 675 134\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 50 L 575 135\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 599 50 L 599 135\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 623 50 L 623 135\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 647 50 L 647 135\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 671 50 L 671 135\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"575\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">DIVIDE</text><text x=\"687\" y=\"12\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">07</text><path d=\"M 687 62 L 712 54 L 712 122 L 687 131 Z \" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 720 68 L 745 60 L 745 128 L 720 137 Z \" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 753 74 L 778 66 L 778 134 L 753 143 Z \" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"687\" y=\"183\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">PANELS</text></svg>",
+          "x": 20,
+          "y": 210,
+          "w": 380,
+          "h": 54
+        },
+        {
+          "type": "text",
+          "text": "03 / 七步构建顺序；图中曲线为占位，待实际 Grasshopper 导出替换",
+          "x": 20,
+          "y": 267,
+          "w": 380,
+          "h": 12,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "方法说明：保持每一步的输入、控制条件和输出可追溯。",
+          "x": 20,
+          "y": 199,
+          "w": 380,
+          "h": 9,
+          "size": 10,
           "color": null,
           "bold": false,
           "source": null
@@ -378,104 +434,44 @@
     },
     {
       "category": "CODE / 02",
-      "title": "连续曲面怎样成为面板",
-      "subtitle": "435 Bourke Street / Parametric Process",
-      "dark": false,
-      "nodes": [
-        {
-          "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><text x=\"15\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><path d=\"M 15 110 C 43 85 75 146 115 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 15 137 C 43 112 75 167 115 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 15 164 C 43 139 75 188 115 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 15 191 C 43 166 75 209 115 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"15\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">REFERENCE</text><text x=\"127\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><path d=\"M 127 110 C 155 85 187 146 227 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 127 137 C 155 112 187 167 227 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 127 164 C 155 139 187 188 227 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 127 191 C 155 166 187 209 227 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"127\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">LEVELS</text><text x=\"239\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><path d=\"M 239 110 C 267 85 299 146 339 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 239 137 C 267 112 299 167 339 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 239 164 C 267 139 299 188 339 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 239 191 C 267 166 299 209 339 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"239\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">CURVES</text><text x=\"351\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><path d=\"M 351 110 C 379 85 411 146 451 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 351 137 C 379 112 411 167 451 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 351 164 C 379 139 411 188 451 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 351 191 C 379 166 411 209 451 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><circle cx=\"351\" cy=\"118\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"398\" cy=\"128\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"445\" cy=\"138\" r=\"3\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"351\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">ANCHORS</text><text x=\"463\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">05</text><path d=\"M 463 110 C 491 85 523 146 563 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 137 C 491 112 523 167 563 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 164 C 491 139 523 188 563 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 463 191 C 491 166 523 209 563 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"463\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">INTERPOLATE</text><text x=\"575\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">06</text><path d=\"M 575 110 C 603 85 635 146 675 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 137 C 603 112 635 167 675 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 164 C 603 139 635 188 675 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 191 C 603 166 635 209 675 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 575 99 L 575 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 599 99 L 599 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 623 99 L 623 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 647 99 L 647 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 671 99 L 671 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"575\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">DIVIDE</text><text x=\"687\" y=\"67\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">07</text><path d=\"M 687 110 C 715 85 747 146 787 108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 687 137 C 715 112 747 167 787 135\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 687 164 C 715 139 747 188 787 162\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 687 191 C 715 166 747 209 787 189\" fill=\"none\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M 687 99 L 687 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 711 99 L 711 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 735 99 L 735 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 759 99 L 759 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><path d=\"M 783 99 L 783 200\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"687\" y=\"238\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">PANELS</text><text x=\"15\" y=\"314\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">CURVED SURFACE / CONTROL / PANELISATION</text><text x=\"15\" y=\"394\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">GEOMETRY PLACEHOLDER / REPLACE WITH GRASSHOPPER EXPORT</text></svg>",
-          "x": 20,
-          "y": 58,
-          "w": 380,
-          "h": 184
-        },
-        {
-          "type": "text",
-          "text": "七步曲面图为几何占位。之后逐格替换成实际 Grasshopper 曲线、锚点和面板输出。",
-          "x": 20,
-          "y": 246,
-          "w": 380,
-          "h": 15,
-          "size": 9,
-          "color": null,
-          "bold": false,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "引用几何 → 定义高度 → 基础曲线 → 锚点与向量 → 曲线插值 → 分割面板 → PV 面板",
-          "x": 20,
-          "y": 263,
-          "w": 380,
-          "h": 13,
-          "size": 12,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "CODE / 03",
-      "title": "让重复操作成为可用工具",
-      "subtitle": "Rhino Tabs / Internal Tool",
+      "title": "Rhino Tabs + Computational Workflows",
+      "subtitle": "Internal Tools / Parameters / Dependencies",
       "dark": false,
       "nodes": [
         {
           "type": "diagram",
           "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"23\" y=\"31\" width=\"754\" height=\"337\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"41\" y=\"61\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">RHINO TABS / ACTUAL INTERFACE TO BE ADDED</text><rect x=\"42\" y=\"89\" width=\"155\" height=\"40\" fill=\"#f5f5f0\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"56\" y=\"114\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">MODEL</text><rect x=\"216\" y=\"89\" width=\"155\" height=\"40\" fill=\"#f5f5f0\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"230\" y=\"114\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">DETAIL</text><rect x=\"390\" y=\"89\" width=\"155\" height=\"40\" fill=\"#f5f5f0\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"404\" y=\"114\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">VIEWS</text><rect x=\"564\" y=\"89\" width=\"155\" height=\"40\" fill=\"#f5f5f0\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"578\" y=\"114\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">EXPORT</text><rect x=\"42\" y=\"150\" width=\"515\" height=\"187\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><rect x=\"580\" y=\"150\" width=\"176\" height=\"187\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"65\" y=\"176\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">MODEL VIEWPORT</text><text x=\"597\" y=\"176\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">TOOL OPTIONS</text><text x=\"23\" y=\"410\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">PLACEHOLDER / NO PRODUCT SCREENSHOT AVAILABLE</text></svg>",
           "x": 20,
-          "y": 57,
-          "w": 275,
-          "h": 173
+          "y": 61,
+          "w": 230,
+          "h": 118
         },
         {
           "type": "text",
-          "text": "待补 Rhino Tabs 实际界面、操作前后对比及你的开发说明。",
+          "text": "01 / Rhino Tabs 截图占位，待补实际操作界面",
           "x": 20,
-          "y": 234,
-          "w": 275,
+          "y": 183,
+          "w": 230,
           "h": 15,
           "size": 9,
           "color": null,
           "bold": false,
           "source": null
         },
-        {
-          "type": "text",
-          "text": "把常用动作放在容易找到的位置，保留可调整的参数，让工具减少重复工作。\n\n这页将展示\n工具解决的问题\n实际操作界面\n关键交互\n你的具体贡献",
-          "x": 314,
-          "y": 65,
-          "w": 86,
-          "h": 162,
-          "size": 13,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "CODE / 04",
-      "title": "让参数和依赖关系保持可见",
-      "subtitle": "Grasshopper / Python / Workflow",
-      "dark": false,
-      "nodes": [
         {
           "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"31\" y=\"47\" width=\"154\" height=\"62\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"47\" y=\"81\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#111\">GEOMETRY</text><path d=\"M 185 78 C 275 78 240 187 336 187\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><rect x=\"31\" y=\"163\" width=\"154\" height=\"62\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"47\" y=\"197\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#111\">LEVELS</text><path d=\"M 185 194 C 275 194 240 187 336 187\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><rect x=\"31\" y=\"279\" width=\"154\" height=\"62\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"47\" y=\"313\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#111\">VECTORS</text><path d=\"M 185 310 C 275 310 240 187 336 187\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><rect x=\"336\" y=\"156\" width=\"179\" height=\"62\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"350\" y=\"192\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#111\">INTERPOLATE</text><rect x=\"605\" y=\"156\" width=\"159\" height=\"62\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"617\" y=\"191\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">DIVIDE / OUTPUT</text><line x1=\"515\" y1=\"187\" x2=\"605\" y2=\"187\" fill=\"none\" stroke=\"#111\" stroke-width=\"1\" /><path d=\"M 688 218 L 688 316 L 424 316 L 424 219\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"472\" y=\"341\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">ADJUST PARAMETERS</text><text x=\"31\" y=\"411\" font-family=\"Arial,sans-serif\" font-size=\"11\" fill=\"#555\">PROCESS RECONSTRUCTION / NOT A GRASSHOPPER DEFINITION</text></svg>",
-          "x": 20,
-          "y": 57,
-          "w": 380,
-          "h": 183
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 310\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"16\" y=\"39\" width=\"117\" height=\"43\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"25\" y=\"65\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">GEOMETRY</text><path d=\"M 133 61 C 175 61 166 138 214 138\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><rect x=\"16\" y=\"118\" width=\"117\" height=\"43\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"25\" y=\"144\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">LEVELS</text><path d=\"M 133 140 C 175 140 166 138 214 138\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><rect x=\"16\" y=\"197\" width=\"117\" height=\"43\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"25\" y=\"223\" font-family=\"Arial,sans-serif\" font-size=\"15\" fill=\"#111\">VECTORS</text><path d=\"M 133 219 C 175 219 166 138 214 138\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><rect x=\"214\" y=\"113\" width=\"115\" height=\"50\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"239\" y=\"142\" font-family=\"Arial,sans-serif\" font-size=\"17\" fill=\"#111\">RULES</text><line x1=\"329\" y1=\"138\" x2=\"358\" y2=\"138\" fill=\"none\" stroke=\"#111\" stroke-width=\"1\" /><rect x=\"358\" y=\"113\" width=\"88\" height=\"50\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"366\" y=\"142\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#111\">OUTPUT</text><text x=\"16\" y=\"288\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">VISIBLE INPUT / EXPLICIT DEPENDENCY</text></svg>",
+          "x": 268,
+          "y": 66,
+          "w": 132,
+          "h": 103
         },
         {
           "type": "text",
-          "text": "计算流程重建示意。待补实际定义与几何输出，不用占位图证明性能。",
-          "x": 20,
-          "y": 244,
-          "w": 380,
+          "text": "02 / 参数与依赖关系的示意，非原始定义",
+          "x": 268,
+          "y": 173,
+          "w": 132,
           "h": 15,
           "size": 9,
           "color": null,
@@ -484,11 +480,35 @@
         },
         {
           "type": "text",
-          "text": "判断重点：规则需要能重复运行，关键选择仍然应该能由人调整。",
+          "text": "为什么做工具\n反复出现的操作应能重复运行；关键参数和选择需要保留在界面里，让使用者看得见，也能调整。",
           "x": 20,
-          "y": 263,
-          "w": 380,
-          "h": 14,
+          "y": 208,
+          "w": 113,
+          "h": 62,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "我的参与\nRhino Tabs、Grasshopper / Python 工作流、Rhino 与 Revit 之间的自动化，以及网页工具和原型。",
+          "x": 154,
+          "y": 208,
+          "w": 113,
+          "h": 62,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "待补证据\n实际工具截图\n操作前后对比\n原始定义或脚本片段\n对应的几何输出",
+          "x": 289,
+          "y": 208,
+          "w": 111,
+          "h": 62,
           "size": 12,
           "color": null,
           "bold": false,
@@ -498,50 +518,94 @@
     },
     {
       "category": "RESEARCH / TODAI / 01",
-      "title": "什么是 TOD？",
-      "subtitle": "Transit-Oriented Development / 2021–22",
+      "title": "TODAI / Context + Urban Data",
+      "subtitle": "Five Dock / Transit-Oriented Development / 2021–22",
       "dark": false,
       "nodes": [
         {
           "type": "text",
-          "text": "围绕公共交通组织住宅、工作和日常设施，并通过步行网络连接它们。",
+          "text": "TOD 围绕公共交通节点组织住宅、工作和日常设施，并通过步行连接。TODAI 探索如何更快测试和比较不同规划方案。",
           "x": 20,
-          "y": 65,
-          "w": 111,
-          "h": 57,
-          "size": 22,
-          "color": null,
-          "bold": true,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "圆形范围表达接近程度，街道网络决定实际路线。理解这种差别之后，再进入规划方案的比较。",
-          "x": 20,
-          "y": 158,
-          "w": 106,
-          "h": 56,
-          "size": 13,
+          "y": 61,
+          "w": 380,
+          "h": 22,
+          "size": 14,
           "color": null,
           "bold": false,
           "source": null
         },
         {
           "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"49\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"29\" y1=\"36\" x2=\"766\" y2=\"36\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"103\" x2=\"766\" y2=\"103\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"170\" x2=\"766\" y2=\"170\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"237\" x2=\"766\" y2=\"237\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"304\" x2=\"766\" y2=\"304\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"371\" x2=\"766\" y2=\"371\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"32\" y1=\"23\" x2=\"32\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"119\" y1=\"23\" x2=\"119\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"206\" y1=\"23\" x2=\"206\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"293\" y1=\"23\" x2=\"293\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"380\" y1=\"23\" x2=\"380\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"467\" y1=\"23\" x2=\"467\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"554\" y1=\"23\" x2=\"554\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"641\" y1=\"23\" x2=\"641\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"728\" y1=\"23\" x2=\"728\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><circle cx=\"380\" cy=\"203\" r=\"82\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><circle cx=\"380\" cy=\"203\" r=\"160\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><path d=\"M 380 203 L 467 203 L 467 103 L 641 103\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><path d=\"M 380 203 L 293 203 L 293 304 L 119 304\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><circle cx=\"380\" cy=\"203\" r=\"15\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"375\" y=\"208\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#fff\">S</text><circle cx=\"641\" cy=\"103\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"119\" cy=\"304\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"401\" y=\"194\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">TRANSIT</text><text x=\"655\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">AMENITY</text><text x=\"51\" y=\"331\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">HOUSING</text><text x=\"29\" y=\"418\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">PLACEHOLDER GEOMETRY / NOT FIVE DOCK / NOT TO SCALE</text></svg>",
-          "x": 151,
-          "y": 57,
-          "w": 249,
-          "h": 182
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><circle cx=\"380\" cy=\"210\" r=\"94\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"380\" cy=\"210\" r=\"165\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\"/><path d=\"M 188 344 L 304 269 L 380 210 L 421 123 L 537 76\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><path d=\"M 165 148 L 288 178 L 380 210 L 495 262 L 608 344\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><line x1=\"380\" y1=\"210\" x2=\"188\" y2=\"344\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><line x1=\"380\" y1=\"210\" x2=\"608\" y2=\"344\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\" stroke-dasharray=\"4 5\"/><circle cx=\"380\" cy=\"210\" r=\"17\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"375\" y=\"215\" font-family=\"Arial,sans-serif\" font-size=\"14\" fill=\"#fff\">S</text><circle cx=\"188\" cy=\"344\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"188\" y1=\"344\" x2=\"213\" y2=\"320\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><text x=\"217\" y=\"322\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">HOUSING</text><circle cx=\"537\" cy=\"76\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"537\" y1=\"76\" x2=\"562\" y2=\"52\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><text x=\"566\" y=\"54\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">WORK</text><circle cx=\"165\" cy=\"148\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"165\" y1=\"148\" x2=\"190\" y2=\"124\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><text x=\"194\" y=\"126\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">AMENITIES</text><circle cx=\"608\" cy=\"344\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"608\" y1=\"344\" x2=\"633\" y2=\"320\" fill=\"none\" stroke=\"#888\" stroke-width=\"1\" /><text x=\"637\" y=\"322\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">PUBLIC SPACE</text><text x=\"30\" y=\"414\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SOLID / NETWORK ROUTE</text><text x=\"416\" y=\"414\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">DASHED / DIRECT DISTANCE</text></svg>",
+          "x": 20,
+          "y": 97,
+          "w": 191,
+          "h": 101
         },
         {
           "type": "text",
-          "text": "概念图占位，非实际场地和步行测算。",
-          "x": 151,
-          "y": 243,
-          "w": 249,
+          "text": "01 / TOD 概念：距离与实际步行网络",
+          "x": 20,
+          "y": 202,
+          "w": 191,
           "h": 15,
           "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "diagram",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"25\" y=\"38\" width=\"750\" height=\"333\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\"/><line x1=\"25\" y1=\"91\" x2=\"775\" y2=\"91\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><text x=\"44\" y=\"70\" font-family=\"Arial,sans-serif\" font-size=\"17\" fill=\"#111\">FIVE DOCK / SOURCE BASEMAP TO BE ADDED</text><text x=\"45\" y=\"411\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">01 / STREET NETWORK</text><text x=\"307\" y=\"411\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">02 / CADASTRE</text><text x=\"552\" y=\"411\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">03 / CONSTRAINTS</text><text x=\"222\" y=\"226\" font-family=\"Arial,sans-serif\" font-size=\"17\" fill=\"#555\">NO VERIFIED GEOMETRY AVAILABLE</text></svg>",
+          "x": 231,
+          "y": 97,
+          "w": 169,
+          "h": 101
+        },
+        {
+          "type": "text",
+          "text": "02 / Five Dock 图版占位；当前几何非实测",
+          "x": 231,
+          "y": 202,
+          "w": 169,
+          "h": 15,
+          "size": 9,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "研究问题\n规划条件相互影响。调整设施位置、密度或建筑形态，会怎样改变方案？",
+          "x": 20,
+          "y": 235,
+          "w": 105,
+          "h": 35,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "数据来源\nOpenStreetMap 街道与设施\n地籍边界\n公开规划限制",
+          "x": 150,
+          "y": 227,
+          "w": 116,
+          "h": 45,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "待补分析\nFive Dock 原始底图\n步行网络与分析范围\n真实输入、变量与评价指标",
+          "x": 292,
+          "y": 227,
+          "w": 108,
+          "h": 45,
+          "size": 12,
           "color": null,
           "bold": false,
           "source": null
@@ -550,117 +614,45 @@
     },
     {
       "category": "RESEARCH / TODAI / 02",
-      "title": "Five Dock 的城市条件",
-      "subtitle": "Public Data / Planning Context",
+      "title": "TODAI / Model + Comparison",
+      "subtitle": "Grasshopper / Galapagos / H2O / XGBoost",
       "dark": false,
       "nodes": [
         {
           "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"49\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"49\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"136\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"223\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"310\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"397\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"484\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"571\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"47\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"114\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"181\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"248\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><rect x=\"658\" y=\"315\" width=\"57\" height=\"39\" fill=\"#e9e9e4\" stroke=\"none\" stroke-width=\"1\"/><line x1=\"29\" y1=\"36\" x2=\"766\" y2=\"36\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"103\" x2=\"766\" y2=\"103\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"170\" x2=\"766\" y2=\"170\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"237\" x2=\"766\" y2=\"237\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"304\" x2=\"766\" y2=\"304\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"29\" y1=\"371\" x2=\"766\" y2=\"371\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"32\" y1=\"23\" x2=\"32\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"119\" y1=\"23\" x2=\"119\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"206\" y1=\"23\" x2=\"206\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"293\" y1=\"23\" x2=\"293\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"380\" y1=\"23\" x2=\"380\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"467\" y1=\"23\" x2=\"467\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"554\" y1=\"23\" x2=\"554\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"641\" y1=\"23\" x2=\"641\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><line x1=\"728\" y1=\"23\" x2=\"728\" y2=\"380\" fill=\"none\" stroke=\"#bbb\" stroke-width=\"1\" /><circle cx=\"380\" cy=\"203\" r=\"82\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><circle cx=\"380\" cy=\"203\" r=\"160\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><path d=\"M 380 203 L 467 203 L 467 103 L 641 103\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><path d=\"M 380 203 L 293 203 L 293 304 L 119 304\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/><circle cx=\"380\" cy=\"203\" r=\"15\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"375\" y=\"208\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#fff\">S</text><circle cx=\"641\" cy=\"103\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><circle cx=\"119\" cy=\"304\" r=\"6\" fill=\"#111\" stroke=\"none\" stroke-width=\"1\"/><text x=\"401\" y=\"194\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">TRANSIT</text><text x=\"655\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">AMENITY</text><text x=\"51\" y=\"331\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">HOUSING</text><text x=\"29\" y=\"418\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">PLACEHOLDER GEOMETRY / NOT FIVE DOCK / NOT TO SCALE</text></svg>",
-          "x": 20,
-          "y": 57,
-          "w": 269,
-          "h": 184
-        },
-        {
-          "type": "text",
-          "text": "待补 Five Dock 原始底图。当前街道、地块与设施均为占位。",
-          "x": 20,
-          "y": 245,
-          "w": 269,
-          "h": 15,
-          "size": 9,
-          "color": null,
-          "bold": false,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "数据图层\nOpenStreetMap 街道与设施\n地籍边界\n公开规划限制\n\n待补分析\n步行网络\n密度与建筑形态\n方案输入与评价指标",
-          "x": 310,
-          "y": 68,
-          "w": 90,
-          "h": 156,
-          "size": 13,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "RESEARCH / TODAI / 03",
-      "title": "从城市数据到预测反馈",
-      "subtitle": "Research Method / Grasshopper + Galapagos + H2O",
-      "dark": false,
-      "nodes": [
-        {
-          "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"20\" y=\"137\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"32\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><text x=\"32\" y=\"187\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">URBAN DATA</text><text x=\"32\" y=\"207\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">CONTEXT</text><line x1=\"163\" y1=\"178\" x2=\"177\" y2=\"178\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"177\" y=\"137\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"189\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><text x=\"189\" y=\"187\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">GRASSHOPPER</text><text x=\"189\" y=\"207\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">GENERATE</text><line x1=\"320\" y1=\"178\" x2=\"334\" y2=\"178\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"334\" y=\"137\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"346\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><text x=\"346\" y=\"187\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">GALAPAGOS</text><text x=\"346\" y=\"207\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">OPTIMISE</text><line x1=\"477\" y1=\"178\" x2=\"491\" y2=\"178\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"491\" y=\"137\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"503\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><text x=\"503\" y=\"187\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">H2O / XGBOOST</text><text x=\"503\" y=\"207\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">TRAIN / PREDICT</text><line x1=\"634\" y1=\"178\" x2=\"648\" y2=\"178\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"648\" y=\"137\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"660\" y=\"156\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">05</text><text x=\"660\" y=\"187\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">INTERFACE</text><text x=\"660\" y=\"207\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">FEEDBACK</text><path d=\"M 719 218 L 719 297 L 249 297 L 249 218\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"304\" y=\"321\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">NEW INPUT / REPEAT COMPARISON</text><text x=\"20\" y=\"405\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">METHOD OUTLINE / MODEL RESULTS TO BE ADDED</text></svg>",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 224\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"20\" y=\"25\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"32\" y=\"44\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">01</text><text x=\"32\" y=\"75\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">URBAN DATA</text><text x=\"32\" y=\"95\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">CONTEXT</text><line x1=\"163\" y1=\"66\" x2=\"177\" y2=\"66\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"177\" y=\"25\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"189\" y=\"44\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">02</text><text x=\"189\" y=\"75\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">GRASSHOPPER</text><text x=\"189\" y=\"95\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">GENERATE</text><line x1=\"320\" y1=\"66\" x2=\"334\" y2=\"66\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"334\" y=\"25\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"346\" y=\"44\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">03</text><text x=\"346\" y=\"75\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">GALAPAGOS</text><text x=\"346\" y=\"95\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">OPTIMISE</text><line x1=\"477\" y1=\"66\" x2=\"491\" y2=\"66\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"491\" y=\"25\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"503\" y=\"44\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">04</text><text x=\"503\" y=\"75\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">H2O / XGBOOST</text><text x=\"503\" y=\"95\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">TRAIN / PREDICT</text><line x1=\"634\" y1=\"66\" x2=\"648\" y2=\"66\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" /><rect x=\"648\" y=\"25\" width=\"143\" height=\"81\" fill=\"#f5f5f0\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"660\" y=\"44\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#555\">05</text><text x=\"660\" y=\"75\" font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#111\">INTERFACE</text><text x=\"660\" y=\"95\" font-family=\"Arial,sans-serif\" font-size=\"9\" fill=\"#555\">FEEDBACK</text><path d=\"M 719 106 L 719 185 L 249 185 L 249 106\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"304\" y=\"209\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">NEW INPUT / REPEAT COMPARISON</text></svg>",
           "x": 20,
           "y": 62,
           "w": 380,
-          "h": 172
+          "h": 87
         },
         {
           "type": "text",
-          "text": "方法流程根据当前项目说明整理。训练规模、预测目标、精度与结果图待原论文核对。",
+          "text": "01 / 方法流程；训练规模、预测目标和精度待原论文核对",
           "x": 20,
-          "y": 238,
+          "y": 152,
           "w": 380,
-          "h": 15,
+          "h": 12,
           "size": 9,
           "color": null,
           "bold": false,
           "source": null
         },
-        {
-          "type": "text",
-          "text": "使用 Grasshopper 枚举输入并生成分析结果，再通过 H2O 训练 XGBoost，将新的规划输入转成可比较的指标。",
-          "x": 20,
-          "y": 252,
-          "w": 264,
-          "h": 24,
-          "size": 12,
-          "color": null,
-          "bold": false,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "待补：真实模型结果",
-          "x": 317,
-          "y": 251,
-          "w": 83,
-          "h": 25,
-          "size": 12,
-          "color": null,
-          "bold": true,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "RESEARCH / TODAI / 04",
-      "title": "把一次调整展示清楚",
-      "subtitle": "Interactive Reconstruction / Planned Demonstration",
-      "dark": false,
-      "nodes": [
         {
           "type": "diagram",
-          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 440\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"24\" y=\"62\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"40\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO A</text><text x=\"40\" y=\"200\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"40\" y=\"224\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text><rect x=\"284\" y=\"62\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"300\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO B</text><text x=\"300\" y=\"200\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"300\" y=\"224\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text><rect x=\"544\" y=\"62\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"560\" y=\"92\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO C</text><text x=\"560\" y=\"200\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"560\" y=\"224\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text><text x=\"24\" y=\"369\" font-family=\"Arial,sans-serif\" font-size=\"18\" fill=\"#111\">INITIAL INPUT → ADJUSTMENT → COMPARISON</text><text x=\"24\" y=\"415\" font-family=\"Arial,sans-serif\" font-size=\"11\" fill=\"#555\">INTERACTIVE RECONSTRUCTION NOT YET IMPLEMENTED</text></svg>",
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 285\" role=\"img\" aria-label=\"Portfolio diagram placeholder\"><rect x=\"24\" y=\"22\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"40\" y=\"52\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO A</text><text x=\"40\" y=\"160\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"40\" y=\"184\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text><rect x=\"284\" y=\"22\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"300\" y=\"52\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO B</text><text x=\"300\" y=\"160\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"300\" y=\"184\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text><rect x=\"544\" y=\"22\" width=\"230\" height=\"250\" fill=\"none\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"560\" y=\"52\" font-family=\"Arial,sans-serif\" font-size=\"16\" fill=\"#111\">SCENARIO C</text><text x=\"560\" y=\"160\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">SCREEN / OUTPUT</text><text x=\"560\" y=\"184\" font-family=\"Arial,sans-serif\" font-size=\"13\" fill=\"#555\">TO BE ADDED</text></svg>",
           "x": 20,
-          "y": 60,
-          "w": 380,
-          "h": 183
+          "y": 184,
+          "w": 277,
+          "h": 84
         },
         {
           "type": "text",
-          "text": "演示页面尚未完成。这三个位置将放入小程序的初始、调整和结果状态。",
+          "text": "02 / 初始输入、调整和结果的三个图版位置；交互重建尚未实现",
           "x": 20,
-          "y": 247,
-          "w": 380,
-          "h": 15,
+          "y": 271,
+          "w": 277,
+          "h": 12,
           "size": 9,
           "color": null,
           "bold": false,
@@ -668,11 +660,23 @@
         },
         {
           "type": "text",
-          "text": "PDF 展示连续状态；网站提供实际操作。完成后在这里链接交互演示，并注明是否接入原始预测模型。",
+          "text": "模型与反馈\nGrasshopper 枚举输入并生成分析结果；H2O 训练 XGBoost，新的规划输入返回可比较的指标。",
           "x": 20,
-          "y": 261,
-          "w": 380,
+          "y": 166,
+          "w": 277,
           "h": 15,
+          "size": 11,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "待补研究结果\n预测目标\n训练与验证数据\n误差指标\n代表方案对比\n\n当前不展示虚构精度或收益。",
+          "x": 318,
+          "y": 183,
+          "w": 82,
+          "h": 75,
           "size": 12,
           "color": null,
           "bold": false,
@@ -683,23 +687,23 @@
     {
       "category": "SPACE / 01",
       "title": "60 Denmark Street",
-      "subtitle": "Massing / Solar Access / Public Realm",
+      "subtitle": "Professional Work / Massing + Solar Access + Public Realm",
       "dark": false,
       "nodes": [
         {
           "type": "image",
           "path": "assets/architecture/denmark-hero.webp",
           "x": 20,
-          "y": 59,
-          "w": 227,
-          "h": 158
+          "y": 61,
+          "w": 192,
+          "h": 119
         },
         {
           "type": "text",
-          "text": "实际项目视觉图 / 60 DENMARK STREET",
+          "text": "01 / 项目空间视觉图",
           "x": 20,
-          "y": 220,
-          "w": 227,
+          "y": 183,
+          "w": 192,
           "h": 8,
           "size": 8,
           "color": null,
@@ -709,17 +713,17 @@
         {
           "type": "image",
           "path": "assets/architecture/denmark-massing.webp",
-          "x": 268,
-          "y": 59,
-          "w": 132,
-          "h": 89
+          "x": 234,
+          "y": 61,
+          "w": 77,
+          "h": 76
         },
         {
           "type": "text",
-          "text": "实际体量图 / MASSING",
-          "x": 268,
-          "y": 151,
-          "w": 132,
+          "text": "02 / 原始体量图",
+          "x": 234,
+          "y": 140,
+          "w": 77,
           "h": 8,
           "size": 8,
           "color": null,
@@ -729,17 +733,17 @@
         {
           "type": "image",
           "path": "assets/architecture/denmark-solar.webp",
-          "x": 268,
-          "y": 170,
-          "w": 132,
-          "h": 68
+          "x": 324,
+          "y": 61,
+          "w": 76,
+          "h": 76
         },
         {
           "type": "text",
-          "text": "实际日照分析图 / SOLAR ANALYSIS",
-          "x": 268,
-          "y": 241,
-          "w": 132,
+          "text": "03 / 原始日照分析",
+          "x": 324,
+          "y": 140,
+          "w": 76,
           "h": 8,
           "size": 8,
           "color": null,
@@ -748,12 +752,84 @@
         },
         {
           "type": "text",
-          "text": "将体量、日照和公共空间放在一起比较，说明设计调整带来的空间后果。",
-          "x": 20,
-          "y": 238,
-          "w": 226,
-          "h": 27,
+          "text": "设计判断\n把体量、日照和公共空间一起比较，说明建筑调整与空间体验之间的关系。",
+          "x": 234,
+          "y": 157,
+          "w": 166,
+          "h": 36,
           "size": 13,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/denmark-model.webp",
+          "x": 20,
+          "y": 205,
+          "w": 112,
+          "h": 59
+        },
+        {
+          "type": "text",
+          "text": "04 / 原始模型图",
+          "x": 20,
+          "y": 267,
+          "w": 112,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/denmark-section.webp",
+          "x": 151,
+          "y": 205,
+          "w": 119,
+          "h": 59
+        },
+        {
+          "type": "text",
+          "text": "05 / 原始剖面",
+          "x": 151,
+          "y": 267,
+          "w": 119,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/denmark-street.webp",
+          "x": 289,
+          "y": 205,
+          "w": 111,
+          "h": 59
+        },
+        {
+          "type": "text",
+          "text": "06 / 街道尺度",
+          "x": 289,
+          "y": 267,
+          "w": 111,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "BATES SMART / 团队协作项目 / 原始项目图纸与视觉资料",
+          "x": 20,
+          "y": 275,
+          "w": 380,
+          "h": 6,
+          "size": 8,
           "color": null,
           "bold": false,
           "source": null
@@ -763,23 +839,23 @@
     {
       "category": "SPACE / 02",
       "title": "Iglu Arden",
-      "subtitle": "Facade Expression / Student Accommodation",
+      "subtitle": "Professional Work / Tower + Podium + Facade Expression",
       "dark": false,
       "nodes": [
         {
           "type": "image",
           "path": "assets/architecture/arden-tower.webp",
           "x": 20,
-          "y": 59,
-          "w": 160,
-          "h": 189
+          "y": 62,
+          "w": 128,
+          "h": 141
         },
         {
           "type": "text",
-          "text": "项目图像 / TOWER",
+          "text": "01 / 塔楼整体",
           "x": 20,
-          "y": 251,
-          "w": 160,
+          "y": 206,
+          "w": 128,
           "h": 8,
           "size": 8,
           "color": null,
@@ -789,17 +865,17 @@
         {
           "type": "image",
           "path": "assets/architecture/arden-facade-matrix.webp",
-          "x": 202,
+          "x": 173,
           "y": 62,
-          "w": 198,
-          "h": 137
+          "w": 227,
+          "h": 112
         },
         {
           "type": "text",
-          "text": "原始立面表达研究 / FACADE MATRIX",
-          "x": 202,
-          "y": 202,
-          "w": 198,
+          "text": "02 / 完整立面表达研究",
+          "x": 173,
+          "y": 177,
+          "w": 227,
           "h": 8,
           "size": 8,
           "color": null,
@@ -808,12 +884,92 @@
         },
         {
           "type": "text",
-          "text": "通过一组可比较的立面研究，展示尺度、分段和表达的设计判断。",
-          "x": 202,
-          "y": 222,
-          "w": 198,
-          "h": 36,
-          "size": 15,
+          "text": "通过整体与局部并排比较尺度、分段和立面表达。下方两个局部直接从同一张项目图提取，便于阅读。",
+          "x": 173,
+          "y": 190,
+          "w": 227,
+          "h": 22,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/arden-facade-matrix.webp",
+          "x": 173,
+          "y": 220,
+          "w": 109,
+          "h": 48,
+          "crop": [
+            0.28,
+            0.05,
+            0.72,
+            0.45
+          ],
+          "originalWidth": 1800,
+          "originalHeight": 950
+        },
+        {
+          "type": "text",
+          "text": "03 / 立面局部 / 同源放大",
+          "x": 173,
+          "y": 271,
+          "w": 109,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/arden-facade-matrix.webp",
+          "x": 299,
+          "y": 220,
+          "w": 101,
+          "h": 48,
+          "crop": [
+            0.254,
+            0.632,
+            0.492,
+            0.974
+          ],
+          "originalWidth": 1800,
+          "originalHeight": 950
+        },
+        {
+          "type": "text",
+          "text": "04 / 底部界面 / 同源放大",
+          "x": 299,
+          "y": 271,
+          "w": 101,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "团队协作项目\n本页展示立面与空间表达中的设计判断。",
+          "x": 20,
+          "y": 231,
+          "w": 128,
+          "h": 31,
+          "size": 11,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "BATES SMART / 团队协作项目 / 原始项目图纸与视觉资料",
+          "x": 20,
+          "y": 275,
+          "w": 380,
+          "h": 6,
+          "size": 8,
           "color": null,
           "bold": false,
           "source": null
@@ -823,23 +979,23 @@
     {
       "category": "SPACE / 03",
       "title": "87 Queensbridge / OSK",
-      "subtitle": "Tower Form / Views / Shadow / Wind",
+      "subtitle": "Professional Work / Tower Form + Views + Ground Plane",
       "dark": false,
       "nodes": [
         {
           "type": "image",
           "path": "assets/architecture/osk-hero.webp",
           "x": 20,
-          "y": 59,
-          "w": 222,
-          "h": 163
+          "y": 61,
+          "w": 143,
+          "h": 157
         },
         {
           "type": "text",
-          "text": "实际竞赛视觉图 / TOWER FORM",
+          "text": "01 / 竞赛塔楼形态",
           "x": 20,
-          "y": 225,
-          "w": 222,
+          "y": 221,
+          "w": 143,
           "h": 8,
           "size": 8,
           "color": null,
@@ -849,17 +1005,37 @@
         {
           "type": "image",
           "path": "assets/architecture/osk-principles.webp",
-          "x": 263,
-          "y": 59,
-          "w": 137,
-          "h": 156
+          "x": 190,
+          "y": 62,
+          "w": 210,
+          "h": 84
         },
         {
           "type": "text",
-          "text": "原始方案原则图 / VIEWS + SHADOWS",
-          "x": 263,
-          "y": 218,
-          "w": 137,
+          "text": "02 / 原始方案原则：视野与地面关系",
+          "x": 190,
+          "y": 149,
+          "w": 210,
+          "h": 8,
+          "size": 8,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "image",
+          "path": "assets/architecture/osk-whole.webp",
+          "x": 190,
+          "y": 169,
+          "w": 210,
+          "h": 92
+        },
+        {
+          "type": "text",
+          "text": "03 / 原始整体体量与空间关系",
+          "x": 190,
+          "y": 264,
+          "w": 210,
           "h": 8,
           "size": 8,
           "color": null,
@@ -868,12 +1044,24 @@
         },
         {
           "type": "text",
-          "text": "比较塔楼几何、视野、阴影和地面空间，说明三角形体量如何参与方案判断。",
+          "text": "设计判断\n比较塔楼几何、视野、阴影和地面空间，说明三角形体量如何参与方案选择。",
           "x": 20,
-          "y": 243,
+          "y": 240,
+          "w": 143,
+          "h": 30,
+          "size": 12,
+          "color": null,
+          "bold": false,
+          "source": null
+        },
+        {
+          "type": "text",
+          "text": "BATES SMART / 团队协作项目 / 原始项目图纸与视觉资料",
+          "x": 20,
+          "y": 275,
           "w": 380,
-          "h": 22,
-          "size": 13,
+          "h": 6,
+          "size": 8,
           "color": null,
           "bold": false,
           "source": null
@@ -881,25 +1069,25 @@
       ]
     },
     {
-      "category": "OBSERVATION / 01",
-      "title": "从日常画面开始",
-      "subtitle": "Photography / Urban Density",
+      "category": "OBSERVATION + CONTACT",
+      "title": "Photography / Visual Editing",
+      "subtitle": "Selected Photographs / Medium + 135 Format / Digital Supplements",
       "dark": false,
       "nodes": [
         {
           "type": "image",
           "path": "assets/photography/obs_001-1400.webp",
           "x": 20,
-          "y": 57,
-          "w": 292,
-          "h": 203
+          "y": 61,
+          "w": 139,
+          "h": 165
         },
         {
           "type": "text",
           "text": "06.001 / URBAN DENSITY",
           "x": 20,
-          "y": 263,
-          "w": 292,
+          "y": 229,
+          "w": 139,
           "h": 8,
           "size": 8,
           "color": null,
@@ -907,39 +1095,19 @@
           "source": null
         },
         {
-          "type": "text",
-          "text": "几何与日常行为之间的关系。\n\n摄影是持续的观察练习：选片时留下有明确视觉理由的画面。",
-          "x": 334,
-          "y": 150,
-          "w": 66,
-          "h": 91,
-          "size": 13,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "OBSERVATION / 02",
-      "title": "画面之间的关系",
-      "subtitle": "Selection / Sequence / Visual Judgement",
-      "dark": false,
-      "nodes": [
-        {
           "type": "image",
           "path": "assets/photography/obs_003-1400.webp",
-          "x": 20,
-          "y": 68,
-          "w": 89,
-          "h": 148
+          "x": 180,
+          "y": 62,
+          "w": 102,
+          "h": 78
         },
         {
           "type": "text",
           "text": "06.003 / FACADE",
-          "x": 20,
-          "y": 219,
-          "w": 89,
+          "x": 180,
+          "y": 143,
+          "w": 102,
           "h": 8,
           "size": 8,
           "color": null,
@@ -949,17 +1117,17 @@
         {
           "type": "image",
           "path": "assets/photography/obs_004-1400.webp",
-          "x": 117,
-          "y": 68,
-          "w": 89,
-          "h": 148
+          "x": 300,
+          "y": 62,
+          "w": 100,
+          "h": 78
         },
         {
           "type": "text",
           "text": "06.004 / DISTANCE",
-          "x": 117,
-          "y": 219,
-          "w": 89,
+          "x": 300,
+          "y": 143,
+          "w": 100,
           "h": 8,
           "size": 8,
           "color": null,
@@ -969,17 +1137,17 @@
         {
           "type": "image",
           "path": "assets/photography/obs_007-1400.webp",
-          "x": 214,
-          "y": 68,
-          "w": 89,
-          "h": 148
+          "x": 180,
+          "y": 162,
+          "w": 102,
+          "h": 72
         },
         {
           "type": "text",
           "text": "06.007 / LANDSCAPE",
-          "x": 214,
-          "y": 219,
-          "w": 89,
+          "x": 180,
+          "y": 237,
+          "w": 102,
           "h": 8,
           "size": 8,
           "color": null,
@@ -989,17 +1157,17 @@
         {
           "type": "image",
           "path": "assets/photography/obs_008-1365.webp",
-          "x": 311,
-          "y": 68,
-          "w": 89,
-          "h": 148
+          "x": 300,
+          "y": 162,
+          "w": 100,
+          "h": 72
         },
         {
           "type": "text",
           "text": "06.008 / DETAIL",
-          "x": 311,
-          "y": 219,
-          "w": 89,
+          "x": 300,
+          "y": 237,
+          "w": 100,
           "h": 8,
           "size": 8,
           "color": null,
@@ -1008,59 +1176,35 @@
         },
         {
           "type": "text",
-          "text": "序列示例：比较相邻画面的尺度、距离与节奏。原始照片保留，排序可以继续调整。",
+          "text": "选片与排序：比较相邻画面的几何、距离和节奏，保留各自有明确视觉理由的画面。",
           "x": 20,
           "y": 245,
-          "w": 380,
-          "h": 25,
-          "size": 13,
-          "color": null,
-          "bold": false,
-          "source": null
-        }
-      ]
-    },
-    {
-      "category": "CONTACT",
-      "title": "GARRY ZHANG",
-      "subtitle": "Creative Technologist / Computational Designer",
-      "dark": true,
-      "nodes": [
-        {
-          "type": "text",
-          "text": "让设计判断\n在空间、数据和界面中\n变得清楚。",
-          "x": 20,
-          "y": 85,
-          "w": 278,
-          "h": 107,
-          "size": 36,
-          "color": null,
-          "bold": true,
-          "source": null
-        },
-        {
-          "type": "text",
-          "text": "Melbourne / Beijing\nzhanghangge@gmail.com\nchanghangko.cc",
-          "x": 20,
-          "y": 224,
-          "w": 250,
-          "h": 41,
-          "size": 15,
+          "w": 307,
+          "h": 17,
+          "size": 12,
           "color": null,
           "bold": false,
           "source": null
         },
         {
           "type": "text",
-          "text": "PDF 排版草稿\n占位图待真实素材替换\n专业建筑项目为团队协作作品",
-          "x": 305,
-          "y": 229,
-          "w": 95,
-          "h": 40,
+          "text": "Garry Zhang / Melbourne · Beijing / zhanghangge@gmail.com / changhangko.cc",
+          "x": 20,
+          "y": 266,
+          "w": 345,
+          "h": 10,
           "size": 10,
           "color": null,
           "bold": false,
           "source": null
+        },
+        {
+          "type": "qr",
+          "svg": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE svg\n  PUBLIC '-//W3C//DTD SVG 1.0//EN'\n  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>\n<svg width=\"60\" height=\"60\" preserveAspectRatio=\"xMinYMin meet\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.0\" fill-rule=\"evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n\t<title>...</title>\n\t<desc>...</desc>\n\t<clipPath id=\"clip\">\n\t\t<rect x=\"0\" y=\"0\" width=\"60\" height=\"60\"/>\n\t</clipPath>\n\t<g id=\"group\" transform=\"scale(1,-1) translate(0,-60)\" style=\"clip-path: url(#clip)\">\n\t\t<g transform=\" matrix(0.661458,0,0,0.661458,0,0)\">\n\t\t\t<g transform=\"\">\n\t\t\t\t<rect x=\"0\" y=\"0\" width=\"90.70866141732284\" height=\"90.70866141732284\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: none; fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"76.96492483894059\" width=\"19.241231209735147\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"35.73371510379385\" y=\"76.96492483894059\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"76.96492483894059\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"76.96492483894059\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"76.96492483894059\" width=\"19.241231209735147\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"74.21617752326415\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"74.21617752326415\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"74.21617752326415\" width=\"5.4974946313529\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"74.21617752326415\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"74.21617752326415\" width=\"5.4974946313529\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"74.21617752326415\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"74.21617752326415\" width=\"2.7487473156764537\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"71.4674302075877\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"71.4674302075877\" width=\"8.24624194702935\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"71.4674302075877\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"35.73371510379385\" y=\"71.4674302075877\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"71.4674302075877\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"71.4674302075877\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"71.4674302075877\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"71.4674302075877\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"71.4674302075877\" width=\"2.7487473156764537\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"68.71868289191124\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"68.71868289191124\" width=\"8.24624194702935\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"68.71868289191124\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"68.71868289191124\" width=\"5.4974946313529\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"68.71868289191124\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"68.71868289191124\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"68.71868289191124\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"68.71868289191124\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"68.71868289191124\" width=\"2.7487473156764537\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"65.9699355762348\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"65.9699355762348\" width=\"8.24624194702935\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"65.9699355762348\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"65.9699355762348\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"65.9699355762348\" width=\"5.4974946313529\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"65.9699355762348\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"65.9699355762348\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"65.9699355762348\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"65.9699355762348\" width=\"2.7487473156764537\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"63.22118826055835\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"63.22118826055835\" width=\"2.74874731567645\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"63.22118826055835\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"63.22118826055835\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"63.22118826055835\" width=\"8.246241947029347\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"63.22118826055835\" width=\"2.7487473156764466\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"63.22118826055835\" width=\"2.7487473156764537\" height=\"2.7487473156764537\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"60.472440944881896\" width=\"19.241231209735147\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"60.472440944881896\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"60.472440944881896\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"60.472440944881896\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"60.472440944881896\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"60.472440944881896\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"60.472440944881896\" width=\"19.241231209735147\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"57.72369362920545\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"57.72369362920545\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"57.72369362920545\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"54.974946313528996\" width=\"13.743736578382249\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"54.974946313528996\" width=\"13.74373657838225\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"54.974946313528996\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"57.72369362920544\" y=\"54.974946313528996\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"54.974946313528996\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"68.71868289191124\" y=\"54.974946313528996\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"74.21617752326414\" y=\"54.974946313528996\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"52.22619899785255\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"21.989978525411598\" y=\"52.22619899785255\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"30.236220472440948\" y=\"52.22619899785255\" width=\"8.246241947029347\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"52.22619899785255\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"52.22619899785255\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"52.22619899785255\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"74.21617752326414\" y=\"52.22619899785255\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"49.477451682176095\" width=\"10.994989262705799\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"49.477451682176095\" width=\"5.497494631352897\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"35.73371510379385\" y=\"49.477451682176095\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"49.477451682176095\" width=\"16.492483894058694\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"49.477451682176095\" width=\"8.246241947029354\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"74.21617752326414\" y=\"49.477451682176095\" width=\"5.497494631352893\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"46.72870436649965\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"19.241231209735147\" y=\"46.72870436649965\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"24.738725841088048\" y=\"46.72870436649965\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"30.236220472440948\" y=\"46.72870436649965\" width=\"13.743736578382247\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"46.72870436649965\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"46.72870436649965\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"46.72870436649965\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"19.241231209735147\" y=\"43.9799570508232\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"43.9799570508232\" width=\"10.994989262705797\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"43.9799570508232\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"43.9799570508232\" width=\"8.246241947029347\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"57.72369362920544\" y=\"43.9799570508232\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"43.9799570508232\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"71.4674302075877\" y=\"43.9799570508232\" width=\"8.246241947029347\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"41.23120973514675\" width=\"5.4974946313528985\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"19.241231209735147\" y=\"41.23120973514675\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"35.73371510379385\" y=\"41.23120973514675\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"41.23120973514675\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"41.23120973514675\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"41.23120973514675\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"68.71868289191124\" y=\"41.23120973514675\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"74.21617752326414\" y=\"41.23120973514675\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"38.4824624194703\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"19.241231209735147\" y=\"38.4824624194703\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"24.738725841088048\" y=\"38.4824624194703\" width=\"10.9949892627058\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"38.4824624194703\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"38.4824624194703\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"38.4824624194703\" width=\"10.9949892627058\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"74.21617752326414\" y=\"38.4824624194703\" width=\"5.497494631352893\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"35.73371510379385\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"19.241231209735147\" y=\"35.73371510379385\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"30.236220472440948\" y=\"35.73371510379385\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"35.73371510379385\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"35.73371510379385\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"57.72369362920544\" y=\"35.73371510379385\" width=\"10.9949892627058\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"35.73371510379385\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"32.9849677881174\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"32.9849677881174\" width=\"2.74874731567645\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"24.738725841088048\" y=\"32.9849677881174\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"32.9849677881174\" width=\"8.246241947029347\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"32.9849677881174\" width=\"8.246241947029347\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"32.9849677881174\" width=\"13.743736578382247\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"71.4674302075877\" y=\"32.9849677881174\" width=\"2.7487473156764537\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"30.236220472440948\" width=\"2.7487473156764466\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"30.236220472440948\" width=\"5.4974946313529\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"30.236220472440948\" width=\"5.497494631352893\" height=\"2.7487473156764466\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"27.4874731567645\" width=\"19.241231209735147\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"27.4874731567645\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"27.4874731567645\" width=\"10.9949892627058\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"27.4874731567645\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"60.472440944881896\" y=\"27.4874731567645\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"27.4874731567645\" width=\"2.7487473156764537\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"71.4674302075877\" y=\"27.4874731567645\" width=\"8.246241947029347\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"24.738725841088055\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"24.738725841088055\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"35.73371510379385\" y=\"24.738725841088055\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"24.738725841088055\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"24.738725841088055\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"24.738725841088055\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"24.738725841088055\" width=\"5.497494631352893\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"21.9899785254116\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"21.9899785254116\" width=\"8.24624194702935\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"21.9899785254116\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"21.9899785254116\" width=\"5.4974946313529\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"41.23120973514675\" y=\"21.9899785254116\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"21.9899785254116\" width=\"16.4924838940587\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"71.4674302075877\" y=\"21.9899785254116\" width=\"8.246241947029347\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"19.241231209735147\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"19.241231209735147\" width=\"8.24624194702935\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"19.241231209735147\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"19.241231209735147\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"19.241231209735147\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"19.241231209735147\" width=\"5.4974946313529\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"54.974946313528996\" y=\"19.241231209735147\" width=\"8.246241947029347\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"65.96993557623479\" y=\"19.241231209735147\" width=\"13.743736578382254\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"16.492483894058708\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"16.492483894058697\" y=\"16.492483894058708\" width=\"8.24624194702935\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"16.492483894058708\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"16.492483894058708\" width=\"5.4974946313529\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"46.72870436649964\" y=\"16.492483894058708\" width=\"5.4974946313529\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"68.71868289191124\" y=\"16.492483894058708\" width=\"5.497494631352893\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"16.492483894058708\" width=\"2.7487473156764537\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"13.743736578382254\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"27.487473156764498\" y=\"13.743736578382254\" width=\"2.74874731567645\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"13.743736578382254\" width=\"8.246241947029347\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"13.743736578382254\" width=\"5.4974946313529\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"52.22619899785254\" y=\"13.743736578382254\" width=\"8.246241947029347\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"13.743736578382254\" width=\"8.246241947029354\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"76.96492483894059\" y=\"13.743736578382254\" width=\"2.7487473156764537\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"10.994989262705799\" y=\"10.9949892627058\" width=\"19.241231209735147\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"32.984967788117395\" y=\"10.9949892627058\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"38.482462419470295\" y=\"10.9949892627058\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"43.979957050823195\" y=\"10.9949892627058\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"49.477451682176095\" y=\"10.9949892627058\" width=\"2.7487473156764466\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t\t<rect x=\"63.22118826055834\" y=\"10.9949892627058\" width=\"16.4924838940587\" height=\"2.74874731567645\" style=\"stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;\"/>\n\t\t\t</g>\n\t\t</g>\n\t</g>\n</svg>\n",
+          "x": 374,
+          "y": 250.83333333333334,
+          "w": 21.166666666666664,
+          "h": 21.166666666666664
         }
       ]
     }
