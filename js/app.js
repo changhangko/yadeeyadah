@@ -298,7 +298,7 @@ const projectEl=q('project'),indexPanel=q('indexPanel'),aboutPanel=q('aboutPanel
 const pid=q('pid'),pt=q('pt'),pd=q('pd'),pbrief=q('pbrief');
 const prole=q('prole'),ptools=q('ptools'),poutput=q('poutput'),pyear=q('pyear');
 const pquestion=q('pquestion'),pbuilt=q('pbuilt'),pjudgement=q('pjudgement'),pmedia=q('pmedia'),ptaste=q('ptaste'),nextProjectName=q('nextProjectName');
-const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame'),systemAnimationProject=q('systemAnimationProject'),methodAnimationProject=q('methodAnimationProject'),methodAnimationGrid=q('methodAnimationGrid'),parametricProject=q('parametricProject');
+const photoWallWrap=q('photoWallWrap'),photoWall=q('photoWall'),architectureProject=q('architectureProject'),embeddedProject=q('embeddedProject'),studioLibraryFrame=q('studioLibraryFrame'),systemAnimationProject=q('systemAnimationProject'),methodAnimationProject=q('methodAnimationProject'),methodAnimationGrid=q('methodAnimationGrid'),parametricProject=q('parametricProject'),todaiProject=q('todaiProject');
 const editorBar=q('editorBar'),editProjectBtn=q('editProject'),pmetaEdit=q('pmetaEdit'),editorIndicator=q('editorIndicator');
 
 /* Private editor gate. This is a local deterrent, not secure authentication. */
@@ -1113,6 +1113,7 @@ function openProject(i){
   if(architectureProject){architectureProject.hidden=!hasArchitecture;}
   if(methodAnimationProject){methodAnimationProject.hidden=!hasMethodAnimation;}
   if(parametricProject){parametricProject.hidden=base.categoryKey!=='code';}
+  if(todaiProject){todaiProject.hidden=base.categoryKey!=='research';}
   if(systemAnimationProject){systemAnimationProject.hidden=!hasSystemAnimation;}
   if(embeddedProject){embeddedProject.hidden=!hasEmbeddedLibrary;}
   pmedia.style.display=(hasArchitecture||hasSystemAnimation||hasMethodAnimation)?'none':'';
