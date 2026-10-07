@@ -1,0 +1,33 @@
+.ai-review{border-top:1px solid var(--line,#ccc);padding:32px 0;margin:56px 0}
+.ai-review-heading>span,.ai-brief>span{font:11px/1.6 "Courier New",monospace;letter-spacing:.04em}
+.ai-review-heading h2{font-size:clamp(26px,3.5vw,48px);line-height:1.15;font-weight:400;max-width:900px;margin:20px 0}
+.ai-review :is(p,dd,blockquote){font-size:15px;line-height:1.8;letter-spacing:0}
+.ai-review-heading p{max-width:800px}
+.ai-authorship{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-block:1px solid var(--line,#ccc);margin:28px 0}
+.ai-authorship p{margin:20px 0}.ai-authorship b{display:block;font:11px/1.6 "Courier New",monospace;margin-bottom:12px}.ai-authorship span{display:block}
+.ai-brief{margin:32px 0}
+.ai-review blockquote{border-left:2px solid #a76552;padding-left:20px;margin:18px 0;max-width:860px}
+.ai-brief p,.ai-initial p{color:var(--soft,#666);font-size:13px}
+.ai-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ai-compare figure{margin:0;min-width:0}.ai-compare figcaption{font:11px/1.7 "Courier New",monospace;min-height:38px}
+.ai-review canvas{display:block;width:100%;height:340px;background:#f4f1ea}
+.ai-compare p{margin:16px 0}.ai-review a,.bts-link{color:inherit;text-underline-offset:4px}
+.ai-compare a{font-size:12px}
+.ai-review-log{border-top:1px solid var(--line,#ccc);margin-top:32px;padding-top:20px}
+.ai-review-log h3{font-size:22px;font-weight:400}
+.ai-review-log dl{margin:0}.ai-review-log dl>div{display:grid;grid-template-columns:180px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line,#ccc)}
+.ai-review-log dt{font:11px/1.7 "Courier New",monospace}.ai-review-log dd{margin:0}
+.ai-initial{margin-top:24px}.ai-initial summary{min-height:44px;cursor:pointer;font-size:14px}.ai-initial canvas{max-width:550px}
+.ai-evidence-links{display:flex;flex-wrap:wrap;gap:16px 32px;margin-top:24px!important}
+.project-accountability{border-block:1px solid var(--line);margin:30px 0;display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:20px 0}
+.project-accountability h2{font:11px/1.6 "Courier New",monospace;margin:0 0 10px}
+.project-accountability p{font-size:14px;line-height:1.8;margin:0;letter-spacing:0}
+.project-accountability small{display:block;margin-top:10px;font-size:12px;line-height:1.7;color:var(--soft)}
+.bts-link{font:11px/1.5 "Courier New",monospace}
+@media(max-width:700px){.ai-compare,.ai-authorship,.project-accountability{grid-template-columns:1fr;gap:20px}.ai-review-log dl>div{grid-template-columns:1fr;gap:8px}.ai-review canvas{height:290px}.ai-review{margin:32px 0}.ai-authorship p{margin:8px 0}.ai-review :is(p,dd,blockquote){font-size:14px}}
+@media(prefers-reduced-motion:reduce){.ai-review *{scroll-behavior:auto}}
+
+/* Individual project attribution is a line in the case, not another card. */
+.case-contribution{border-top:1px solid var(--line);padding-top:16px;margin-top:20px;font-size:14px;line-height:1.8}
+.case-contribution b{display:block;font:11px/1.6 "Courier New",monospace;margin-bottom:8px}
+.case-contribution p{margin:0;font-size:14px!important;line-height:1.8!important}

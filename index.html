@@ -53,6 +53,7 @@
 @media(prefers-reduced-motion:reduce){#todaiProject .td-workspace.td-animate .td-transfer{animation:none}#todaiProject .td-routes,#todaiProject .td-rings,#todaiProject .td-parcels,#todaiProject .td-model,#todaiProject .td-output,#todaiProject .td-input-cloud{transition:none}}
 </style>
 <link rel="stylesheet" href="/css/architectural-diagrams.css">
+<link rel="stylesheet" href="/css/portfolio-evidence.css">
 </head>
 <body class="light">
 <header>
@@ -85,7 +86,7 @@
  <div class="line meta" id="interactionHintMeta"></div>
  <div class="line tail" id="interactionHintTail"></div>
 </div>
-<footer><span id="footerLeft"></span><span class="footer-actions"><a class="print-portfolio-link" href="/print/" target="_blank" rel="noopener" aria-label="Open printable PDF portfolio">[ PDF ]</a><span id="footerRight"></span></span></footer>
+<footer><span id="footerLeft"></span><span class="footer-actions"><a class="bts-link" href="/bts/" aria-label="Behind the build: AI review and design rules">[ BTS ]</a><a class="print-portfolio-link" href="/print/" target="_blank" rel="noopener" aria-label="Open printable PDF portfolio">[ PDF ]</a><span id="footerRight"></span></span></footer>
 <section id="project" class="overlay" aria-hidden="true">
  <div class="overlay-inner">
   <div class="phead">
@@ -162,6 +163,8 @@
    </div>
 
 
+   <section id="projectAccountability" class="project-accountability" aria-label="Personal contribution and concrete result"></section>
+   <section id="aiReviewProject" class="ai-review" data-ai-review hidden aria-label="AI-assisted portfolio review"></section>
    <section class="parametric-case" id="parametricProject" hidden aria-label="435 Bourke Street parametric facade case study">
     <div class="parametric-case-title">
      <span class="parametric-kicker">PARAMETRIC PV FACADE / 01</span>
@@ -178,7 +181,7 @@
       <h2>435 Bourke Street</h2>
       <p data-en="For the tower's curved PV facade, I used Grasshopper to translate the design geometry into a repeatable panel workflow. The definition referenced the Rhino facade geometry, established horizontal levels and base curves, then used anchor points and curve interpolation to resolve changing panel conditions across the facade." data-zh="在塔楼的曲面 PV 外立面深化中，我使用 Grasshopper 将设计几何转化为一套可重复的 panel 生成流程。从 Rhino 引用外立面几何后，定义水平高度和基础曲线，再通过锚点、向量和曲线插值处理不同位置的曲率变化。">在塔楼的曲面 PV 外立面深化中，我使用 Grasshopper 将设计几何转化为一套可重复的 panel 生成流程。从 Rhino 引用外立面几何后，定义水平高度和基础曲线，再通过锚点、向量和曲线插值处理不同位置的曲率变化。</p>
       <p data-en="My work focused on developing and editing this Grasshopper workflow, subdividing the resolved geometry into individual PV panel segments and producing geometry for design development and documentation." data-zh="我的工作重点是建立和调整这套 Grasshopper workflow，将生成后的曲面进一步分割为独立的 PV panel，并输出用于设计深化和施工图工作的几何结果。">我的工作重点是建立和调整这套 Grasshopper workflow，将生成后的曲面进一步分割为独立的 PV panel，并输出用于设计深化和施工图工作的几何结果。</p>
-      <dl><div><dt data-en="ROLE" data-zh="参与工作">参与工作</dt><dd>Computational Design / Grasshopper</dd></div><div><dt data-en="WORKFLOW" data-zh="工作流程">工作流程</dt><dd>Rhino → Grasshopper → Panel Geometry → Documentation</dd></div></dl>
+      <dl><div><dt data-en="MY PART" data-zh="我的工作">我的工作</dt><dd>Computational Design / Grasshopper</dd></div><div><dt data-en="WORKFLOW" data-zh="工作流程">工作流程</dt><dd>Rhino → Grasshopper → Panel Geometry → Documentation</dd></div></dl>
      </aside>
      <div class="parametric-hero-meta">
       <span>01 / BUILT RESULT</span><span>435 BOURKE ST / MELBOURNE</span>
@@ -357,6 +360,7 @@
      <h2>Studio Library</h2>
      <p class="studio-case-lede studio-i18n" data-en="An internal design-knowledge system reframed around design intent rather than file location." data-zh="不再让设计师先猜文件放在哪里，而是按照他们现在要做的事情来组织资源。">An internal design-knowledge system reframed around design intent rather than file location.</p>
      <div class="studio-case-meta"><span class="studio-i18n" data-en="PROFESSIONAL PRACTICE / BATES SMART" data-zh="专业实践 / BATES SMART">PROFESSIONAL PRACTICE / BATES SMART</span><span class="studio-i18n" data-en="UX / FRONT-END PROTOTYPE / 2026" data-zh="UX / 前端原型 / 2026">UX / FRONT-END PROTOTYPE / 2026</span></div>
+     <div class="case-contribution"><b class="studio-i18n" data-en="MY PART / CURRENT RESULT" data-zh="我的工作 / 当前进展">我的工作 / 当前进展</b><p class="studio-i18n" data-en="I organise the information architecture, design the interface and develop the front-end prototype. The website is being deployed for colleagues in the Melbourne office to try first." data-zh="整理信息架构、设计界面并开发前端原型。目前正在部署网站，先让墨尔本办公室的同事试用。">整理信息架构、设计界面并开发前端原型。目前正在部署网站，先让墨尔本办公室的同事试用。</p></div>
     </div>
 
     <section class="studio-before studio-problem-led">

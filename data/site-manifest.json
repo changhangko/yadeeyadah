@@ -101,6 +101,15 @@
     "js/todai-model.js",
     "js/todai-playground.js",
     "js/drawing-palette.js",
-    "css/architectural-diagrams.css"
+    "css/architectural-diagrams.css",
+    "bts/index.html",
+    "bts/page.js",
+    "bts/review.js",
+    "bts/evidence/initial.js",
+    "bts/evidence/draft.js",
+    "bts/evidence/reviewed.js",
+    "js/portfolio-evidence.js",
+    "css/portfolio-evidence.css",
+    "DESIGN_GUARDRAILS.md"
   ]
 }
