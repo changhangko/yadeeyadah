@@ -2433,7 +2433,7 @@ html:lang(zh) .todai-workflow-heading{
 /* Quiet source entry; primary navigation and project descriptions keep stronger contrast. */
 footer .bts-link{color:inherit;font:inherit;letter-spacing:inherit;text-decoration:none}
 footer #footerLeft,footer .footer-actions{line-height:1.5}
-footer .footer-actions{color:inherit;font:inherit;letter-spacing:inherit}
+footer .footer-actions{color:inherit;font:inherit;line-height:1.5;letter-spacing:inherit}
 footer .bts-link:hover{color:var(--soft);text-decoration:underline}
 footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
 @media(max-width:900px){
