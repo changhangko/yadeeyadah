@@ -1454,9 +1454,15 @@ footer{
     line-height:1.35;
   }
 
-  footer span:last-child{
-    display:none;
+  footer .footer-actions{
+    display:flex;
+    justify-content:flex-end;
+    margin-left:auto;
+    gap:10px;
+    font-size:11px;
   }
+  footer #footerRight{display:none}
+  footer .bts-link,footer .print-portfolio-link{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;color:var(--fg)}
 
   #genome{
     padding-top:66px;
