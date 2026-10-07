@@ -2387,3 +2387,14 @@ html[lang="zh-CN"] #project .eyebrow{
 @media(max-width:720px){.system-animation-grid .system-animation-canvas{height:290px;min-height:290px}.system-animation-grid .system-animation-meta{padding:12px;gap:10px;flex-wrap:wrap}.system-animation-grid .system-animation-caption{padding:16px;min-height:0}.diagram-toolbar{align-items:flex-start}.parametric-process-card{padding:14px 10px}}
 @media(prefers-reduced-motion:reduce){.facade-drawing.facade-replay .facade-curves path{animation:none}}
 @media(max-width:720px){#project .pbody>h1{overflow-wrap:anywhere}}
+
+/* Chinese display headings need space between full-height glyphs. */
+html:lang(zh) :is(.pbody h1,.about-copy h1,.about-profile-grid .about-copy h1,.concept-grid h2,.arch-intro h2,.arch-chapter-head h3,.arch-selected-head h3,.studio-case-intro h2,.studio-section-head h3,.studio-intervention-copy h3,.studio-component-head h3,.system-animation-head h2,.parametric-copy h2,.parametric-case-title h2,.parametric-project-intro h2,.tod-intro-copy h3,.tod-problem h3,.todai-reveal h3){
+  line-height:1.24!important;
+  letter-spacing:0!important;
+}
+html:lang(zh) .todai-workflow-heading{
+  word-break:keep-all;
+  overflow-wrap:normal;
+  text-wrap:balance;
+}
