@@ -99,6 +99,8 @@
     "print/portfolio-data.json",
     "css/todai-playground.css",
     "js/todai-model.js",
-    "js/todai-playground.js"
+    "js/todai-playground.js",
+    "js/drawing-palette.js",
+    "css/architectural-diagrams.css"
   ]
 }

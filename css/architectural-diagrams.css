@@ -1,0 +1,74 @@
+/* Architectural plates: muted colour encodes geometry, routes and landscape.
+   References inform drawing conventions; all geometry is portfolio-authored. */
+.system-animation-canvas,.facade-drawing svg,#todaiProject .td-map svg,#todaiProject .td-workspace>svg,.tp-drawings svg{
+ --drawing-paper:#f4f1ea;--drawing-ink:#514c45;--drawing-line:#b9b2a7;
+ --drawing-ochre:#bd955e;--drawing-ochre-light:#dbc29c;--drawing-clay:#a76552;--drawing-sage:#8d9e87;--drawing-slate:#788e97;
+ background:var(--drawing-paper);color:var(--drawing-ink);
+}
+.system-animation-canvas{border-block:1px solid var(--line)}
+.facade-drawing svg{color:var(--drawing-ink)}
+.facade-drawing svg :is(path,circle,polyline,polygon){stroke:var(--drawing-ink);stroke-width:.7;vector-effect:non-scaling-stroke}
+.facade-drawing svg .facade-ground{fill:#e4e0d8;stroke:#b9b2a7}
+.facade-drawing svg .facade-surface{fill:var(--drawing-ochre-light);stroke:var(--drawing-ink)}
+.facade-drawing svg .facade-guide{fill:none;stroke:var(--drawing-line);opacity:.7;stroke-dasharray:2 3}
+.facade-drawing svg .facade-curve,.facade-drawing svg .facade-seam{fill:none}
+.facade-drawing svg .facade-base,.facade-drawing svg .facade-vector{fill:none;stroke:var(--drawing-clay);stroke-width:1.4}
+.facade-drawing svg .facade-anchor{fill:var(--drawing-clay);stroke:var(--drawing-clay)}
+.facade-drawing svg .facade-panel{fill:var(--drawing-ochre-light);stroke-width:.5}
+.facade-drawing svg .facade-panel-selected{fill:var(--drawing-clay)}
+.facade-drawing svg text{fill:var(--drawing-ink)}
+.facade-drawing button[aria-pressed="true"]{outline:1px solid var(--line);outline-offset:4px}
+.facade-drawing.facade-replay .facade-curves :is(path,polyline){stroke-dasharray:500;animation:facade-trace 1.3s ease-out both}
+#todaiProject .td-map svg{padding:12px;box-sizing:border-box}
+#todaiProject .td-parcels{fill:var(--drawing-ochre);opacity:.24}
+#todaiProject .td-roads{stroke:var(--drawing-line);opacity:.8}
+#todaiProject .td-rings{stroke:var(--drawing-slate);opacity:.4}
+#todaiProject .td-routes{stroke:var(--drawing-clay);stroke-width:2;opacity:.95}
+#todaiProject .td-destinations{fill:var(--drawing-paper);stroke:var(--drawing-clay)}
+#todaiProject .td-centre{fill:var(--drawing-clay)}
+#todaiProject .td-station-label{fill:var(--drawing-paper)}
+#todaiProject .td-labels{fill:var(--drawing-ink)}
+#todaiProject .td-map[data-mode="fabric"] .td-parcels{opacity:.65}
+#todaiProject .td-workspace>svg{padding:14px;box-sizing:border-box}
+#todaiProject .td-input-cloud,#todaiProject .td-model,#todaiProject .td-output{fill:none;stroke:var(--drawing-ink);stroke-width:.7;opacity:.35}
+#todaiProject .td-workspace .td-transform{stroke:var(--drawing-clay);opacity:.8}
+#todaiProject .td-workspace .td-feedback{stroke:var(--drawing-slate)}
+#todaiProject .td-workspace .td-context{fill:#e4e0d8;stroke:#b9b2a7}
+#todaiProject .td-workspace .td-plate{fill:#d1a395}
+#todaiProject .td-workspace .td-mass{fill:#dbc29c}
+#todaiProject .td-workspace .td-landscape{fill:#cbd4c6}
+#todaiProject .td-workspace .td-guideline{stroke:var(--drawing-line);stroke-dasharray:2 3;fill:none}
+#todaiProject .td-workspace .td-model{stroke-width:.7}
+#todaiProject .td-workspace .td-labels{stroke:none}
+.tp-drawings svg{box-sizing:border-box;padding:10px}
+.tp-drawings .tp-road{stroke:var(--drawing-line);opacity:.5}
+.tp-drawings .tp-centreline{stroke:var(--drawing-line);opacity:.85}
+.tp-drawings .tp-parcel{fill:#e4e0d8;stroke:var(--drawing-line);opacity:.7}
+.tp-drawings .tp-route{stroke:var(--drawing-clay);stroke-width:2;opacity:.95}
+.tp-drawings .tp-building{fill:var(--drawing-ochre-light);stroke:var(--drawing-ink)}
+.tp-drawings .tp-side{fill:var(--drawing-ochre);fill-opacity:1}
+.tp-drawings .tp-roof{fill:var(--drawing-ochre-light)}
+.tp-drawings .tp-floor{stroke:#846b4b;opacity:.55}
+.tp-drawings .tp-ground{fill:#e4e0d8;stroke:var(--drawing-line);stroke-width:.7}
+.tp-drawings .tp-landscape{fill:#cbd4c6;stroke:#8d9e87;stroke-width:.6}
+.tp-drawings .tp-node circle{fill:var(--drawing-paper);stroke:var(--drawing-ink)}
+.tp-drawings .tp-node[aria-pressed="true"] circle{fill:var(--drawing-clay);stroke:var(--drawing-clay)}
+.tp-drawings .tp-amenity{fill:var(--drawing-clay)}
+.tp-drawings text{fill:var(--drawing-ink)}
+.tp-legend span:nth-child(3),.tp-legend span:nth-child(4){color:#a76552}
+body:not(.light) .tp-legend span:nth-child(3),body:not(.light) .tp-legend span:nth-child(4){color:#d1a395}
+.diagram-toolbar{flex-wrap:wrap}
+.diagram-key{display:flex;gap:10px 20px;flex-wrap:wrap;font:11px/1.7 "Courier New",monospace;list-style:none;padding:0;margin:0 0 18px}
+.diagram-key li{display:flex;align-items:center;gap:7px}
+.diagram-key i{width:11px;height:11px;border:1px solid var(--line);background:#dbc29c}
+.diagram-key .key-clay{background:#a76552}.diagram-key .key-sage{background:#cbd4c6}.diagram-key .key-slate{background:#c3cfd1}
+@media(prefers-reduced-motion:reduce){.facade-drawing.facade-replay .facade-curves :is(path,polyline){animation:none}}
+
+/* Finite assembly cues; static end state under reduced motion. */
+.tp-drawings .tp-roof{fill:var(--drawing-clay);animation:drawing-roof-rise .55s ease-out both}
+.facade-drawing.facade-replay .facade-panel{animation:drawing-panel-assemble .8s ease-out both}
+#todaiProject .td-animate .td-model .td-landscape{animation:drawing-layer-rise .7s ease-out both}
+@keyframes drawing-roof-rise{from{transform:translateY(18px)}to{transform:translateY(0)}}
+@keyframes drawing-layer-rise{from{transform:translateY(12px)}to{transform:translateY(0)}}
+@keyframes drawing-panel-assemble{from{fill-opacity:.15}to{fill-opacity:1}}
+@media(prefers-reduced-motion:reduce){.tp-drawings .tp-roof,.facade-drawing.facade-replay .facade-panel,#todaiProject .td-animate .td-model .td-landscape{animation:none}}

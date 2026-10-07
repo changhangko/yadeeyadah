@@ -887,7 +887,7 @@ const METHOD_ANIMATION_COPY={
 };
 
 function buildMethodAnimation(category){
- setupDiagramToolbar(methodAnimationProject,'method');
+ setupDiagramToolbar(methodAnimationProject,'method',category);
   activeMethodCategory=category;
   const copy=METHOD_ANIMATION_COPY[category]?.[lang]||METHOD_ANIMATION_COPY[category]?.en;
   if(!copy||!methodAnimationProject)return;
@@ -1026,12 +1026,15 @@ function applyUI(){
 }
 
 
-function setupDiagramToolbar(section,type){
+function setupDiagramToolbar(section,type,category='system'){
  if(!section)return;
  let toolbar=section.querySelector('.diagram-toolbar');
  if(!toolbar){
   toolbar=document.createElement('div');toolbar.className='diagram-toolbar';
   toolbar.innerHTML='<p data-en="EXPLANATORY STUDIES / NOT MEASURED RESULTS" data-zh="流程与设计示意 / 非实测结果">流程与设计示意 / 非实测结果</p><div><button type="button" class="diagram-static" aria-pressed="false"><span data-en="STATIC VIEW" data-zh="静止视图">静止视图</span></button><button type="button" class="diagram-replay"><span data-en="REPLAY" data-zh="重新播放">重新播放</span></button></div>';
+  const key=document.createElement('ul');key.className='diagram-key';
+  key.innerHTML='<li><i></i><span data-en="MASS / INPUT" data-zh="体量 / 输入">体量 / 输入</span></li><li><i class="key-clay"></i><span data-en="ROUTE / CHANGE" data-zh="路径 / 变化">路径 / 变化</span></li><li><i class="key-sage"></i><span data-en="OPEN SPACE / SELECTION" data-zh="开放空间 / 选择">开放空间 / 选择</span></li><li><i class="key-slate"></i><span data-en="CONNECTION / DATA" data-zh="连接 / 数据">连接 / 数据</span></li>';
+  toolbar.append(key);
   section.querySelector('.system-animation-grid').before(toolbar);
   toolbar.querySelector('.diagram-static').addEventListener('click',()=>{
    diagramMotion[type].static=!diagramMotion[type].static;
@@ -1043,6 +1046,14 @@ function setupDiagramToolbar(section,type){
    type==='system'?restartSystemAnimations():restartMethodAnimations();
   });
  }
+ const keyLabels={
+  space:[['','BUILDING MASS','建筑体量'],['key-clay','ROUTE / SEPARATED LAYER','路径 / 分离图层'],['key-sage','OPEN SPACE','开放空间']],
+  system:[['key-slate','CITY / PLACE','城市 / 地点'],['','MATERIAL / SURFACE','材质 / 表面'],['key-clay','FAÇADE / DETAIL','立面 / 细节'],['key-sage','COLOUR / PALETTE','颜色 / 色板']],
+  code:[['','INPUT / OUTPUT','输入 / 输出'],['key-clay','PARAMETER CHANGE','参数变化'],['key-sage','PROCESS / CHECK','处理 / 检查'],['key-slate','DEPENDENCY','依赖关系']],
+  observation:[['key-sage','SELECTED FRAME','保留的画面']]
+ };
+ const key=toolbar.querySelector('.diagram-key');
+ if(key)key.innerHTML=(keyLabels[category]||keyLabels.system).map(([cl,en,zh])=>`<li><i class="${cl}"></i><span data-en="${en}" data-zh="${zh}">${zh}</span></li>`).join('');
  toolbar.querySelectorAll('[data-en][data-zh]').forEach(el=>el.textContent=lang==='zh'?el.dataset.zh:el.dataset.en);
 }
 setupDiagramToolbar(systemAnimationProject,'system');
