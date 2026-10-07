@@ -76,3 +76,6 @@ figure.cover img{object-fit:cover}figcaption{font-size:12px;line-height:1.5;colo
 .capture-mode .screen-only{display:none}.capture-mode #portfolio{padding:0;gap:0;align-items:start}.capture-mode{background:#f4f4f2;overflow:hidden}
 .capture-mode .page-wrap:not(.selected){display:none}
 @media print{html,body{margin:0;padding:0;background:white}.screen-only{display:none}#portfolio{display:block;padding:0}.page-wrap{width:420mm!important;height:297mm!important;break-after:page}.page-wrap:last-child{break-after:auto}.sheet{transform:scale(.992126)!important;transform-origin:top left}.sheet,*{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+.facade-print .parametric-process-diagram{height:125px}
+figure img[src$="435-bourke-grasshopper-script.jpg"]{filter:saturate(.28) sepia(.12)}

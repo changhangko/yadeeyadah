@@ -953,6 +953,7 @@ function openProject(i){
     </div>`;
   }).join('');
   ptaste.innerHTML=p.taste.map((item,j)=>`<div class="taste-item" data-taste-index="${j}"><button class="editor-remove remove-taste" data-remove-taste="${j}">[ × ]</button><span class="taste-key" data-editable="true" data-taste-key="${j}">${escapeHtml(item[0])}</span><p data-editable="true" data-taste-text="${j}">${escapeHtml(item[1])}</p></div>`).join('');
+  q('bourkeScriptEvidence').hidden=base.categoryKey!=='code';
   if(base.categoryKey==='observation')renderPhotoWall();else{photoWallWrap.classList.remove('visible');photoWall.innerHTML='';}
   projectEl.classList.toggle('research-project',base.categoryKey==='research');
   const hasArchitecture=base.categoryKey==='space';
@@ -1003,7 +1004,7 @@ function renderAbout(){
 
 function applyStudioCaseCopy(){
   q('instagramCopyStatus').textContent='';
-  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh], #parametricProject [data-en][data-zh], .diagram-toolbar [data-en][data-zh], .observation-social [data-en][data-zh]').forEach(el=>{
+  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh], #parametricProject [data-en][data-zh], .diagram-toolbar [data-en][data-zh], .observation-social [data-en][data-zh], #bourkeScriptEvidence [data-en][data-zh]').forEach(el=>{
     const value=lang==='zh'?el.dataset.zh:el.dataset.en;
     if(value)el.textContent=value;
   });
