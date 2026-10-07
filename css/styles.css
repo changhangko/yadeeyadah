@@ -2494,3 +2494,23 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
  #project .text-size-btn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:44px;min-height:44px;padding:0;line-height:1}
  #project .phead #close{display:inline-flex;align-items:center;justify-content:flex-end;height:44px;text-align:right}
 }
+
+/* Profile resume: quiet background, clear bilingual reading order. */
+#aboutPanel .about-info .about-aside{background:transparent;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border:0;margin-top:24px}
+#aboutPanel .about-info .about-block,#aboutPanel .about-info .about-block:not(:first-child){display:block;grid-column:auto;min-height:0;padding:26px 0;border:0;border-top:1px solid var(--line);background:transparent}
+#aboutPanel .about-info .about-block:last-child{grid-column:1/-1}
+#aboutPanel .about-info .about-block h2{margin:0 0 18px;font-size:13px;line-height:1.5;letter-spacing:.025em;font-weight:600;text-transform:none}
+#aboutPanel .about-info .about-block p{max-width:none;font-size:14px;line-height:1.8;color:var(--soft);letter-spacing:0;overflow-wrap:anywhere}
+.resume-en,.resume-zh{display:block}
+.resume-zh{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);line-height:1.85}
+#aboutPanel .contact-link{color:inherit;text-decoration:underline;text-underline-offset:4px;display:inline-block;padding:4px 0}
+@media(max-width:700px){
+ #aboutPanel .about-info{margin-top:48px;padding-top:0;border-top:0}
+ #aboutPanel .about-info .about-aside{grid-template-columns:minmax(0,1fr);gap:0}
+ #aboutPanel .about-info .about-block,#aboutPanel .about-info .about-block:not(:first-child){padding:24px 0}
+ #aboutPanel .about-info .about-block h2{margin-bottom:14px;font-size:13px}
+ #aboutPanel .about-info .about-block p{font-size:14px;line-height:1.8}
+ #aboutPanel .about-copy #aboutText{font-size:14px;line-height:1.85;letter-spacing:0;color:var(--soft)}
+}
+
+@media(max-width:700px){#aboutPanel .concept-copy p{font-size:14px;line-height:1.85;color:var(--soft);letter-spacing:0}}
