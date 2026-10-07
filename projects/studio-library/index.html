@@ -1323,7 +1323,9 @@ body.secret-model-mode .btn-card-dl {
 }
 
 @media (max-width: 1080px) {
-  header { grid-template-columns: 44px auto auto; column-gap: 24px; }
+  header { grid-template-columns:44px minmax(0,1fr); column-gap:24px; row-gap:10px; padding-top:12px; padding-bottom:12px; }
+  .library-tabs { grid-column:1/-1; grid-row:2; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); min-width:0; }
+  .header-end { grid-column:2; grid-row:1; justify-self:end; }
   .logo-text { display: none; }
   .library-home-button { width: 36px; height: 36px; justify-content: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; }
   .header-end { gap: 12px; }
@@ -1355,7 +1357,7 @@ body.secret-model-mode .btn-card-dl {
     margin: 12px 18px 0;
     padding: 11px 14px 12px;
     border-radius: 16px;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0,1fr) auto;
     row-gap: 11px;
     column-gap: 18px;
   }
@@ -1366,8 +1368,53 @@ body.secret-model-mode .btn-card-dl {
   #map-admin-panel { left: 18px; right: auto; top: auto; bottom: 18px; width: calc(100% - 36px); }
   .map-search-panel { width: calc(100% - 36px); }
   .header-end { justify-self: end; }
-  .library-tabs { grid-column: 1 / -1; grid-row: 2; width:100%; }
-  .library-tab { flex:1; }
+  .library-tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-column:1/-1; grid-row:2; width:100%; min-width:0; gap:4px; }
+  .library-tab { min-width:0; min-height:44px; padding:10px 6px; white-space:normal; font-size:13px; line-height:1.3; }
+  .library-home-button { width:44px; height:44px; }
+  .header-end { min-width:0; }
+  .toolbar { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; padding-top:18px; }
+  .toolbar-left { display:grid; grid-template-columns:minmax(0,1fr); width:100%; min-width:0; }
+  .search-wrap { width:100%; max-width:none; min-width:0; }
+  .search-input,.select-box,.material-field { min-height:44px; font-size:16px; min-width:0; max-width:100%; }
+  .filter-pills { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .pill { min-height:44px; padding:8px; font-size:11px; }
+  .view-toggle { width:100%; min-width:0; gap:2px; }
+  .view-btn { flex:1; min-width:0; min-height:44px; padding:8px 4px; white-space:normal; }
+  .sort-select { width:100%; }
+  .grid { grid-template-columns:minmax(0,1fr); gap:16px; }
+  .card { min-width:0; }
+  .stats-bar { gap:12px; }
+  .palette-tabs { flex-wrap:wrap; }
+  .palette-tab { min-height:44px; }
+  .colour-info { padding:12px; }
+  .colour-name { font-size:14px; line-height:1.35; overflow-wrap:anywhere; }
+  .colour-number,.colour-hex { font-size:11px; }
+  .colour-detail { padding:76px 18px 24px; overflow-y:auto; align-items:start; }
+  .colour-detail-close { top:16px; right:16px; }
+  .colour-detail h3 { font-size:clamp(34px,11vw,58px); line-height:1.1; overflow-wrap:anywhere; }
+  .colour-codes { margin-top:22px; }
+  .colour-code { min-height:64px; }
+  .materials-grid { grid-template-columns:minmax(0,1fr); }
+  .material-preview { aspect-ratio:4/3; }
+  .material-metric { min-width:0; padding:12px; }
+  .material-metric span { font-size:10px; }
+  .materials-actions { width:100%; }
+  .btn { min-height:44px; }
+  .modal-overlay { padding:10px; }
+  .modal { width:100%; max-width:100%; max-height:calc(100dvh - 20px); }
+  .modal-hero { height:150px; }
+  .modal-header { padding:16px 16px 0; }
+  .modal-body { padding:16px; min-height:0; }
+  .modal-footer { padding:12px 16px; flex-wrap:wrap; }
+  .modal-close { width:44px; height:44px; }
+  .path-box { overflow-wrap:anywhere; }
+  .map-search-row { flex-wrap:wrap; }
+  .map-search-row input { min-width:0; width:100%; font-size:16px; min-height:44px; }
+  .map-search-row button { min-height:44px; }
+  .spatial-map-title { right:12px; font-size:11px; }
+  .spatial-map-message { left:12px; right:12px; max-width:none; }
+  .toast { width:max-content; max-width:calc(100% - 24px); text-align:center; }
+
   .materials-toolbar, .materials-summary, .material-filterbar, .material-status-pills, .materials-grid { padding-left:18px; padding-right:18px; }
   .materials-summary { grid-template-columns:1fr 1fr; }
   .material-filterbar { grid-template-columns:1fr 1fr; }
