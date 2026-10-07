@@ -2404,3 +2404,16 @@ html:lang(zh) .todai-workflow-heading{
   overflow-wrap:normal;
   text-wrap:balance;
 }
+
+/* Observation connects the local selection to the photographer's account. */
+.observation-social{display:flex;justify-content:space-between;align-items:center;gap:32px;padding:24px 0 30px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+.observation-social-label{display:block;font-size:11px;letter-spacing:.12em;color:var(--soft)}
+.observation-instagram{display:inline-block;margin:10px 0;color:var(--fg);font-size:clamp(24px,3vw,38px);text-decoration:none;text-underline-offset:6px}
+.observation-instagram:hover{text-decoration:underline}
+.observation-social p{margin:0;font-size:13px;color:var(--soft);line-height:1.7}
+.observation-account-actions{display:grid;gap:8px;min-width:190px}
+.observation-account-actions button{min-height:44px;border:1px solid var(--line);background:transparent;color:var(--fg);padding:10px 14px;font:12px/1.5 "Courier New",monospace;cursor:pointer}
+.observation-account-actions input{width:100%;min-width:0;min-height:44px;border:0;background:transparent;color:var(--fg);font:16px/1.5 "Courier New",monospace;text-align:center}
+.observation-account-actions :is(button,input):focus-visible,.observation-instagram:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+#instagramCopyStatus{min-height:1.6em;font-size:12px;line-height:1.6;color:var(--soft)}
+@media(max-width:700px){.observation-social{align-items:stretch;flex-direction:column;gap:18px}.observation-account-actions{width:100%;min-width:0;grid-template-columns:1fr 1fr}.observation-account-actions input{text-align:right}#instagramCopyStatus{grid-column:1/-1}}

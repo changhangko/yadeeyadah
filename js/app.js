@@ -1002,7 +1002,8 @@ function renderAbout(){
 
 
 function applyStudioCaseCopy(){
-  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh], #parametricProject [data-en][data-zh], .diagram-toolbar [data-en][data-zh]').forEach(el=>{
+  q('instagramCopyStatus').textContent='';
+  document.querySelectorAll('.studio-i18n, .arch-i18n, #todaiProject [data-en][data-zh], #parametricProject [data-en][data-zh], .diagram-toolbar [data-en][data-zh], .observation-social [data-en][data-zh]').forEach(el=>{
     const value=lang==='zh'?el.dataset.zh:el.dataset.en;
     if(value)el.textContent=value;
   });
@@ -1469,6 +1470,16 @@ function bindGlobal(){
   q('close').addEventListener('click',hidePanels);
   document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));
   q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));
+  q('copyInstagramAccount').addEventListener('click',async()=>{
+    const account=q('instagramAccount'),status=q('instagramCopyStatus');
+    try{
+      await navigator.clipboard.writeText(account.value);
+      status.textContent=lang==='zh'?'账号已复制':'ACCOUNT COPIED';
+    }catch{
+      account.focus();account.select();
+      status.textContent=lang==='zh'?'请长按复制账号':'SELECT AND COPY THE ACCOUNT';
+    }
+  });
 
   q('theme').addEventListener('click',togglePortfolioTheme);
   q('projectTheme').addEventListener('click',togglePortfolioTheme);
