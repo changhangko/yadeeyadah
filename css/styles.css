@@ -2431,8 +2431,9 @@ html:lang(zh) .todai-workflow-heading{
 @media(max-width:700px){.bourke-script-evidence{margin:48px 0 38px;padding-top:24px}.bourke-script-heading{align-items:flex-start;flex-direction:column;gap:8px}.bourke-script-heading span{font-size:11px}.bourke-script-evidence figure{padding:8px}.bourke-script-evidence figcaption{font-size:11px;padding:12px 4px 4px}}
 
 /* Quiet source entry; primary navigation and project descriptions keep stronger contrast. */
-footer .bts-link{color:#999;font:400 10.5px/1.5 Arial,"Microsoft YaHei",sans-serif;letter-spacing:.02em;text-decoration:none}
-body.light footer .bts-link{color:#6f6f6b}
+footer .bts-link{color:inherit;font:inherit;letter-spacing:inherit;text-decoration:none}
+footer #footerLeft,footer .footer-actions{line-height:1.5}
+footer .footer-actions{color:inherit;font:inherit;letter-spacing:inherit}
 footer .bts-link:hover{color:var(--soft);text-decoration:underline}
 footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
 @media(max-width:900px){
@@ -2453,7 +2454,8 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
   body>header .controls #about{display:inline-flex}
   #genome{inset:138px 0 64px;padding-top:0;padding-bottom:0}
   footer{align-items:center;font-size:8px;gap:12px}
-  #footerLeft{min-width:0;letter-spacing:.04em}
+  footer{letter-spacing:.04em}
+  #footerLeft{min-width:0}
   #indexPanel .pbody{position:static;min-height:0;margin:32px auto 48px;padding:0;width:100%}
   #indexPanel .index-intro{position:static;transform:none;margin:0 0 26px;max-width:none}
   #indexPanel .index-list{position:static;transform:none}
