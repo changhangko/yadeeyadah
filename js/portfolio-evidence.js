@@ -68,7 +68,7 @@ export function applyProjectEvidence(category,language){
  else document.querySelector('#project .story-grid')?.after(root);
  const d=evidence[category][language==='zh'?'zh':'en'];
  root.replaceChildren();
- for(const [key,title] of [['part',language==='zh'?'我的工作':'MY PART'],['result',language==='zh'?'具体产出':'CONCRETE RESULT']]){
+ for(const [key,title] of [['part',language==='zh'?'参与工作':'MY PART'],['result',language==='zh'?'具体产出':'CONCRETE RESULT']]){
   const group=document.createElement('div'),h=document.createElement('h2'),p=document.createElement('p');
   h.textContent=title;p.textContent=d[key];group.append(h,p);
   if(key==='result'){const small=document.createElement('small');small.textContent=d.note;group.append(small);}
