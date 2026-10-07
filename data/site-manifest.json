@@ -110,6 +110,7 @@
     "bts/evidence/reviewed.js",
     "js/portfolio-evidence.js",
     "css/portfolio-evidence.css",
-    "DESIGN_GUARDRAILS.md"
+    "DESIGN_GUARDRAILS.md",
+    "js/todai-workflow.js"
   ]
 }

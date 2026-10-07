@@ -1049,7 +1049,7 @@ function setupDiagramToolbar(section,type,category='system'){
   });
  }
  const keyLabels={
-  space:[['','BUILDING MASS','建筑体量'],['key-clay','ROUTE / SEPARATED LAYER','路径 / 分离图层'],['key-sage','OPEN SPACE','开放空间']],
+  space:[['','BUILDING MASS','建筑体量'],['key-clay','GROUND ROUTE','地面路径'],['key-sage','OPEN SPACE','开放空间']],
   system:[['key-slate','CITY / PLACE','城市 / 地点'],['','MATERIAL / SURFACE','材质 / 表面'],['key-clay','FAÇADE / DETAIL','立面 / 细节'],['key-sage','COLOUR / PALETTE','颜色 / 色板']],
   code:[['','INPUT / OUTPUT','输入 / 输出'],['key-clay','PARAMETER CHANGE','参数变化'],['key-sage','PROCESS / CHECK','处理 / 检查'],['key-slate','DEPENDENCY','依赖关系']],
   observation:[['key-sage','SELECTED FRAME','保留的画面']]

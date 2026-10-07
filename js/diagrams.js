@@ -18,61 +18,45 @@ export function drawEditorialDiagram(canvas, category, stage, progress, photos, 
   function line(x,y,X,Y,opacity=1,dash=[]) { c.save();c.globalAlpha=opacity;c.strokeStyle=p.line;c.lineWidth=1;c.setLineDash(dash);c.beginPath();c.moveTo(x,y);c.lineTo(X,Y);c.stroke();c.restore(); }
   function path(points,fill=null,opacity=1) { c.save();c.globalAlpha=opacity;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();if(fill){c.fillStyle=fill;c.fill();}c.strokeStyle=p.fg;c.lineWidth=.75;c.stroke();c.restore(); }
   function rect(x,y,w,h,fill=null,opacity=1) { c.save();c.globalAlpha=opacity;if(fill){c.fillStyle=fill;c.fillRect(x,y,w,h);}c.strokeStyle=p.line;c.lineWidth=1;c.strokeRect(x,y,w,h);c.restore(); }
-  function text(value,x,y,size=12,color=p.soft,align='left') { c.fillStyle=color;c.font=`${size}px "Courier New",monospace`;c.textAlign=align;c.textBaseline='middle';c.fillText(value,x,y);c.textAlign='left'; }
+  function text(value,x,y,size=12,color=p.soft,align='left') { c.fillStyle=color;c.font=`${category==='space'?Math.max(size,12/scale):size}px "Courier New",monospace`;c.textAlign=align;c.textBaseline='middle';c.fillText(value,x,y);c.textAlign='left'; }
   function dot(x,y,r=3,fill=D.terracotta) { c.fillStyle=fill;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill(); }
   function arrow(x,y,X,Y,opacity=1) { line(x,y,X,Y,opacity);const a=Math.atan2(Y-y,X-x);line(X,Y,X-6*Math.cos(a-.5),Y-6*Math.sin(a-.5),opacity);line(X,Y,X-6*Math.cos(a+.5),Y-6*Math.sin(a+.5),opacity); }
   function cable(x,y,X,Y,opacity=1) { c.save();c.strokeStyle=D.slate;c.globalAlpha=opacity;c.lineWidth=1.2;c.beginPath();c.moveTo(x,y);c.bezierCurveTo((x+X)/2,y,(x+X)/2,Y,X,Y);c.stroke();c.restore(); }
   function label(value,x,y,X,Y) { dot(x,y,2);line(x,y,X,Y);text(value,X+5,Y,11,p.fg); }
   const foot = (left,right) => { line(24,309,456,309);text(left,24,325,10);text(right,456,325,10,p.soft,'right'); };
   if (category === 'space') {
-    const iso=(x,y,z=0)=>[240+(x-y)*94,224+(x+y)*39-z*97];
-    const plane=(x,y,w,h,z,fill,alpha=1)=>path([iso(x,y,z),iso(x+w,y,z),iso(x+w,y+h,z),iso(x,y+h,z)],fill,alpha);
+    // Draw every element on one ground plane, in depth order.
+    const iso=(x,y,z=0)=>[240+(x-y)*78,204+(x+y)*34-z*86];
+    const plane=(x,y,w,h,fill)=>path([iso(x,y),iso(x+w,y),iso(x+w,y+h),iso(x,y+h)],fill);
     function volume(x,y,w,h,z,context=false){
-      const a=iso(x,y,0),b=iso(x+w,y,0),e=iso(x+w,y+h,0),d=iso(x,y+h,0);
-      const A=iso(x,y,z),B=iso(x+w,y,z),E=iso(x+w,y+h,z),F=iso(x,y+h,z);
-      path([d,e,E,F],context?D.context:D.ochreLight);
+      const b=iso(x+w,y),e=iso(x+w,y+h),f=iso(x,y+h);
+      const B=iso(x+w,y,z),E=iso(x+w,y+h,z),F=iso(x,y+h,z),A=iso(x,y,z);
+      path([f,e,E,F],context?D.context:D.ochreLight);
       path([b,e,E,B],context?D.contextSide:D.ochreShade);
       path([A,B,E,F],context?D.paper:D.ochre);
-      if(!context)for(let level=.13;level<z;level+=.13){
-        line(...iso(x,y+h,level),...iso(x+w,y+h,level),.45);
-        line(...iso(x+w,y,level),...iso(x+w,y+h,level),.45);
+      if(!context)for(let level=.14;level<z;level+=.14){
+        line(...iso(x,y+h,level),...iso(x+w,y+h,level),.7);
+        line(...iso(x+w,y,level),...iso(x+w,y+h,level),.7);
       }
     }
-    // Muted urban context remains the same in each study.
-    [[-1.05,-1.2,.6,.32,.24],[.25,-1.2,.6,.32,.3],[-1.15,.35,.23,.5,.24],[.98,-.6,.25,.65,.28]].forEach(v=>volume(...v,true));
-    plane(-.94,-.74,1.88,1.48,0,D.context);
-    plane(-.88,-.68,1.76,1.36,.012,D.terracottaLight,.55);
-    for(const x of [-.88,.88])line(...iso(x,-.68,0),...iso(x,.68,0),.6,[2,3]);
-    // Ground circulation precedes mass so buildings correctly occlude the path.
-    if(stage>=1){
-      plane(-.8,-.04,1.6,.13,.018,D.terracotta,.25+.6*t);
-      arrow(...iso(-.93,.025,.025),...iso(.89,.025,.025));
+    plane(-1,-.8,2,1.6,D.context);
+    plane(-.9,-.7,1.8,1.4,D.terracottaLight);
+    if(stage>=1)plane(-.82,-.055,1.64,.13,D.terracotta);
+    if(stage===3)plane(.55,-.4,.29,.99,D.sageLight);
+    // All context footprints are outside the site, with a street gap.
+    const context=[[-1.8,.45,.25,.4,.22],[1.65,-.75,.25,.4,.25]];
+    const masses=stage===0?[[-.72,-.5,1.25,1,.18+.46*t]]:[[-.72,-.5,.5,.36,stage===1?.64:.64+(.42-.64)*t],[-.07,-.5,.5,.36,stage===1?.64:.64+(.82-.64)*t],[-.72,.12,.5,.36,stage===1?.64:.64+(.30-.64)*t],[-.07,.12,.5,.36,stage===1?.64:.64+(.62-.64)*t]];
+    [...context.map(v=>({v,context:true})),...masses.map(v=>({v,context:false}))].sort((a,b)=>(a.v[0]+a.v[1]+(a.v[2]+a.v[3])/2)-(b.v[0]+b.v[1]+(b.v[2]+b.v[3])/2)).forEach(({v,context})=>volume(...v,context));
+    if(stage===3)for(const y of [.34,.48,.62]){
+      const [x,Y]=iso(.70,y);c.fillStyle=D.sageLight;c.strokeStyle=D.sage;c.lineWidth=.8;c.beginPath();c.arc(x,Y-5,6,0,Math.PI*2);c.fill();c.stroke();
     }
-    if(stage===0)volume(-.72,-.5,1.25,1,.18+.46*t);
-    else{
-      const footprints=[[-.72,-.5],[-.07,-.5],[-.72,.12],[-.07,.12]];
-      // Sequentially open the passage, then vary the height on identical footprints.
-      footprints.forEach(([x,y],i)=>volume(x,y,.5,.36,stage===1?.64:.64+([.42,.82,.3,.62][i]-.64)*t));
-    }
-    if(stage>=1)text('WALKING CONNECTION',28,281,11,D.terracotta);
-    if(stage===3){
-      plane(.5,-.45,.35,.96,.02,D.sageLight);
-      for(const [x,y] of [[.64,-.28],[.67,.02],[.65,.32],[-.58,.59],[-.25,.59]]){
-        const a=iso(x,y,.03);
-        c.fillStyle=D.sageLight;c.strokeStyle=D.sage;c.lineWidth=.65;c.beginPath();c.arc(a[0],a[1]-5,7,0,Math.PI*2);c.fill();c.stroke();
-        line(a[0],a[1]-1,a[0],a[1]+4,.8);
-      }
-      label('OPEN SPACE',...iso(.68,.32,.03),355,266);
-      // Roof plate lifted along real projection guides, as an exploded layer study.
-      const lift=.16*t,x=-.07,y=-.5,z=.82+lift;
-      [iso(x,y,.82),iso(x+.5,y,.82),iso(x+.5,y+.36,.82)].forEach(a=>line(a[0],a[1],a[0],a[1]-lift*97,.6,[2,3]));
-      plane(x,y,.5,.36,z,D.terracotta);
-    }
-    dot(408,50,6,D.ochre);arrow(398,68,366,92);
-    text('SUN DIRECTION',347,29,10);
-    text(['01 / ENVELOPE','02 / OPEN THE BLOCK','03 / VARY HEIGHT','04 / GROUND + ROOF'][stage],25,26,11,p.fg);
-    label(stage===3?'ROOF LAYER':stage===0?'BUILDING ENVELOPE':'RESIDENTIAL MASS',...iso(-.5,-.45,.68),30,65);
-    foot('CONTEXT / MASS / ROUTE','SCHEMATIC / NOT TO SCALE');
+    // Annotation bands stay outside the geometry; no leader lines cross labels.
+    text(zh?['01 / 最大体量','02 / 打开通道','03 / 调整高度','04 / 公共空间'][stage]:['01 / ENVELOPE','02 / OPEN PASSAGES','03 / VARY HEIGHT','04 / PUBLIC REALM'][stage],24,26,14,p.fg);
+    dot(421,35,6,D.ochre);arrow(412,51,390,75);text(zh?'日照':'SUN',432,62,12,p.fg,'right');
+    text(zh?['确定建筑体量','保留地面通行','比较不同高度','建筑与开放空间一起设计'][stage]:['BUILDING ENVELOPE','GROUND-LEVEL PASSAGE','COMPARABLE FOOTPRINTS','BUILDINGS + OPEN SPACE'][stage],24,282,13,p.fg);
+    line(24,308,456,308);
+    text(zh?'设计过程示意':'DESIGN STUDY',24,325,12,p.fg);
+    text(zh?'非实测几何':'NOT TO SCALE',456,325,12,p.fg,'right');
   } else if (category === 'system') {
     const names=['CITY MODEL','MATERIAL','FAÇADE','COLOUR','GUIDE','RESOURCE','MODEL','REFERENCE'];
     if(stage===0){names.forEach((name,i)=>{const x=35+(i%3)*142+(i%2)*10,y=47+Math.floor(i/3)*82;rect(x,y,116,56,[D.slateLight,D.ochreLight,D.terracottaLight,D.sageLight][i%4]);text(String(i+1).padStart(2,'0'),x+9,y+12,9);text(name,x+9,y+34,11,p.fg);if(i<5)cable(x+116,y+28,35+((i+1)%3)*142,47+Math.floor((i+1)/3)*82+28,.2);});}

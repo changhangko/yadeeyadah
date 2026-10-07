@@ -79,3 +79,12 @@ body:not(.light) .tp-legend span:nth-child(3),body:not(.light) .tp-legend span:n
 /* TODAI has its own research narrative; hide the entire unused decision-log wrapper. */
 #project.research-project .taste{display:none!important}
 #todaiProject .todai-title>.todai-thesis-label{font-size:12px;line-height:1.6}
+
+/* Each research stage has a different explanatory drawing and a finite replay. */
+#todaiProject .td-flow-player{min-width:0;background:#f4f1ea;color:#514c45;padding:12px}
+#todaiProject .td-flow-player svg{width:100%;height:auto;overflow:hidden;display:block}
+#todaiProject .td-flow-player svg text{font-family:Arial,"Microsoft YaHei",sans-serif;letter-spacing:0}
+#todaiProject .td-flow-live{font:14px/1.7 Arial,"Microsoft YaHei",sans-serif;min-height:2em;margin:8px 12px;color:#514c45}
+#todaiProject .td-flow-replay{font:12px/1.6 Arial,"Microsoft YaHei",sans-serif;min-height:44px;margin:4px 12px 8px;background:transparent;color:#514c45;border:1px solid #b9b2a7;padding:10px 14px;cursor:pointer}
+#todaiProject .td-flow-replay:focus-visible{outline:2px solid #a76552;outline-offset:3px}
+@media(max-width:600px){#todaiProject .td-flow-player{padding:4px}#todaiProject .td-flow-live{font-size:14px}#todaiProject .td-stage-description p{font-size:15px}}
