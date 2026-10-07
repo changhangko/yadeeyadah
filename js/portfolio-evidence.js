@@ -1,4 +1,3 @@
-import {mountAIReview} from '../bts/review.js';
 const evidence={
   "space": {
     "en": {
@@ -74,6 +73,4 @@ export function applyProjectEvidence(category,language){
   if(key==='result'){const small=document.createElement('small');small.textContent=d.note;group.append(small);}
   root.append(group);
  }
- const review=document.getElementById('aiReviewProject');
- if(review){review.hidden=category!=='code';if(category==='code')mountAIReview(review);}
 }
