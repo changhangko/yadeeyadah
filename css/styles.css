@@ -2520,3 +2520,10 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
  #project #projectTheme{justify-self:center;text-align:center}
  #project #projectIndex{justify-self:end;text-align:right}
 }
+
+/* Single-column project facts share one left edge. */
+@media(max-width:600px){
+ #project .meta-grid{grid-template-columns:minmax(0,1fr)}
+ #project .meta-grid .meta-item,#project .meta-grid .meta-item:not(:first-child),#project .meta-grid .meta-item:last-child{padding:18px 0;margin:0;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
+ #project .meta-grid .meta-item:last-child{border-bottom:0}
+}
