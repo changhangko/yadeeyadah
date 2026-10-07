@@ -14,7 +14,7 @@ export function mountAIReview(root){
   });
  };
  const rules=root.querySelector('a[href="/bts/"]');
- if(rules&&window.location.pathname.startsWith('/bts/'))rules.href='#rules';
+ if(rules&&/^\/bts(?:\/|$)/.test(window.location.pathname))rules.href='#rules';
  new ResizeObserver(draw).observe(root);
  new MutationObserver(draw).observe(document.body,{attributes:true,attributeFilter:['class']});
  root.querySelector('details').addEventListener('toggle',draw);
