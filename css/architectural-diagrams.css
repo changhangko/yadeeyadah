@@ -75,3 +75,7 @@ body:not(.light) .tp-legend span:nth-child(3),body:not(.light) .tp-legend span:n
 
 @keyframes drawing-panel-assemble{from{fill-opacity:.15}to{fill-opacity:1}}
 @media(prefers-reduced-motion:reduce){.tp-drawings .tp-roof,.facade-drawing.facade-replay .facade-panel{animation:none}}
+
+/* TODAI has its own research narrative; hide the entire unused decision-log wrapper. */
+#project.research-project .taste{display:none!important}
+#todaiProject .todai-title>.todai-thesis-label{font-size:12px;line-height:1.6}
