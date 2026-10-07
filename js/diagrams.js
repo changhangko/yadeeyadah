@@ -43,17 +43,18 @@ export function drawEditorialDiagram(canvas, category, stage, progress, photos, 
     plane(-.94,-.74,1.88,1.48,0,D.context);
     plane(-.88,-.68,1.76,1.36,.012,D.terracottaLight,.55);
     for(const x of [-.88,.88])line(...iso(x,-.68,0),...iso(x,.68,0),.6,[2,3]);
+    // Ground circulation precedes mass so buildings correctly occlude the path.
+    if(stage>=1){
+      plane(-.8,-.04,1.6,.13,.018,D.terracotta,.25+.6*t);
+      arrow(...iso(-.93,.025,.025),...iso(.89,.025,.025));
+    }
     if(stage===0)volume(-.72,-.5,1.25,1,.18+.46*t);
     else{
       const footprints=[[-.72,-.5],[-.07,-.5],[-.72,.12],[-.07,.12]];
       // Sequentially open the passage, then vary the height on identical footprints.
       footprints.forEach(([x,y],i)=>volume(x,y,.5,.36,stage===1?.64:.64+([.42,.82,.3,.62][i]-.64)*t));
     }
-    if(stage>=1){
-      plane(-.8,-.04,1.6,.13,.018,D.terracotta,.25+.6*t);
-      arrow(...iso(-.93,.025,.025),...iso(.89,.025,.025));
-      text('WALKING CONNECTION',28,281,11,D.terracotta);
-    }
+    if(stage>=1)text('WALKING CONNECTION',28,281,11,D.terracotta);
     if(stage===3){
       plane(.5,-.45,.35,.96,.02,D.sageLight);
       for(const [x,y] of [[.64,-.28],[.67,.02],[.65,.32],[-.58,.59],[-.25,.59]]){
