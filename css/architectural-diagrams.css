@@ -30,13 +30,16 @@
 #todaiProject .td-labels{fill:var(--drawing-ink)}
 #todaiProject .td-map[data-mode="fabric"] .td-parcels{opacity:.65}
 #todaiProject .td-workspace>svg{padding:14px;box-sizing:border-box}
-#todaiProject .td-input-cloud,#todaiProject .td-model,#todaiProject .td-output{fill:none;stroke:var(--drawing-ink);stroke-width:.7;opacity:.35}
+#todaiProject .td-input-cloud,#todaiProject .td-model,#todaiProject .td-output{fill:none;stroke:var(--drawing-ink);stroke-width:.7;opacity:.85}
 #todaiProject .td-workspace .td-transform{stroke:var(--drawing-clay);opacity:.8}
 #todaiProject .td-workspace .td-feedback{stroke:var(--drawing-slate)}
 #todaiProject .td-workspace .td-context{fill:#e4e0d8;stroke:#b9b2a7}
 #todaiProject .td-workspace .td-plate{fill:#d1a395}
 #todaiProject .td-workspace .td-mass{fill:#dbc29c}
 #todaiProject .td-workspace .td-landscape{fill:#cbd4c6}
+#todaiProject .td-workspace .td-parcel{fill:#dbc29c;stroke:#948979;opacity:1}
+#todaiProject .td-workspace .td-mass-side{fill:#bd955e}
+#todaiProject .td-workspace .td-mass-roof{fill:#e1cba9}
 #todaiProject .td-workspace .td-guideline{stroke:var(--drawing-line);stroke-dasharray:2 3;fill:none}
 #todaiProject .td-workspace .td-model{stroke-width:.7}
 #todaiProject .td-workspace .td-labels{stroke:none}
@@ -67,8 +70,8 @@ body:not(.light) .tp-legend span:nth-child(3),body:not(.light) .tp-legend span:n
 /* Finite assembly cues; static end state under reduced motion. */
 .tp-drawings .tp-roof{fill:var(--drawing-clay);animation:drawing-roof-rise .55s ease-out both}
 .facade-drawing.facade-replay .facade-panel{animation:drawing-panel-assemble .8s ease-out both}
-#todaiProject .td-animate .td-model .td-landscape{animation:drawing-layer-rise .7s ease-out both}
+
 @keyframes drawing-roof-rise{from{transform:translateY(18px)}to{transform:translateY(0)}}
-@keyframes drawing-layer-rise{from{transform:translateY(12px)}to{transform:translateY(0)}}
+
 @keyframes drawing-panel-assemble{from{fill-opacity:.15}to{fill-opacity:1}}
-@media(prefers-reduced-motion:reduce){.tp-drawings .tp-roof,.facade-drawing.facade-replay .facade-panel,#todaiProject .td-animate .td-model .td-landscape{animation:none}}
+@media(prefers-reduced-motion:reduce){.tp-drawings .tp-roof,.facade-drawing.facade-replay .facade-panel{animation:none}}
