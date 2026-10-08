@@ -2527,3 +2527,25 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
  #project .meta-grid .meta-item,#project .meta-grid .meta-item:not(:first-child),#project .meta-grid .meta-item:last-child{padding:18px 0;margin:0;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
  #project .meta-grid .meta-item:last-child{border-bottom:0}
 }
+
+/* TODAI urban-generation sequence: keep location logic tied to parcels */
+.td-workspace svg .td-stage-map .td-context,
+.td-workspace svg .td-generated .td-context{fill:none;stroke:var(--line);stroke-width:1.2}
+.td-workspace svg .td-road{fill:none;stroke:var(--soft);stroke-width:1;opacity:.45}
+.td-workspace svg .td-parcel{fill:transparent;stroke:var(--fg);stroke-width:.9;opacity:.48}
+.td-workspace svg .td-merged{fill:rgba(150,150,140,.08);stroke:var(--fg);stroke-width:1.1}
+.td-workspace svg .td-zone{stroke:var(--fg);stroke-width:1}
+.td-workspace svg .td-zone-high{fill:rgba(176,92,70,.28)}
+.td-workspace svg .td-zone-mid{fill:rgba(194,154,82,.24)}
+.td-workspace svg .td-zone-low{fill:rgba(115,145,122,.20)}
+.td-workspace svg .td-landscape{fill:rgba(120,120,110,.08);stroke:var(--line);stroke-width:1}
+.td-workspace svg .td-mass{fill:rgba(185,145,82,.50);stroke:var(--fg);stroke-width:.9}
+.td-workspace svg .td-mass-side{fill:rgba(150,110,62,.58)}
+.td-workspace svg .td-mass-roof{fill:rgba(220,185,112,.62)}
+.td-workspace svg .td-transfer{stroke:var(--fg);stroke-width:1.2;stroke-dasharray:4 5;animation:tdTransferPulse 1.8s linear infinite}
+.td-workspace svg .td-transform path{fill:none;stroke:var(--line);stroke-width:1}
+.td-workspace svg .td-labels{font-family:"Courier New",monospace;font-size:9px;letter-spacing:.06em;fill:var(--soft)}
+.td-workspace svg .td-legend text{font-family:"Courier New",monospace;font-size:8px;fill:var(--soft)}
+.td-workspace svg .td-centre{fill:var(--fg)}
+@keyframes tdTransferPulse{to{stroke-dashoffset:-18}}
+@media(prefers-reduced-motion:reduce){.td-workspace svg .td-transfer{animation:none}}
