@@ -2558,3 +2558,44 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
 .td-workspace svg .td-centre{fill:var(--fg)}
 @keyframes tdTransferPulse{to{stroke-dashoffset:-18}}
 @media(prefers-reduced-motion:reduce){.td-workspace svg .td-transfer{animation:none}}
+
+/* Iglu Arden / four-view facade comparison */
+.arch-arden-media{
+  display:block!important;
+}
+.arch-arden-gallery{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+}
+.arch-arden-card{
+  margin:0;
+  min-width:0;
+}
+.arch-arden-frame{
+  width:100%;
+  aspect-ratio:16/10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--line);
+}
+.arch-arden-frame img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  border:0!important;
+  background:#fff;
+}
+.arch-arden-card figcaption{
+  padding-top:10px;
+}
+@media(max-width:800px){
+  .arch-arden-gallery{grid-template-columns:1fr;gap:30px}
+  .arch-arden-frame{aspect-ratio:auto}
+  .arch-arden-frame img{height:auto}
+}
