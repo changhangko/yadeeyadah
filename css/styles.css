@@ -2599,3 +2599,23 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
   .arch-arden-frame{aspect-ratio:auto}
   .arch-arden-frame img{height:auto}
 }
+
+/* Arden: original tower elevation followed by two paired podium identities. */
+.arch-arden-media .arch-arden-elevation{margin:0 0 40px;grid-column:auto;width:100%}
+.arch-arden-media .arch-arden-elevation img{display:block;width:100%;height:auto;max-height:780px;aspect-ratio:auto;object-fit:contain;object-position:center;background:#fff}
+.arch-arden-media .arch-arden-card{grid-column:auto;margin:0}
+.arch-arden-media .arch-arden-frame img{aspect-ratio:auto;object-fit:contain;object-position:center}
+.arch-arden-media .arch-arden-card figcaption{font-size:11px;line-height:1.6;letter-spacing:.035em;color:var(--soft);min-height:2.6em}
+@media(max-width:800px){.arch-arden-media .arch-arden-elevation{margin-bottom:28px}.arch-arden-media .arch-arden-frame img{width:100%;height:auto;max-height:none}}
+
+.arch-arden-overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px;margin-bottom:40px;align-items:start}
+.arch-arden-media .arch-arden-overview figure{margin:0;grid-column:auto;min-width:0}
+.arch-arden-media .arch-arden-overview img{width:100%;height:560px;max-height:none;aspect-ratio:auto;object-fit:contain;object-position:center;border:0;background:#fff}
+.arch-arden-axo-frame{background:#fff}
+.arch-arden-media .arch-arden-axonometric img{opacity:.9}
+@media(max-width:800px){.arch-arden-overview{grid-template-columns:minmax(0,1fr);gap:28px;margin-bottom:32px}.arch-arden-media .arch-arden-overview img{height:auto;max-height:680px}}
+
+.arch-subproject-media.arch-arden-media .arch-arden-gallery figure.arch-arden-card{grid-column:auto;grid-row:auto}
+.arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame img{aspect-ratio:auto;object-fit:contain}
+
+.arch-arden-media .arch-arden-axo-frame,.arch-arden-media .arch-arden-axonometric img{background:transparent;border:0}
