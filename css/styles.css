@@ -422,6 +422,10 @@ button:hover,button:focus-visible{font-weight:bold;outline:none}
   object-fit:contain;
   object-position:center;
 }
+.arch-evidence-three figure:nth-child(2) img{
+  object-fit:cover;
+  object-position:center;
+}
 .arch-evidence-three figure figcaption{margin-top:auto}
 .arch-metric-row{
   display:grid;
