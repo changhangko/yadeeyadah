@@ -2622,3 +2622,61 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
 
 /* Transparent podium renders integrate with both page themes. */
 .arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame,.arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame img{background:transparent;border:0!important}
+
+/* Project image lightbox / mobile-first slideshow */
+#project .pbody img:not(.profile-image){cursor:zoom-in}
+.portfolio-lightbox{
+ position:fixed;inset:0;z-index:12000;display:grid;
+ grid-template-columns:56px minmax(0,1fr) 56px;
+ grid-template-rows:56px minmax(0,1fr) 46px;
+ background:rgba(0,0,0,.96);color:#fff;
+ opacity:0;visibility:hidden;pointer-events:none;
+ transition:opacity .18s ease,visibility .18s ease;
+}
+.portfolio-lightbox.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.portfolio-lightbox-stage{
+ grid-column:2;grid-row:2;margin:0;min-width:0;min-height:0;
+ display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.portfolio-lightbox-stage img{
+ display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+ object-fit:contain;user-select:none;-webkit-user-drag:none;touch-action:pan-x pan-y pinch-zoom;
+}
+.portfolio-lightbox-stage figcaption{
+ position:absolute;left:0;bottom:-34px;right:0;
+ font:10px/1.4 "Courier New",monospace;letter-spacing:.04em;color:rgba(255,255,255,.62);
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.portfolio-lightbox-close,.portfolio-lightbox-nav{
+ appearance:none;border:0;background:transparent;color:#fff;cursor:pointer;
+ font-family:"Courier New",monospace;font-weight:400;
+}
+.portfolio-lightbox-close{
+ grid-column:3;grid-row:1;justify-self:end;align-self:start;
+ width:56px;height:56px;font-size:28px;line-height:1;
+}
+.portfolio-lightbox-nav{
+ grid-row:2;align-self:stretch;font-size:38px;opacity:.72;
+ transition:opacity .15s ease;
+}
+.portfolio-lightbox-nav:hover,.portfolio-lightbox-nav:focus-visible{opacity:1}
+.portfolio-lightbox-prev{grid-column:1}
+.portfolio-lightbox-next{grid-column:3}
+.portfolio-lightbox-count{
+ grid-column:2;grid-row:3;align-self:center;justify-self:center;
+ font:10px/1 "Courier New",monospace;letter-spacing:.1em;color:rgba(255,255,255,.7);
+}
+body.lightbox-open{overflow:hidden}
+@media(max-width:700px){
+ .portfolio-lightbox{grid-template-columns:42px minmax(0,1fr) 42px;grid-template-rows:48px minmax(0,1fr) 44px}
+ .portfolio-lightbox-close{width:48px;height:48px;font-size:24px}
+ .portfolio-lightbox-nav{font-size:30px;opacity:.5}
+ .portfolio-lightbox-stage{grid-column:1/-1;padding:0 18px}
+ .portfolio-lightbox-prev,.portfolio-lightbox-next{z-index:2}
+ .portfolio-lightbox-prev{grid-column:1}
+ .portfolio-lightbox-next{grid-column:3}
+ .portfolio-lightbox-stage figcaption{left:18px;right:18px;bottom:-30px;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .portfolio-lightbox{transition:none}
+}
