@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Garry Zhang — Creative Technologist / Computational Designer portfolio">
 <title>Garry Zhang — Genome Portfolio</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CHANGHANGKO">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="/css/styles.css">
 <link rel="stylesheet" href="/css/todai-playground.css">
 <style id="todai-diagrams-styles">
@@ -519,5 +524,6 @@ root.querySelector('.td-map').dataset.mode=button.dataset.tdMode;
 root.querySelectorAll('[data-td-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
 }));
 </script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(console.warn));}</script>
 </body>
 </html>
