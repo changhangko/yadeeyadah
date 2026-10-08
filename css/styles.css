@@ -2680,3 +2680,26 @@ body.lightbox-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
  .portfolio-lightbox{transition:none}
 }
+
+/* Native iPhone haptic capture layer — visually inert */
+.native-haptic-layer{
+  position:fixed;
+  inset:0;
+  z-index:13000;
+  pointer-events:none;
+}
+.native-haptic-proxy{
+  position:fixed;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  opacity:.001;
+  pointer-events:auto;
+  z-index:1;
+  -webkit-appearance:auto;
+  appearance:auto;
+  touch-action:manipulation;
+}
+@media(hover:hover) and (pointer:fine){
+  .native-haptic-layer{display:none}
+}
