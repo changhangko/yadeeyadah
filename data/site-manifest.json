@@ -121,10 +121,10 @@
     "projects/studio-library/images/model-station.svg",
     "projects/studio-library/index.html",
     "projects/studio-library/materials-data.js",
-    "assets/architecture/arden-red-elevation.jpg",
-    "assets/architecture/arden-green-elevation.jpg",
-    "assets/architecture/arden-red-street-edge.jpg",
-    "assets/architecture/arden-green-corner.jpg",
-    "assets/architecture/arden-axonometric.png"
+    "assets/architecture/arden-axonometric.png",
+    "assets/architecture/arden-red-elevation.png",
+    "assets/architecture/arden-green-elevation.png",
+    "assets/architecture/arden-red-street-edge.png",
+    "assets/architecture/arden-green-corner.png"
   ]
 }

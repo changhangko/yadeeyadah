@@ -2619,3 +2619,6 @@ footer .bts-link:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
 .arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame img{aspect-ratio:auto;object-fit:contain}
 
 .arch-arden-media .arch-arden-axo-frame,.arch-arden-media .arch-arden-axonometric img{background:transparent;border:0}
+
+/* Transparent podium renders integrate with both page themes. */
+.arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame,.arch-subproject-media.arch-arden-media .arch-arden-gallery .arch-arden-frame img{background:transparent;border:0!important}
