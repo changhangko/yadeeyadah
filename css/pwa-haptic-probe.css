@@ -1,0 +1,5 @@
+/* Isolated native iOS switch tactile experiment; preview branch only. */
+#pwaHapticProbe{position:fixed;z-index:75;right:14px;bottom:max(64px,calc(22px + env(safe-area-inset-bottom)));display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border:1px solid var(--line);color:var(--soft);font:9px/1.2 "Courier New",monospace;letter-spacing:.10em}
+#pwaHapticProbe input{width:37px;height:24px;margin:0;accent-color:var(--fg);cursor:pointer;}
+#pwaHapticProbe output{font-size:9px;min-width:30px}
+@media(hover:hover) and (pointer:fine){#pwaHapticProbe{display:none}}
