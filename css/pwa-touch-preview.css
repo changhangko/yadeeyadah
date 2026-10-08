@@ -1,0 +1,16 @@
+/* PWA touch study v2 — deliberately restrained; coarse pointers only. */
+@media (hover: none) and (pointer: coarse) {
+  .mutation { transition: color 180ms ease, opacity 180ms ease; }
+  .mutation.touch-pressed { opacity: .52; }
+  .zone.armed .mutation { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .decode { transition: opacity 180ms ease; }
+  .controls button, .project-head-actions button, .panelClose,
+  .index-row, .next-project { -webkit-tap-highlight-color: transparent; transition: opacity 160ms ease; }
+  button.touch-pressed, .index-row.touch-pressed, .next-project.touch-pressed { opacity: .48; }
+  .overlay.visible .overlay-inner { animation: pwa-quiet-enter 220ms ease-out both; }
+  @keyframes pwa-quiet-enter { from { opacity: .88; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay.visible .overlay-inner { animation: none !important; }
+  .mutation, .controls button, .project-head-actions button, .panelClose, .index-row, .next-project { transition: none !important; }
+}
