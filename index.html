@@ -250,12 +250,93 @@
 <div class="td-meta"><span>04 / FROM URBAN DATA TO FEEDBACK</span><span data-en="SELECT A STAGE" data-zh="点击阶段查看流程">点击阶段查看流程</span></div>
 <div class="td-step-buttons" role="group" aria-label="Research stages"><button type="button" data-td-step="0" aria-pressed="true" aria-controls="td-stage-description"><small>01</small><span data-en="DATA" data-zh="数据">数据</span></button><button type="button" data-td-step="1" aria-pressed="false" aria-controls="td-stage-description"><small>02</small><span data-en="GENERATE" data-zh="生成">生成</span></button><button type="button" data-td-step="2" aria-pressed="false" aria-controls="td-stage-description"><small>03</small><span data-en="OPTIMISE" data-zh="优化">优化</span></button><button type="button" data-td-step="3" aria-pressed="false" aria-controls="td-stage-description"><small>04</small><span data-en="TRAIN" data-zh="训练">训练</span></button><button type="button" data-td-step="4" aria-pressed="false" aria-controls="td-stage-description"><small>05</small><span data-en="PREDICT" data-zh="预测">预测</span></button><button type="button" data-td-step="5" aria-pressed="false" aria-controls="td-stage-description"><small>06</small><span data-en="FEEDBACK" data-zh="反馈">反馈</span></button></div>
 <div class="td-workspace" data-stage="0">
-<svg viewBox="0 0 720 270" role="img" aria-label="TODAI workflow: parcels inside a site boundary, buildings on the ground, and two grounded comparison scenarios">
-<g class="td-labels"><text x="40" y="28">INPUT</text><text x="325" y="28">MODEL</text><text x="550" y="28">COMPARE</text></g>
-<g class="td-input-cloud"><polygon class="td-context" points="110,102.8 176.56,134 110,165.2 43.44,134"/><polygon class="td-parcel" points="110,107.6 124.08,114.2 110,120.8 95.92,114.2"/><polygon class="td-parcel" points="129.2,116.6 143.28,123.2 129.2,129.8 115.12,123.2"/><polygon class="td-parcel" points="148.4,125.6 162.48,132.2 148.4,138.8 134.32,132.2"/><polygon class="td-parcel" points="90.8,116.6 104.88,123.2 90.8,129.8 76.72,123.2"/><polygon class="td-parcel" points="110,125.6 124.08,132.2 110,138.8 95.92,132.2"/><polygon class="td-parcel" points="129.2,134.6 143.28,141.2 129.2,147.8 115.12,141.2"/><polygon class="td-parcel" points="71.6,125.6 85.68,132.2 71.6,138.8 57.52,132.2"/><polygon class="td-parcel" points="90.8,134.6 104.88,141.2 90.8,147.8 76.72,141.2"/><polygon class="td-parcel" points="110,143.6 124.08,150.2 110,156.8 95.92,150.2"/><text class="td-labels" x="40" y="218">PARCELS / NETWORK</text></g>
-<g class="td-transform"><path d="M195 145H269M454 145H529"/><path class="td-transfer" d="M195 145H269M454 145H529"/></g>
-<g class="td-model"><polygon class="td-context" points="360,112 430.4,145 360,178 289.6,145"/><polygon class="td-landscape" points="308.16,141.1 367.04,168.7 358.72,172.6 299.84,145"/><polygon class="td-mass td-mass-side" points="377.92,128.2 360,136.6 360,110.6 377.92,102.2"/><polygon class="td-mass" points="342.08,128.2 360,136.6 360,110.6 342.08,102.2"/><polygon class="td-mass td-mass-roof" points="360,93.8 377.92,102.2 360,110.6 342.08,102.2"/><polygon class="td-mass td-mass-side" points="402.24,139.6 384.32,148 384.32,114 402.24,105.6"/><polygon class="td-mass" points="366.4,139.6 384.32,148 384.32,114 366.4,105.6"/><polygon class="td-mass td-mass-roof" points="384.32,97.2 402.24,105.6 384.32,114 366.4,105.6"/><polygon class="td-mass td-mass-side" points="353.6,139.6 335.68,148 335.68,126 353.6,117.6"/><polygon class="td-mass" points="317.76,139.6 335.68,148 335.68,126 317.76,117.6"/><polygon class="td-mass td-mass-roof" points="335.68,109.2 353.6,117.6 335.68,126 317.76,117.6"/><polygon class="td-mass td-mass-side" points="377.92,151 360,159.4 360,129.4 377.92,121"/><polygon class="td-mass" points="342.08,151 360,159.4 360,129.4 342.08,121"/><polygon class="td-mass td-mass-roof" points="360,112.6 377.92,121 360,129.4 342.08,121"/><text class="td-labels" x="287" y="218">BUILDINGS ON GROUND</text></g><g class="td-output"><polygon class="td-context" points="576,127 614.4,145 576,163 537.6,145"/><polygon class="td-mass td-mass-side" points="593.92,145 576,153.4 576,130.4 593.92,122"/><polygon class="td-mass" points="558.08,145 576,153.4 576,130.4 558.08,122"/><polygon class="td-mass td-mass-roof" points="576,113.6 593.92,122 576,130.4 558.08,122"/><polygon class="td-context" points="656,127 694.4,145 656,163 617.6,145"/><polygon class="td-mass td-mass-side" points="673.92,145 656,153.4 656,116.4 673.92,108"/><polygon class="td-mass" points="638.08,145 656,153.4 656,116.4 638.08,108"/><polygon class="td-mass td-mass-roof" points="656,99.6 673.92,108 656,116.4 638.08,108"/><text class="td-labels" x="552" y="187">A</text><text class="td-labels" x="632" y="187">B</text><text class="td-labels" x="548" y="218">COMPARE SCENARIOS</text></g>
-<path class="td-feedback" d="M655 228V248H110V228"/>
+<svg viewBox="0 0 920 320" role="img" aria-label="TODAI research workflow showing existing urban fabric, parcel amalgamation, TOD height zoning and generated built form">
+<defs>
+ <pattern id="tdHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" class="td-hatch-line"/></pattern>
+</defs>
+<g class="td-labels">
+ <text x="34" y="28">01 / EXISTING URBAN FABRIC</text>
+ <text x="250" y="28">02 / PARCEL AMALGAMATION</text>
+ <text x="482" y="28">03 / TOD HEIGHT ZONING</text>
+ <text x="708" y="28">04 / GENERATED BUILT FORM</text>
+</g>
+
+<!-- 01: irregular existing parcel fabric -->
+<g class="td-stage-map td-existing">
+ <path class="td-context" d="M40 78 L198 62 L216 242 L54 258 Z"/>
+ <path class="td-road" d="M62 112 L205 101 M74 172 L211 161 M88 230 L214 220"/>
+ <path class="td-road" d="M93 70 L108 252 M151 66 L165 248"/>
+ <path class="td-parcel" d="M51 84 L92 80 L96 109 L57 113 Z"/>
+ <path class="td-parcel" d="M96 80 L148 74 L151 104 L100 109 Z"/>
+ <path class="td-parcel" d="M153 73 L195 69 L198 101 L157 104 Z"/>
+ <path class="td-parcel" d="M61 118 L103 114 L106 166 L68 170 Z"/>
+ <path class="td-parcel" d="M108 113 L157 108 L161 158 L112 164 Z"/>
+ <path class="td-parcel" d="M162 107 L202 104 L207 155 L166 158 Z"/>
+ <path class="td-parcel" d="M72 178 L108 174 L112 222 L79 226 Z"/>
+ <path class="td-parcel" d="M113 171 L163 166 L168 216 L118 221 Z"/>
+ <path class="td-parcel" d="M169 164 L207 161 L213 211 L174 215 Z"/>
+ <text class="td-labels" x="45" y="285">SMALL / SEGREGATED LOTS</text>
+</g>
+
+<g class="td-transform"><path d="M220 160H244"/><path class="td-transfer" d="M220 160H244"/></g>
+
+<!-- 02: same fabric, parcels algorithmically amalgamated -->
+<g class="td-stage-map td-amalgamated">
+ <path class="td-context" d="M258 78 L416 62 L434 242 L272 258 Z"/>
+ <path class="td-road" d="M280 112 L423 101 M292 172 L429 161 M306 230 L432 220"/>
+ <path class="td-road" d="M311 70 L326 252 M369 66 L383 248"/>
+ <path class="td-merged" d="M269 84 L366 74 L369 104 L318 109 L321 166 L286 170 Z"/>
+ <path class="td-merged" d="M371 73 L413 69 L416 101 L420 155 L380 158 L376 108 Z"/>
+ <path class="td-merged" d="M290 178 L381 166 L386 216 L297 226 Z"/>
+ <path class="td-merged" d="M387 164 L425 161 L431 211 L392 215 Z"/>
+ <text class="td-labels" x="263" y="285">ALGORITHMIC AMALGAMATION</text>
+</g>
+
+<g class="td-transform"><path d="M438 160H466"/><path class="td-transfer" d="M438 160H466"/></g>
+
+<!-- 03: height zoning remains attached to the amalgamated parcels -->
+<g class="td-stage-map td-zoning">
+ <path class="td-context" d="M480 78 L638 62 L656 242 L494 258 Z"/>
+ <path class="td-road" d="M502 112 L645 101 M514 172 L651 161 M528 230 L654 220"/>
+ <path class="td-road" d="M533 70 L548 252 M591 66 L605 248"/>
+ <path class="td-zone td-zone-high" d="M491 84 L588 74 L591 104 L540 109 L543 166 L508 170 Z"/>
+ <path class="td-zone td-zone-mid" d="M593 73 L635 69 L638 101 L642 155 L602 158 L598 108 Z"/>
+ <path class="td-zone td-zone-mid" d="M512 178 L603 166 L608 216 L519 226 Z"/>
+ <path class="td-zone td-zone-low" d="M609 164 L647 161 L653 211 L614 215 Z"/>
+ <circle class="td-centre" cx="500" cy="242" r="8"/><text class="td-labels" x="514" y="247">TRANSIT</text>
+ <text class="td-labels" x="491" y="285">HEIGHT / DENSITY ALLOCATION</text>
+</g>
+
+<g class="td-transform"><path d="M660 160H690"/><path class="td-transfer" d="M660 160H690"/></g>
+
+<!-- 04: generated forms sit directly on the zoned footprints -->
+<g class="td-generated">
+ <polygon class="td-context" points="788,92 884,137 788,182 692,137"/>
+ <polygon class="td-landscape" points="711,139 788,175 853,145 777,109"/>
+ <g class="td-mass-group">
+  <polygon class="td-mass" points="726,133 756,147 756,105 726,91"/>
+  <polygon class="td-mass td-mass-side" points="756,147 776,138 776,96 756,105"/>
+  <polygon class="td-mass td-mass-roof" points="726,91 756,105 776,96 746,82"/>
+ </g>
+ <g class="td-mass-group">
+  <polygon class="td-mass" points="786,161 818,176 818,135 786,120"/>
+  <polygon class="td-mass td-mass-side" points="818,176 840,166 840,125 818,135"/>
+  <polygon class="td-mass td-mass-roof" points="786,120 818,135 840,125 808,110"/>
+ </g>
+ <g class="td-mass-group">
+  <polygon class="td-mass" points="812,121 838,133 838,106 812,94"/>
+  <polygon class="td-mass td-mass-side" points="838,133 856,125 856,98 838,106"/>
+  <polygon class="td-mass td-mass-roof" points="812,94 838,106 856,98 830,86"/>
+ </g>
+ <text class="td-labels" x="700" y="218">SOLAR / SHADOW TESTED FORM</text>
+ <text class="td-labels" x="700" y="285">GENERATED ON MERGED PARCELS</text>
+</g>
+
+<g class="td-legend">
+ <rect class="td-zone td-zone-high" x="488" y="298" width="12" height="8"/><text x="505" y="306">HIGH</text>
+ <rect class="td-zone td-zone-mid" x="548" y="298" width="12" height="8"/><text x="565" y="306">MID</text>
+ <rect class="td-zone td-zone-low" x="602" y="298" width="12" height="8"/><text x="619" y="306">LOW</text>
+</g>
 </svg>
 <div id="td-stage-description" class="td-stage-description" aria-live="polite"><div data-td-panel="0" ><span>01 / OSM / CADASTRE / CONSTRAINTS</span><h4 data-en="DATA" data-zh="数据">数据</h4><p data-en="Public urban data provides the context for testing scenarios." data-zh="公共城市数据为方案测试提供背景。">公共城市数据为方案测试提供背景。</p></div><div data-td-panel="1" hidden><span>02 / RHINO + GRASSHOPPER</span><h4 data-en="GENERATE" data-zh="生成">生成</h4><p data-en="Rule-based geometry turns planning inputs into urban scenarios." data-zh="规则化几何将规划输入转化成城市方案。">规则化几何将规划输入转化成城市方案。</p></div><div data-td-panel="2" hidden><span>03 / GALAPAGOS</span><h4 data-en="OPTIMISE" data-zh="优化">优化</h4><p data-en="Optimisation explores alternatives against the analytical objectives." data-zh="优化过程根据分析目标探索不同方案。">优化过程根据分析目标探索不同方案。</p></div><div data-td-panel="3" hidden><span>04 / H2O / XGBOOST</span><h4 data-en="TRAIN" data-zh="训练">训练</h4><p data-en="Enumerated inputs and analytical outputs form training examples." data-zh="枚举的输入与分析结果组成模型训练样本。">枚举的输入与分析结果组成模型训练样本。</p></div><div data-td-panel="4" hidden><span>05 / NEW INPUT → INDICATORS</span><h4 data-en="PREDICT" data-zh="预测">预测</h4><p data-en="The trained model estimates indicators for new planning inputs." data-zh="训练后的模型为新的规划输入估算指标。">训练后的模型为新的规划输入估算指标。</p></div><div data-td-panel="5" hidden><span>06 / RETURN TO THE INTERFACE</span><h4 data-en="FEEDBACK" data-zh="反馈">反馈</h4><p data-en="Indicators return to the interface to support further comparison." data-zh="指标返回界面，帮助继续比较和调整方案。">指标返回界面，帮助继续比较和调整方案。</p></div></div>
 </div>
