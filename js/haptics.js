@@ -29,6 +29,34 @@ document.body.appendChild(layer);
 const proxyByTarget=new Map();
 let raf=0;
 
+// Dedicated offscreen native switch for transition pulses.
+// It never overlays content, so it cannot interfere with scrolling or taps.
+const sequenceSwitch=document.createElement('input');
+sequenceSwitch.type='checkbox';
+sequenceSwitch.setAttribute('switch','');
+sequenceSwitch.tabIndex=-1;
+sequenceSwitch.setAttribute('aria-hidden','true');
+sequenceSwitch.className='native-haptic-sequence-switch';
+document.body.appendChild(sequenceSwitch);
+
+let sequenceToken=0;
+function fireSequencePulse(){
+  // WebKit may expose tactile feedback when the native switch changes state.
+  // Other browsers fall back to a tiny vibration pulse where supported.
+  sequenceSwitch.click();
+  if(!isAppleTouch && navigator.vibrate) navigator.vibrate(6);
+}
+window.addEventListener('portfolio:haptic-sequence',e=>{
+  const pattern=Array.isArray(e.detail?.pattern)?e.detail.pattern:[420,750,1010,1210,1360];
+  const token=++sequenceToken;
+  pattern.forEach(delay=>{
+    setTimeout(()=>{
+      if(token!==sequenceToken || document.hidden) return;
+      fireSequencePulse();
+    },Math.max(0,Number(delay)||0));
+  });
+});
+
 function panelOpen(id){
   const el=document.getElementById(id);
   return !!el && (
