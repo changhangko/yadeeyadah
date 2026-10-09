@@ -713,6 +713,11 @@ function transitionToProject(i){
   if(!overlay||window.matchMedia('(prefers-reduced-motion: reduce)').matches){openProject(i);return;}
   transitionRunning=true;
   const p=proj(i),base=PROJECTS[i];
+  // Progressive decode haptics: the opening tap is the first tactile cue,
+  // then the pulses tighten as the transition approaches the project view.
+  window.dispatchEvent(new CustomEvent('portfolio:haptic-sequence',{
+    detail:{pattern:[420,750,1010,1210,1360]}
+  }));
   generateTransitionGenome();
   overlay.classList.remove('exit','decoding','fill');
   overlay.classList.add('active');
