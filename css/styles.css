@@ -2703,3 +2703,12 @@ body.lightbox-open{overflow:hidden}
 @media(hover:hover) and (pointer:fine){
   .native-haptic-layer{display:none}
 }
+
+/* Prevent accidental next-project activation while finishing a vertical scroll on touch devices. */
+#nextProject{
+  touch-action:pan-y;
+  -webkit-tap-highlight-color:transparent;
+}
+@media(pointer:coarse){
+  #nextProject:active{transform:translateY(1px)}
+}
