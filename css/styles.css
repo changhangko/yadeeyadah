@@ -2712,3 +2712,13 @@ body.lightbox-open{overflow:hidden}
 @media(pointer:coarse){
   #nextProject:active{transform:translateY(1px)}
 }
+
+.native-haptic-sequence-switch{
+  position:fixed!important;
+  left:-100px!important;
+  top:-100px!important;
+  width:1px!important;
+  height:1px!important;
+  opacity:.001!important;
+  pointer-events:none!important;
+}
