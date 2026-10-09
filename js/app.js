@@ -1470,7 +1470,38 @@ function bindGlobal(){
   q('layoutNudgeDown').addEventListener('click',()=>nudgeSelected(0,1));
   q('close').addEventListener('click',hidePanels);
   document.querySelectorAll('.panelClose').forEach(btn=>btn.addEventListener('click',hidePanels));
-  q('nextProject').addEventListener('click',()=>transitionToProject((currentProject+1)%PROJECTS.length));
+  {
+    const nextProjectBtn=q('nextProject');
+    let nextTouchStart=null;
+    let suppressNextClick=false;
+
+    nextProjectBtn.addEventListener('touchstart',e=>{
+      if(e.touches.length!==1){nextTouchStart=null;return;}
+      nextTouchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
+      suppressNextClick=false;
+    },{passive:true});
+
+    nextProjectBtn.addEventListener('touchmove',e=>{
+      if(!nextTouchStart||!e.touches.length)return;
+      const dx=e.touches[0].clientX-nextTouchStart.x;
+      const dy=e.touches[0].clientY-nextTouchStart.y;
+      if(Math.hypot(dx,dy)>12)suppressNextClick=true;
+    },{passive:true});
+
+    nextProjectBtn.addEventListener('touchend',()=>{
+      nextTouchStart=null;
+      if(suppressNextClick)setTimeout(()=>{suppressNextClick=false},450);
+    },{passive:true});
+
+    nextProjectBtn.addEventListener('click',e=>{
+      if(suppressNextClick){
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      transitionToProject((currentProject+1)%PROJECTS.length);
+    });
+  }
   q('copyInstagramAccount').addEventListener('click',async()=>{
     const account=q('instagramAccount'),status=q('instagramCopyStatus');
     try{
