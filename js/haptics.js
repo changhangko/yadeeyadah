@@ -13,7 +13,6 @@ const isAppleTouch =
 const HOME_SELECTORS = ['.mutation','.decode'];
 const PROJECT_SELECTORS = [
   '#projectLangToggle','#projectTheme','#projectIndex','#projectAbout','#close',
-  '#nextProject'
 ];
 const GLOBAL_SELECTORS = ['#langToggle','#theme','#index','#about'];
 const LIGHTBOX_SELECTORS = [
