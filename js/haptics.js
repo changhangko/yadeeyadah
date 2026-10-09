@@ -1,25 +1,26 @@
 /*
- iOS tactile bridge.
- Uses the same native <input type="checkbox" switch> interaction that was
- previously confirmed to produce Taptic feedback on iPhone. The switch is
- transparent and positioned directly above selected tap targets; its native
- state change supplies the tactile tick, then the original control is invoked.
+ iOS tactile bridge — scroll-safe version.
+
+ Important: native iOS switch proxies must NEVER cover scrollable media/content.
+ Only compact tap controls receive a proxy. Mutation controls are active only on
+ the home/genome screen, project controls only while the project panel is open,
+ and lightbox controls only while the lightbox is open.
 */
 const isAppleTouch =
   /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-const selectors = [
-  '.mutation',
-  '.decode',
-  '#langToggle','#theme','#index','#about',
+const HOME_SELECTORS = ['.mutation','.decode'];
+const PROJECT_SELECTORS = [
   '#projectLangToggle','#projectTheme','#projectIndex','#projectAbout','#close',
-  '#nextProject',
+  '#nextProject'
+];
+const GLOBAL_SELECTORS = ['#langToggle','#theme','#index','#about'];
+const LIGHTBOX_SELECTORS = [
   '#portfolioLightbox .portfolio-lightbox-close',
   '#portfolioLightbox .portfolio-lightbox-prev',
-  '#portfolioLightbox .portfolio-lightbox-next',
-  '#project .pbody img'
-].join(',');
+  '#portfolioLightbox .portfolio-lightbox-next'
+];
 
 const layer=document.createElement('div');
 layer.className='native-haptic-layer';
@@ -29,18 +30,43 @@ document.body.appendChild(layer);
 const proxyByTarget=new Map();
 let raf=0;
 
+function panelOpen(id){
+  const el=document.getElementById(id);
+  return !!el && (
+    el.classList.contains('visible') ||
+    el.classList.contains('is-open') ||
+    el.getAttribute('aria-hidden')==='false'
+  );
+}
+
+function homeIsActive(){
+  return !panelOpen('project') &&
+         !panelOpen('indexPanel') &&
+         !panelOpen('aboutPanel') &&
+         !panelOpen('portfolioLightbox') &&
+         !panelOpen('editorLogin');
+}
+
+function targetAllowed(target){
+  if(target.matches(HOME_SELECTORS.join(','))) return homeIsActive();
+  if(target.matches(PROJECT_SELECTORS.join(','))) return panelOpen('project') && !panelOpen('portfolioLightbox');
+  if(target.matches(LIGHTBOX_SELECTORS.join(','))) return panelOpen('portfolioLightbox');
+  if(target.matches(GLOBAL_SELECTORS.join(','))) return homeIsActive();
+  return false;
+}
+
 function targetVisible(target){
-  if(!target?.isConnected) return false;
-  if(target.closest('[hidden]')) return false;
+  if(!target?.isConnected || !targetAllowed(target)) return false;
+  if(target.closest('[hidden],[aria-hidden="true"]')) return false;
   const style=getComputedStyle(target);
   if(style.display==='none'||style.visibility==='hidden'||style.pointerEvents==='none') return false;
   const r=target.getBoundingClientRect();
-  return r.width>5 && r.height>5 && r.bottom>0 && r.right>0 && r.top<innerHeight && r.left<innerWidth;
+  return r.width>5 && r.height>5 &&
+         r.bottom>0 && r.right>0 && r.top<innerHeight && r.left<innerWidth;
 }
 
 function activateTarget(target){
-  if(!target?.isConnected) return;
-  // Android / supporting browsers get a tiny equivalent pulse as a fallback.
+  if(!target?.isConnected || !targetAllowed(target)) return;
   if(!isAppleTouch && navigator.vibrate) navigator.vibrate(7);
   target.click();
 }
@@ -52,20 +78,32 @@ function makeProxy(target){
   input.tabIndex=-1;
   input.className='native-haptic-proxy';
   input.setAttribute('aria-hidden','true');
+
+  // A native switch change creates the iPhone tactile tick.
   input.addEventListener('click',e=>e.stopPropagation());
   input.addEventListener('change',e=>{
     e.stopPropagation();
-    activateTarget(target);
+    if(targetAllowed(target)) activateTarget(target);
     queueSync();
   });
+
   layer.appendChild(input);
   proxyByTarget.set(target,input);
   return input;
 }
 
+function currentTargets(){
+  const selectors=[];
+  if(homeIsActive()) selectors.push(...HOME_SELECTORS,...GLOBAL_SELECTORS);
+  if(panelOpen('project') && !panelOpen('portfolioLightbox')) selectors.push(...PROJECT_SELECTORS);
+  if(panelOpen('portfolioLightbox')) selectors.push(...LIGHTBOX_SELECTORS);
+  if(!selectors.length) return [];
+  return [...document.querySelectorAll(selectors.join(','))].filter(targetVisible);
+}
+
 function sync(){
   raf=0;
-  const targets=[...document.querySelectorAll(selectors)].filter(targetVisible);
+  const targets=currentTargets();
   const live=new Set(targets);
 
   for(const [target,input] of proxyByTarget){
@@ -83,11 +121,6 @@ function sync(){
     input.style.width=r.width+'px';
     input.style.height=r.height+'px';
     input.style.display='block';
-
-    // Do not cover project imagery while the editor is active.
-    if(document.getElementById('project')?.classList.contains('editing') && target.matches('#project .pbody img')){
-      input.style.display='none';
-    }
   });
 }
 
@@ -97,14 +130,30 @@ function queueSync(){
 }
 
 const observer=new MutationObserver(queueSync);
-observer.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','aria-hidden','style']});
+observer.observe(document.body,{
+  subtree:true,
+  childList:true,
+  attributes:true,
+  attributeFilter:['class','hidden','aria-hidden','style']
+});
 
 addEventListener('resize',queueSync,{passive:true});
 addEventListener('orientationchange',queueSync,{passive:true});
-document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('scroll',queueSync,{passive:true}));
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)queueSync()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden) queueSync()});
 
-// Keep overlays aligned during transitions / opening animations without a busy loop.
-document.addEventListener('click',()=>{queueSync();setTimeout(queueSync,80);setTimeout(queueSync,420);setTimeout(queueSync,1700)},true);
+// Scrolling should remain 100% native. Proxies are only tiny controls now; this
+// keeps their positions aligned without ever placing a proxy over project media.
+document.querySelectorAll('.overlay').forEach(el=>{
+  el.addEventListener('scroll',queueSync,{passive:true});
+});
+
+// Resync around project/lightbox transitions so stale home proxies disappear
+// immediately when a panel becomes active.
+document.addEventListener('click',()=>{
+  queueSync();
+  setTimeout(queueSync,50);
+  setTimeout(queueSync,250);
+  setTimeout(queueSync,1700);
+},true);
 
 queueSync();
